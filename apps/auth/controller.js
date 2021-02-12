@@ -1,0 +1,170 @@
+import User from "./repo";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import passportConfig from "../../config/passport";
+import Response from "../../utils/Responses";
+
+exports.signup = async (req, res) =>{
+    try{
+        console.log(req.body);
+        const {firstName, lastName, email, password} = req.body;
+
+        const checkEmail = await User.getUserByEmail(email);
+        if(checkEmail)
+            return Response.validationError(res, "Email already exists");
+        const verificationDigits = Math.floor(100000 + Math.random() * 900000);
+        
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const userData = User.create(firstName, lastName, email, hashedPassword, verificationDigits);
+        const data = {
+            _id: userData._id,
+            firstName,
+            lastName,
+            email,
+            isVerified: userData.isVerified
+        }
+        const token = jwt.sign({user: data}, passportConfig.secret);
+        
+        return Response.Success(res, 200, "user signed up successfully", {user: data, token: token});
+
+    }catch(err){
+        console.log(err);
+        Response.InternalServerError(res, "We are having issues! please try again soon")
+    }
+};
+
+exports.regenerateVerificationDigits = async (req, res) => {
+    try {
+        const {_id} = req.user;
+        const verificationDigits = Math.floor(100000 + Math.random() * 900000);
+        console.log(verificationDigits);
+        await User.update(_id, {verificationDigits});
+        //Remember to send via email
+
+        return Response.Success(res, 200, "Verification digits generated and sent via email");
+ 
+    } catch (error) {
+        console.log(error);
+        Response.InternalServerError(res, "We are having issues! please try again soon")
+    }
+}
+
+exports.verifyEmail = async (req, res) => {
+    try {
+        const {_id} = req.user;
+        const {verificationDigits} = req.body;
+        const savedUser = await User.getUserById(_id);
+        if(!savedUser || !savedUser.verificationDigits)
+            return Response.validationError(res, "Invalid token");
+       
+        if(savedUser.verificationDigits.toString() !== verificationDigits)
+            return Response.validationError(res, "Invalid verification digits");
+        
+        await User.update(_id, {verificationDigits: null, isVerified: true});
+        return Response.Success(res, 200, "Successfuly verified email");
+        
+    } catch (error) {
+        console.log(error);
+        Response.InternalServerError(res, "We are having issues! please try again soon")
+    }
+}
+
+exports.signin = async (req, res) => {
+    try {
+        const {email, password} = req.body;
+        console.log(req.body);
+        const userData = await User.getUserByEmail(email);
+        if(!userData)
+            return Response.notFoundError(res, "User not found");
+        if(!await bcrypt.compare(password, userData.password))
+            return Response.authorizationError(res, "wrong password");
+
+        const data = {
+            _id: userData._id,
+            firstName: userData.firstName,
+            lastName: userData.lastName,
+            email: userData.email,
+            isVerified: userData.isVerified
+        }
+        const results = await User.getAllData(userData._id);
+        const token = jwt.sign({user: data}, passportConfig.secret);
+        
+        return Response.Success(res, 200, "user signed in successfully", {user: results, token: token});
+    
+    } catch (error) {
+        console.log(error)
+        return Response.InternalServerError(res, "We are having issues! please try again soon")
+    }
+}
+
+exports.verifyToken = async (req, res) => {
+    try {
+        const {_id} = req.user;
+        const userData = await User.getUserById(_id);
+        if(!userData)
+            Response.notFoundError(res, "Invalid token");
+
+        const data = {
+            _id: userData._id,
+            firstName: userData.firstName,
+            lastName: userData.lastName,
+            email: userData.email,
+            isVerified: userData.isVerified
+        }
+        const token = jwt.sign({user: data}, passportConfig.secret);
+        
+        return Response.Success(res, 200, "token is valid", {user: data});
+    } catch (error) {
+        console.log(error);
+        Response.InternalServerError(res, "We are having issues! please try again soon")
+    }
+}
+
+exports.updateName = async (req, res) => {
+    try {
+        const {_id} = req.user;
+        const {firstName, lastName} = req.body;
+        await User.update(_id, {firstName, lastName});
+        return Response.Success(res, 200, "Name updated successfully");
+
+    } catch (error) {
+        console.log(error);
+        Response.InternalServerError(res, "We are having issues! please try again soon")
+    }
+}
+
+exports.updatePassword = async (req, res) => {
+    try {
+        const {_id} = req.user;
+        const {oldPassword, newPassword} = req.body;
+        const userData = await User.getUserById(_id);
+        if(!userData)
+            return Response.validationError(res, "wrong password");
+
+        if(!await bcrypt.compare(oldPassword, userData.password))
+            return Response.validationError(res, "wrong password");
+
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+        await User.update(_id, {password: hashedPassword});
+        
+        return Response.Success(res, 200, "password updated successfully");
+
+    } catch (error) {
+        console.log(error);
+        return Response.InternalServerError(res, "We are having issues! please try again soon")
+    }
+}
+
+exports.emailTaken = async (req, res) => {
+    try {
+        const {email} = req.body;
+        const savedUser = await User.getUserByEmail(email);
+        if(!savedUser)
+            return Response.Success(res, 200, "Email is not taken");
+        if(savedUser)
+            return Response.validationError(res, "Email is taken");
+    } catch (error) {
+        console.log(error);
+        Response.InternalServerError(res, "We are having issues! please try again soon")
+    }
+}
