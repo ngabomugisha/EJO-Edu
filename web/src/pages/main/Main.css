@@ -1,0 +1,12 @@
+.container{
+    display: flex;
+}
+.side-menu{
+    flex:0.2;
+}
+.feed{
+    flex: 0.6;
+}
+.right-side{
+    flex: 0.2;
+}
