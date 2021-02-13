@@ -1,14 +1,22 @@
-
 import './App.css';
-//import Home from './pages/home/Home'
-import Home from './pages/home/Home'
+import Routes from './routes';
+import { Provider as ReduxProvider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { store, persistor } from './store';
 
-function App() {
-  return (
-    <>
-    <Home/>
-    </>
-  );
-}
+const App = () => (
+  <ReduxProvider store={store}>
+    <PersistGate
+      persistor={persistor}
+      loading={
+        <div>
+          <p>Loading....</p>
+        </div>
+      }
+    >
+      <Routes />
+    </PersistGate>
+  </ReduxProvider>
+);
 
 export default App;
