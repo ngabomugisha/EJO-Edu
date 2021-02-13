@@ -1,12 +1,12 @@
 
 import './App.css';
 //import Home from './pages/home/Home'
-import Main from './pages/main/Main'
+import Home from './pages/home/Home'
 
 function App() {
   return (
     <>
-    <Main/>
+    <Home/>
     </>
   );
 }

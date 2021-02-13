@@ -1,0 +1,10 @@
+
+.first-field  .MuiOutlinedInput-root {
+    width: 300px;
+}
+
+.first-field{
+    margin-top: 60px;
+    display: flex;
+    flex-direction: row;
+}

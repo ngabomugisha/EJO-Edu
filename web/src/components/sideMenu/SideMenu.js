@@ -10,6 +10,7 @@ function SideMenu() {
     return (
         <div className='side-menu-container'>
             <img src={logo} className='logo'/>
+            <p className='label'>For Teacher</p>
 
             <SideOption Icon={BiHome} text="Home" active/>
             <SideOption Icon={AssignmentTurnedInOutlinedIcon} text="Assignment" />

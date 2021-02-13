@@ -1,4 +1,4 @@
-import React from 'react'
+import React ,{useState}from 'react'
 import './Main.css'
 import SideMenu from '../../components/sideMenu/SideMenu'
 import Feed from '../../components/feed/Feed'
@@ -7,6 +7,9 @@ import StickyBox from "react-sticky-box";
 
 
 function Main() {
+
+const [page, setPage] = useState(null)
+
     return (
         <div className="container">
         <div className='side-menu'>

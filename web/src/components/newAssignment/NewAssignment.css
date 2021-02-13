@@ -1,0 +1,21 @@
+.new-ass-container{
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    justify-self: center;
+    flex-direction: column;
+    min-width: 70%;
+    padding: 30px 50px 30px;
+    border-radius: 10px;
+    border: 0.4px solid #1b7dceaf;
+}
+
+.btn-next{
+    float: right;
+}
+
+.ft-btn{
+    padding-top: 40px;
+    padding-bottom: 20px;
+}
