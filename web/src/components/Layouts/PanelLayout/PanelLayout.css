@@ -6,6 +6,7 @@
 }
 .feed{
     flex: 0.6;
+    background-color: #F3F6FC;
 }
 .right-side{
     flex: 0.2;

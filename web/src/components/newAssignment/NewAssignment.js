@@ -2,10 +2,11 @@ import React, {useState} from 'react'
 import './NewAssignment.css'
 import { makeStyles } from '@material-ui/core/styles';
 import LinearProgress from '@material-ui/core/LinearProgress';
+import PanelLayout from '../Layouts/PanelLayout/Index'
 import { Button } from '@material-ui/core';
-import Slide1 from './assignmentSlide/Slide1'
 import Slide2 from './assignmentSlide/Slide2'
-import { useSelector, useDispatch} from "react-redux"
+import Slide1 from './assignmentSlide/Slide1'
+import Slide3 from './assignmentSlide/Slide3';
 
 const useStyles = makeStyles({
   root: {
@@ -16,41 +17,56 @@ const useStyles = makeStyles({
 
 
 function NewAssignment() {
-    const slide = useSelector(state => state.slide)
-    const ass = useSelector(state => state.assignment)
-    const dispatch = useDispatch();
-    const classes = useStyles();
-    const [progress, setProgress] = React.useState(0);
-    const [page, setPage] = useState('slide1')
-/*
-    React.useEffect(() => {
-      const timer = setInterval(() => {
-        setProgress((oldProgress) => {
-          if (oldProgress === 100) {
-            return 0;
-          }
-          const diff = Math.random() * 10;
-          return Math.min(oldProgress + diff, 100);
-        });
-      }, 500);
-  
-      return () => {
-        clearInterval(timer);
-      };
-    }, []);
 
-*/
+const assignment = {
+  date: null,
+  topic: null,
+  assType: null,
+  testDuration: null,
+  assKind: null,
+  numQuestions: null,
+  ansFormat: null,
+  hintQuestion: null,
+  totalMarks: null,
+  questionLibary: null,
+  newQuestion: null,
+  ansquestion : null
+}
+
+
+
+    const classes = useStyles();
+    const [newAssignment, setNewAssignment] = React.useState({})
+    const [progress, setProgress] = React.useState(20);
+
+function renderSwitch(progress){
+      switch(progress){
+          case 20:
+            return <Slide1/>
+          break;
+          case 40:
+            return <Slide2/>
+            break;
+            case 60:
+              return <Slide3/>
+              break;
+
+        default:
+          break;
+    }
+}
     return (
+      <>
+      <PanelLayout selected={1}>
         <div className="new-ass-container">
             <div className={classes.root}>
                 <LinearProgress variant="determinate" value={progress}/>
             </div>
             <div className='assignment-field'>
-                {slide == 1 ? <Slide2/> : null}
+                  {renderSwitch(progress)}
             </div>
             <div className='ft-btn'>
                 <Button color='primary' className="btn-next" size="large"
-                onClick={(slide <= 5 ? ()=> dispatch({type: "record", payload: 'robert'}) : ()=> dispatch({type: "Reset"}))}
                 style={{
                 borderRadius: 5,
                 backgroundColor: "#1f75c6",
@@ -59,12 +75,14 @@ function NewAssignment() {
                 color: "#fff",
                 width: '200px',
                 textTransform: 'capitalize'}}
+                onClick={() => setProgress(progress+20)}
                 >
                 Next
                 </Button>
-                {console.log(ass)}
             </div>
         </div>
+        </PanelLayout>
+        </>
     )
 }
 

@@ -1,25 +1,25 @@
-import React ,{useState}from 'react'
-import './Main.css'
-import SideMenu from '../../components/sideMenu/SideMenu'
-import Feed from '../../components/feed/Feed'
-import RightSide from '../../components/rightSide/RightSide'
+import React from 'react'
+import './PanelLayout.css'
+import SideMenu from '../../sideMenu/SideMenu'
+import RightSide from '../../rightSide/RightSide'
 import StickyBox from "react-sticky-box";
+import FeedHead from '../../feed/FeedHead';
 
 
-function Main() {
+const PanelLayout = (props) => {
 
-const [page, setPage] = useState(null)
 
     return (
         <div className="container">
         <div className='side-menu'>
 
     <StickyBox>
-            <SideMenu/>
+            <SideMenu selected={props.selected} />
     </StickyBox>
         </div>
         <div className='feed'>
-            <Feed />
+        <FeedHead/>
+        {props.children}
         </div>
         <div className='right-side'>
     <StickyBox>
@@ -30,4 +30,4 @@ const [page, setPage] = useState(null)
     )
 }
 
-export default Main
+export default PanelLayout

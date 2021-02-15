@@ -1,9 +1,10 @@
-import './HomeLayout.css';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import logo from '../../assets/icons/logo.svg';
 import Button from '@material-ui/core/Button';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
+
+
 const HomeLayout = ({ children }) => {
   const history = useHistory();
   const [auth, setAuth] = useState('none');

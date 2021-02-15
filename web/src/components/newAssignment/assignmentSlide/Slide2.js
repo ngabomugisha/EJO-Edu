@@ -1,92 +1,97 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Slide2.css'
-import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import clsx from 'clsx';
+import { makeStyles } from '@material-ui/core/styles';
+import IconButton from '@material-ui/core/IconButton';
+import Input from '@material-ui/core/Input';
+import FilledInput from '@material-ui/core/FilledInput';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
 const useStyles = makeStyles((theme) => ({
-    container: {
+    root: {
         display: 'flex',
         flexWrap: 'wrap',
     },
+    margin: {
+        margin: theme.spacing(1),
+    },
+    withoutLabel: {
+        marginTop: theme.spacing(3),
+    },
     textField: {
-        marginLeft: theme.spacing(1),
-        marginRight: theme.spacing(1),
-        marginTop: '-5px',
-        width: 200,
-        backgroundColor: '#fff',
-    },
-    formControl: {
-        margin: theme.spacing(0),
-        minWidth: 120,
-        backgroundColor: '#fff',
-    },
-    selectEmpty: {
-        marginTop: theme.spacing(0),
+        width: '25ch',
     },
 }));
 
 function Slide2() {
-    const classes = useStyles()
-    const [term, setTerm] = React.useState('')
-    const handleChange = (event) => {
-        setTerm(event.target.value)
+    const classes = useStyles();
+    const [values, setValues] = React.useState({
+        amount: '',
+        password: '',
+        weight: '',
+        weightRange: '',
+        showPassword: false,
+    });
+
+    const handleChange = (prop) => (event) => {
+        setValues({ ...values, [prop]: event.target.value });
     };
+
+    const handleClickShowPassword = () => {
+        setValues({ ...values, showPassword: !values.showPassword });
+    };
+
+    const handleMouseDownPassword = (event) => {
+        event.preventDefault();
+    };
+
+
     return (
         <div className='slide1-coantainer'>
-            <div className='first-field'>
-                <TextField
-                    id="outlined-basic"
-                    variant="outlined"
-                    label="Birthday"
-                    type="date"
-                    color="primary"
-                    defaultValue="2017-05-24"
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                />
-                <FormControl variant="outlined" className={classes.formControl}>
-                    <InputLabel id="demo-simple-select-outlined-label">Select Term</InputLabel>
-                    <Select
-                        labelId="demo-simple-select-outlined-label"
-                        id="demo-simple-select-outlined"
-                        value={term}
-                        onChange={handleChange}
-                        label="Select Term"
-                        color="primary"
-                    >
-                        <MenuItem value="">
-                            <em>None</em>
-                        </MenuItem>
-                        <MenuItem value={"First Term"}>First Term</MenuItem>
-                        <MenuItem value={"Second Term"}>Second Term</MenuItem>
-                        <MenuItem value={"Third Term"}>Third Term</MenuItem>
-                    </Select>
-                </FormControl>
+            <h3>Assignment Type</h3>
+            <div className='radio-groups'>
+                <form>
+                    <div className='radio-group'>
+                        <fieldset id="group1">
+                            <div className='option'><label>Individual Work</label><input type="radio" value="Individual Work" name="group1" /></div>
+                            <div className='option'><label>Group Work</label><input type="radio" value="Group Work" name="group1" /></div>
+                            <div className='option'><label>Home Work</label><input type="radio" value="Home Work" name="group1" /></div>
+                            <div className='option'><label>Summative</label><input type="radio" value="Summative" name="group1" /></div>
+                            <div className='option'><label>Exams</label><input type="radio" value="Exams" name="group1" /></div>
+                        </fieldset>
+                    </div>
+                    <div className='radio-group'>
+                        <fieldset id="group2">
+                            <div className='option'><label>Oral</label><input type="radio" value="Oral" name="group2" /></div>
+                            <div className='option'><label>Practice</label><input type="radio" value="Practice" name="group2" /></div>
+                            <div className='option'><label>Written/Type</label><input type="radio" value="Written/Type" name="group2" /></div>
+                        </fieldset>
+                    </div>
+                </form>
             </div>
-{/*
-            <FormControl variant="outlined" color="primary" className={classes.formControl}>
-                    <InputLabel id="demo-simple-select-outlined-label">Select Topic</InputLabel>
-                    <Select
-                        labelId="demo-simple-select-outlined-label"
-                        id="demo-simple-select-outlined"
-                        value={Age}
-                        onChange={handleChange}
-                        label="Select Topic"
+
+            <div className={classes.root}>
+                <div>
+                    <TextField
                         color="primary"
-                    >
-                        <MenuItem value="">
-                            <em>None</em>
-                        </MenuItem>
-                        <MenuItem value={"First Term"}>First Term</MenuItem>
-                        <MenuItem value={"Second Term"}>Second Term</MenuItem>
-                        <MenuItem value={"Third Term"}>Third Term</MenuItem>
-                    </Select>
-</FormControl>*/}
+                        label="Test Duration"
+                        size="small"
+                        id="outlined-start-adornment"
+                        className={clsx(classes.margin, classes.textField)}
+                        InputProps={{
+                            endAdornment: <InputAdornment position="end">Minutes</InputAdornment>,
+                        }}
+                        variant="outlined"
+                    />
+                </div>
+            </div>
         </div>
     )
 }

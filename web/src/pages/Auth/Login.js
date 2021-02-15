@@ -22,7 +22,7 @@ const LoginPage = () => {
     try {
       await dispatch(handleLogin({ email, password }));
       setIsLoading(false);
-      history.replace('/dashboard');
+      history.replace('/teacher');
     } catch (error) {
       setErrMessage(error.message || error.error || error);
       setIsLoading(false);

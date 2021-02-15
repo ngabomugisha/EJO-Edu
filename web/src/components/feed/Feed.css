@@ -12,11 +12,19 @@
     height:min-content;
 
 }
-.hd-btn > button{
+.hd-btn{
     padding: 10px 30px 10px;
     margin-right: 1rem;
     margin-top: 10px;
 }
+.hd-btn > a > Button{
+    padding: 10px 30px 10px;
+    margin-right: 1rem;
+}
+.hd-btn > a{
+    text-decoration: none;
+}
+
 .hd{
     display: flex;
     justify-content: space-between;

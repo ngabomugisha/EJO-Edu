@@ -4,7 +4,9 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 const LoginPage = lazy(() => import('./pages/Auth/Login'));
 const HomePage = lazy(() => import('./pages/Home'));
 const ForgetPasswordPage = lazy(() => import('./pages/Auth/ForgetPassword'));
-const MainPage = lazy(() => import('./pages/Main'));
+const TeacherDashboard = lazy(() => import('./pages/Teacher/Index'));
+const Assignment = lazy(() => import('./pages/Teacher/Assignment'))
+const NewAssignmentPage = lazy(( )=> import('./components/newAssignment/NewAssignment'))
 export default () => {
   return (
     <Suspense
@@ -18,7 +20,9 @@ export default () => {
         <Switch>
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/passwords" component={ForgetPasswordPage} />
-          <Route exact path="/dashboard" component={MainPage} />
+          <Route exact path="/teacher/assignment" component={Assignment}/>
+          <Route exact path="/teacher/newAssignment" component={NewAssignmentPage}/>
+          <Route exact path="/teacher" component={TeacherDashboard} />
           <Route exact paht="/" component={HomePage} />
         </Switch>
       </Router>

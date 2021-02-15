@@ -7,6 +7,10 @@
     height: 100%;
     position: fixed;
 }
+.side-menu-container > a{
+    color: black;
+    text-decoration: none;
+}
 .logo{
     width: 50px;
     height: 40px;
