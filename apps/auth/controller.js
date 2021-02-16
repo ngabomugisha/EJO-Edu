@@ -4,28 +4,32 @@ import jwt from "jsonwebtoken";
 import passportConfig from "../../config/passport";
 import Response from "../../utils/Responses";
 
-exports.signup = async (req, res) =>{
+exports.createUser = async (req, res) =>{
     try{
-        console.log(req.body);
-        const {firstName, lastName, email, password} = req.body;
+        // console.log(req.body);
+        const {firstName, lastName, email, school, role} = req.body;
 
         const checkEmail = await User.getUserByEmail(email);
         if(checkEmail)
             return Response.validationError(res, "Email already exists");
+
+        const password = Math.floor(100000 + Math.random() * 900000);
         const verificationDigits = Math.floor(100000 + Math.random() * 900000);
         
-        const hashedPassword = await bcrypt.hash(password, 10);
-        const userData = User.create(firstName, lastName, email, hashedPassword, verificationDigits);
+        const hashedPassword = await bcrypt.hash(password.toString(), 10);
+        const userData = User.create(firstName, lastName, email, hashedPassword, school, role, verificationDigits);
         const data = {
             _id: userData._id,
             firstName,
             lastName,
             email,
+            school,
+            role,
             isVerified: userData.isVerified
         }
         const token = jwt.sign({user: data}, passportConfig.secret);
         
-        return Response.Success(res, 200, "user signed up successfully", {user: data, token: token});
+        return Response.Success(res, 200, "user signed up successfully", {user: data, password, token: token});
 
     }catch(err){
         console.log(err);
@@ -84,9 +88,12 @@ exports.signin = async (req, res) => {
             firstName: userData.firstName,
             lastName: userData.lastName,
             email: userData.email,
+            role: userData.role,
+            school: userData.school,
             isVerified: userData.isVerified
         }
-        const results = await User.getAllData(userData._id);
+
+        const results = data;
         const token = jwt.sign({user: data}, passportConfig.secret);
         
         return Response.Success(res, 200, "user signed in successfully", {user: results, token: token});

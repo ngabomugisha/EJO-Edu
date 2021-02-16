@@ -4,7 +4,7 @@ import passport from 'passport';
 import '../../middleware/auth';
 const router = express.Router(); 
 
-router.post('/signup', User.signup);
+router.post('/signup', User.createUser);
 router.post('/signin', User.signin);
 router.post('/verify-token', passport.authenticate("jwt", { session : false }), User.verifyToken);
 router.post('/regenerate-verification-digits', passport.authenticate("jwt", { session : false }), User.regenerateVerificationDigits);

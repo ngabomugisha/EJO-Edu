@@ -1,8 +1,8 @@
 import user from "./model";
 
-exports.create = async (firstName, lastName, email, password, verificationDigits) =>{
+exports.create = async (firstName, lastName, email, password,school, role, verificationDigits) =>{
     try{
-        const User = new user({firstName, lastName, email, password, verificationDigits, invitations: []});
+        const User = new user({firstName, lastName, email, password, school, role, verificationDigits, invitations: []});
         return await User.save();
 
     }catch(err){

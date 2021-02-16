@@ -5,10 +5,13 @@ const userSchema = new mongoose.Schema({
     lastName: String,
     email: String,
     password: String,
-    
     role: {
         type: String,
-        enum: ['SUPER-ADMIN','SCHOOL-ADMIN','TEACHER','HEAD-OF-DISPLINE','HEAD-OF-STUDIES',null],
+        enum: ['SUPER-ADMIN','SCHOOL-ADMIN','TEACHER','HEAD-OF-DISPLINE','HEAD-OF-STUDIES'],
+    },
+    school: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'school'
     },
     verificationDigits: {
         type: Number,
@@ -18,6 +21,10 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    passwordChanged: {
+        type: Boolean,
+        default: false
+    }, 
     lastLogin: {
         type: Date,
         default: Date.now
