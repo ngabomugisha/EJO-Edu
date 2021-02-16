@@ -5,6 +5,10 @@ const studentLeaveSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'student'
     },
+    school: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'school'
+    },
     reason: String,
     checkout: Date,
     checkin: Date,

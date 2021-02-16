@@ -1,14 +1,16 @@
-import Assignment from './repo'
+import QuestionBank from './repo'
 import Response from '../../utils/Responses';
 
 exports.create = async (req, res) => {
     try {
         const {
-            title, assignedClass, subject
+            firstName,
+            lastName,
+            school,
+            questionBankClass
         } = req.body;
-        const teacher = req.user._id
 
-        Assignment.create(title, assignedClass, subject, teacher)
+        QuestionBank.create(firstName, lastName, school, questionBankClass)
         .then(results => {
             Response.Success(res, 200, "created successfully", results);
         })
@@ -26,11 +28,13 @@ exports.create = async (req, res) => {
 
 exports.update = async (req, res) => {
     try {
-        const assignmentId = req.params.assignmentId;
+        const questionBankId = req.params.questionBankId;
         const {
-            title
+            firstName,
+            lastName,
+            questionBankClass
         } = req.body;
-        Assignment.update(assignmentId, title)
+        QuestionBank.update(questionBankId, firstName, lastName, questionBankClass)
             .then(results => {
                 Response.Success(res, 200, "updated successfully", results);
             })
@@ -46,12 +50,10 @@ exports.update = async (req, res) => {
     
 }
 
-exports.getAllClassSubjectAssignmentes = async (req, res) => {
+exports.getAllClassQuestionBanks = async (req, res) => {
     try {
-
         const classId = req.params.classId;
-        const subjectId = req.params.subjectId
-        Assignment.getAllClassSubjectAssignmentes(classId, subjectId)
+        QuestionBank.getAllClassQuestionBanks(classId)
             .then(results => {
                 Response.Success(res, 200, "queried successfully", results);
             })
@@ -67,12 +69,30 @@ exports.getAllClassSubjectAssignmentes = async (req, res) => {
     
 }
 
-
-exports.getOneAssignment = async (req, res) => {
+exports.getAllSchoolQuestionBanks = async (req, res) => {
     try {
-        const assignmentId = req.params.assignmentId;
+        const schoolId = req.params.schoolId;
+        QuestionBank.getAllSchoolQuestionBanks(schoolId)
+            .then(results => {
+                Response.Success(res, 200, "queried successfully", results);
+            })
+            .catch(err => {
+                console.log(err);
+                Response.InternalServerError(res, "We are having issues! please try again soon");
+            });
 
-        Assignment.getOneAssignment(assignmentId)
+    } catch (error) {
+        console.log(error);
+        Response.InternalServerError(res, "We are having issues! please try again soon");
+    }
+    
+}
+
+exports.getOneQuestionBank = async (req, res) => {
+    try {
+        const questionBankId = req.params.questionBankId;
+
+        QuestionBank.getOneQuestionBank(questionBankId)
             .then(results => {
                 Response.Success(res, 200, "queried successfully", results);
             })
@@ -90,9 +110,9 @@ exports.getOneAssignment = async (req, res) => {
 
 exports.delete = async (req, res) => {
     try {
-        const assignmentId = req.params.assignmentId;
+        const questionBankId = req.params.questionBankId;
         
-        Assignment.delete(assignmentId)
+        QuestionBank.delete(questionBankId)
             .then(results => {
                 Response.Success(res, 200, "deleted successfully", results);
             })

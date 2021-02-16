@@ -1,14 +1,15 @@
-import Assignment from './repo'
+import Term from './repo'
 import Response from '../../utils/Responses';
 
 exports.create = async (req, res) => {
     try {
         const {
-            title, assignedClass, subject
+            name,
+            starts,
+            ends
         } = req.body;
-        const teacher = req.user._id
 
-        Assignment.create(title, assignedClass, subject, teacher)
+        Term.create(name, starts, ends)
         .then(results => {
             Response.Success(res, 200, "created successfully", results);
         })
@@ -26,11 +27,13 @@ exports.create = async (req, res) => {
 
 exports.update = async (req, res) => {
     try {
-        const assignmentId = req.params.assignmentId;
+        const termId = req.params.termId;
         const {
-            title
+            name,
+            starts,
+            ends
         } = req.body;
-        Assignment.update(assignmentId, title)
+        Term.update(termId, name, starts, ends)
             .then(results => {
                 Response.Success(res, 200, "updated successfully", results);
             })
@@ -46,12 +49,10 @@ exports.update = async (req, res) => {
     
 }
 
-exports.getAllClassSubjectAssignmentes = async (req, res) => {
+exports.getAllTerms = async (req, res) => {
     try {
 
-        const classId = req.params.classId;
-        const subjectId = req.params.subjectId
-        Assignment.getAllClassSubjectAssignmentes(classId, subjectId)
+        Term.getAllTerms()
             .then(results => {
                 Response.Success(res, 200, "queried successfully", results);
             })
@@ -68,11 +69,11 @@ exports.getAllClassSubjectAssignmentes = async (req, res) => {
 }
 
 
-exports.getOneAssignment = async (req, res) => {
+exports.getOneTerm = async (req, res) => {
     try {
-        const assignmentId = req.params.assignmentId;
+        const termId = req.params.termId;
 
-        Assignment.getOneAssignment(assignmentId)
+        Term.getOneTerm(termId)
             .then(results => {
                 Response.Success(res, 200, "queried successfully", results);
             })
@@ -90,9 +91,9 @@ exports.getOneAssignment = async (req, res) => {
 
 exports.delete = async (req, res) => {
     try {
-        const assignmentId = req.params.assignmentId;
+        const termId = req.params.termId;
         
-        Assignment.delete(assignmentId)
+        Term.delete(termId)
             .then(results => {
                 Response.Success(res, 200, "deleted successfully", results);
             })

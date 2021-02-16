@@ -1,21 +1,21 @@
-import Course from './model'
+import Subject from './model'
 
 exports.create = async (name) =>{
 try {
-    const newCourse = new Course({
+    const newSubject = new Subject({
         name
     })
-    await newCourse.save()
-    return newCourse;
+    await newSubject.save()
+    return newSubject;
 } catch (error) {
     throw error; 
 }
 };
 
-exports.update = async (courseId, name) => {
+exports.update = async (subjectId, name) => {
     try {
-        return await Course.findByIdAndUpdate(
-            {_id: courseId},
+        return await Subject.findByIdAndUpdate(
+            {_id: subjectId},
             {name: name},{new: true},
             (err, success) => {
                 if(err){
@@ -30,9 +30,9 @@ exports.update = async (courseId, name) => {
     }
 }
 
-exports.getAllCourses = async () => {
+exports.getAllSubjects = async () => {
     try {
-        return await Course.find()
+        return await Subject.find()
                 .then(res => {
                     return res;
                 })
@@ -45,9 +45,9 @@ exports.getAllCourses = async () => {
     }
 }
 
-exports.getOneCourse = async (courseId) => {
+exports.getOneSubject = async (subjectId) => {
     try {
-        return await Course.findById(courseId)
+        return await Subject.findById(subjectId)
                 .then(res => {
                     return res;
                 })
@@ -60,9 +60,9 @@ exports.getOneCourse = async (courseId) => {
     }
 }
 
-exports.delete = async (courseId) => {
+exports.delete = async (subjectId) => {
     try {
-        return await Course.findByIdAndDelete(courseId);
+        return await Subject.findByIdAndDelete(subjectId);
     } catch (error) {
         throw error;
     }

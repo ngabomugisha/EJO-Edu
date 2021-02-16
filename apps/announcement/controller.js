@@ -1,14 +1,18 @@
-import Assignment from './repo'
+import Announcement from './repo'
 import Response from '../../utils/Responses';
 
 exports.create = async (req, res) => {
     try {
         const {
-            title, assignedClass, subject
+            announcement,
+            receiverTypes,
+            school
         } = req.body;
-        const teacher = req.user._id
-
-        Assignment.create(title, assignedClass, subject, teacher)
+        
+        // receivers to be fetched
+        const receivers = []
+        const sender = req.user._id
+        Announcement.create(announcement, receiverTypes, receivers, sender, school)
         .then(results => {
             Response.Success(res, 200, "created successfully", results);
         })
@@ -24,34 +28,10 @@ exports.create = async (req, res) => {
     
 }
 
-exports.update = async (req, res) => {
+exports.getSentAnnouncements = async (req, res) => {
     try {
-        const assignmentId = req.params.assignmentId;
-        const {
-            title
-        } = req.body;
-        Assignment.update(assignmentId, title)
-            .then(results => {
-                Response.Success(res, 200, "updated successfully", results);
-            })
-            .catch(err => {
-                console.log(err);
-                Response.InternalServerError(res, "We are having issues! please try again soon");
-            });
-
-    } catch (error) {
-        console.log(error);
-        Response.InternalServerError(res, "We are having issues! please try again soon");
-    }
-    
-}
-
-exports.getAllClassSubjectAssignmentes = async (req, res) => {
-    try {
-
-        const classId = req.params.classId;
-        const subjectId = req.params.subjectId
-        Assignment.getAllClassSubjectAssignmentes(classId, subjectId)
+        const sender = req.user._id
+        Announcement.getSentAnnouncements(sender)
             .then(results => {
                 Response.Success(res, 200, "queried successfully", results);
             })
@@ -67,12 +47,30 @@ exports.getAllClassSubjectAssignmentes = async (req, res) => {
     
 }
 
-
-exports.getOneAssignment = async (req, res) => {
+exports.getReceiverAnnouncements = async (req, res) => {
     try {
-        const assignmentId = req.params.assignmentId;
+        const receiver = req.user._id
+        Announcement.getReceiverAnnouncements(receiver)
+            .then(results => {
+                Response.Success(res, 200, "queried successfully", results);
+            })
+            .catch(err => {
+                console.log(err);
+                Response.InternalServerError(res, "We are having issues! please try again soon");
+            });
 
-        Assignment.getOneAssignment(assignmentId)
+    } catch (error) {
+        console.log(error);
+        Response.InternalServerError(res, "We are having issues! please try again soon");
+    }
+    
+}
+
+exports.getOneAnnouncement = async (req, res) => {
+    try {
+        const announcementId = req.params.announcementId;
+
+        Announcement.getOneAnnouncement(announcementId)
             .then(results => {
                 Response.Success(res, 200, "queried successfully", results);
             })
@@ -90,9 +88,9 @@ exports.getOneAssignment = async (req, res) => {
 
 exports.delete = async (req, res) => {
     try {
-        const assignmentId = req.params.assignmentId;
+        const announcementId = req.params.announcementId;
         
-        Assignment.delete(assignmentId)
+        Announcement.delete(announcementId)
             .then(results => {
                 Response.Success(res, 200, "deleted successfully", results);
             })

@@ -1,9 +1,26 @@
 const mongoose = require('mongoose');
 
 const assignmenteschema = new mongoose.Schema({
-    course: {
+    title: String,
+    questions: [{
+        question: String,
+        unit: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'unit'
+        },
+        questionType: {
+            type: String,
+            enum: ['OPEN', 'MULTIPLE-CHOICE', 'SINGLE-CHOICE']
+        },
+        possibleAnswer: [{
+                answer: String
+        }],
+        answer: String,
+        points: Number
+    }],
+    subject: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'course'
+        ref: 'subject'
     },
     class: {
         type: mongoose.Schema.Types.ObjectId,
@@ -13,7 +30,9 @@ const assignmenteschema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user'
     },
-    title: String,
+    duration: Number,
+    starts: Date,
+    ends: Date
 }, {timestamps: true});
 
 export default mongoose.model("assignment", assignmenteschema);

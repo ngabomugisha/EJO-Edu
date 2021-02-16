@@ -1,14 +1,18 @@
-import Assignment from './repo'
+import Guest from './repo'
 import Response from '../../utils/Responses';
 
 exports.create = async (req, res) => {
     try {
         const {
-            title, assignedClass, subject
+            firstName, 
+            lastName,
+            reason,
+            checkin
         } = req.body;
-        const teacher = req.user._id
+        const checkedinBy = req.user._id
+        const school = req.user.school
 
-        Assignment.create(title, assignedClass, subject, teacher)
+        Guest.create(firstName, lastName, reason, checkin, checkedinBy, school)
         .then(results => {
             Response.Success(res, 200, "created successfully", results);
         })
@@ -26,11 +30,12 @@ exports.create = async (req, res) => {
 
 exports.update = async (req, res) => {
     try {
-        const assignmentId = req.params.assignmentId;
+        const guestId = req.params.guestId;
+        const checkedoutBy = req.user._id
         const {
-            title
+            checkout
         } = req.body;
-        Assignment.update(assignmentId, title)
+        Guest.update(guestId, checkout, checkedoutBy)
             .then(results => {
                 Response.Success(res, 200, "updated successfully", results);
             })
@@ -46,12 +51,10 @@ exports.update = async (req, res) => {
     
 }
 
-exports.getAllClassSubjectAssignmentes = async (req, res) => {
+exports.getAllSchoolGuests = async (req, res) => {
     try {
-
-        const classId = req.params.classId;
-        const subjectId = req.params.subjectId
-        Assignment.getAllClassSubjectAssignmentes(classId, subjectId)
+        const school = req.params.school;
+        Guest.getAllSchoolGuests(school)
             .then(results => {
                 Response.Success(res, 200, "queried successfully", results);
             })
@@ -68,11 +71,11 @@ exports.getAllClassSubjectAssignmentes = async (req, res) => {
 }
 
 
-exports.getOneAssignment = async (req, res) => {
+exports.getOneGuest = async (req, res) => {
     try {
-        const assignmentId = req.params.assignmentId;
+        const guestId = req.params.guestId;
 
-        Assignment.getOneAssignment(assignmentId)
+        Guest.getOneGuest(guestId)
             .then(results => {
                 Response.Success(res, 200, "queried successfully", results);
             })
@@ -90,9 +93,9 @@ exports.getOneAssignment = async (req, res) => {
 
 exports.delete = async (req, res) => {
     try {
-        const assignmentId = req.params.assignmentId;
+        const guestId = req.params.guestId;
         
-        Assignment.delete(assignmentId)
+        Guest.delete(guestId)
             .then(results => {
                 Response.Success(res, 200, "deleted successfully", results);
             })

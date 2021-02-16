@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 
 const topicSchema = new mongoose.Schema({
     name: String,
-    course: {
+    subject: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'course'
+        ref: 'subject'
     }
 }, {timestamps: true});
 

@@ -1,11 +1,13 @@
 import Plan from './model'
 
-exports.create = async (name, unit) =>{
+exports.create = async (name, unit, subject, teacher, school) =>{
 try {
     const newPlan = new Plan({
         name,
         unit,
-        course
+        subject, 
+        teacher, 
+        school
     })
     await newPlan.save()
     return newPlan;
@@ -32,9 +34,9 @@ exports.update = async (planId, name) => {
     }
 }
 
-exports.getAllCoursePlan = async (courseId) => {
+exports.getAllSubjectPlan = async (subjectId) => {
     try {
-        return await Plan.find({course: courseId})
+        return await Plan.find({subject: subjectId})
                 .then(res => {
                     return res;
                 })

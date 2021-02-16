@@ -1,25 +1,27 @@
-import TeacherLeave from './model'
+import Guest from './model'
 
-exports.create = async (teacher, reason, starts, ends) =>{
+exports.create = async (firstName, lastName, reason, checkin, checkedinBy, school) =>{
 try {
-    const newTeacherLeave = new TeacherLeave({
-        teacher,
+    const newGuest = new Guest({
+        firstName,
+        lastName,
         reason,
-        starts,
-        ends
+        checkin,
+        checkedinBy,
+        school
     })
-    await newTeacherLeave.save()
-    return newTeacherLeave;
+    await newGuest.save()
+    return newGuest;
 } catch (error) {
     throw error; 
 }
 };
 
-exports.update = async (teacherLeaveId, approved, approvedBy) => {
+exports.update = async (guestId, checkout, checkedoutBy) => {
     try {
-        return await TeacherLeave.findByIdAndUpdate(
-            {_id: teacherLeaveId},
-            {approved: approved, approvedBy},{new: true},
+        return await Guest.findByIdAndUpdate(
+            {_id: guestId},
+            {checkout, checkedoutBy},{new: true},
             (err, success) => {
                 if(err){
                     console.log(err);
@@ -33,9 +35,9 @@ exports.update = async (teacherLeaveId, approved, approvedBy) => {
     }
 }
 
-exports.getAllTeacherLeaves = async () => {
+exports.getAllSchoolGuests = async (school) => {
     try {
-        return await TeacherLeave.find()
+        return await Guest.find({school: school})
                 .then(res => {
                     return res;
                 })
@@ -48,9 +50,9 @@ exports.getAllTeacherLeaves = async () => {
     }
 }
 
-exports.getOneTeacherLeave = async (teacherLeaveId) => {
+exports.getOneGuest = async (guestId) => {
     try {
-        return await TeacherLeave.findById(teacherLeaveId)
+        return await Guest.findById(guestId)
                 .then(res => {
                     return res;
                 })
@@ -63,9 +65,9 @@ exports.getOneTeacherLeave = async (teacherLeaveId) => {
     }
 }
 
-exports.delete = async (teacherLeaveId) => {
+exports.delete = async (guestId) => {
     try {
-        return await TeacherLeave.findByIdAndDelete(teacherLeaveId);
+        return await Guest.findByIdAndDelete(guestId);
     } catch (error) {
         throw error;
     }

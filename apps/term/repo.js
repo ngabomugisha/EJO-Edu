@@ -1,23 +1,24 @@
-import SubTopic from './model'
+import Term from './model'
 
-exports.create = async (name, topic) =>{
+exports.create = async (name, starts, ends) =>{
 try {
-    const newSubTopic = new SubTopic({
+    const newTerm = new Term({
         name,
-        topic
+        starts,
+        ends
     })
-    await newSubTopic.save()
-    return newSubTopic;
+    await newTerm.save()
+    return newTerm;
 } catch (error) {
     throw error; 
 }
 };
 
-exports.update = async (subTopicId, name) => {
+exports.update = async (termId, name, starts, ends) => {
     try {
-        return await SubTopic.findByIdAndUpdate(
-            {_id: subTopicId},
-            {name: name},{new: true},
+        return await Term.findByIdAndUpdate(
+            {_id: termId},
+            {name: name, starts, ends},{new: true},
             (err, success) => {
                 if(err){
                     console.log(err);
@@ -31,9 +32,9 @@ exports.update = async (subTopicId, name) => {
     }
 }
 
-exports.getAllTopicSubTopics = async (topicId) => {
+exports.getAllTerms = async () => {
     try {
-        return await SubTopic.find({topic: topicId})
+        return await Term.find()
                 .then(res => {
                     return res;
                 })
@@ -46,9 +47,9 @@ exports.getAllTopicSubTopics = async (topicId) => {
     }
 }
 
-exports.getOneSubTopic = async (subTopicId) => {
+exports.getOneTerm = async (termId) => {
     try {
-        return await SubTopic.findById(subTopicId)
+        return await Term.findById(termId)
                 .then(res => {
                     return res;
                 })
@@ -61,9 +62,9 @@ exports.getOneSubTopic = async (subTopicId) => {
     }
 }
 
-exports.delete = async (subTopicId) => {
+exports.delete = async (termId) => {
     try {
-        return await SubTopic.findByIdAndDelete(subTopicId);
+        return await Term.findByIdAndDelete(termId);
     } catch (error) {
         throw error;
     }

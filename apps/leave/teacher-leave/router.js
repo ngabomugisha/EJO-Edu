@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.post('/', TeacherLeave.create);
 router.put('/:teacherLeaveId', TeacherLeave.update);
-router.get('/', TeacherLeave.getAllTeacherLeaves);
+router.get('/:schoolId/school-teacher-leaves', TeacherLeave.getSchoolTeacherLeaves);
 router.get('/:teacherLeaveId', TeacherLeave.getOneTeacherLeave);
 router.delete('/:teacherLeaveId', TeacherLeave.delete);
 

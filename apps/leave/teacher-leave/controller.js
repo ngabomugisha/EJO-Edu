@@ -1,5 +1,5 @@
 import TeacherLeave from './repo'
-import Response from '../../utils/Responses';
+import Response from '../../../utils/Responses';
 
 exports.create = async (req, res) => {
     try {
@@ -9,8 +9,9 @@ exports.create = async (req, res) => {
             ends
         } = req.body;
         const teacher = req.user._id
+        const school = req.user.school
 
-        TeacherLeave.create(teacher, reason, starts, ends)
+        TeacherLeave.create(teacher, reason, starts, ends, school)
         .then(results => {
             Response.Success(res, 200, "created successfully", results);
         })
@@ -49,10 +50,11 @@ exports.update = async (req, res) => {
     
 }
 
-exports.getAllTeacherLeaves = async (req, res) => {
+exports.getSchoolTeacherLeaves = async (req, res) => {
     try {
 
-        TeacherLeave.getAllTeacherLeaves()
+        const schoolId = req.params.schoolId;
+        TeacherLeave.getSchoolTeacherLeaves(schoolId)
             .then(results => {
                 Response.Success(res, 200, "queried successfully", results);
             })
@@ -67,7 +69,6 @@ exports.getAllTeacherLeaves = async (req, res) => {
     }
     
 }
-
 
 exports.getOneTeacherLeave = async (req, res) => {
     try {

@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.post('/', Assignment.create);
 router.put('/:assignmentId', Assignment.update);
-router.get('/:classId/:courseId', Assignment.getAllClassCourseAssignmentes);
+router.get('/:classId/:subjectId', Assignment.getAllClassSubjectAssignmentes);
 router.get('/:assignmentId', Assignment.getOneAssignment);
 router.delete('/:assignmentId', Assignment.delete);
 

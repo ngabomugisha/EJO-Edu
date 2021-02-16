@@ -1,12 +1,13 @@
 import StudentLeave from './model'
 
-exports.create = async (student, reason, checkout, checkedoutBy) =>{
+exports.create = async (student, reason, checkout, checkedoutBy, school) =>{
 try {
     const newStudentLeave = new StudentLeave({
         student,
         reason,
         checkout,
-        checkedoutBy
+        checkedoutBy,
+        school
     })
     await newStudentLeave.save()
     return newStudentLeave;
@@ -33,9 +34,9 @@ exports.update = async (studentLeaveId, checkin, checkedinBy) => {
     }
 }
 
-exports.getAllStudentLeaves = async () => {
+exports.getSchoolStudentLeaves = async (schoolId) => {
     try {
-        return await StudentLeave.find()
+        return await StudentLeave.find({school: schoolId})
                 .then(res => {
                     return res;
                 })

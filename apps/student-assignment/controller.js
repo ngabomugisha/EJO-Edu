@@ -1,16 +1,14 @@
-import StudentLeave from './repo'
+import StudentAssigment from './repo'
 import Response from '../../utils/Responses';
 
 exports.create = async (req, res) => {
     try {
         const {
-            student,
-            reason,
-            checkout
+            title, assignedClass, subject
         } = req.body;
-        const checkedoutBy = req.user._id
+        const teacher = req.user._id
 
-        StudentLeave.create(student, reason, checkout, checkedoutBy)
+        StudentAssigment.create(title, assignedClass, subject, teacher)
         .then(results => {
             Response.Success(res, 200, "created successfully", results);
         })
@@ -28,12 +26,11 @@ exports.create = async (req, res) => {
 
 exports.update = async (req, res) => {
     try {
-        const studentLeaveId = req.params.studentLeaveId;
-        const checkedinBy = req.user._id
+        const studentAssigmentId = req.params.studentAssigmentId;
         const {
-            checkin
+            title
         } = req.body;
-        StudentLeave.update(studentLeaveId, checkin, checkedinBy)
+        StudentAssigment.update(studentAssigmentId, title)
             .then(results => {
                 Response.Success(res, 200, "updated successfully", results);
             })
@@ -49,10 +46,12 @@ exports.update = async (req, res) => {
     
 }
 
-exports.getAllStudentLeaves = async (req, res) => {
+exports.getAllClassSubjectStudentAssigmentes = async (req, res) => {
     try {
 
-        StudentLeave.getAllStudentLeaves()
+        const classId = req.params.classId;
+        const subjectId = req.params.subjectId
+        StudentAssigment.getAllClassSubjectStudentAssigmentes(classId, subjectId)
             .then(results => {
                 Response.Success(res, 200, "queried successfully", results);
             })
@@ -69,11 +68,11 @@ exports.getAllStudentLeaves = async (req, res) => {
 }
 
 
-exports.getOneStudentLeave = async (req, res) => {
+exports.getOneStudentAssigment = async (req, res) => {
     try {
-        const studentLeaveId = req.params.studentLeaveId;
+        const studentAssigmentId = req.params.studentAssigmentId;
 
-        StudentLeave.getOneStudentLeave(studentLeaveId)
+        StudentAssigment.getOneStudentAssigment(studentAssigmentId)
             .then(results => {
                 Response.Success(res, 200, "queried successfully", results);
             })
@@ -91,9 +90,9 @@ exports.getOneStudentLeave = async (req, res) => {
 
 exports.delete = async (req, res) => {
     try {
-        const studentLeaveId = req.params.studentLeaveId;
+        const studentAssigmentId = req.params.studentAssigmentId;
         
-        StudentLeave.delete(studentLeaveId)
+        StudentAssigment.delete(studentAssigmentId)
             .then(results => {
                 Response.Success(res, 200, "deleted successfully", results);
             })

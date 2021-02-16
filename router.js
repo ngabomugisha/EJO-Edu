@@ -11,7 +11,8 @@ router.use('/api/classes', passport.authenticate("jwt", { session : false }), re
 router.use('/api/students', passport.authenticate("jwt", { session : false }), require('./apps/student/router'));
 router.use('/api/lessons', passport.authenticate("jwt", { session : false }), require('./apps/lesson'));
 router.use('/api/assignments', passport.authenticate("jwt", { session : false }), require('./apps/assignment/router'));
-router.use('/api/student-leaves', passport.authenticate("jwt", { session : false }), require('./apps/student-leave/router'));
-router.use('/api/teacher-leaves', passport.authenticate("jwt", { session : false }), require('./apps/teacher-leave/router'));
+router.use('/api/leaves', passport.authenticate("jwt", { session : false }), require('./apps/leave/'));
+router.use('/api/terms', passport.authenticate("jwt", { session : false }), require('./apps/term/router'));
+router.use('/api/guests', passport.authenticate("jwt", { session : false }), require('./apps/guest/router'));
 
 module.exports = router;

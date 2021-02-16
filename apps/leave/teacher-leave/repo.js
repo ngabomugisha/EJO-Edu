@@ -1,23 +1,26 @@
-import SubTopic from './model'
+import TeacherLeave from './model'
 
-exports.create = async (name, topic) =>{
+exports.create = async (teacher, reason, starts, ends, school) =>{
 try {
-    const newSubTopic = new SubTopic({
-        name,
-        topic
+    const newTeacherLeave = new TeacherLeave({
+        teacher,
+        reason,
+        starts,
+        ends,
+        school
     })
-    await newSubTopic.save()
-    return newSubTopic;
+    await newTeacherLeave.save()
+    return newTeacherLeave;
 } catch (error) {
     throw error; 
 }
 };
 
-exports.update = async (subTopicId, name) => {
+exports.update = async (teacherLeaveId, approved, approvedBy) => {
     try {
-        return await SubTopic.findByIdAndUpdate(
-            {_id: subTopicId},
-            {name: name},{new: true},
+        return await TeacherLeave.findByIdAndUpdate(
+            {_id: teacherLeaveId},
+            {approved: approved, approvedBy},{new: true},
             (err, success) => {
                 if(err){
                     console.log(err);
@@ -31,9 +34,9 @@ exports.update = async (subTopicId, name) => {
     }
 }
 
-exports.getAllTopicSubTopics = async (topicId) => {
+exports.getSchoolTeacherLeaves = async (schoolId) => {
     try {
-        return await SubTopic.find({topic: topicId})
+        return await TeacherLeave.find({school: schoolId})
                 .then(res => {
                     return res;
                 })
@@ -46,9 +49,9 @@ exports.getAllTopicSubTopics = async (topicId) => {
     }
 }
 
-exports.getOneSubTopic = async (subTopicId) => {
+exports.getOneTeacherLeave = async (teacherLeaveId) => {
     try {
-        return await SubTopic.findById(subTopicId)
+        return await TeacherLeave.findById(teacherLeaveId)
                 .then(res => {
                     return res;
                 })
@@ -61,9 +64,9 @@ exports.getOneSubTopic = async (subTopicId) => {
     }
 }
 
-exports.delete = async (subTopicId) => {
+exports.delete = async (teacherLeaveId) => {
     try {
-        return await SubTopic.findByIdAndDelete(subTopicId);
+        return await TeacherLeave.findByIdAndDelete(teacherLeaveId);
     } catch (error) {
         throw error;
     }

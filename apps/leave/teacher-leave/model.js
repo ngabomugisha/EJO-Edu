@@ -5,6 +5,10 @@ const teacherLeaveSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user'
     },
+    school: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'school'
+    },
     reason: String,
     starts: Date,
     ends: Date,

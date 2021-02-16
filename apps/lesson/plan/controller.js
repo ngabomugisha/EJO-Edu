@@ -6,10 +6,11 @@ exports.create = async (req, res) => {
         const {
             name,
             unit,
-            course
+            subject
         } = req.body;
-
-        Plan.create(name, unit, course)
+        const teacher = req.user._id
+        const school = req.user.school
+        Plan.create(name, unit, subject, teacher, school)
         .then(results => {
             Response.Success(res, 200, "created successfully", results);
         })
@@ -47,11 +48,11 @@ exports.update = async (req, res) => {
     
 }
 
-exports.getCoursePlan = async (req, res) => {
+exports.getSubjectPlan = async (req, res) => {
     try {
 
-        const courseId = req.params.courseId;
-        Plan.getAllCoursePlan(courseId)
+        const subjectId = req.params.subjectId;
+        Plan.getAllSubjectPlan(subjectId)
             .then(results => {
                 Response.Success(res, 200, "queried successfully", results);
             })

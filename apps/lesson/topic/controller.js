@@ -5,10 +5,10 @@ exports.create = async (req, res) => {
     try {
         const {
             name,
-            course
+            subject
         } = req.body;
 
-        Topic.create(name, course)
+        Topic.create(name, subject)
         .then(results => {
             Response.Success(res, 200, "created successfully", results);
         })
@@ -46,11 +46,11 @@ exports.update = async (req, res) => {
     
 }
 
-exports.getAllCourseTopics = async (req, res) => {
+exports.getAllSubjectTopics = async (req, res) => {
     try {
 
-        const courseId = req.params.courseId;
-        Topic.getAllCourseTopics(courseId)
+        const subjectId = req.params.subjectId;
+        Topic.getAllSubjectTopics(subjectId)
             .then(results => {
                 Response.Success(res, 200, "queried successfully", results);
             })

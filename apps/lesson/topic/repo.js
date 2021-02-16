@@ -1,10 +1,10 @@
 import Topic from './model'
 
-exports.create = async (name, course) =>{
+exports.create = async (name, subject) =>{
 try {
     const newTopic = new Topic({
         name,
-        course
+        subject
     })
     await newTopic.save()
     return newTopic;
@@ -31,9 +31,9 @@ exports.update = async (topicId, name) => {
     }
 }
 
-exports.getAllCourseTopics = async (courseId) => {
+exports.getAllSubjectTopics = async (subjectId) => {
     try {
-        return await Topic.find({course: courseId})
+        return await Topic.find({subject: subjectId})
                 .then(res => {
                     return res;
                 })
