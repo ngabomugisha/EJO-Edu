@@ -11,21 +11,30 @@ const PanelLayout = (props) => {
 
     return (
         <div className="container">
-        <div className='side-menu'>
+            <div className='side-menu'>
 
-    <StickyBox>
-            <SideMenu selected={props.selected} />
-    </StickyBox>
-        </div>
-        <div className='feed'>
-        <FeedHead/>
-        {props.children}
-        </div>
-        <div className='right-side'>
-    <StickyBox>
-            <RightSide/>
-    </StickyBox>
-        </div>
+                <StickyBox>
+                    <SideMenu selected={props.selected} role={props.role} />
+                </StickyBox>
+            </div>
+            {
+                props.role === "teacher" ? 
+                <>
+                    <div className='feed'>
+                        <FeedHead />
+                        {props.children}
+                    </div>
+                    <div className='right-side'>
+                        <StickyBox>
+                            <RightSide />
+                        </StickyBox>
+                    </div></> :
+                <>
+                <div className='main-panel'>
+                    {props.children}
+                </div>
+                </>
+            }
         </div>
     )
 }

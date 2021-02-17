@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './HomeLayout.css'
 import { useHistory } from 'react-router-dom';
 import logo from '../../assets/icons/logo.svg';
 import Button from '@material-ui/core/Button';

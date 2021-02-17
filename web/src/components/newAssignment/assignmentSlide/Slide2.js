@@ -54,7 +54,7 @@ function Slide2() {
 
 
     return (
-        <div className='slide1-coantainer'>
+        <div className='slide1-container'>
             <h3>Assignment Type</h3>
             <div className='radio-groups'>
                 <form>

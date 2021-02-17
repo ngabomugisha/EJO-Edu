@@ -1,0 +1,31 @@
+.head-btn{
+    display: flex;
+}
+
+.head{
+    display: flex;
+    justify-content: space-between;
+    padding: 40px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.123);
+}
+
+#unread{
+    background-color: #0476f818;
+    border: 0px;
+    max-height: 24px;
+    color: #2D9CDB;
+    border-radius: 3px;
+    padding: 3px 20px 3px;
+    cursor: pointer;
+}
+
+#sent{
+    background-color: #21f17b31;
+    border: 0px;
+    max-height: 24px;
+    color: #219653;
+    border-radius: 3px;
+    margin-left: 30px;
+    padding: 3px 20px 3px;
+    cursor: pointer;
+}

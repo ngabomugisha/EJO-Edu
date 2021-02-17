@@ -1,20 +1,27 @@
 
-.first-field  .MuiOutlinedInput-root {
-    width: max-content;
-}
-
 .first-field{
     margin-top: 60px;
     display: flex;
     flex-direction: row;
     margin-bottom: 30px;
     justify-content: space-evenly;
-    width: 90%;
+    width: 100%;
 }
 .topic > .MuiFormControl-root{
     min-width: 100%;
 }
-.h3{
+.top-field > .MuiFormControl-root{
+    width: 100%;
+}
+.top-field{
+    width: 100%
+}
+
+.slide1-container{
+    margin-top: 10px !important;
+}
+
+.slide1-container > h3{
     color: #1F72C6;
 }
 .unit{
@@ -69,7 +76,4 @@
     flex-direction: row;
     justify-content: space-between;
 }
-.top-field
-.top-field > .MuiFormControl-root{
-    min-width: 100%;
-}
+

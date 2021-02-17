@@ -1,0 +1,37 @@
+.body-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px;
+}
+.select-field{
+    align-self: center;
+    min-width: 100%;
+}
+.select-field > .MuiFormControl-root{
+    width: 100%;
+}
+
+.text-field > .MuiFormControl-root{
+    width: 100%;
+}
+
+.select-field , .text-field{
+margin-bottom: 40px;
+}
+
+.msg-field > .MuiFormControl-root{
+    width: 100%;
+    min-height: 50vh;
+}
+
+.msg-field > .MuiInputBase-root, .msg-field .MuiOutlinedInput-root {
+    width: 100%;
+    min-height: 70vh;
+
+}
+
+.send-btn{
+    align-self: flex-end;
+    padding: 30px 0px;
+}

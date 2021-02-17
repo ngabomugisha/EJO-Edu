@@ -36,7 +36,7 @@ function Slide1() {
         setTerm(event.target.value)
     };
     return (
-        <div className='slide1-coantainer'>
+        <div className='slide1-container'>
             <div className='first-field'>
                 <div className="top-field">
                 <TextField

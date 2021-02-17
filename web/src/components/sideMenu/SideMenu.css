@@ -25,5 +25,6 @@ SideOption{
     max-width: min-content;
     padding: 10px 15px 10px;
     border-radius: 5px;
-    margin-top: -5px
+    margin-top: -5px;
+    font-size: small;
 }

@@ -5,11 +5,12 @@
     align-self: center;
     justify-self: center;
     flex-direction: column;
-    min-width: 70%;
-    max-width: 20%;
+    min-width: 60%;
+    max-width: 60%;
     padding: 30px 50px 30px;
     border-radius: 10px;
     border: 0.4px solid #1b7dceaf;
+    margin-top: 30px;
 }
 .MuiInputBase-input{
     color:red

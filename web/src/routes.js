@@ -5,6 +5,7 @@ const LoginPage = lazy(() => import('./pages/Auth/Login'));
 const HomePage = lazy(() => import('./pages/Home'));
 const ForgetPasswordPage = lazy(() => import('./pages/Auth/ForgetPassword'));
 const TeacherDashboard = lazy(() => import('./pages/Teacher/Index'));
+const HeadTeacherDashboard = lazy(() => import('./pages/HeadTeacher/Index'));
 const Assignment = lazy(() => import('./pages/Teacher/Assignment'))
 const NewAssignmentPage = lazy(( )=> import('./components/newAssignment/NewAssignment'))
 export default () => {
@@ -23,6 +24,7 @@ export default () => {
           <Route exact path="/teacher/assignment" component={Assignment}/>
           <Route exact path="/teacher/newAssignment" component={NewAssignmentPage}/>
           <Route exact path="/teacher" component={TeacherDashboard} />
+          <Route exact path="/headTeacher" component={HeadTeacherDashboard} />
           <Route exact paht="/" component={HomePage} />
         </Switch>
       </Router>
