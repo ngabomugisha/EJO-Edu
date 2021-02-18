@@ -3,13 +3,11 @@ import './Index.css'
 import Button from '@material-ui/core/Button'
 import StickyBox from "react-sticky-box";
 import Message from '../messages/Message/Index'
-import { useHistory } from 'react-router-dom'
-import MessageBody from '../messages/Message-body/Index'
+import ReadMessage from '../messages/Message-body/ReadMessage'
 
 
-function Index() {
-    const history = useHistory()
-    return (
+function ReadAnnouncement(){
+    return(
         <>
         <div className="announcement-container">
             <StickyBox>
@@ -22,8 +20,8 @@ function Index() {
                 </div>
             </StickyBox>
             <div className="msgs-container" style={{ height: "100vh", overflow: 'auto' }}>
-                <div className="msgs">
-                    <div className="message" onClick={() => { history.push('headteacher/announcement') }} >
+            <div className="msgs">
+                    <div className="message" >
                         <Message />
                     </div>
                     <div className="message">
@@ -46,13 +44,13 @@ function Index() {
                     </div>
                 </div>
                 <div className="msg-body">
-                    <MessageBody />
+                    <ReadMessage/>
                 </div>
             </div>
         </div >
         </>
-
-    )
+    );
 }
 
-export default Index
+export default ReadAnnouncement;
+

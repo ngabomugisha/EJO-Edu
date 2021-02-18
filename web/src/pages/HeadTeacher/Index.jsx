@@ -1,6 +1,6 @@
 import React ,{useState}from 'react'
 import PanelLayout from '../../components/Layouts/PanelLayout/Index'
-import Announcement from '../../components/announcements'
+import Announcement from '../../components/announcements/Index'
 
 
 function Main() {

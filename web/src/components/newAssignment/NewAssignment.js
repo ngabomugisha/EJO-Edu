@@ -68,7 +68,7 @@ function NewAssignment() {
   }
   return (
     <>
-      <PanelLayout selected={2}>
+      <PanelLayout selected={2} role="teacher">
         <div className="new-ass-container">
           <div className={classes.root}>
             <LinearProgress variant="determinate" value={progress} />

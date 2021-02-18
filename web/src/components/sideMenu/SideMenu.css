@@ -28,3 +28,9 @@ SideOption{
     margin-top: -5px;
     font-size: small;
 }
+.signout{
+    color:#EB5757;
+    vertical-align: bottom;
+    position: absolute;
+    bottom: 5%;
+}

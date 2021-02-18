@@ -14,3 +14,13 @@
     align-self: center;
     margin-top: 100px;
 }
+.forget-password{
+    align-self: center;
+    font-size: small;
+    text-transform: capitalize;
+
+}
+.forget-password > a{
+    text-decoration: none;
+    color: white;
+}

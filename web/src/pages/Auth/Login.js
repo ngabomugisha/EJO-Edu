@@ -57,6 +57,8 @@ const LoginPage = () => {
             />
             <p>{errMessage}</p>
           </div>
+          <p class="forget-password"><Link to="/passwords">Forgot Password?</Link>
+          </p>
           <Button
             className="login-btn"
             disabled={isLoading}
@@ -75,9 +77,6 @@ const LoginPage = () => {
           </Button>
         </div>
         <div>
-          <p>
-            Did you forget your password? <Link to="/passwords">reset</Link>
-          </p>
         </div>
       </>
     </HomeLayout>

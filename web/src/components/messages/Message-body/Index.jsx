@@ -7,6 +7,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { Button } from '@material-ui/core';
+import zIndex from '@material-ui/core/styles/zIndex';
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -18,12 +19,11 @@ const useStyles = makeStyles((theme) => ({
         marginRight: theme.spacing(1),
         marginTop: '-5px',
         width: 200,
-        backgroundColor: '#fff',
+        
     },
     formControl: {
         margin: theme.spacing(0),
         minWidth: 120,
-        backgroundColor: '#fff',
     },
     selectEmpty: {
         marginTop: theme.spacing(0),
@@ -37,7 +37,7 @@ function Index() {
     const handleChange = (event) => {
         setTerm(event.target.value)
     };
-    return (
+    return(
         <div className="body-container">
             <div className='select-field'>
                 <FormControl variant="outlined" className={classes.formControl}>
@@ -71,33 +71,34 @@ function Index() {
                         shrink: true,
                     }}
                 />
-                </div>
+            </div>
             <div className="msg-field">
                 <TextField
                     id="outlined-basic"
                     variant="outlined"
                     label="Message"
                     type="text"
-                    placeholder = " "
+                    placeholder=" "
                     color="primary"
                     multiline={true}
+                    rowsMax="10"
                 />
-                </div>
-                <div className="send-btn">
+            </div>
+            <div className="send-btn">
                 <Button color='primary' className="btn-next" size="large"
-                  style={{
-                    borderRadius: 5,
-                    backgroundColor: "#1f75c6",
-                    padding: "7px 15px",
-                    fontSize: "15px",
-                    color: "#fff",
-                    width: '200px',
-                    textTransform: 'capitalize'
-                  }}
+                    style={{
+                        borderRadius: 5,
+                        backgroundColor: "#1f75c6",
+                        padding: "7px 15px",
+                        fontSize: "15px",
+                        color: "#fff",
+                        width: '200px',
+                        textTransform: 'capitalize'
+                    }}
                 >
-                  Send
+                    Send
                 </Button>
-                </div>
+            </div>
         </div>
     )
 }

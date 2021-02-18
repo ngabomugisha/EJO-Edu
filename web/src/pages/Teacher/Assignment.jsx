@@ -4,7 +4,7 @@ import PanelLayout from '../../components/Layouts/PanelLayout/Index'
 
 function Assignment() {
     return (
-        <PanelLayout selected={2}>
+        <PanelLayout selected={2} role="teacher">
             <h2>assignment load</h2>
         </PanelLayout>
     )

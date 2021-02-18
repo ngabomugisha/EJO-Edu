@@ -8,6 +8,7 @@ import { BiHome } from 'react-icons/bi';
 import { RiBookletLine } from 'react-icons/ri';
 import { IoSettingsOutline } from 'react-icons/io5'
 import AssignmentTurnedInOutlinedIcon from '@material-ui/icons/AssignmentTurnedInOutlined';
+import { BiDoorOpen } from "react-icons/bi";
 
 const renderOptions = (active) => {
   switch (active) {
@@ -52,30 +53,30 @@ function renderSwitch(role, selected) {
       break;
     case "headteacher":
       return <>
-      {
         {
-          1:
-            <><Link to="/teacher"><SideOption Icon={BiHome} text="Announcement" active /></Link>
-              <Link to="/teacher/assignment"><SideOption Icon={AssignmentTurnedInOutlinedIcon} text="Check In/Out" /></Link>
-              <SideOption Icon={RiBookletLine} text="Time Table" />
-              <SideOption Icon={IoSettingsOutline} text="Report" /></>,
-          2:
-            <><Link to="/teacher"><SideOption Icon={BiHome} text="Announcement" /></Link>
-              <Link to="/teacher/assignment"><SideOption Icon={AssignmentTurnedInOutlinedIcon} text="Check In/Out" active /></Link>
-              <SideOption Icon={RiBookletLine} text="Time Table" />
-              <SideOption Icon={IoSettingsOutline} text="Report" /></>,
-          3:
-            <><Link to="/teacher"><SideOption Icon={BiHome} text="Announcement" /></Link>
-              <Link to="/teacher/assignment"><SideOption Icon={AssignmentTurnedInOutlinedIcon} text="Check In/Out" /></Link>
-              <SideOption Icon={RiBookletLine} text="Time Table" active />
-              <SideOption Icon={IoSettingsOutline} text="Report" /></>,
-          4:
-            <><Link to="/teacher"><SideOption Icon={BiHome} text="Announcement" active /></Link>
-              <Link to="/teacher/assignment"><SideOption Icon={AssignmentTurnedInOutlinedIcon} text="Check In/Out" /></Link>
-              <SideOption Icon={RiBookletLine} text="Time Table" />
-              <SideOption Icon={IoSettingsOutline} text="Report" active /></>
-        }[selected]
-      }
+          {
+            1:
+              <><Link to="/teacher"><SideOption Icon={BiHome} text="Announcement" active /></Link>
+                <Link to="/teacher/assignment"><SideOption Icon={AssignmentTurnedInOutlinedIcon} text="Check In/Out" /></Link>
+                <SideOption Icon={RiBookletLine} text="Time Table" />
+                <SideOption Icon={IoSettingsOutline} text="Report" /></>,
+            2:
+              <><Link to="/teacher"><SideOption Icon={BiHome} text="Announcement" /></Link>
+                <Link to="/teacher/assignment"><SideOption Icon={AssignmentTurnedInOutlinedIcon} text="Check In/Out" active /></Link>
+                <SideOption Icon={RiBookletLine} text="Time Table" />
+                <SideOption Icon={IoSettingsOutline} text="Report" /></>,
+            3:
+              <><Link to="/teacher"><SideOption Icon={BiHome} text="Announcement" /></Link>
+                <Link to="/teacher/assignment"><SideOption Icon={AssignmentTurnedInOutlinedIcon} text="Check In/Out" /></Link>
+                <SideOption Icon={RiBookletLine} text="Time Table" active />
+                <SideOption Icon={IoSettingsOutline} text="Report" /></>,
+            4:
+              <><Link to="/teacher"><SideOption Icon={BiHome} text="Announcement" active /></Link>
+                <Link to="/teacher/assignment"><SideOption Icon={AssignmentTurnedInOutlinedIcon} text="Check In/Out" /></Link>
+                <SideOption Icon={RiBookletLine} text="Time Table" />
+                <SideOption Icon={IoSettingsOutline} text="Report" active /></>
+          }[selected]
+        }
 
       </>
       break;
@@ -93,6 +94,9 @@ function SideMenu({ selected, role }) {
       <img src={logo} className="logo" />
       <p className="label">For&nbsp;{role}</p>
       {renderSwitch(role, selected)}
+      <div className="signout">
+        <SideOption Icon={BiDoorOpen} text="Sign Out" />
+      </div>
     </div>
   );
 }

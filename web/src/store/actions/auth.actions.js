@@ -5,7 +5,7 @@ export const handleLogin = ({ email, password }) => (dispatch) => {
   dispatch({
     type: HANDLE_LOGIN,
   });
-  return https.post('/auth/signin', { email, password }).then((res) => {
+  return https.post('/auth/signin', {}).then((res) => {
     localStorage.setItem('token', res.data?.token);
     dispatch({
       type: HANDLE_LOGIN_SUCCESS,

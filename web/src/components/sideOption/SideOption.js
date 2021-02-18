@@ -2,7 +2,7 @@ import React from 'react'
 import './SideOption.css'
 import { useHistory } from "react-router-dom"
 
-function SideOption({ active, text, Icon }) {
+function SideOption({ active, text, Icon ,color}) {
   let history = useHistory();
     return (
       <div className={`sidebarOption ${active && "sidebarOption--active"}`}>
