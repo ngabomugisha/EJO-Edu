@@ -14,6 +14,7 @@ const NewAssignmentPage = lazy(( )=> import('./components/newAssignment/NewAssig
 //HeadTeacher
 const HeadTeacherDashboard = lazy(() => import('./pages/HeadTeacher/Index'));
 const ReadAnnouncement = lazy(() => import('./pages/HeadTeacher/announcement/Announcement'))
+const ReportPage = lazy(() => import('./pages/HeadTeacher/report/Index'))
 
 export default () => {
   return (
@@ -35,6 +36,7 @@ export default () => {
 
           <Route exact path="/headTeacher" component={HeadTeacherDashboard} />
           <Route exact path="/headTeacher/announcement" component={ReadAnnouncement} />
+          <Route exact path="/headTeacher/report" component={ReportPage} />
 
           <Route exact paht="/" component={HomePage} />
         </Switch>

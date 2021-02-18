@@ -59,22 +59,22 @@ function renderSwitch(role, selected) {
               <><Link to="/teacher"><SideOption Icon={BiHome} text="Announcement" active /></Link>
                 <Link to="/teacher/assignment"><SideOption Icon={AssignmentTurnedInOutlinedIcon} text="Check In/Out" /></Link>
                 <SideOption Icon={RiBookletLine} text="Time Table" />
-                <SideOption Icon={IoSettingsOutline} text="Report" /></>,
+                <Link to="/headteacher/report"><SideOption Icon={IoSettingsOutline} text="Report" /></Link></>,
             2:
               <><Link to="/teacher"><SideOption Icon={BiHome} text="Announcement" /></Link>
                 <Link to="/teacher/assignment"><SideOption Icon={AssignmentTurnedInOutlinedIcon} text="Check In/Out" active /></Link>
                 <SideOption Icon={RiBookletLine} text="Time Table" />
-                <SideOption Icon={IoSettingsOutline} text="Report" /></>,
+                <Link to="/headteacher/report"><SideOption Icon={IoSettingsOutline} text="Report"  /></Link></>,
             3:
               <><Link to="/teacher"><SideOption Icon={BiHome} text="Announcement" /></Link>
                 <Link to="/teacher/assignment"><SideOption Icon={AssignmentTurnedInOutlinedIcon} text="Check In/Out" /></Link>
                 <SideOption Icon={RiBookletLine} text="Time Table" active />
-                <SideOption Icon={IoSettingsOutline} text="Report" /></>,
+                <Link to="/headteacher/report"><SideOption Icon={IoSettingsOutline} text="Report"  /></Link></>,
             4:
-              <><Link to="/teacher"><SideOption Icon={BiHome} text="Announcement" active /></Link>
-                <Link to="/teacher/assignment"><SideOption Icon={AssignmentTurnedInOutlinedIcon} text="Check In/Out" /></Link>
+              <><Link to="/"><SideOption Icon={BiHome} text="Announcement" /></Link>
+                <Link to="/"><SideOption Icon={AssignmentTurnedInOutlinedIcon} text="Check In/Out" /></Link>
                 <SideOption Icon={RiBookletLine} text="Time Table" />
-                <SideOption Icon={IoSettingsOutline} text="Report" active /></>
+                <Link to="/headteacher/report"><SideOption Icon={IoSettingsOutline} text="Report" active /></Link></>
           }[selected]
         }
 
