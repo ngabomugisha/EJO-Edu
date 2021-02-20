@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"John\",\r\n    \"lastName\": \"doe\",\r\n    \"email\": \"johndoe3@gmail.com\",\r\n    \"password\": \"password\",\r\n    \"school\": null, \r\n    \"role\": \"TEACHER\" \r\n}",
+							"raw": "{\r\n    \"firstName\": \"John\",\r\n    \"lastName\": \"doe\",\r\n    \"email\": \"johndoe4@gmail.com\",\r\n    \"password\": \"password\",\r\n    \"school\": null, \r\n    \"role\": \"TEACHER\",\r\n    \"phoneNumber\": \"+250781321324\",\r\n    \"level\": \"BACHELOR\",\r\n    \"yearsOfExperience\": 3,\r\n    \"workingStatus\": \"PART-TIME\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -23,13 +23,11 @@
 							}
 						},
 						"url": {
-							"raw": "https://ejo-education.herokuapp.com/api/auth/signup",
-							"protocol": "https",
+							"raw": "localhost:9000/api/auth/signup",
 							"host": [
-								"ejo-education",
-								"herokuapp",
-								"com"
+								"localhost"
 							],
+							"port": "9000",
 							"path": [
 								"api",
 								"auth",
