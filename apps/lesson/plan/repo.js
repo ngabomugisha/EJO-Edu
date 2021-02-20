@@ -1,28 +1,100 @@
 import Plan from './model'
 
-exports.create = async (name, unit, subject, teacher, school) =>{
-try {
-    const newPlan = new Plan({
-        name,
-        unit,
-        subject, 
-        teacher, 
-        school
-    })
-    await newPlan.save()
-    return newPlan;
-} catch (error) {
-    throw error; 
-}
+exports.create = async (
+    teacher,
+    school,
+    name,
+    unit,
+    subject,
+    keyUnitCompetency,
+    lessonNumber,
+    lessonName,
+    knowledge,
+    skills,
+    attitudesAndValues,
+    instructionalMaterial,
+    otherMaterialsAndReferences,
+    activities,
+    teachingTechniques,
+    studentSelfAssessment,
+    teacherSelfAssessment,
+    time
+) => {
+    try {
+        const newPlan = new Plan({
+            teacher,
+            school,
+            name,
+            unit,
+            subject,
+            keyUnitCompetency,
+            lessonNumber,
+            lessonName,
+            knowledge,
+            skills,
+            attitudesAndValues,
+            instructionalMaterial,
+            otherMaterialsAndReferences,
+            activities,
+            teachingTechniques,
+            studentSelfAssessment,
+            teacherSelfAssessment,
+            time
+        })
+        await newPlan.save()
+        return newPlan;
+    } catch (error) {
+        throw error;
+    }
 };
 
-exports.update = async (planId, name) => {
+exports.update = async (
+    planId,
+    name,
+    unit,
+    subject,
+    keyUnitCompetency,
+    lessonNumber,
+    lessonName,
+    knowledge,
+    skills,
+    attitudesAndValues,
+    instructionalMaterial,
+    otherMaterialsAndReferences,
+    activities,
+    teachingTechniques,
+    studentSelfAssessment,
+    teacherSelfAssessment,
+    time
+) => {
     try {
-        return await Plan.findByIdAndUpdate(
-            {_id: planId},
-            {name: name},{new: true},
+        return await Plan.findByIdAndUpdate({
+                _id: planId
+            }, {
+                $set: {
+                    name,
+                    unit,
+                    subject,
+                    keyUnitCompetency,
+                    lessonNumber,
+                    lessonName,
+                    knowledge,
+                    skills,
+                    attitudesAndValues,
+                    instructionalMaterial,
+                    otherMaterialsAndReferences,
+                    activities,
+                    teachingTechniques,
+                    studentSelfAssessment,
+                    teacherSelfAssessment,
+                    time
+                }
+            }, {
+                upsert: true,
+                new: true
+            },
             (err, success) => {
-                if(err){
+                if (err) {
                     console.log(err);
                     return false;
                 }
@@ -34,16 +106,65 @@ exports.update = async (planId, name) => {
     }
 }
 
-exports.getAllSubjectPlan = async (subjectId) => {
+
+exports.evaluate = async (
+    planId,
+    studentSelfAssessment,
+    teacherSelfAssessment
+) => {
     try {
-        return await Plan.find({subject: subjectId})
-                .then(res => {
-                    return res;
-                })
-                .catch(err => {
+        return await Plan.findByIdAndUpdate({
+                _id: planId
+            }, {
+                $set: {
+                    studentSelfAssessment,
+                    teacherSelfAssessment
+                }
+            }, {
+                upsert: true,
+                new: true
+            },
+            (err, success) => {
+                if (err) {
                     console.log(err);
                     return false;
-                })
+                }
+                return success;
+            }
+        );
+    } catch (error) {
+        throw error;
+    }
+}
+exports.getAllSubjectPlan = async (subjectId) => {
+    try {
+        return await Plan.find({
+                subject: subjectId
+            })
+            .then(res => {
+                return res;
+            })
+            .catch(err => {
+                console.log(err);
+                return false;
+            })
+    } catch (error) {
+        throw error;
+    }
+}
+
+exports.getAllUnitPlan = async (unitId) => {
+    try {
+        return await Plan.find({
+                unit: unitId
+            })
+            .then(res => {
+                return res;
+            })
+            .catch(err => {
+                console.log(err);
+                return false;
+            })
     } catch (error) {
         throw error;
     }
@@ -52,13 +173,13 @@ exports.getAllSubjectPlan = async (subjectId) => {
 exports.getOnePlan = async (planId) => {
     try {
         return await Plan.findById(planId)
-                .then(res => {
-                    return res;
-                })
-                .catch(err => {
-                    console.log(err);
-                    return false;
-                })
+            .then(res => {
+                return res;
+            })
+            .catch(err => {
+                console.log(err);
+                return false;
+            })
     } catch (error) {
         throw error;
     }

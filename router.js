@@ -14,5 +14,8 @@ router.use('/api/assignments', passport.authenticate("jwt", { session : false })
 router.use('/api/leaves', passport.authenticate("jwt", { session : false }), require('./apps/leave/'));
 router.use('/api/terms', passport.authenticate("jwt", { session : false }), require('./apps/term/router'));
 router.use('/api/guests', passport.authenticate("jwt", { session : false }), require('./apps/guest/router'));
+router.use('/api/timetables', passport.authenticate("jwt", { session : false }), require('./apps/timetable/router'));
+router.use('/api/attendances', passport.authenticate("jwt", { session : false }), require('./apps/attendance'));
+router.use('/api/addresses', passport.authenticate("jwt", { session : false }), require('./apps/address'));
 
 module.exports = router;

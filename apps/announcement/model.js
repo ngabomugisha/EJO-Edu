@@ -7,7 +7,7 @@ const announcementSchema = new mongoose.Schema({
         ref: 'user'
     },
     receiverTypes: [{
-        receiver: String
+        receiver: String // all -teachers, levels, single teacher to be discussed
     }],
     receivers: [{
         user: {

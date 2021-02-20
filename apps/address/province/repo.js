@@ -1,27 +1,22 @@
-import Unit from './model'
+import Province from './model'
 
-exports.create = async (name, subTopic,  numberOfperiods, keyCompetency, content, activities) =>{
+exports.create = async (name) =>{
 try {
-    const newUnit = new Unit({
-                name,
-                subTopic,
-                numberOfperiods,
-                keyCompetency,
-                content,
-                activities
+    const newProvince = new Province({
+        name
     })
-    await newUnit.save()
-    return newUnit;
+    await newProvince.save()
+    return newProvince;
 } catch (error) {
     throw error; 
 }
 };
 
-exports.update = async (unitId, name, numberOfperiods, keyCompetency) => {
+exports.update = async (provinceId, name) => {
     try {
-        return await Unit.findByIdAndUpdate(
-            {_id: unitId},
-            {name, numberOfperiods, keyCompetency},{new: true},
+        return await Province.findByIdAndUpdate(
+            {_id: provinceId},
+            {name: name},{new: true},
             (err, success) => {
                 if(err){
                     console.log(err);
@@ -35,9 +30,9 @@ exports.update = async (unitId, name, numberOfperiods, keyCompetency) => {
     }
 }
 
-exports.getAllSubTopicUnits = async (subTopicId) => {
+exports.getAllProvinces = async () => {
     try {
-        return await Unit.find({subTopic: subTopicId})
+        return await Province.find()
                 .then(res => {
                     return res;
                 })
@@ -50,9 +45,9 @@ exports.getAllSubTopicUnits = async (subTopicId) => {
     }
 }
 
-exports.getOneUnit = async (unitId) => {
+exports.getOneProvince = async (provinceId) => {
     try {
-        return await Unit.findById(unitId)
+        return await Province.findById(provinceId)
                 .then(res => {
                     return res;
                 })
@@ -65,9 +60,9 @@ exports.getOneUnit = async (unitId) => {
     }
 }
 
-exports.delete = async (unitId) => {
+exports.delete = async (provinceId) => {
     try {
-        return await Unit.findByIdAndDelete(unitId);
+        return await Province.findByIdAndDelete(provinceId);
     } catch (error) {
         throw error;
     }

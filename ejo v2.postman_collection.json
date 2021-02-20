@@ -1,0 +1,4181 @@
+{
+	"info": {
+		"_postman_id": "10012fd4-018a-46a9-9d41-eeee517513d7",
+		"name": "ejo v2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "Create user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"John\",\r\n    \"lastName\": \"doe\",\r\n    \"email\": \"johndoe3@gmail.com\",\r\n    \"password\": \"password\",\r\n    \"school\": null, \r\n    \"role\": \"TEACHER\" \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ejo-education.herokuapp.com/api/auth/signup",
+							"protocol": "https",
+							"host": [
+								"ejo-education",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sigin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"johndoe@gmail.com\",\r\n    \"password\": \"866746\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/auth/signin",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"auth",
+								"signin"
+							],
+							"query": [
+								{
+									"key": "getAllData",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verify token",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVmNjM0NWExMGMzOWNmMTM2OGU4YjdjYiIsImZpcnN0TmFtZSI6Im9kaWxvIiwibGFzdE5hbWUiOiJSdWdhbWJhIiwiZW1haWwiOiJvZGlsb3J1Z2FtYmFAZ21haWwuY29tIn0sImlhdCI6MTYwMDM0MTQxM30.Ok0s0OSLFGwVgqlKJu9Hc5Tqx9qYCgK2j851brkDjvg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8020/api/auth/verify-token",
+							"host": [
+								"localhost"
+							],
+							"port": "8020",
+							"path": [
+								"api",
+								"auth",
+								"verify-token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "regenerate verification digits",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVmNjM0NWExMGMzOWNmMTM2OGU4YjdjYiIsImZpcnN0TmFtZSI6Im9kaWxvIiwibGFzdE5hbWUiOiJSdWdhbWJhIiwiZW1haWwiOiJvZGlsb3J1Z2FtYmFAZ21haWwuY29tIn0sImlhdCI6MTYwMDM0MTQxM30.Ok0s0OSLFGwVgqlKJu9Hc5Tqx9qYCgK2j851brkDjvg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/auth/regenerate-verification-digits",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"auth",
+								"regenerate-verification-digits"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verify email",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVmNjM0NWExMGMzOWNmMTM2OGU4YjdjYiIsImZpcnN0TmFtZSI6Ik9kaWxvIDIiLCJsYXN0TmFtZSI6IlJ1Z2FtYmEgMiIsImVtYWlsIjoib2RpbG9ydWdhbWJhQGdtYWlsLmNvbSJ9LCJpYXQiOjE2MDA1OTQzODR9.3_tKpHyqx9214vz176RCSWemcoytpNUvEXj_Otw9lTk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"verificationDigits\": \"874815\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/auth/verify-email",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"auth",
+								"verify-email"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update names",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVmNjM0NWExMGMzOWNmMTM2OGU4YjdjYiIsImZpcnN0TmFtZSI6Im9kaWxvIiwibGFzdE5hbWUiOiJSdWdhbWJhIiwiZW1haWwiOiJvZGlsb3J1Z2FtYmFAZ21haWwuY29tIn0sImlhdCI6MTYwMDM0MTQxM30.Ok0s0OSLFGwVgqlKJu9Hc5Tqx9qYCgK2j851brkDjvg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Odilo 2\",\r\n    \"lastName\": \"Rugamba 2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8020/api/auth/update-names",
+							"host": [
+								"localhost"
+							],
+							"port": "8020",
+							"path": [
+								"api",
+								"auth",
+								"update-names"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVmNjM0NWExMGMzOWNmMTM2OGU4YjdjYiIsImZpcnN0TmFtZSI6Im9kaWxvIiwibGFzdE5hbWUiOiJSdWdhbWJhIiwiZW1haWwiOiJvZGlsb3J1Z2FtYmFAZ21haWwuY29tIn0sImlhdCI6MTYwMDM0MTQxM30.Ok0s0OSLFGwVgqlKJu9Hc5Tqx9qYCgK2j851brkDjvg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"oldPassword\": \"password\",\r\n    \"newPassword\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8020/api/auth/update-password",
+							"host": [
+								"localhost"
+							],
+							"port": "8020",
+							"path": [
+								"api",
+								"auth",
+								"update-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verify if email is taken",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"johndoe@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8020/api/auth/email-taken",
+							"host": [
+								"localhost"
+							],
+							"port": "8020",
+							"path": [
+								"api",
+								"auth",
+								"email-taken"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "school",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"test school\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/schools/",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"schools",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Lyce de kigali updated\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/schools/602c1e8feeb9ae2820b62120",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"schools",
+								"602c1e8feeb9ae2820b62120"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get one",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/schools/602c1e8feeb9ae2820b62120",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"schools",
+								"602c1e8feeb9ae2820b62120"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/schools",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"schools"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/schools/60264b6b86313c1718607c66",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"schools",
+								"60264b6b86313c1718607c66"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "level",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Senior 4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/levels/",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"levels",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Senior 1 updated\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/levels/602c1f28eeb9ae2820b62121",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"levels",
+								"602c1f28eeb9ae2820b62121"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get one",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/levels/602c1f28eeb9ae2820b62121",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"levels",
+								"602c1f28eeb9ae2820b62121"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/schools",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"schools"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/levels/602c1f28eeb9ae2820b62121",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"levels",
+								"602c1f28eeb9ae2820b62121"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "combination",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Math-Physics-Computer\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/combinations/",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"combinations",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Math-Physics-Computer updated\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/combinations/602c1fb8eeb9ae2820b62122",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"combinations",
+								"602c1fb8eeb9ae2820b62122"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get one",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/combinations/602c1fb8eeb9ae2820b62122",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"combinations",
+								"602c1fb8eeb9ae2820b62122"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/combinations",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"combinations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/combinations/602c1fb8eeb9ae2820b62122",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"combinations",
+								"602c1fb8eeb9ae2820b62122"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "class",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"school\": \"602c1e8feeb9ae2820b62120\",\r\n    \"level\": \"602c1f28eeb9ae2820b62121\",\r\n    \"combination\": \"602c1fb8eeb9ae2820b62122\",\r\n    \"label\": \"A\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/classes/",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"classes",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"label\": \"A\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/classes/602c20e5eeb9ae2820b62123",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"classes",
+								"602c20e5eeb9ae2820b62123"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get one",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/classes/602c20e5eeb9ae2820b62123",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"classes",
+								"602c20e5eeb9ae2820b62123"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/classes",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"classes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/classes/602c20e5eeb9ae2820b62123",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"classes",
+								"602c20e5eeb9ae2820b62123"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "student",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"studentClass\": \"602c20e5eeb9ae2820b62123\",\r\n    \"firstName\": \"Jane\",\r\n    \"lastName\": \"Doe\",\r\n    \"dateOfBirth\": \"2021-06-31T17:58:09.010+00:00\",\r\n    \"address\": \"603179c1e383bb1b847eff2c\",\r\n    \"scholarship\": \"PRIVATE\",\r\n    \"allergies\": \"None\",\r\n    \"permanentHealthConditions\": [\r\n        {\r\n            \"condition\": \"VISUAL-DIFFICULTIES\"\r\n        },\r\n        {\r\n            \"condition\": \"PHYSICAL-IMPAIREMENT\"\r\n        }\r\n    ],\r\n    \"mother\": {\r\n        \"firstName\": \"Jane\",\r\n        \"lastName\": \"Doe\",\r\n        \"identificationNumber\": \"199078989245\",\r\n        \"phone\": \"07841274637\",\r\n        \"email\": \"joghn@gmail.com\",\r\n        \"maritalStatus\": \"MARIED\"\r\n    },\r\n    \"father\": {\r\n        \"firstName\": \"John\",\r\n        \"lastName\": \"Doe\",\r\n        \"identificationNumber\": \"199078989245\",\r\n        \"phone\": \"07841274637\",\r\n        \"email\": \"joghn@gmail.com\",\r\n        \"maritalStatus\": \"MARIED\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/students/",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"students",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"studentClass\": \"602c20e5eeb9ae2820b62123\",\r\n    \"firstName\": \"Jane\",\r\n    \"lastName\": \"Doe\",\r\n    \"dateOfBirth\": \"2021-06-31T17:58:09.010+00:00\",\r\n    \"address\": \"603179c1e383bb1b847eff2c\",\r\n    \"scholarship\": \"PRIVATE\",\r\n    \"allergies\": \"None\",\r\n    \"permanentHealthConditions\": [\r\n        {\r\n            \"condition\": \"VISUAL-DIFFICULTIES\"\r\n        },\r\n        {\r\n            \"condition\": \"PHYSICAL-IMPAIREMENT\"\r\n        }\r\n    ],\r\n    \"mother\": {\r\n        \"firstName\": \"Jane\",\r\n        \"lastName\": \"Doe\",\r\n        \"identificationNumber\": \"199078989245\",\r\n        \"phone\": \"07841274637\",\r\n        \"email\": \"joghn@gmail.com\",\r\n        \"maritalStatus\": \"MARIED\"\r\n    },\r\n    \"father\": {\r\n        \"firstName\": \"John\",\r\n        \"lastName\": \"Doe\",\r\n        \"identificationNumber\": \"199078989245\",\r\n        \"phone\": \"07841274637\",\r\n        \"email\": \"joghn@gmail.com\",\r\n        \"maritalStatus\": \"MARIED\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/students/60317e67ec0fa31db03195ad",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"students",
+								"60317e67ec0fa31db03195ad"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get one",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/students/60317e67ec0fa31db03195ad",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"students",
+								"60317e67ec0fa31db03195ad"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get class students",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/students/602c20e5eeb9ae2820b62123/class-students",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"students",
+								"602c20e5eeb9ae2820b62123",
+								"class-students"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get school students",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/students/602b9ef1aab3f92010a7a4e0/school-students",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"students",
+								"602b9ef1aab3f92010a7a4e0",
+								"school-students"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/students/60317e67ec0fa31db03195ad",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"students",
+								"60317e67ec0fa31db03195ad"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "term",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Term 1\",\r\n    \"starts\": \"2021-06-31T17:58:09.010+00:00\",\r\n    \"ends\": \"2021-10-31T17:58:09.010+00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/terms/",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"terms",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Term 1 updated\",\r\n    \"starts\": \"2021-06-31T17:58:09.010+00:00\",\r\n    \"ends\": \"2021-10-31T17:58:09.010+00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/terms/602c2806c13abd23f06cb84b",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"terms",
+								"602c2806c13abd23f06cb84b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get one",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/terms/602c2806c13abd23f06cb84b",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"terms",
+								"602c2806c13abd23f06cb84b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/terms",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"terms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/terms/602c2806c13abd23f06cb84b",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"terms",
+								"602c2806c13abd23f06cb84b"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "guest",
+			"item": [
+				{
+					"name": "checkin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Jane\",\r\n    \"lastName\": \"Doe\",\r\n    \"reason\": \"Visit student\",\r\n    \"checkin\": \"2021-06-31T17:58:09.010+00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/guests/",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"guests",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "checkout",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"checkout\": \"2021-06-31T17:58:09.010+00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/guests/602c2a8dc594ab07d8324a7a",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"guests",
+								"602c2a8dc594ab07d8324a7a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get one",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/guests/602c2a8dc594ab07d8324a7a",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"guests",
+								"602c2a8dc594ab07d8324a7a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get school guests",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/guests/602b9ef1aab3f92010a7a4e0/school-guests",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"guests",
+								"602b9ef1aab3f92010a7a4e0",
+								"school-guests"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/guests/602c2b31c594ab07d8324a7c",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"guests",
+								"602c2b31c594ab07d8324a7c"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Leave",
+			"item": [
+				{
+					"name": "teacher leave",
+					"item": [
+						{
+							"name": "apply",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"reason\": \"Any reason\",\r\n    \"starts\": \"2021-06-31T17:58:09.010+00:00\",\r\n    \"ends\": \"2021-06-31T17:58:09.010+00:00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/leaves/teacher-leaves",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"leaves",
+										"teacher-leaves"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "aprove",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"approved\": \"true\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/leaves/teacher-leaves/602c2cec1fede618c0c35723",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"leaves",
+										"teacher-leaves",
+										"602c2cec1fede618c0c35723"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get one",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/leaves/teacher-leaves/602c2cec1fede618c0c35723",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"leaves",
+										"teacher-leaves",
+										"602c2cec1fede618c0c35723"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get school techer leaves",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/leaves/teacher-leaves/602b9ef1aab3f92010a7a4e0/school-teacher-leaves",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"leaves",
+										"teacher-leaves",
+										"602b9ef1aab3f92010a7a4e0",
+										"school-teacher-leaves"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/leaves/teacher-leaves/602c2cec1fede618c0c35723",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"leaves",
+										"teacher-leaves",
+										"602c2cec1fede618c0c35723"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "student leave",
+					"item": [
+						{
+							"name": "checkout",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{  \r\n    \"student\": \"602c2368bd2ce42e800e0f36\",\r\n    \"reason\": \"Any reason\",\r\n    \"checkout\": \"2021-06-31T17:58:09.010+00:00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/leaves/student-leaves",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"leaves",
+										"student-leaves"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "checkin",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"checkin\": \"2021-06-31T17:58:09.010+00:00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/leaves/student-leaves/602c2f70efb2743b9068c15e",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"leaves",
+										"student-leaves",
+										"602c2f70efb2743b9068c15e"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get one",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/leaves/student-leaves/602c2f70efb2743b9068c15e",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"leaves",
+										"student-leaves",
+										"602c2f70efb2743b9068c15e"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get school student leaves",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/leaves/student-leaves/602b9ef1aab3f92010a7a4e0/school-student-leaves",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"leaves",
+										"student-leaves",
+										"602b9ef1aab3f92010a7a4e0",
+										"school-student-leaves"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/leaves/student-leaves/602c2f70efb2743b9068c15e",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"leaves",
+										"student-leaves",
+										"602c2f70efb2743b9068c15e"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "timetable",
+			"item": [
+				{
+					"name": "create a slot",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"assignedClass\":\"602c20e5eeb9ae2820b62123\",\r\n    \"teacher\":\"602b9cfc49ce7a0be4a35fc7\",\r\n    \"subject\":\"602c349dfd1613203834880d\",\r\n    \"term\":\"602c2806c13abd23f06cb84b\",\r\n    \"time\": {\r\n        \"dayOfWeek\": 1,\r\n        \"starts\": \"0930\",\r\n        \"ends\": \"1030\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/timetables/",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"timetables",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"teacher\":\"602b9cfc49ce7a0be4a35fc7\",\r\n    \"subject\":\"602c349dfd1613203834880d\",\r\n    \"term\":\"602c2806c13abd23f06cb84b\",\r\n    \"time\": {\r\n        \"dayOfWeek\": 2,\r\n        \"starts\": \"0830\",\r\n        \"ends\": \"0930\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/timetables/603159c6191af33cdc989ff0",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"timetables",
+								"603159c6191af33cdc989ff0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get one",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/timetables/603159c6191af33cdc989ff0",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"timetables",
+								"603159c6191af33cdc989ff0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get class timetable",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/timetables/602c20e5eeb9ae2820b62123/class",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"timetables",
+								"602c20e5eeb9ae2820b62123",
+								"class"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get class teacher timetable",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/timetables/602c20e5eeb9ae2820b62123/602b9cfc49ce7a0be4a35fc7/class-teacher",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"timetables",
+								"602c20e5eeb9ae2820b62123",
+								"602b9cfc49ce7a0be4a35fc7",
+								"class-teacher"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get class teacher subject timetable",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/timetables/602c20e5eeb9ae2820b62123/602b9cfc49ce7a0be4a35fc7/602c349dfd1613203834880d/class-teacher-subject",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"timetables",
+								"602c20e5eeb9ae2820b62123",
+								"602b9cfc49ce7a0be4a35fc7",
+								"602c349dfd1613203834880d",
+								"class-teacher-subject"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/guests/603159c6191af33cdc989ff0",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"guests",
+								"603159c6191af33cdc989ff0"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Lesson",
+			"item": [
+				{
+					"name": "subject",
+					"item": [
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Math Senior 4\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/subjects",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"subjects"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Math Senior 4\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/subjects/602c349dfd1613203834880d",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"subjects",
+										"602c349dfd1613203834880d"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get one",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/subjects/602c349dfd1613203834880d",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"subjects",
+										"602c349dfd1613203834880d"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/subjects",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"subjects"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/subjects/602c349dfd1613203834880d",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"subjects",
+										"602c349dfd1613203834880d"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "topic",
+					"item": [
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Introduction to math\",\r\n    \"subject\": \"602c349dfd1613203834880d\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/topics",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"topics"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"TRIGONOMETRY\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/topics/602c35c1e02a0e3a3878ae39",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"topics",
+										"602c35c1e02a0e3a3878ae39"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get one",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/topics/602c35c1e02a0e3a3878ae39",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"topics",
+										"602c35c1e02a0e3a3878ae39"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get subject topics",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/topics/602c349dfd1613203834880d/subject-topics",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"topics",
+										"602c349dfd1613203834880d",
+										"subject-topics"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/topics/602c349dfd1613203834880d",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"topics",
+										"602c349dfd1613203834880d"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "subtopic",
+					"item": [
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Introduction to math part 1\",\r\n    \"topic\": \"602c35c1e02a0e3a3878ae39\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/subtopics",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"subtopics"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Trigonometric circle and identities\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/subtopics/602c37a5edf8520e142247a1",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"subtopics",
+										"602c37a5edf8520e142247a1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get one",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/subtopics/602c37a5edf8520e142247a1",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"subtopics",
+										"602c37a5edf8520e142247a1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get topic subtopics",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/subtopics/602c35c1e02a0e3a3878ae39/topic-subTopics",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"subtopics",
+										"602c35c1e02a0e3a3878ae39",
+										"topic-subTopics"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/subtopics/602c349dfd1613203834880d",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"subtopics",
+										"602c349dfd1613203834880d"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "unit",
+					"item": [
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Fundamentals of trigonometry\",\r\n    \"subTopic\": \"602c37a5edf8520e142247a1\",\r\n    \"numberOfPeriods\": 26,\r\n    \"keyCompetency\": \" Use trigonometric circle and identities to determine trigonometric ratios and apply them to solve related problems\",\r\n    \"content\": {\r\n        \"knowledgeAndUnderstanding\": [\r\n             {\r\n                \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\"\r\n            },\r\n            {\r\n                \"topic\": \"know special values (30 degree, 45degree, 60degree). - Convert radians to degree and vice versa. \"\r\n            },\r\n            {\r\n                \"topic\": \"Differentiate between complementary angles, supplementary angles and coterminal angles \"\r\n            }\r\n        ],\r\n        \"skills\": [\r\n            {\r\n                \"topic\": \"Represent graphically sine, cosine and tangent, functions and, together with the unit circle, use to relate values of any angle to the value for a positive acute angle \"\r\n            },\r\n            {\r\n                \"topic\": \"Use trigonometry, including the sine and cosine rules, to solve problems involving triangles \"\r\n            }\r\n        ],\r\n        \"attitudesAndValues\": [\r\n            {\r\n                \"topic\": \"Appreciate the relationshi p between the trigonomet ric values for different angles \"\r\n            },\r\n            {\r\n                \"topic\": \"Verify reasonable ness of answers when solving problems \"\r\n            }\r\n        ]\r\n    },\r\n    \"activities\": [\r\n        {\r\n            \"activity\": \"Mental task – imagine a point on the edge of a wheel – as the wheel turns how high is the point above the centre? – sketch the graph \"\r\n        },\r\n        {\r\n            \"activity\": \"Practical – on graph paper draw circle of 10cm radius and measure half chord length and distance from the centre to chord for angles (say multiples of 15 degree ) – plot use calculator to determine which is sine and cosine. What is the radius of the calculator’s circle? – unit circle  \"\r\n        },\r\n        {\r\n            \"activity\": \"Use of dynamic geometry and graph plotting to illustrate relationship e.g. geogebra \"\r\n        },\r\n        {\r\n            \"activity\": \"In groups use unit circle and graphs to determine the relationship between trigonometric functions of any angle and the value for an acute positive angle – generalise. \"\r\n        },\r\n        {\r\n            \"activity\": \"Group investigation -What angle subtends an arc length equal to the radius? – define a radian, make a table of equivalences \"\r\n        },\r\n        {\r\n            \"activity\": \"Derive trigonometric identities, sine and cosine rules \"\r\n        },\r\n        {\r\n            \"activity\": \"Apply trigonometry to practical problems involving triangles and angles.\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/units",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"units"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"intro to math part 1 unit 1 updated\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/units/602c38ced3f6860698532d2f",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"units",
+										"602c38ced3f6860698532d2f"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get one",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/units/602c38ced3f6860698532d2f",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"units",
+										"602c38ced3f6860698532d2f"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get subtopic units",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/units/602c37a5edf8520e142247a1/subTopic-units",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"units",
+										"602c37a5edf8520e142247a1",
+										"subTopic-units"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/units/602c37a5edf8520e142247a1",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"units",
+										"602c37a5edf8520e142247a1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "plan",
+					"item": [
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"unit\": \"602c38ced3f6860698532d2f\",\r\n    \"subject\": \"602c349dfd1613203834880d\",\r\n    \"keyUnitCompetency\": \"Use trigonometric circle and identities to determine trigonometric ratios and apply them to solve related problems\",\r\n    \"lessonNumber\": 1,\r\n    \"lessonName\": \"First lesson \",\r\n    \"knowledge\": [\r\n        {\r\n            \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\",\r\n            \"bloomTaxonomy\": \"REMEMBERING\",\r\n            \"standardCriteriaPerfomance\": 80\r\n        },\r\n        {\r\n            \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\",\r\n            \"bloomTaxonomy\": \"REMEMBERING\",\r\n            \"standardCriteriaPerfomance\": 50\r\n        }\r\n    ],\r\n     \"skills\": [\r\n        {\r\n            \"topic\": \"Represent graphically sine, cosine and tangent, functions and, together with the unit circle, use to relate values of any angle to the value for a positive acute angle \",\r\n            \"bloomTaxonomy\": \"APPLYING\",\r\n            \"standardCriteriaPerfomance\": 20\r\n        },\r\n        {\r\n            \"topic\": \"Use trigonometry, including the sine and cosine rules, to solve problems involving triangles\",\r\n            \"bloomTaxonomy\": \"APPLYING\",\r\n            \"standardCriteriaPerfomance\": 50\r\n        }\r\n    ],\r\n     \"attitudesAndValues\": [\r\n        {\r\n            \"topic\": \"Appreciate the relationshi p between the trigonomet ric values for different angles \",\r\n            \"bloomTaxonomy\": \"CREATING\",\r\n            \"standardCriteriaPerfomance\": 30\r\n        },\r\n        {\r\n            \"topic\": \"Verify reasonable ness of answers when solving problems\",\r\n            \"bloomTaxonomy\": \"EVALUATING\",\r\n            \"standardCriteriaPerfomance\": 70\r\n        }\r\n    ],\r\n    \"instructionalMaterial\": {},\r\n    \"otherMaterialsAndReferences\": \"N/A\",\r\n    \"activities\": {\r\n        \"introduction\": {\r\n            \"activities\": [\r\n                {\r\n                    \"activity\": \"Mental task – imagine a point on the edge of a wheel – as the wheel turns how high is the point above the centre? – sketch the graph \"\r\n                }\r\n            ],\r\n            \"otherActivity\": \"\",\r\n            \"crossCuttingIssues\": \"ENVIRONMENT-AND-SUSTAINABILITY\",\r\n            \"crossCuttingIssuesComment\": \"No comment\",\r\n            \"competency\": \"RESEARCH-AND-PROBLEM-SOLVING\",\r\n            \"competencyComment\": \"No comment\"\r\n        },\r\n        \"development\": {\r\n            \"activities\": [\r\n                {\r\n                    \"activity\": \"Practical – on graph paper draw circle of 10cm radius and measure half chord length and distance from the centre to chord for angles (say multiples of 15 degree ) – plot use calculator to determine which is sine and cosine. What is the radius of the calculator’s circle? – unit circle  \"\r\n                }\r\n            ],\r\n            \"otherActivity\": \"\",\r\n            \"crossCuttingIssues\": \"ENVIRONMENT-AND-SUSTAINABILITY\",\r\n            \"crossCuttingIssuesComment\": \"No comment\",\r\n            \"competency\": \"RESEARCH-AND-PROBLEM-SOLVING\",\r\n            \"competencyComment\": \"No comment\"\r\n        },\r\n        \"conclusion\": {\r\n            \"activities\": [\r\n                {\r\n                    \"activity\": \"Use of dynamic geometry and graph plotting to illustrate relationship e.g. geogebra\"\r\n                }\r\n            ],\r\n            \"otherActivity\": \"\",\r\n            \"crossCuttingIssues\": \"ENVIRONMENT-AND-SUSTAINABILITY\",\r\n            \"crossCuttingIssuesComment\": \"No comment\",\r\n            \"competency\": \"RESEARCH-AND-PROBLEM-SOLVING\",\r\n            \"competencyComment\": \"No comment\"\r\n        },\r\n        \"exercises\": {\r\n            \"questions\": [\r\n                {\r\n                 \"difficultLevel\": \"MEDIUM\",\r\n                 \"questionsObjective\": \"REMEMBERING\",\r\n                 \"question\": \"What is the answer\",\r\n                 \"questionType\": \"MULTI-CHOICE\",\r\n                 \"possibleAnswer\": [\r\n                     {\r\n                         \"answer\": \"answer\"\r\n                     },\r\n                     {\r\n                         \"answer\": \"answer2\"\r\n                     },\r\n                     {\r\n                         \"answer\": \"answer3\"\r\n                     }\r\n                 ],\r\n                \"answers\": [\r\n                     {\r\n                         \"answer\": \"answer2\"\r\n                     },\r\n                     {\r\n                         \"answer\": \"answer3\"\r\n                     }\r\n                 ],\r\n                 \"points\": 10\r\n                      \r\n                }\r\n            ]\r\n        }\r\n    },\r\n    \"teachingTechniques\": {\r\n        \"introduction\": {\r\n            \"contentFocus\": \"LIVE-LECTURING\",\r\n            \"interactiveFocus\": \"GROUP-WORK\",\r\n            \"criticalThinking\": \"CLASS-DISCUSSIONS-DEBATES\",\r\n            \"production\": \"SKILLS-PRACTICE\",\r\n            \"problemSolving\": \"RESEARCH-INQUIRY\",\r\n            \"reflection\": \"REFLECTION-ON-LEARNING\",\r\n            \"sitingArrangement\": \"LECTURE/INDEPENDENT-WORK/TEST\",\r\n            \"duration\": 10\r\n        },\r\n        \"development\": {\r\n            \"contentFocus\": \"LIVE-LECTURING\",\r\n            \"interactiveFocus\": \"GROUP-WORK\",\r\n            \"criticalThinking\": \"CLASS-DISCUSSIONS-DEBATES\",\r\n            \"production\": \"SKILLS-PRACTICE\",\r\n            \"problemSolving\": \"RESEARCH-INQUIRY\",\r\n            \"reflection\": \"REFLECTION-ON-LEARNING\",\r\n            \"sitingArrangement\": \"LECTURE/INDEPENDENT-WORK/TEST\",\r\n            \"duration\": 10\r\n        },\r\n        \"conclusion\": {\r\n            \"contentFocus\": \"LIVE-LECTURING\",\r\n            \"interactiveFocus\": \"GROUP-WORK\",\r\n            \"criticalThinking\": \"CLASS-DISCUSSIONS-DEBATES\",\r\n            \"production\": \"SKILLS-PRACTICE\",\r\n            \"problemSolving\": \"RESEARCH-INQUIRY\",\r\n            \"reflection\": \"REFLECTION-ON-LEARNING\",\r\n            \"sitingArrangement\": \"LECTURE/INDEPENDENT-WORK/TEST\",\r\n            \"duration\": 10\r\n        }\r\n    },\r\n    \"time\": \"2021-06-31T17:58:09.010+00:00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/plans",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"plans"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "create",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"unit\": \"602c38ced3f6860698532d2f\",\r\n    \"subject\": \"602c349dfd1613203834880d\",\r\n    \"keyCompetency\": \"Use trigonometric circle and identities to determine trigonometric ratios and apply them to solve related problems\",\r\n    \"lessonNumber\": 1,\r\n    \"lessonName\": \"First lesson \",\r\n    \"knowledge\": [\r\n        {\r\n            \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\",\r\n            \"bloomTaxonomy\": \"REMEMBERING\",\r\n            \"standardCriteriaPerfomance\": 80\r\n        },\r\n        {\r\n            \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\",\r\n            \"bloomTaxonomy\": \"REMEMBERING\",\r\n            \"standardCriteriaPerfomance\": 50\r\n        }\r\n    ],\r\n     \"skills\": [\r\n        {\r\n            \"topic\": \"Represent graphically sine, cosine and tangent, functions and, together with the unit circle, use to relate values of any angle to the value for a positive acute angle \",\r\n            \"bloomTaxonomy\": \"APPLYING\",\r\n            \"standardCriteriaPerfomance\": 20\r\n        },\r\n        {\r\n            \"topic\": \"Use trigonometry, including the sine and cosine rules, to solve problems involving triangles\",\r\n            \"bloomTaxonomy\": \"APPLYING\",\r\n            \"standardCriteriaPerfomance\": 50\r\n        }\r\n    ],\r\n     \"attitudesAndValues\": [\r\n        {\r\n            \"topic\": \"Appreciate the relationshi p between the trigonomet ric values for different angles \",\r\n            \"bloomTaxonomy\": \"CREATING\",\r\n            \"standardCriteriaPerfomance\": 30\r\n        },\r\n        {\r\n            \"topic\": \"Verify reasonable ness of answers when solving problems\",\r\n            \"bloomTaxonomy\": \"EVALUATING\",\r\n            \"standardCriteriaPerfomance\": 70\r\n        }\r\n    ],\r\n    \"instructionalMaterial\": {},\r\n    \"otherMaterialsAndReferences\": \"N/A\",\r\n    \"activities\": {\r\n        \"introduction\": {\r\n            \"activities\": [\r\n                {\r\n                    \"activity\": \"Mental task – imagine a point on the edge of a wheel – as the wheel turns how high is the point above the centre? – sketch the graph \"\r\n                }\r\n            ],\r\n            \"otherActivity\": \"\",\r\n            \"crossCuttingIssues\": \"ENVIRONMENT-AND-SUSTAINABILITY\",\r\n            \"crossCuttingIssuesComment\": \"No comment\",\r\n            \"competency\": \"RESEARCH-AND-PROBLEM-SOLVING\",\r\n            \"competencyComment\": \"No comment\"\r\n        },\r\n        \"development\": {\r\n            \"activities\": [\r\n                {\r\n                    \"activity\": \"Practical – on graph paper draw circle of 10cm radius and measure half chord length and distance from the centre to chord for angles (say multiples of 15 degree ) – plot use calculator to determine which is sine and cosine. What is the radius of the calculator’s circle? – unit circle  \"\r\n                }\r\n            ],\r\n            \"otherActivity\": \"\",\r\n            \"crossCuttingIssues\": \"ENVIRONMENT-AND-SUSTAINABILITY\",\r\n            \"crossCuttingIssuesComment\": \"No comment\",\r\n            \"competency\": \"RESEARCH-AND-PROBLEM-SOLVING\",\r\n            \"competencyComment\": \"No comment\"\r\n        },\r\n        \"conclusion\": {\r\n            \"activities\": [\r\n                {\r\n                    \"activity\": \"Use of dynamic geometry and graph plotting to illustrate relationship e.g. geogebra\"\r\n                }\r\n            ],\r\n            \"otherActivity\": \"\",\r\n            \"crossCuttingIssues\": \"ENVIRONMENT-AND-SUSTAINABILITY\",\r\n            \"crossCuttingIssuesComment\": \"No comment\",\r\n            \"competency\": \"RESEARCH-AND-PROBLEM-SOLVING\",\r\n            \"competencyComment\": \"No comment\"\r\n        }\r\n    },\r\n    \"teachingTechniques\": {\r\n        \"introduction\": {\r\n            \"contentFocus\": \"LIVE-LECTURING\",\r\n            \"interactiveFocus\": \"GROUP-WORK\",\r\n            \"criticalThinking\": \"CLASS-DISCUSSIONS-DEBATES\",\r\n            \"production\": \"SKILLS-PRACTICE\",\r\n            \"problemSolving\": \"RESEARCH-INQUIRY\",\r\n            \"reflection\": \"REFLECTION-ON-LEARNING\",\r\n            \"sitingArrangement\": \"LECTURE/INDEPENDENT-WORK/TEST\",\r\n            \"duration\": 10\r\n        },\r\n        \"development\": {\r\n            \"contentFocus\": \"LIVE-LECTURING\",\r\n            \"interactiveFocus\": \"GROUP-WORK\",\r\n            \"criticalThinking\": \"CLASS-DISCUSSIONS-DEBATES\",\r\n            \"production\": \"SKILLS-PRACTICE\",\r\n            \"problemSolving\": \"RESEARCH-INQUIRY\",\r\n            \"reflection\": \"REFLECTION-ON-LEARNING\",\r\n            \"sitingArrangement\": \"LECTURE/INDEPENDENT-WORK/TEST\",\r\n            \"duration\": 10\r\n        },\r\n        \"conclusion\": {\r\n            \"contentFocus\": \"LIVE-LECTURING\",\r\n            \"interactiveFocus\": \"GROUP-WORK\",\r\n            \"criticalThinking\": \"CLASS-DISCUSSIONS-DEBATES\",\r\n            \"production\": \"SKILLS-PRACTICE\",\r\n            \"problemSolving\": \"RESEARCH-INQUIRY\",\r\n            \"reflection\": \"REFLECTION-ON-LEARNING\",\r\n            \"sitingArrangement\": \"LECTURE/INDEPENDENT-WORK/TEST\",\r\n            \"duration\": 10\r\n        }\r\n    },\r\n    \"time\": \"2021-06-31T17:58:09.010+00:00\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:9000/api/lessons/plans",
+											"host": [
+												"localhost"
+											],
+											"port": "9000",
+											"path": [
+												"api",
+												"lessons",
+												"plans"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "4000"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"fa0-hohvu1nGwQ9o8uXwNLOIivMT8tM\""
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 20 Feb 2021 14:18:24 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": 200,\n    \"message\": \"created successfully\",\n    \"data\": {\n        \"activities\": {\n            \"introduction\": {\n                \"activities\": [\n                    {\n                        \"_id\": \"60311a2b701e7a2790f9ce72\",\n                        \"activity\": \"Mental task – imagine a point on the edge of a wheel – as the wheel turns how high is the point above the centre? – sketch the graph \"\n                    }\n                ],\n                \"otherActivity\": \"\",\n                \"crossCuttingIssues\": \"ENVIRONMENT-AND-SUSTAINABILITY\",\n                \"crossCuttingIssuesComment\": \"No comment\",\n                \"competency\": \"RESEARCH-AND-PROBLEM-SOLVING\",\n                \"competencyComment\": \"No comment\"\n            },\n            \"development\": {\n                \"activities\": [\n                    {\n                        \"_id\": \"60311a2b701e7a2790f9ce73\",\n                        \"activity\": \"Practical – on graph paper draw circle of 10cm radius and measure half chord length and distance from the centre to chord for angles (say multiples of 15 degree ) – plot use calculator to determine which is sine and cosine. What is the radius of the calculator’s circle? – unit circle  \"\n                    }\n                ],\n                \"otherActivity\": \"\",\n                \"crossCuttingIssues\": \"ENVIRONMENT-AND-SUSTAINABILITY\",\n                \"crossCuttingIssuesComment\": \"No comment\",\n                \"competency\": \"RESEARCH-AND-PROBLEM-SOLVING\",\n                \"competencyComment\": \"No comment\"\n            },\n            \"conclusion\": {\n                \"activities\": [\n                    {\n                        \"_id\": \"60311a2b701e7a2790f9ce74\",\n                        \"activity\": \"Use of dynamic geometry and graph plotting to illustrate relationship e.g. geogebra\"\n                    }\n                ],\n                \"otherActivity\": \"\",\n                \"crossCuttingIssues\": \"ENVIRONMENT-AND-SUSTAINABILITY\",\n                \"crossCuttingIssuesComment\": \"No comment\",\n                \"competency\": \"RESEARCH-AND-PROBLEM-SOLVING\",\n                \"competencyComment\": \"No comment\"\n            }\n        },\n        \"teachingTechniques\": {\n            \"introduction\": {\n                \"contentFocus\": \"LIVE-LECTURING\",\n                \"interactiveFocus\": \"GROUP-WORK\",\n                \"criticalThinking\": \"CLASS-DISCUSSIONS-DEBATES\",\n                \"production\": \"SKILLS-PRACTICE\",\n                \"problemSolving\": \"RESEARCH-INQUIRY\",\n                \"reflection\": \"REFLECTION-ON-LEARNING\",\n                \"sitingArrangement\": \"LECTURE/INDEPENDENT-WORK/TEST\",\n                \"duration\": 10\n            },\n            \"development\": {\n                \"contentFocus\": \"LIVE-LECTURING\",\n                \"interactiveFocus\": \"GROUP-WORK\",\n                \"criticalThinking\": \"CLASS-DISCUSSIONS-DEBATES\",\n                \"production\": \"SKILLS-PRACTICE\",\n                \"problemSolving\": \"RESEARCH-INQUIRY\",\n                \"reflection\": \"REFLECTION-ON-LEARNING\",\n                \"sitingArrangement\": \"LECTURE/INDEPENDENT-WORK/TEST\",\n                \"duration\": 10\n            },\n            \"conclusion\": {\n                \"contentFocus\": \"LIVE-LECTURING\",\n                \"interactiveFocus\": \"GROUP-WORK\",\n                \"criticalThinking\": \"CLASS-DISCUSSIONS-DEBATES\",\n                \"production\": \"SKILLS-PRACTICE\",\n                \"problemSolving\": \"RESEARCH-INQUIRY\",\n                \"reflection\": \"REFLECTION-ON-LEARNING\",\n                \"sitingArrangement\": \"LECTURE/INDEPENDENT-WORK/TEST\",\n                \"duration\": 10\n            }\n        },\n        \"_id\": \"60311a2b701e7a2790f9ce6a\",\n        \"teacher\": \"602b9cfc49ce7a0be4a35fc7\",\n        \"school\": \"602b9ef1aab3f92010a7a4e0\",\n        \"unit\": \"602c38ced3f6860698532d2f\",\n        \"subject\": \"602c349dfd1613203834880d\",\n        \"lessonNumber\": 1,\n        \"lessonName\": \"First lesson \",\n        \"knowledge\": [\n            {\n                \"_id\": \"60311a2b701e7a2790f9ce6b\",\n                \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\",\n                \"bloomTaxonomy\": \"REMEMBERING\",\n                \"standardCriteriaPerfomance\": 80\n            },\n            {\n                \"_id\": \"60311a2b701e7a2790f9ce6c\",\n                \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\",\n                \"bloomTaxonomy\": \"REMEMBERING\",\n                \"standardCriteriaPerfomance\": 50\n            }\n        ],\n        \"skills\": [\n            {\n                \"_id\": \"60311a2b701e7a2790f9ce6d\",\n                \"topic\": \"Represent graphically sine, cosine and tangent, functions and, together with the unit circle, use to relate values of any angle to the value for a positive acute angle \",\n                \"bloomTaxonomy\": \"APPLYING\",\n                \"standardCriteriaPerfomance\": 20\n            },\n            {\n                \"_id\": \"60311a2b701e7a2790f9ce6e\",\n                \"topic\": \"Use trigonometry, including the sine and cosine rules, to solve problems involving triangles\",\n                \"bloomTaxonomy\": \"APPLYING\",\n                \"standardCriteriaPerfomance\": 50\n            }\n        ],\n        \"attitudesAndValues\": [\n            {\n                \"_id\": \"60311a2b701e7a2790f9ce6f\",\n                \"topic\": \"Appreciate the relationshi p between the trigonomet ric values for different angles \",\n                \"bloomTaxonomy\": \"CREATING\",\n                \"standardCriteriaPerfomance\": 30\n            },\n            {\n                \"_id\": \"60311a2b701e7a2790f9ce70\",\n                \"topic\": \"Verify reasonable ness of answers when solving problems\",\n                \"bloomTaxonomy\": \"EVALUATING\",\n                \"standardCriteriaPerfomance\": 70\n            }\n        ],\n        \"instructionalMaterial\": [\n            {\n                \"_id\": \"60311a2b701e7a2790f9ce71\"\n            }\n        ],\n        \"otherMaterialsAndReferences\": \"N/A\",\n        \"time\": \"2021-07-01T17:58:09.010Z\",\n        \"createdAt\": \"2021-02-20T14:18:19.496Z\",\n        \"updatedAt\": \"2021-02-20T14:18:19.496Z\",\n        \"__v\": 0\n    }\n}"
+								},
+								{
+									"name": "create",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"unit\": \"602c38ced3f6860698532d2f\",\r\n    \"subject\": \"602c349dfd1613203834880d\",\r\n    \"keyCompetency\": \"Use trigonometric circle and identities to determine trigonometric ratios and apply them to solve related problems\",\r\n    \"lessonNumber\": 1,\r\n    \"lessonName\": \"First lesson \",\r\n    \"knowledge\": [\r\n        {\r\n            \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\",\r\n            \"bloomTaxonomy\": \"REMEMBERING\",\r\n            \"standardCriteriaPerfomance\": 80\r\n        },\r\n        {\r\n            \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\",\r\n            \"bloomTaxonomy\": \"REMEMBERING\",\r\n            \"standardCriteriaPerfomance\": 50\r\n        }\r\n    ],\r\n     \"skills\": [\r\n        {\r\n            \"topic\": \"Represent graphically sine, cosine and tangent, functions and, together with the unit circle, use to relate values of any angle to the value for a positive acute angle \",\r\n            \"bloomTaxonomy\": \"APPLYING\",\r\n            \"standardCriteriaPerfomance\": 20\r\n        },\r\n        {\r\n            \"topic\": \"Use trigonometry, including the sine and cosine rules, to solve problems involving triangles\",\r\n            \"bloomTaxonomy\": \"APPLYING\",\r\n            \"standardCriteriaPerfomance\": 50\r\n        }\r\n    ],\r\n     \"attitudesAndValues\": [\r\n        {\r\n            \"topic\": \"Appreciate the relationshi p between the trigonomet ric values for different angles \",\r\n            \"bloomTaxonomy\": \"CREATING\",\r\n            \"standardCriteriaPerfomance\": 30\r\n        },\r\n        {\r\n            \"topic\": \"Verify reasonable ness of answers when solving problems\",\r\n            \"bloomTaxonomy\": \"EVALUATING\",\r\n            \"standardCriteriaPerfomance\": 70\r\n        }\r\n    ],\r\n    \"instructionalMaterial\": {},\r\n    \"otherMaterialsAndReferences\": \"N/A\",\r\n    \"activities\": {\r\n        \"introduction\": {\r\n            \"activities\": [\r\n                {\r\n                    \"activity\": \"Mental task – imagine a point on the edge of a wheel – as the wheel turns how high is the point above the centre? – sketch the graph \"\r\n                }\r\n            ],\r\n            \"otherActivity\": \"\",\r\n            \"crossCuttingIssues\": \"ENVIRONMENT-AND-SUSTAINABILITY\",\r\n            \"crossCuttingIssuesComment\": \"No comment\",\r\n            \"competency\": \"RESEARCH-AND-PROBLEM-SOLVING\",\r\n            \"competencyComment\": \"No comment\"\r\n        },\r\n        \"development\": {\r\n            \"activities\": [\r\n                {\r\n                    \"activity\": \"Practical – on graph paper draw circle of 10cm radius and measure half chord length and distance from the centre to chord for angles (say multiples of 15 degree ) – plot use calculator to determine which is sine and cosine. What is the radius of the calculator’s circle? – unit circle  \"\r\n                }\r\n            ],\r\n            \"otherActivity\": \"\",\r\n            \"crossCuttingIssues\": \"ENVIRONMENT-AND-SUSTAINABILITY\",\r\n            \"crossCuttingIssuesComment\": \"No comment\",\r\n            \"competency\": \"RESEARCH-AND-PROBLEM-SOLVING\",\r\n            \"competencyComment\": \"No comment\"\r\n        },\r\n        \"conclusion\": {\r\n            \"activities\": [\r\n                {\r\n                    \"activity\": \"Use of dynamic geometry and graph plotting to illustrate relationship e.g. geogebra\"\r\n                }\r\n            ],\r\n            \"otherActivity\": \"\",\r\n            \"crossCuttingIssues\": \"ENVIRONMENT-AND-SUSTAINABILITY\",\r\n            \"crossCuttingIssuesComment\": \"No comment\",\r\n            \"competency\": \"RESEARCH-AND-PROBLEM-SOLVING\",\r\n            \"competencyComment\": \"No comment\"\r\n        },\r\n        \"exercises\": {\r\n            \"questions\": [\r\n                {\r\n                 \"difficultLevel\": \"MEDIUM\",\r\n                 \"questionsObjective\": \"REMEMBERING\",\r\n                 \"question\": \"What is the answer\",\r\n                 \"questionType\": \"MULTI-CHOICE\",\r\n                 \"possibleAnswer\": [\r\n                     {\r\n                         \"answer\": \"answer\"\r\n                     },\r\n                     {\r\n                         \"answer\": \"answer2\"\r\n                     },\r\n                     {\r\n                         \"answer\": \"answer3\"\r\n                     }\r\n                 ],\r\n                \"answers\": [\r\n                     {\r\n                         \"answer\": \"answer2\"\r\n                     },\r\n                     {\r\n                         \"answer\": \"answer3\"\r\n                     }\r\n                 ],\r\n                 \"points\": 10\r\n                      \r\n                }\r\n            ]\r\n        }\r\n    },\r\n    \"teachingTechniques\": {\r\n        \"introduction\": {\r\n            \"contentFocus\": \"LIVE-LECTURING\",\r\n            \"interactiveFocus\": \"GROUP-WORK\",\r\n            \"criticalThinking\": \"CLASS-DISCUSSIONS-DEBATES\",\r\n            \"production\": \"SKILLS-PRACTICE\",\r\n            \"problemSolving\": \"RESEARCH-INQUIRY\",\r\n            \"reflection\": \"REFLECTION-ON-LEARNING\",\r\n            \"sitingArrangement\": \"LECTURE/INDEPENDENT-WORK/TEST\",\r\n            \"duration\": 10\r\n        },\r\n        \"development\": {\r\n            \"contentFocus\": \"LIVE-LECTURING\",\r\n            \"interactiveFocus\": \"GROUP-WORK\",\r\n            \"criticalThinking\": \"CLASS-DISCUSSIONS-DEBATES\",\r\n            \"production\": \"SKILLS-PRACTICE\",\r\n            \"problemSolving\": \"RESEARCH-INQUIRY\",\r\n            \"reflection\": \"REFLECTION-ON-LEARNING\",\r\n            \"sitingArrangement\": \"LECTURE/INDEPENDENT-WORK/TEST\",\r\n            \"duration\": 10\r\n        },\r\n        \"conclusion\": {\r\n            \"contentFocus\": \"LIVE-LECTURING\",\r\n            \"interactiveFocus\": \"GROUP-WORK\",\r\n            \"criticalThinking\": \"CLASS-DISCUSSIONS-DEBATES\",\r\n            \"production\": \"SKILLS-PRACTICE\",\r\n            \"problemSolving\": \"RESEARCH-INQUIRY\",\r\n            \"reflection\": \"REFLECTION-ON-LEARNING\",\r\n            \"sitingArrangement\": \"LECTURE/INDEPENDENT-WORK/TEST\",\r\n            \"duration\": 10\r\n        }\r\n    },\r\n    \"time\": \"2021-06-31T17:58:09.010+00:00\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:9000/api/lessons/plans",
+											"host": [
+												"localhost"
+											],
+											"port": "9000",
+											"path": [
+												"api",
+												"lessons",
+												"plans"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "4498"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"1192-GuI4YXBnsr21HOa+ikBwSPVd7R4\""
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 20 Feb 2021 18:02:51 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": 200,\n    \"message\": \"created successfully\",\n    \"data\": {\n        \"activities\": {\n            \"introduction\": {\n                \"activities\": [\n                    {\n                        \"_id\": \"60314ecb1ed95b302091ecf3\",\n                        \"activity\": \"Mental task – imagine a point on the edge of a wheel – as the wheel turns how high is the point above the centre? – sketch the graph \"\n                    }\n                ],\n                \"otherActivity\": \"\",\n                \"crossCuttingIssues\": \"ENVIRONMENT-AND-SUSTAINABILITY\",\n                \"crossCuttingIssuesComment\": \"No comment\",\n                \"competency\": \"RESEARCH-AND-PROBLEM-SOLVING\",\n                \"competencyComment\": \"No comment\"\n            },\n            \"development\": {\n                \"activities\": [\n                    {\n                        \"_id\": \"60314ecb1ed95b302091ecf4\",\n                        \"activity\": \"Practical – on graph paper draw circle of 10cm radius and measure half chord length and distance from the centre to chord for angles (say multiples of 15 degree ) – plot use calculator to determine which is sine and cosine. What is the radius of the calculator’s circle? – unit circle  \"\n                    }\n                ],\n                \"otherActivity\": \"\",\n                \"crossCuttingIssues\": \"ENVIRONMENT-AND-SUSTAINABILITY\",\n                \"crossCuttingIssuesComment\": \"No comment\",\n                \"competency\": \"RESEARCH-AND-PROBLEM-SOLVING\",\n                \"competencyComment\": \"No comment\"\n            },\n            \"conclusion\": {\n                \"activities\": [\n                    {\n                        \"_id\": \"60314ecb1ed95b302091ecf5\",\n                        \"activity\": \"Use of dynamic geometry and graph plotting to illustrate relationship e.g. geogebra\"\n                    }\n                ],\n                \"otherActivity\": \"\",\n                \"crossCuttingIssues\": \"ENVIRONMENT-AND-SUSTAINABILITY\",\n                \"crossCuttingIssuesComment\": \"No comment\",\n                \"competency\": \"RESEARCH-AND-PROBLEM-SOLVING\",\n                \"competencyComment\": \"No comment\"\n            },\n            \"exercises\": {\n                \"questions\": [\n                    {\n                        \"_id\": \"60314ecb1ed95b302091ecf6\",\n                        \"difficultLevel\": \"MEDIUM\",\n                        \"questionsObjective\": \"REMEMBERING\",\n                        \"question\": \"What is the answer\",\n                        \"questionType\": \"MULTI-CHOICE\",\n                        \"possibleAnswer\": [\n                            {\n                                \"_id\": \"60314ecb1ed95b302091ecf7\",\n                                \"answer\": \"answer\"\n                            },\n                            {\n                                \"_id\": \"60314ecb1ed95b302091ecf8\",\n                                \"answer\": \"answer2\"\n                            },\n                            {\n                                \"_id\": \"60314ecb1ed95b302091ecf9\",\n                                \"answer\": \"answer3\"\n                            }\n                        ],\n                        \"answers\": [\n                            {\n                                \"_id\": \"60314ecb1ed95b302091ecfa\",\n                                \"answer\": \"answer2\"\n                            },\n                            {\n                                \"_id\": \"60314ecb1ed95b302091ecfb\",\n                                \"answer\": \"answer3\"\n                            }\n                        ],\n                        \"points\": 10\n                    }\n                ]\n            }\n        },\n        \"teachingTechniques\": {\n            \"introduction\": {\n                \"contentFocus\": \"LIVE-LECTURING\",\n                \"interactiveFocus\": \"GROUP-WORK\",\n                \"criticalThinking\": \"CLASS-DISCUSSIONS-DEBATES\",\n                \"production\": \"SKILLS-PRACTICE\",\n                \"problemSolving\": \"RESEARCH-INQUIRY\",\n                \"reflection\": \"REFLECTION-ON-LEARNING\",\n                \"sitingArrangement\": \"LECTURE/INDEPENDENT-WORK/TEST\",\n                \"duration\": 10\n            },\n            \"development\": {\n                \"contentFocus\": \"LIVE-LECTURING\",\n                \"interactiveFocus\": \"GROUP-WORK\",\n                \"criticalThinking\": \"CLASS-DISCUSSIONS-DEBATES\",\n                \"production\": \"SKILLS-PRACTICE\",\n                \"problemSolving\": \"RESEARCH-INQUIRY\",\n                \"reflection\": \"REFLECTION-ON-LEARNING\",\n                \"sitingArrangement\": \"LECTURE/INDEPENDENT-WORK/TEST\",\n                \"duration\": 10\n            },\n            \"conclusion\": {\n                \"contentFocus\": \"LIVE-LECTURING\",\n                \"interactiveFocus\": \"GROUP-WORK\",\n                \"criticalThinking\": \"CLASS-DISCUSSIONS-DEBATES\",\n                \"production\": \"SKILLS-PRACTICE\",\n                \"problemSolving\": \"RESEARCH-INQUIRY\",\n                \"reflection\": \"REFLECTION-ON-LEARNING\",\n                \"sitingArrangement\": \"LECTURE/INDEPENDENT-WORK/TEST\",\n                \"duration\": 10\n            }\n        },\n        \"_id\": \"60314ecb1ed95b302091eceb\",\n        \"teacher\": \"602b9cfc49ce7a0be4a35fc7\",\n        \"school\": \"602b9ef1aab3f92010a7a4e0\",\n        \"unit\": \"602c38ced3f6860698532d2f\",\n        \"subject\": \"602c349dfd1613203834880d\",\n        \"lessonNumber\": 1,\n        \"lessonName\": \"First lesson \",\n        \"knowledge\": [\n            {\n                \"_id\": \"60314ecb1ed95b302091ecec\",\n                \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\",\n                \"bloomTaxonomy\": \"REMEMBERING\",\n                \"standardCriteriaPerfomance\": 80\n            },\n            {\n                \"_id\": \"60314ecb1ed95b302091eced\",\n                \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\",\n                \"bloomTaxonomy\": \"REMEMBERING\",\n                \"standardCriteriaPerfomance\": 50\n            }\n        ],\n        \"skills\": [\n            {\n                \"_id\": \"60314ecb1ed95b302091ecee\",\n                \"topic\": \"Represent graphically sine, cosine and tangent, functions and, together with the unit circle, use to relate values of any angle to the value for a positive acute angle \",\n                \"bloomTaxonomy\": \"APPLYING\",\n                \"standardCriteriaPerfomance\": 20\n            },\n            {\n                \"_id\": \"60314ecb1ed95b302091ecef\",\n                \"topic\": \"Use trigonometry, including the sine and cosine rules, to solve problems involving triangles\",\n                \"bloomTaxonomy\": \"APPLYING\",\n                \"standardCriteriaPerfomance\": 50\n            }\n        ],\n        \"attitudesAndValues\": [\n            {\n                \"_id\": \"60314ecb1ed95b302091ecf0\",\n                \"topic\": \"Appreciate the relationshi p between the trigonomet ric values for different angles \",\n                \"bloomTaxonomy\": \"CREATING\",\n                \"standardCriteriaPerfomance\": 30\n            },\n            {\n                \"_id\": \"60314ecb1ed95b302091ecf1\",\n                \"topic\": \"Verify reasonable ness of answers when solving problems\",\n                \"bloomTaxonomy\": \"EVALUATING\",\n                \"standardCriteriaPerfomance\": 70\n            }\n        ],\n        \"instructionalMaterial\": [\n            {\n                \"_id\": \"60314ecb1ed95b302091ecf2\"\n            }\n        ],\n        \"otherMaterialsAndReferences\": \"N/A\",\n        \"time\": \"2021-07-01T17:58:09.010Z\",\n        \"createdAt\": \"2021-02-20T18:02:51.228Z\",\n        \"updatedAt\": \"2021-02-20T18:02:51.228Z\",\n        \"__v\": 0\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"unit\": \"602c38ced3f6860698532d2f\",\r\n    \"subject\": \"602c349dfd1613203834880d\",\r\n    \"keyUnitCompetency\": \"Use trigonometric circle and identities to determine trigonometric ratios and apply them to solve related problems\",\r\n    \"lessonNumber\": 1,\r\n    \"lessonName\": \"First lesson updated\",\r\n    \"knowledge\": [\r\n        {\r\n            \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\",\r\n            \"bloomTaxonomy\": \"REMEMBERING\",\r\n            \"standardCriteriaPerfomance\": 80\r\n        },\r\n        {\r\n            \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\",\r\n            \"bloomTaxonomy\": \"REMEMBERING\",\r\n            \"standardCriteriaPerfomance\": 50\r\n        }\r\n    ],\r\n     \"skills\": [\r\n        {\r\n            \"topic\": \"Represent graphically sine, cosine and tangent, functions and, together with the unit circle, use to relate values of any angle to the value for a positive acute angle \",\r\n            \"bloomTaxonomy\": \"APPLYING\",\r\n            \"standardCriteriaPerfomance\": 20\r\n        },\r\n        {\r\n            \"topic\": \"Use trigonometry, including the sine and cosine rules, to solve problems involving triangles\",\r\n            \"bloomTaxonomy\": \"APPLYING\",\r\n            \"standardCriteriaPerfomance\": 50\r\n        }\r\n    ],\r\n     \"attitudesAndValues\": [\r\n        {\r\n            \"topic\": \"Appreciate the relationshi p between the trigonomet ric values for different angles \",\r\n            \"bloomTaxonomy\": \"CREATING\",\r\n            \"standardCriteriaPerfomance\": 30\r\n        },\r\n        {\r\n            \"topic\": \"Verify reasonable ness of answers when solving problems\",\r\n            \"bloomTaxonomy\": \"EVALUATING\",\r\n            \"standardCriteriaPerfomance\": 70\r\n        }\r\n    ],\r\n    \"instructionalMaterial\": {},\r\n    \"otherMaterialsAndReferences\": \"N/A\",\r\n    \"activities\": {\r\n        \"introduction\": {\r\n            \"activities\": [\r\n                {\r\n                    \"activity\": \"Mental task – imagine a point on the edge of a wheel – as the wheel turns how high is the point above the centre? – sketch the graph \"\r\n                }\r\n            ],\r\n            \"otherActivity\": \"\",\r\n            \"crossCuttingIssues\": \"ENVIRONMENT-AND-SUSTAINABILITY\",\r\n            \"crossCuttingIssuesComment\": \"No comment\",\r\n            \"competency\": \"RESEARCH-AND-PROBLEM-SOLVING\",\r\n            \"competencyComment\": \"No comment\"\r\n        },\r\n        \"development\": {\r\n            \"activities\": [\r\n                {\r\n                    \"activity\": \"Practical – on graph paper draw circle of 10cm radius and measure half chord length and distance from the centre to chord for angles (say multiples of 15 degree ) – plot use calculator to determine which is sine and cosine. What is the radius of the calculator’s circle? – unit circle  \"\r\n                }\r\n            ],\r\n            \"otherActivity\": \"\",\r\n            \"crossCuttingIssues\": \"ENVIRONMENT-AND-SUSTAINABILITY\",\r\n            \"crossCuttingIssuesComment\": \"No comment\",\r\n            \"competency\": \"RESEARCH-AND-PROBLEM-SOLVING\",\r\n            \"competencyComment\": \"No comment\"\r\n        },\r\n        \"conclusion\": {\r\n            \"activities\": [\r\n                {\r\n                    \"activity\": \"Use of dynamic geometry and graph plotting to illustrate relationship e.g. geogebra\"\r\n                }\r\n            ],\r\n            \"otherActivity\": \"\",\r\n            \"crossCuttingIssues\": \"ENVIRONMENT-AND-SUSTAINABILITY\",\r\n            \"crossCuttingIssuesComment\": \"No comment\",\r\n            \"competency\": \"RESEARCH-AND-PROBLEM-SOLVING\",\r\n            \"competencyComment\": \"No comment\"\r\n        }\r\n    },\r\n    \"teachingTechniques\": {\r\n        \"introduction\": {\r\n            \"contentFocus\": \"LIVE-LECTURING\",\r\n            \"interactiveFocus\": \"GROUP-WORK\",\r\n            \"criticalThinking\": \"CLASS-DISCUSSIONS-DEBATES\",\r\n            \"production\": \"SKILLS-PRACTICE\",\r\n            \"problemSolving\": \"RESEARCH-INQUIRY\",\r\n            \"reflection\": \"REFLECTION-ON-LEARNING\",\r\n            \"sitingArrangement\": \"LECTURE/INDEPENDENT-WORK/TEST\",\r\n            \"duration\": 10\r\n        },\r\n        \"development\": {\r\n            \"contentFocus\": \"LIVE-LECTURING\",\r\n            \"interactiveFocus\": \"GROUP-WORK\",\r\n            \"criticalThinking\": \"CLASS-DISCUSSIONS-DEBATES\",\r\n            \"production\": \"SKILLS-PRACTICE\",\r\n            \"problemSolving\": \"RESEARCH-INQUIRY\",\r\n            \"reflection\": \"REFLECTION-ON-LEARNING\",\r\n            \"sitingArrangement\": \"LECTURE/INDEPENDENT-WORK/TEST\",\r\n            \"duration\": 10\r\n        },\r\n        \"conclusion\": {\r\n            \"contentFocus\": \"LIVE-LECTURING\",\r\n            \"interactiveFocus\": \"GROUP-WORK\",\r\n            \"criticalThinking\": \"CLASS-DISCUSSIONS-DEBATES\",\r\n            \"production\": \"SKILLS-PRACTICE\",\r\n            \"problemSolving\": \"RESEARCH-INQUIRY\",\r\n            \"reflection\": \"REFLECTION-ON-LEARNING\",\r\n            \"sitingArrangement\": \"LECTURE/INDEPENDENT-WORK/TEST\",\r\n            \"duration\": 10\r\n        }\r\n    },\r\n    \"time\": \"2021-06-31T17:58:09.010+00:00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/plans/60311a2b701e7a2790f9ce6a",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"plans",
+										"60311a2b701e7a2790f9ce6a"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "update",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"unit\": \"602c38ced3f6860698532d2f\",\r\n    \"subject\": \"602c349dfd1613203834880d\",\r\n    \"keyCompetency\": \"Use trigonometric circle and identities to determine trigonometric ratios and apply them to solve related problems\",\r\n    \"lessonNumber\": 1,\r\n    \"lessonName\": \"First lesson updated\",\r\n    \"knowledge\": [\r\n        {\r\n            \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\",\r\n            \"bloomTaxonomy\": \"REMEMBERING\",\r\n            \"standardCriteriaPerfomance\": 80\r\n        },\r\n        {\r\n            \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\",\r\n            \"bloomTaxonomy\": \"REMEMBERING\",\r\n            \"standardCriteriaPerfomance\": 50\r\n        }\r\n    ],\r\n     \"skills\": [\r\n        {\r\n            \"topic\": \"Represent graphically sine, cosine and tangent, functions and, together with the unit circle, use to relate values of any angle to the value for a positive acute angle \",\r\n            \"bloomTaxonomy\": \"APPLYING\",\r\n            \"standardCriteriaPerfomance\": 20\r\n        },\r\n        {\r\n            \"topic\": \"Use trigonometry, including the sine and cosine rules, to solve problems involving triangles\",\r\n            \"bloomTaxonomy\": \"APPLYING\",\r\n            \"standardCriteriaPerfomance\": 50\r\n        }\r\n    ],\r\n     \"attitudesAndValues\": [\r\n        {\r\n            \"topic\": \"Appreciate the relationshi p between the trigonomet ric values for different angles \",\r\n            \"bloomTaxonomy\": \"CREATING\",\r\n            \"standardCriteriaPerfomance\": 30\r\n        },\r\n        {\r\n            \"topic\": \"Verify reasonable ness of answers when solving problems\",\r\n            \"bloomTaxonomy\": \"EVALUATING\",\r\n            \"standardCriteriaPerfomance\": 70\r\n        }\r\n    ],\r\n    \"instructionalMaterial\": {},\r\n    \"otherMaterialsAndReferences\": \"N/A\",\r\n    \"activities\": {\r\n        \"introduction\": {\r\n            \"activities\": [\r\n                {\r\n                    \"activity\": \"Mental task – imagine a point on the edge of a wheel – as the wheel turns how high is the point above the centre? – sketch the graph \"\r\n                }\r\n            ],\r\n            \"otherActivity\": \"\",\r\n            \"crossCuttingIssues\": \"ENVIRONMENT-AND-SUSTAINABILITY\",\r\n            \"crossCuttingIssuesComment\": \"No comment\",\r\n            \"competency\": \"RESEARCH-AND-PROBLEM-SOLVING\",\r\n            \"competencyComment\": \"No comment\"\r\n        },\r\n        \"development\": {\r\n            \"activities\": [\r\n                {\r\n                    \"activity\": \"Practical – on graph paper draw circle of 10cm radius and measure half chord length and distance from the centre to chord for angles (say multiples of 15 degree ) – plot use calculator to determine which is sine and cosine. What is the radius of the calculator’s circle? – unit circle  \"\r\n                }\r\n            ],\r\n            \"otherActivity\": \"\",\r\n            \"crossCuttingIssues\": \"ENVIRONMENT-AND-SUSTAINABILITY\",\r\n            \"crossCuttingIssuesComment\": \"No comment\",\r\n            \"competency\": \"RESEARCH-AND-PROBLEM-SOLVING\",\r\n            \"competencyComment\": \"No comment\"\r\n        },\r\n        \"conclusion\": {\r\n            \"activities\": [\r\n                {\r\n                    \"activity\": \"Use of dynamic geometry and graph plotting to illustrate relationship e.g. geogebra\"\r\n                }\r\n            ],\r\n            \"otherActivity\": \"\",\r\n            \"crossCuttingIssues\": \"ENVIRONMENT-AND-SUSTAINABILITY\",\r\n            \"crossCuttingIssuesComment\": \"No comment\",\r\n            \"competency\": \"RESEARCH-AND-PROBLEM-SOLVING\",\r\n            \"competencyComment\": \"No comment\"\r\n        }\r\n    },\r\n    \"teachingTechniques\": {\r\n        \"introduction\": {\r\n            \"contentFocus\": \"LIVE-LECTURING\",\r\n            \"interactiveFocus\": \"GROUP-WORK\",\r\n            \"criticalThinking\": \"CLASS-DISCUSSIONS-DEBATES\",\r\n            \"production\": \"SKILLS-PRACTICE\",\r\n            \"problemSolving\": \"RESEARCH-INQUIRY\",\r\n            \"reflection\": \"REFLECTION-ON-LEARNING\",\r\n            \"sitingArrangement\": \"LECTURE/INDEPENDENT-WORK/TEST\",\r\n            \"duration\": 10\r\n        },\r\n        \"development\": {\r\n            \"contentFocus\": \"LIVE-LECTURING\",\r\n            \"interactiveFocus\": \"GROUP-WORK\",\r\n            \"criticalThinking\": \"CLASS-DISCUSSIONS-DEBATES\",\r\n            \"production\": \"SKILLS-PRACTICE\",\r\n            \"problemSolving\": \"RESEARCH-INQUIRY\",\r\n            \"reflection\": \"REFLECTION-ON-LEARNING\",\r\n            \"sitingArrangement\": \"LECTURE/INDEPENDENT-WORK/TEST\",\r\n            \"duration\": 10\r\n        },\r\n        \"conclusion\": {\r\n            \"contentFocus\": \"LIVE-LECTURING\",\r\n            \"interactiveFocus\": \"GROUP-WORK\",\r\n            \"criticalThinking\": \"CLASS-DISCUSSIONS-DEBATES\",\r\n            \"production\": \"SKILLS-PRACTICE\",\r\n            \"problemSolving\": \"RESEARCH-INQUIRY\",\r\n            \"reflection\": \"REFLECTION-ON-LEARNING\",\r\n            \"sitingArrangement\": \"LECTURE/INDEPENDENT-WORK/TEST\",\r\n            \"duration\": 10\r\n        }\r\n    },\r\n    \"time\": \"2021-06-31T17:58:09.010+00:00\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:9000/api/lessons/plans/60311a2b701e7a2790f9ce6a",
+											"host": [
+												"localhost"
+											],
+											"port": "9000",
+											"path": [
+												"api",
+												"lessons",
+												"plans",
+												"60311a2b701e7a2790f9ce6a"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "4089"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"ff9-Ij3SaXx9f3RYLVF5gAYM1kATNu0\""
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 20 Feb 2021 14:20:14 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": 200,\n    \"message\": \"updated successfully\",\n    \"data\": {\n        \"activities\": {\n            \"introduction\": {\n                \"activities\": [\n                    {\n                        \"_id\": \"60311a9c701e7a2790f9ce92\",\n                        \"activity\": \"Mental task – imagine a point on the edge of a wheel – as the wheel turns how high is the point above the centre? – sketch the graph \"\n                    }\n                ],\n                \"otherActivity\": \"\",\n                \"crossCuttingIssues\": \"ENVIRONMENT-AND-SUSTAINABILITY\",\n                \"crossCuttingIssuesComment\": \"No comment\",\n                \"competency\": \"RESEARCH-AND-PROBLEM-SOLVING\",\n                \"competencyComment\": \"No comment\"\n            },\n            \"development\": {\n                \"activities\": [\n                    {\n                        \"_id\": \"60311a9c701e7a2790f9ce91\",\n                        \"activity\": \"Practical – on graph paper draw circle of 10cm radius and measure half chord length and distance from the centre to chord for angles (say multiples of 15 degree ) – plot use calculator to determine which is sine and cosine. What is the radius of the calculator’s circle? – unit circle  \"\n                    }\n                ],\n                \"otherActivity\": \"\",\n                \"crossCuttingIssues\": \"ENVIRONMENT-AND-SUSTAINABILITY\",\n                \"crossCuttingIssuesComment\": \"No comment\",\n                \"competency\": \"RESEARCH-AND-PROBLEM-SOLVING\",\n                \"competencyComment\": \"No comment\"\n            },\n            \"conclusion\": {\n                \"activities\": [\n                    {\n                        \"_id\": \"60311a9c701e7a2790f9ce90\",\n                        \"activity\": \"Use of dynamic geometry and graph plotting to illustrate relationship e.g. geogebra\"\n                    }\n                ],\n                \"otherActivity\": \"\",\n                \"crossCuttingIssues\": \"ENVIRONMENT-AND-SUSTAINABILITY\",\n                \"crossCuttingIssuesComment\": \"No comment\",\n                \"competency\": \"RESEARCH-AND-PROBLEM-SOLVING\",\n                \"competencyComment\": \"No comment\"\n            }\n        },\n        \"teachingTechniques\": {\n            \"introduction\": {\n                \"contentFocus\": \"LIVE-LECTURING\",\n                \"interactiveFocus\": \"GROUP-WORK\",\n                \"criticalThinking\": \"CLASS-DISCUSSIONS-DEBATES\",\n                \"production\": \"SKILLS-PRACTICE\",\n                \"problemSolving\": \"RESEARCH-INQUIRY\",\n                \"reflection\": \"REFLECTION-ON-LEARNING\",\n                \"sitingArrangement\": \"LECTURE/INDEPENDENT-WORK/TEST\",\n                \"duration\": 10\n            },\n            \"development\": {\n                \"contentFocus\": \"LIVE-LECTURING\",\n                \"interactiveFocus\": \"GROUP-WORK\",\n                \"criticalThinking\": \"CLASS-DISCUSSIONS-DEBATES\",\n                \"production\": \"SKILLS-PRACTICE\",\n                \"problemSolving\": \"RESEARCH-INQUIRY\",\n                \"reflection\": \"REFLECTION-ON-LEARNING\",\n                \"sitingArrangement\": \"LECTURE/INDEPENDENT-WORK/TEST\",\n                \"duration\": 10\n            },\n            \"conclusion\": {\n                \"contentFocus\": \"LIVE-LECTURING\",\n                \"interactiveFocus\": \"GROUP-WORK\",\n                \"criticalThinking\": \"CLASS-DISCUSSIONS-DEBATES\",\n                \"production\": \"SKILLS-PRACTICE\",\n                \"problemSolving\": \"RESEARCH-INQUIRY\",\n                \"reflection\": \"REFLECTION-ON-LEARNING\",\n                \"sitingArrangement\": \"LECTURE/INDEPENDENT-WORK/TEST\",\n                \"duration\": 10\n            }\n        },\n        \"teacherSelfAssessment\": null,\n        \"_id\": \"60311a2b701e7a2790f9ce6a\",\n        \"teacher\": \"602b9cfc49ce7a0be4a35fc7\",\n        \"school\": \"602b9ef1aab3f92010a7a4e0\",\n        \"unit\": \"602c38ced3f6860698532d2f\",\n        \"subject\": \"602c349dfd1613203834880d\",\n        \"lessonNumber\": 1,\n        \"lessonName\": \"First lesson updated\",\n        \"knowledge\": [\n            {\n                \"_id\": \"60311a9c701e7a2790f9ce89\",\n                \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\",\n                \"bloomTaxonomy\": \"REMEMBERING\",\n                \"standardCriteriaPerfomance\": 80\n            },\n            {\n                \"_id\": \"60311a9c701e7a2790f9ce8a\",\n                \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\",\n                \"bloomTaxonomy\": \"REMEMBERING\",\n                \"standardCriteriaPerfomance\": 50\n            }\n        ],\n        \"skills\": [\n            {\n                \"_id\": \"60311a9c701e7a2790f9ce8b\",\n                \"topic\": \"Represent graphically sine, cosine and tangent, functions and, together with the unit circle, use to relate values of any angle to the value for a positive acute angle \",\n                \"bloomTaxonomy\": \"APPLYING\",\n                \"standardCriteriaPerfomance\": 20\n            },\n            {\n                \"_id\": \"60311a9c701e7a2790f9ce8c\",\n                \"topic\": \"Use trigonometry, including the sine and cosine rules, to solve problems involving triangles\",\n                \"bloomTaxonomy\": \"APPLYING\",\n                \"standardCriteriaPerfomance\": 50\n            }\n        ],\n        \"attitudesAndValues\": [\n            {\n                \"_id\": \"60311a9c701e7a2790f9ce8d\",\n                \"topic\": \"Appreciate the relationshi p between the trigonomet ric values for different angles \",\n                \"bloomTaxonomy\": \"CREATING\",\n                \"standardCriteriaPerfomance\": 30\n            },\n            {\n                \"_id\": \"60311a9c701e7a2790f9ce8e\",\n                \"topic\": \"Verify reasonable ness of answers when solving problems\",\n                \"bloomTaxonomy\": \"EVALUATING\",\n                \"standardCriteriaPerfomance\": 70\n            }\n        ],\n        \"instructionalMaterial\": [\n            {\n                \"_id\": \"60311a9c701e7a2790f9ce8f\"\n            }\n        ],\n        \"otherMaterialsAndReferences\": \"N/A\",\n        \"time\": \"2021-07-01T17:58:09.010Z\",\n        \"createdAt\": \"2021-02-20T14:18:19.496Z\",\n        \"updatedAt\": \"2021-02-20T14:20:12.124Z\",\n        \"__v\": 0,\n        \"keyUnitCompetency\": null,\n        \"studentSelfAssesment\": null\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "evaluate",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"studentSelfAssessment\": \"UNDERSTOOD\",\r\n    \"teacherSelfAssessment\": {\r\n        \"assessment\": \"COMPLETED\",\r\n        \"reason\": \"No comment\",\r\n        \"otherComments\": \"\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/plans/60311a2b701e7a2790f9ce6a/evaluate",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"plans",
+										"60311a2b701e7a2790f9ce6a",
+										"evaluate"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get one",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/plans/60311a2b701e7a2790f9ce6a",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"plans",
+										"60311a2b701e7a2790f9ce6a"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get subject plan",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/plans/602c349dfd1613203834880d/subject-plan",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"plans",
+										"602c349dfd1613203834880d",
+										"subject-plan"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get unit plan",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/plans/602c349dfd1613203834880d/unit-plan",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"plans",
+										"602c349dfd1613203834880d",
+										"unit-plan"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/plan/602c349dfd1613203834880d",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"plan",
+										"602c349dfd1613203834880d"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Attendance",
+			"item": [
+				{
+					"name": "class-attendance",
+					"item": [
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"slotOnTimetable\": \"603159c6191af33cdc989ff0\",\r\n    \"students\": [\r\n        {\r\n            \"student\": \"602c2368bd2ce42e800e0f36\",\r\n            \"present\": true\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/attendances/class-attendances",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"attendances",
+										"class-attendances"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get one",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/attendances/class-attendances/6031639fec1c72346cd88f39",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"attendances",
+										"class-attendances",
+										"6031639fec1c72346cd88f39"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get attendance by timetable slot",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/attendances/class-attendances/603159c6191af33cdc989ff0/timetable-slot",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"attendances",
+										"class-attendances",
+										"603159c6191af33cdc989ff0",
+										"timetable-slot"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/attendances/class-attendances/6031639fec1c72346cd88f39",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"attendances",
+										"class-attendances",
+										"6031639fec1c72346cd88f39"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "address",
+			"item": [
+				{
+					"name": "province",
+					"item": [
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Kigali city\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/provinces",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"provinces"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Kigali\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/provinces/603172eb2d9ca610986f3404",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"provinces",
+										"603172eb2d9ca610986f3404"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get one",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/provinces/603172eb2d9ca610986f3404",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"provinces",
+										"603172eb2d9ca610986f3404"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/provinces",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"provinces"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/provinces/603172eb2d9ca610986f3404",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"provinces",
+										"603172eb2d9ca610986f3404"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "district",
+					"item": [
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Kicukiro\",\r\n    \"province\": \"603172eb2d9ca610986f3404\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/districts",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"districts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"kicukiro.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/districts/603174370595342a28537999",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"districts",
+										"603174370595342a28537999"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get one",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/districts/603174370595342a28537999",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"districts",
+										"603174370595342a28537999"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/districts",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"districts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get province districts",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/districts/603172eb2d9ca610986f3404/province-districts",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"districts",
+										"603172eb2d9ca610986f3404",
+										"province-districts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/districts/603174370595342a28537999",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"districts",
+										"603174370595342a28537999"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "sector",
+					"item": [
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Kicukiro\",\r\n    \"district\": \"603174370595342a28537999\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/sectors",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"sectors"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"kicukiro.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/sectors/603176ccf756be2ce0677824",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"sectors",
+										"603176ccf756be2ce0677824"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get one",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/sectors/603176ccf756be2ce0677824",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"sectors",
+										"603176ccf756be2ce0677824"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/sectors",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"sectors"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get district sectors",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/sectors/603174370595342a28537999/district-sectors",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"sectors",
+										"603174370595342a28537999",
+										"district-sectors"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/sectors/603176ccf756be2ce0677824",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"sectors",
+										"603176ccf756be2ce0677824"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "cell",
+					"item": [
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Kicukiro\",\r\n    \"sector\": \"603176ccf756be2ce0677824\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/cells",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"cells"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"kicukiro.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/cells/603177c214de77175020799f",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"cells",
+										"603177c214de77175020799f"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get one",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/sectors/603177c214de77175020799f",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"sectors",
+										"603177c214de77175020799f"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/cells",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"cells"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get sector cells",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/cells/603176ccf756be2ce0677824/sector-cells",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"cells",
+										"603176ccf756be2ce0677824",
+										"sector-cells"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get sector cells Copy",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/cells/603176ccf756be2ce0677824/sector-cells",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"cells",
+										"603176ccf756be2ce0677824",
+										"sector-cells"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/cells/603177c214de77175020799f",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"cells",
+										"603177c214de77175020799f"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "village",
+					"item": [
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Kicukiro\",\r\n    \"cell\": \"603177c214de77175020799f\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/villages",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"villages"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"kicukiro.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/villages/603179c1e383bb1b847eff2c",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"villages",
+										"603179c1e383bb1b847eff2c"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get one",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/villages/603179c1e383bb1b847eff2c",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"villages",
+										"603179c1e383bb1b847eff2c"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/villages",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"villages"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get cell villages",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/villages/603177c214de77175020799f/cell-villages",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"villages",
+										"603177c214de77175020799f",
+										"cell-villages"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/villages/603179c1e383bb1b847eff2c",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"villages",
+										"603179c1e383bb1b847eff2c"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYwMmI5Y2ZjNDljZTdhMGJlNGEzNWZjNyIsImZpcnN0TmFtZSI6IkpvaG4iLCJsYXN0TmFtZSI6ImRvZSIsImVtYWlsIjoiam9obmRvZUBnbWFpbC5jb20iLCJyb2xlIjoiVEVBQ0hFUiIsInNjaG9vbCI6IjYwMmI5ZWYxYWFiM2Y5MjAxMGE3YTRlMCJ9LCJpYXQiOjE2MTM1MDczNjJ9.BHyUjA8So_Gmo7zgfes4Oj9Z9Yoael30bQwePOwg3pU",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

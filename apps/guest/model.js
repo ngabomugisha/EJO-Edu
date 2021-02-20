@@ -6,6 +6,10 @@ const guestSchema = new mongoose.Schema({
     reason: String,
     checkout: Date,
     checkin: Date,
+    target: {
+        type: String,
+        enum: [], // club, class, or whole school
+    },
     school: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'school'

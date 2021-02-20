@@ -1,18 +1,13 @@
-import Unit from './repo'
+import Province from './repo'
 import Response from '../../../utils/Responses';
 
 exports.create = async (req, res) => {
     try {
         const {
-            name,
-            subTopic,
-            numberOfperiods,
-            keyCompetency,
-            content,
-            activities
+            name
         } = req.body;
 
-        Unit.create(name, subTopic, numberOfperiods, keyCompetency, content, activities)
+        Province.create(name)
         .then(results => {
             Response.Success(res, 200, "created successfully", results);
         })
@@ -30,11 +25,11 @@ exports.create = async (req, res) => {
 
 exports.update = async (req, res) => {
     try {
-        const unitId = req.params.unitId;
+        const provinceId = req.params.provinceId;
         const {
-            name, numberOfperiods, keyCompetency
+            name
         } = req.body;
-        Unit.update(unitId, name, numberOfperiods, keyCompetency)
+        Province.update(provinceId, name)
             .then(results => {
                 Response.Success(res, 200, "updated successfully", results);
             })
@@ -50,11 +45,10 @@ exports.update = async (req, res) => {
     
 }
 
-exports.getAllSubTopicUnits = async (req, res) => {
+exports.getAllProvinces = async (req, res) => {
     try {
 
-        const subTopicId = req.params.subTopicId;
-        Unit.getAllSubTopicUnits(subTopicId)
+        Province.getAllProvinces()
             .then(results => {
                 Response.Success(res, 200, "queried successfully", results);
             })
@@ -71,11 +65,11 @@ exports.getAllSubTopicUnits = async (req, res) => {
 }
 
 
-exports.getOneUnit = async (req, res) => {
+exports.getOneProvince = async (req, res) => {
     try {
-        const unitId = req.params.unitId;
+        const provinceId = req.params.provinceId;
 
-        Unit.getOneUnit(unitId)
+        Province.getOneProvince(provinceId)
             .then(results => {
                 Response.Success(res, 200, "queried successfully", results);
             })
@@ -93,9 +87,9 @@ exports.getOneUnit = async (req, res) => {
 
 exports.delete = async (req, res) => {
     try {
-        const unitId = req.params.unitId;
+        const provinceId = req.params.provinceId;
         
-        Unit.delete(unitId)
+        Province.delete(provinceId)
             .then(results => {
                 Response.Success(res, 200, "deleted successfully", results);
             })

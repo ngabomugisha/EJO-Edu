@@ -3,6 +3,48 @@ const mongoose = require('mongoose');
 const studentSchema = new mongoose.Schema({
     firstName: String,
     lastName: String,
+    dateOfBirth: Date,
+    boardingStatus: String,
+    busRoute: String,
+    address: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'village'
+    },
+    scholarshipStatus: {
+        type: String,
+        enum: ['PRIVATE','SCHOOL','GOVERMENT']
+    },
+    allergies: String,
+    permanentHealthConditions: [
+        {
+            condition: {
+                type:  String,
+                enum: ['VISUAL-DIFFICULTIES','PHYSICAL-IMPAIREMENT','HEARING-DIFFICULTIES','LEARNING-DIFFICULTIES','PHSYCHOLOGICAL-DIFFICULTIES']
+            }
+        }
+    ],
+    mother: {
+        firstName: String,
+        lastName: String,
+        identificationNumber: String,
+        phone: String,
+        email: String,
+        maritalStatus: {
+            type: String,
+            enum: ['SINGLE','MARIED','DIVORCED']
+        }
+    },
+    father: {
+        firstName: String,
+        lastName: String,
+        identificationNumber: String,
+        phone: String,
+        email: String,
+        maritalStatus: {
+            type: String,
+            enum: ['SINGLE','MARIED','DIVORCED']
+        }
+    },
     school: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'school'

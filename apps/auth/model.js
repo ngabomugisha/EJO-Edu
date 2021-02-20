@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-
+//Head master should be the same as admin
 const userSchema = new mongoose.Schema({
     firstName: String,
     lastName: String,
@@ -13,6 +13,17 @@ const userSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'school'
     },
+    phoneNumber: String,
+    level: {
+        type: String,
+        enum: [''], // to be provided
+    },
+    yearsOfExperience: Number,
+    workingStatus: {
+        type: String,
+        enum: ['PART-TIME', 'FULL-TIME']
+    },
+
     verificationDigits: {
         type: Number,
         default: null

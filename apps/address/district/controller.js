@@ -1,77 +1,36 @@
-import Student from './repo'
-import Response from '../../utils/Responses';
+import District from './repo'
+import Response from '../../../utils/Responses';
 
 exports.create = async (req, res) => {
     try {
         const {
-            studentClass,
-            firstName,
-            lastName,
-            dateOfBirth,
-            address,
-            scholarship,
-            allergies,
-            permanentHealthConditions,
-            mother,
-            father
+            name,
+            province
         } = req.body;
-        const school = req.user.school
-        Student.create(
-                school,
-                studentClass,
-                firstName,
-                lastName,
-                dateOfBirth,
-                address,
-                scholarship,
-                allergies,
-                permanentHealthConditions,
-                mother,
-                father
-            )
-            .then(results => {
-                Response.Success(res, 200, "created successfully", results);
-            })
-            .catch(err => {
-                console.log(err);
-                Response.InternalServerError(res, "We are having issues! please try again soon");
-            });
+
+        District.create(name, province)
+        .then(results => {
+            Response.Success(res, 200, "created successfully", results);
+        })
+        .catch(err => {
+            console.log(err);
+            Response.InternalServerError(res, "We are having issues! please try again soon");
+        });
 
     } catch (error) {
         console.log(error);
         Response.InternalServerError(res, "We are having issues! please try again soon");
     }
-
+    
 }
 
 exports.update = async (req, res) => {
     try {
-        const studentId = req.params.studentId;
+        const districtId = req.params.districtId;
         const {
-            studentClass,
-            firstName,
-            lastName,
-            dateOfBirth,
-            address,
-            scholarship,
-            allergies,
-            permanentHealthConditions,
-            mother,
-            father
+            name
         } = req.body;
-        Student.update(
-                studentId,
-                studentClass,
-                firstName,
-                lastName,
-                dateOfBirth,
-                address,
-                scholarship,
-                allergies,
-                permanentHealthConditions,
-                mother,
-                father
-            )
+        District.update(districtId, name)
             .then(results => {
                 Response.Success(res, 200, "updated successfully", results);
             })
@@ -84,13 +43,13 @@ exports.update = async (req, res) => {
         console.log(error);
         Response.InternalServerError(res, "We are having issues! please try again soon");
     }
-
+    
 }
 
-exports.getAllClassStudents = async (req, res) => {
+exports.getAll = async (req, res) => {
     try {
-        const classId = req.params.classId;
-        Student.getAllClassStudents(classId)
+
+        District.getAll()
             .then(results => {
                 Response.Success(res, 200, "queried successfully", results);
             })
@@ -103,13 +62,14 @@ exports.getAllClassStudents = async (req, res) => {
         console.log(error);
         Response.InternalServerError(res, "We are having issues! please try again soon");
     }
-
+    
 }
 
-exports.getAllSchoolStudents = async (req, res) => {
+exports.getAllProvinceDistricts = async (req, res) => {
     try {
-        const schoolId = req.params.schoolId;
-        Student.getAllSchoolStudents(schoolId)
+
+        const provinceId = req.params.provinceId;
+        District.getAllProvinceDistricts(provinceId)
             .then(results => {
                 Response.Success(res, 200, "queried successfully", results);
             })
@@ -122,14 +82,15 @@ exports.getAllSchoolStudents = async (req, res) => {
         console.log(error);
         Response.InternalServerError(res, "We are having issues! please try again soon");
     }
-
+    
 }
 
-exports.getOneStudent = async (req, res) => {
-    try {
-        const studentId = req.params.studentId;
 
-        Student.getOneStudent(studentId)
+exports.getOneDistrict = async (req, res) => {
+    try {
+        const districtId = req.params.districtId;
+
+        District.getOneDistrict(districtId)
             .then(results => {
                 Response.Success(res, 200, "queried successfully", results);
             })
@@ -142,14 +103,14 @@ exports.getOneStudent = async (req, res) => {
         console.log(error);
         Response.InternalServerError(res, "We are having issues! please try again soon");
     }
-
+    
 }
 
 exports.delete = async (req, res) => {
     try {
-        const studentId = req.params.studentId;
-
-        Student.delete(studentId)
+        const districtId = req.params.districtId;
+        
+        District.delete(districtId)
             .then(results => {
                 Response.Success(res, 200, "deleted successfully", results);
             })
@@ -162,5 +123,5 @@ exports.delete = async (req, res) => {
         console.log(error);
         Response.InternalServerError(res, "We are having issues! please try again soon");
     }
-
+    
 }

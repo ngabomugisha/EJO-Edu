@@ -43,9 +43,9 @@ exports.regenerateVerificationDigits = async (req, res) => {
         const verificationDigits = Math.floor(100000 + Math.random() * 900000);
         console.log(verificationDigits);
         await User.update(_id, {verificationDigits});
-        //Remember to send via email
 
-        return Response.Success(res, 200, "Verification digits generated and sent via email");
+        //Remember to send via email
+        return Response.Success(res, 200, {verificationDigits}, "Verification digits generated and sent via email");
  
     } catch (error) {
         console.log(error);

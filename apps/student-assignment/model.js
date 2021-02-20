@@ -34,7 +34,11 @@ const studentAssigmenteschema = new mongoose.Schema({
         ref: 'assignment'
     },
     started: Date,
-    ended: Date
+    ended: Date,
+    marksPublished: {
+        type: Boolean,
+        default: false
+    }
 }, {timestamps: true});
 
 export default mongoose.model("studentAssigment", studentAssigmenteschema);

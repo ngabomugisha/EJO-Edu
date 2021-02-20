@@ -1,18 +1,14 @@
-import Unit from './repo'
+import ClassAttendance from './repo'
 import Response from '../../../utils/Responses';
 
 exports.create = async (req, res) => {
     try {
         const {
-            name,
-            subTopic,
-            numberOfperiods,
-            keyCompetency,
-            content,
-            activities
+            slotOnTimetable,
+            students
         } = req.body;
 
-        Unit.create(name, subTopic, numberOfperiods, keyCompetency, content, activities)
+        ClassAttendance.create(slotOnTimetable, students)
         .then(results => {
             Response.Success(res, 200, "created successfully", results);
         })
@@ -28,33 +24,11 @@ exports.create = async (req, res) => {
     
 }
 
-exports.update = async (req, res) => {
+exports.getClassAttendanceBySlotOnTimetable = async (req, res) => {
     try {
-        const unitId = req.params.unitId;
-        const {
-            name, numberOfperiods, keyCompetency
-        } = req.body;
-        Unit.update(unitId, name, numberOfperiods, keyCompetency)
-            .then(results => {
-                Response.Success(res, 200, "updated successfully", results);
-            })
-            .catch(err => {
-                console.log(err);
-                Response.InternalServerError(res, "We are having issues! please try again soon");
-            });
+        const slotOnTimetableId = req.params.slotOnTimetableId;
 
-    } catch (error) {
-        console.log(error);
-        Response.InternalServerError(res, "We are having issues! please try again soon");
-    }
-    
-}
-
-exports.getAllSubTopicUnits = async (req, res) => {
-    try {
-
-        const subTopicId = req.params.subTopicId;
-        Unit.getAllSubTopicUnits(subTopicId)
+        ClassAttendance.getClassAttendanceBySlotOnTimetable(slotOnTimetableId)
             .then(results => {
                 Response.Success(res, 200, "queried successfully", results);
             })
@@ -71,11 +45,11 @@ exports.getAllSubTopicUnits = async (req, res) => {
 }
 
 
-exports.getOneUnit = async (req, res) => {
+exports.getOneClassAttendance = async (req, res) => {
     try {
-        const unitId = req.params.unitId;
+        const classAttendanceId = req.params.classAttendanceId;
 
-        Unit.getOneUnit(unitId)
+        ClassAttendance.getOneClassAttendance(classAttendanceId)
             .then(results => {
                 Response.Success(res, 200, "queried successfully", results);
             })
@@ -93,9 +67,9 @@ exports.getOneUnit = async (req, res) => {
 
 exports.delete = async (req, res) => {
     try {
-        const unitId = req.params.unitId;
+        const classAttendanceId = req.params.classAttendanceId;
         
-        Unit.delete(unitId)
+        ClassAttendance.delete(classAttendanceId)
             .then(results => {
                 Response.Success(res, 200, "deleted successfully", results);
             })

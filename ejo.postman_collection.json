@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"John\",\r\n    \"lastName\": \"doe\",\r\n    \"email\": \"johndoe@gmail.com\",\r\n    \"password\": \"password\",\r\n    \"school\": null, \r\n    \"role\": \"TEACHER\" // possible roles: ['SUPER-ADMIN','SCHOOL-ADMIN','TEACHER','HEAD-OF-DISPLINE','HEAD-OF-STUDIES']\r\n}",
+							"raw": "{\r\n    \"firstName\": \"John\",\r\n    \"lastName\": \"doe\",\r\n    \"email\": \"johndoe3@gmail.com\",\r\n    \"password\": \"password\",\r\n    \"school\": null, \r\n    \"role\": \"TEACHER\" \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -23,11 +23,13 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:9000/api/auth/signup",
+							"raw": "https://ejo-education.herokuapp.com/api/auth/signup",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"ejo-education",
+								"herokuapp",
+								"com"
 							],
-							"port": "9000",
 							"path": [
 								"api",
 								"auth",
@@ -1790,7 +1792,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Math Senior 4 updated\"\r\n}",
+									"raw": "{\r\n    \"name\": \"Math Senior 4\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1949,7 +1951,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"intro to math updated\"\r\n}",
+									"raw": "{\r\n    \"name\": \"TRIGONOMETRY\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2110,7 +2112,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"intro to math part 1 updated\"\r\n}",
+									"raw": "{\r\n    \"name\": \"Trigonometric circle and identities\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2242,7 +2244,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Introduction to math part 1 unit 1\",\r\n    \"subTopic\": \"602c37a5edf8520e142247a1\"\r\n}",
+									"raw": "{\r\n    \"name\": \"Fundamentals of trigonometry\",\r\n    \"subTopic\": \"602c37a5edf8520e142247a1\",\r\n    \"numberOfPeriods\": 26,\r\n    \"keyCompetency\": \" Use trigonometric circle and identities to determine trigonometric ratios and apply them to solve related problems\",\r\n    \"content\": {\r\n        \"knowledgeAndUnderstanding\": [\r\n             {\r\n                \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\"\r\n            },\r\n            {\r\n                \"topic\": \"know special values (30 degree, 45degree, 60degree). - Convert radians to degree and vice versa. \"\r\n            },\r\n            {\r\n                \"topic\": \"Differentiate between complementary angles, supplementary angles and coterminal angles \"\r\n            }\r\n        ],\r\n        \"skills\": [\r\n            {\r\n                \"topic\": \"Represent graphically sine, cosine and tangent, functions and, together with the unit circle, use to relate values of any angle to the value for a positive acute angle \"\r\n            },\r\n            {\r\n                \"topic\": \"Use trigonometry, including the sine and cosine rules, to solve problems involving triangles \"\r\n            }\r\n        ],\r\n        \"attitudesAndValues\": [\r\n            {\r\n                \"topic\": \"Appreciate the relationshi p between the trigonomet ric values for different angles \"\r\n            },\r\n            {\r\n                \"topic\": \"Verify reasonable ness of answers when solving problems \"\r\n            }\r\n        ]\r\n    },\r\n    \"activities\": [\r\n        {\r\n            \"activity\": \"Mental task – imagine a point on the edge of a wheel – as the wheel turns how high is the point above the centre? – sketch the graph \"\r\n        },\r\n        {\r\n            \"activity\": \"Practical – on graph paper draw circle of 10cm radius and measure half chord length and distance from the centre to chord for angles (say multiples of 15 degree ) – plot use calculator to determine which is sine and cosine. What is the radius of the calculator’s circle? – unit circle  \"\r\n        },\r\n        {\r\n            \"activity\": \"Use of dynamic geometry and graph plotting to illustrate relationship e.g. geogebra \"\r\n        },\r\n        {\r\n            \"activity\": \"In groups use unit circle and graphs to determine the relationship between trigonometric functions of any angle and the value for an acute positive angle – generalise. \"\r\n        },\r\n        {\r\n            \"activity\": \"Group investigation -What angle subtends an arc length equal to the radius? – define a radian, make a table of equivalences \"\r\n        },\r\n        {\r\n            \"activity\": \"Derive trigonometric identities, sine and cosine rules \"\r\n        },\r\n        {\r\n            \"activity\": \"Apply trigonometry to practical problems involving triangles and angles.\"\r\n        }\r\n    ]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"

@@ -17,7 +17,8 @@ const assignmenteschema = new mongoose.Schema({
         }],
         answer: String,
         points: Number
-    }],
+    }], // deal with sub-questions
+
     subject: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'subject'
@@ -32,7 +33,12 @@ const assignmenteschema = new mongoose.Schema({
     },
     duration: Number,
     starts: Date,
-    ends: Date
+    ends: Date,
+    published: {},
+    // how students will do assignment {online, traditional}
+    // assignment type: is group wqotrk
+    // test method
+    
 }, {timestamps: true});
 
 export default mongoose.model("assignment", assignmenteschema);

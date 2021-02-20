@@ -9,9 +9,21 @@ const studentLeaveSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'school'
     },
-    reason: String,
+    reason: {
+        type: String,
+        enum: ['STUDY','HOLIDAY','SICK','FAMILY']
+    },
     checkout: Date,
     checkin: Date,
+
+    leavingWithWho: {
+        firstName: String,
+        lastName: String,
+        phone: String,
+        identificationNumber: String,
+        relationship: String,
+    },
+    provisionalCheckin: Date,
     checkedoutBy: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user'
