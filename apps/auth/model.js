@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema({
     phoneNumber: String,
     level: {
         type: String,
-        enum: [''], // to be provided
+        enum: ['BACHELOR'], // to be provided
     },
     yearsOfExperience: Number,
     workingStatus: {

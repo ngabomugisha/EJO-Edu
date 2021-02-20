@@ -4,20 +4,30 @@ import jwt from "jsonwebtoken";
 import passportConfig from "../../config/passport";
 import Response from "../../utils/Responses";
 
-exports.createUser = async (req, res) =>{
-    try{
+exports.createUser = async (req, res) => {
+    try {
         // console.log(req.body);
-        const {firstName, lastName, email, school, role} = req.body;
+        const {
+            firstName,
+            lastName,
+            email,
+            school,
+            role,
+            phoneNumber,
+            level,
+            yearsOfExperience,
+            workingStatus
+        } = req.body;
 
         const checkEmail = await User.getUserByEmail(email);
-        if(checkEmail)
+        if (checkEmail)
             return Response.validationError(res, "Email already exists");
 
         const password = Math.floor(100000 + Math.random() * 900000);
         const verificationDigits = Math.floor(100000 + Math.random() * 900000);
-        
+
         const hashedPassword = await bcrypt.hash(password.toString(), 10);
-        const userData = User.create(firstName, lastName, email, hashedPassword, school, role, verificationDigits);
+        const userData = User.create(firstName, lastName, email, hashedPassword, school, role, verificationDigits, phoneNumber, level, yearsOfExperience, workingStatus);
         const data = {
             _id: userData._id,
             firstName,
@@ -25,13 +35,23 @@ exports.createUser = async (req, res) =>{
             email,
             school,
             role,
-            isVerified: userData.isVerified
+            isVerified: userData.isVerified,
+            phoneNumber,
+            level,
+            yearsOfExperience,
+            workingStatus
         }
-        const token = jwt.sign({user: data}, passportConfig.secret);
-        
-        return Response.Success(res, 200, "user signed up successfully", {user: data, password, token: token});
+        const token = jwt.sign({
+            user: data
+        }, passportConfig.secret);
 
-    }catch(err){
+        return Response.Success(res, 200, "user signed up successfully", {
+            user: data,
+            password,
+            token: token
+        });
+
+    } catch (err) {
         console.log(err);
         Response.InternalServerError(res, "We are having issues! please try again soon")
     }
@@ -39,14 +59,20 @@ exports.createUser = async (req, res) =>{
 
 exports.regenerateVerificationDigits = async (req, res) => {
     try {
-        const {_id} = req.user;
+        const {
+            _id
+        } = req.user;
         const verificationDigits = Math.floor(100000 + Math.random() * 900000);
         console.log(verificationDigits);
-        await User.update(_id, {verificationDigits});
+        await User.update(_id, {
+            verificationDigits
+        });
 
         //Remember to send via email
-        return Response.Success(res, 200, {verificationDigits}, "Verification digits generated and sent via email");
- 
+        return Response.Success(res, 200, {
+            verificationDigits
+        }, "Verification digits generated and sent via email");
+
     } catch (error) {
         console.log(error);
         Response.InternalServerError(res, "We are having issues! please try again soon")
@@ -55,18 +81,25 @@ exports.regenerateVerificationDigits = async (req, res) => {
 
 exports.verifyEmail = async (req, res) => {
     try {
-        const {_id} = req.user;
-        const {verificationDigits} = req.body;
+        const {
+            _id
+        } = req.user;
+        const {
+            verificationDigits
+        } = req.body;
         const savedUser = await User.getUserById(_id);
-        if(!savedUser || !savedUser.verificationDigits)
+        if (!savedUser || !savedUser.verificationDigits)
             return Response.validationError(res, "Invalid token");
-       
-        if(savedUser.verificationDigits.toString() !== verificationDigits)
+
+        if (savedUser.verificationDigits.toString() !== verificationDigits)
             return Response.validationError(res, "Invalid verification digits");
-        
-        await User.update(_id, {verificationDigits: null, isVerified: true});
+
+        await User.update(_id, {
+            verificationDigits: null,
+            isVerified: true
+        });
         return Response.Success(res, 200, "Successfuly verified email");
-        
+
     } catch (error) {
         console.log(error);
         Response.InternalServerError(res, "We are having issues! please try again soon")
@@ -75,12 +108,15 @@ exports.verifyEmail = async (req, res) => {
 
 exports.signin = async (req, res) => {
     try {
-        const {email, password} = req.body;
+        const {
+            email,
+            password
+        } = req.body;
         console.log(req.body);
         const userData = await User.getUserByEmail(email);
-        if(!userData)
+        if (!userData)
             return Response.notFoundError(res, "User not found");
-        if(!await bcrypt.compare(password, userData.password))
+        if (!await bcrypt.compare(password, userData.password))
             return Response.authorizationError(res, "wrong password");
 
         const data = {
@@ -94,10 +130,15 @@ exports.signin = async (req, res) => {
         }
 
         const results = data;
-        const token = jwt.sign({user: data}, passportConfig.secret);
-        
-        return Response.Success(res, 200, "user signed in successfully", {user: results, token: token});
-    
+        const token = jwt.sign({
+            user: data
+        }, passportConfig.secret);
+
+        return Response.Success(res, 200, "user signed in successfully", {
+            user: results,
+            token: token
+        });
+
     } catch (error) {
         console.log(error)
         return Response.InternalServerError(res, "We are having issues! please try again soon")
@@ -106,9 +147,11 @@ exports.signin = async (req, res) => {
 
 exports.verifyToken = async (req, res) => {
     try {
-        const {_id} = req.user;
+        const {
+            _id
+        } = req.user;
         const userData = await User.getUserById(_id);
-        if(!userData)
+        if (!userData)
             Response.notFoundError(res, "Invalid token");
 
         const data = {
@@ -118,9 +161,13 @@ exports.verifyToken = async (req, res) => {
             email: userData.email,
             isVerified: userData.isVerified
         }
-        const token = jwt.sign({user: data}, passportConfig.secret);
-        
-        return Response.Success(res, 200, "token is valid", {user: data});
+        const token = jwt.sign({
+            user: data
+        }, passportConfig.secret);
+
+        return Response.Success(res, 200, "token is valid", {
+            user: data
+        });
     } catch (error) {
         console.log(error);
         Response.InternalServerError(res, "We are having issues! please try again soon")
@@ -129,9 +176,17 @@ exports.verifyToken = async (req, res) => {
 
 exports.updateName = async (req, res) => {
     try {
-        const {_id} = req.user;
-        const {firstName, lastName} = req.body;
-        await User.update(_id, {firstName, lastName});
+        const {
+            _id
+        } = req.user;
+        const {
+            firstName,
+            lastName
+        } = req.body;
+        await User.update(_id, {
+            firstName,
+            lastName
+        });
         return Response.Success(res, 200, "Name updated successfully");
 
     } catch (error) {
@@ -142,18 +197,25 @@ exports.updateName = async (req, res) => {
 
 exports.updatePassword = async (req, res) => {
     try {
-        const {_id} = req.user;
-        const {oldPassword, newPassword} = req.body;
+        const {
+            _id
+        } = req.user;
+        const {
+            oldPassword,
+            newPassword
+        } = req.body;
         const userData = await User.getUserById(_id);
-        if(!userData)
+        if (!userData)
             return Response.validationError(res, "wrong password");
 
-        if(!await bcrypt.compare(oldPassword, userData.password))
+        if (!await bcrypt.compare(oldPassword, userData.password))
             return Response.validationError(res, "wrong password");
 
         const hashedPassword = await bcrypt.hash(newPassword, 10);
-        await User.update(_id, {password: hashedPassword});
-        
+        await User.update(_id, {
+            password: hashedPassword
+        });
+
         return Response.Success(res, 200, "password updated successfully");
 
     } catch (error) {
@@ -164,11 +226,13 @@ exports.updatePassword = async (req, res) => {
 
 exports.emailTaken = async (req, res) => {
     try {
-        const {email} = req.body;
+        const {
+            email
+        } = req.body;
         const savedUser = await User.getUserByEmail(email);
-        if(!savedUser)
+        if (!savedUser)
             return Response.Success(res, 200, "Email is not taken");
-        if(savedUser)
+        if (savedUser)
             return Response.validationError(res, "Email is taken");
     } catch (error) {
         console.log(error);
