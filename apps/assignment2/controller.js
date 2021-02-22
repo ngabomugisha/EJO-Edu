@@ -1,4 +1,4 @@
-import StudentAssigment from './repo'
+import Assignment from './repo'
 import Response from '../../utils/Responses';
 
 exports.create = async (req, res) => {
@@ -8,7 +8,7 @@ exports.create = async (req, res) => {
         } = req.body;
         const teacher = req.user._id
 
-        StudentAssigment.create(title, assignedClass, subject, teacher)
+        Assignment.create(title, assignedClass, subject, teacher)
         .then(results => {
             Response.Success(res, 200, "created successfully", results);
         })
@@ -26,11 +26,11 @@ exports.create = async (req, res) => {
 
 exports.update = async (req, res) => {
     try {
-        const studentAssigmentId = req.params.studentAssigmentId;
+        const assignmentId = req.params.assignmentId;
         const {
             title
         } = req.body;
-        StudentAssigment.update(studentAssigmentId, title)
+        Assignment.update(assignmentId, title)
             .then(results => {
                 Response.Success(res, 200, "updated successfully", results);
             })
@@ -46,12 +46,12 @@ exports.update = async (req, res) => {
     
 }
 
-exports.getAllClassSubjectStudentAssigmentes = async (req, res) => {
+exports.getAllClassSubjectAssignmentes = async (req, res) => {
     try {
 
         const classId = req.params.classId;
         const subjectId = req.params.subjectId
-        StudentAssigment.getAllClassSubjectStudentAssigmentes(classId, subjectId)
+        Assignment.getAllClassSubjectAssignmentes(classId, subjectId)
             .then(results => {
                 Response.Success(res, 200, "queried successfully", results);
             })
@@ -68,11 +68,11 @@ exports.getAllClassSubjectStudentAssigmentes = async (req, res) => {
 }
 
 
-exports.getOneStudentAssigment = async (req, res) => {
+exports.getOneAssignment = async (req, res) => {
     try {
-        const studentAssigmentId = req.params.studentAssigmentId;
+        const assignmentId = req.params.assignmentId;
 
-        StudentAssigment.getOneStudentAssigment(studentAssigmentId)
+        Assignment.getOneAssignment(assignmentId)
             .then(results => {
                 Response.Success(res, 200, "queried successfully", results);
             })
@@ -90,9 +90,9 @@ exports.getOneStudentAssigment = async (req, res) => {
 
 exports.delete = async (req, res) => {
     try {
-        const studentAssigmentId = req.params.studentAssigmentId;
+        const assignmentId = req.params.assignmentId;
         
-        StudentAssigment.delete(studentAssigmentId)
+        Assignment.delete(assignmentId)
             .then(results => {
                 Response.Success(res, 200, "deleted successfully", results);
             })

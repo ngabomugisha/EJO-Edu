@@ -17,24 +17,27 @@ const questionBankSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user'
     },
-    questionsObjective: String, //develop
     difficultLevel: {
         type: String,
-        enum: ['EASY','MEDIUM','DIFFICULT']
+        enum: ['EASY', 'MEDIUM', 'DIFFICULT']
     },
-    questionsObjective: {
+    questionObjective: {
         type: String,
-        enum: ['REMEMBERING','UNDERSTANDING','APPLYING','ANALYSING','CREATING','EVALUATING']
+        enum: ['REMEMBERING', 'UNDERSTANDING', 'APPLYING', 'ANALYSING', 'CREATING', 'EVALUATING']
     },
     question: String,
     questionType: {
         type: String,
-        enum: ['MULTI-CHOICE', 'TRUE/FALSE', 'MATCHING','FILL-IN-THE-BLANK','SHORT-ANSWER','LONG-ANSWER']
+        enum: ['MULTI-CHOICE', 'TRUE/FALSE', 'MATCHING', 'FILL-IN-THE-BLANK', 'SHORT-ANSWER', 'LONG-ANSWER']
     },
     possibleAnswer: [{
-            answer: String
+        answer: String
     }],
-    answer: String,
-}, {timestamps: true});
+    answer: [{
+        answer: String
+    }]
+}, {
+    timestamps: true
+});
 
 export default mongoose.model("questionBank", questionBankSchema);

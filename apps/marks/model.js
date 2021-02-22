@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const studentAssigmenteschema = new mongoose.Schema({
+const markseschema = new mongoose.Schema({
     student: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'student'
@@ -9,18 +9,17 @@ const studentAssigmenteschema = new mongoose.Schema({
         question: {
             type: mongoose.Schema.Types.ObjectId,
         },
-        answer: String,
+        answer: [{
+            answer: String
+        }],
         markedBy: {
             type: String,
-            enum: ['MACHINE', 'HUMAN']
+            enum: ['MACHINE', 'HUMAN'],
+            default: 'HUMAN'
         },
         awardedPoints: Number
     }],
     totalMarks: Number,
-    marked: {
-        type: Boolean,
-        default: false
-    },
     subject: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'subject'
@@ -41,4 +40,4 @@ const studentAssigmenteschema = new mongoose.Schema({
     }
 }, {timestamps: true});
 
-export default mongoose.model("studentAssigment", studentAssigmenteschema);
+export default mongoose.model("marks", markseschema);

@@ -1,0 +1,12 @@
+import Marks from './controller';
+import express from 'express';
+const router = express.Router();
+
+router.post('/', Marks.create);
+router.put('/:marksId', Marks.update);
+router.get('/:studentId/:subjectId/student-subject-marks', Marks.getStudentSubjectMarks);
+router.get('/:assignmentId/assignment-marks', Marks.getAssignmentMarks);
+router.get('/:marksId', Marks.getOneMarks);
+router.delete('/:marksId', Marks.delete);
+
+module.exports = router;

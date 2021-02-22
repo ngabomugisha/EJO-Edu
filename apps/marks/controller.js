@@ -1,76 +1,65 @@
-import Assignment from './repo'
+import Marks from './repo'
 import Response from '../../utils/Responses';
 
 exports.create = async (req, res) => {
     try {
         const {
-            title,
+            student,
+            answers,
+            totalMarks,
             subject,
-            assignedClass,
-            unit,
-            questions,
-            duration,
-            starts,
-            ends,
-            assignmentSetting,
-            assignmentType,
-            testMethod
+            studentClass,
+            assignment,
+            started,
+            ended,
+            marksPublished
         } = req.body;
-        const teacher = req.user._id
-        const school = req.user.school
-        Assignment.create(
-                teacher,
-                school,
-                title,
-                subject,
-                assignedClass,
-                unit,
-                questions,
-                duration,
-                starts,
-                ends,
-                assignmentSetting,
-                assignmentType,
-                testMethod
-            )
-            .then(results => {
-                Response.Success(res, 200, "created successfully", results);
-            })
-            .catch(err => {
-                console.log(err);
-                Response.InternalServerError(res, "We are having issues! please try again soon");
-            });
+
+        Marks.create(
+            student,
+            answers,
+            totalMarks,
+            subject,
+            studentClass,
+            assignment,
+            started,
+            ended,
+            marksPublished
+        )
+        .then(results => {
+            Response.Success(res, 200, "created successfully", results);
+        })
+        .catch(err => {
+            console.log(err);
+            Response.InternalServerError(res, "We are having issues! please try again soon");
+        });
 
     } catch (error) {
         console.log(error);
         Response.InternalServerError(res, "We are having issues! please try again soon");
     }
-
+    
 }
 
 exports.update = async (req, res) => {
     try {
-        const assignmentId = req.params.assignmentId;
+        const marksId = req.params.marksId;
         const {
-            title,
-            questions,
-            duration,
-            starts,
-            ends,
-            assignmentSetting,
-            assignmentType,
-            testMethod
+            answers,
+            totalMarks,
+            subject,
+            started,
+            ended,
+            marksPublished
         } = req.body;
-        Assignment.update(
-            assignmentId,
-            title,
-            questions,
-            duration,
-            starts,
-            ends,
-            assignmentSetting,
-            assignmentType,
-            testMethod
+        Marks.update(
+            marksId,
+            answers,
+            totalMarks,
+            subject,
+            started,
+            ended,
+            marksPublished
             )
             .then(results => {
                 Response.Success(res, 200, "updated successfully", results);
@@ -84,15 +73,15 @@ exports.update = async (req, res) => {
         console.log(error);
         Response.InternalServerError(res, "We are having issues! please try again soon");
     }
-
+    
 }
 
-exports.getUnitAssignments = async (req, res) => {
+exports.getStudentSubjectMarks = async (req, res) => {
     try {
-        const unitId = req.params.unitId;
-        
-        const school = req.user.school
-        Assignment.getUnitAssignments(unitId, school)
+
+        const studentId = req.params.studentId;
+        const subjectId = req.params.subjectId
+        Marks.getStudentSubjectMarks(studentId, subjectId)
             .then(results => {
                 Response.Success(res, 200, "queried successfully", results);
             })
@@ -105,14 +94,13 @@ exports.getUnitAssignments = async (req, res) => {
         console.log(error);
         Response.InternalServerError(res, "We are having issues! please try again soon");
     }
-
+    
 }
 
-exports.getSubjectAssignments = async (req, res) => {
+exports.getAssignmentMarks = async (req, res) => {
     try {
-        const subjectId = req.params.subjectId;
-        const school = req.user.school
-        Assignment.getSubjectAssignments(subjectId, school)
+        const assignmentId = req.params.assignmentId
+        Marks.getAssignmentMarks(assignmentId)
             .then(results => {
                 Response.Success(res, 200, "queried successfully", results);
             })
@@ -125,14 +113,15 @@ exports.getSubjectAssignments = async (req, res) => {
         console.log(error);
         Response.InternalServerError(res, "We are having issues! please try again soon");
     }
-
+    
 }
 
-exports.getOneAssignment = async (req, res) => {
-    try {
-        const assignmentId = req.params.assignmentId;
 
-        Assignment.getOneAssignment(assignmentId)
+exports.getOneMarks = async (req, res) => {
+    try {
+        const marksId = req.params.marksId;
+
+        Marks.getOneMarks(marksId)
             .then(results => {
                 Response.Success(res, 200, "queried successfully", results);
             })
@@ -145,14 +134,14 @@ exports.getOneAssignment = async (req, res) => {
         console.log(error);
         Response.InternalServerError(res, "We are having issues! please try again soon");
     }
-
+    
 }
 
 exports.delete = async (req, res) => {
     try {
-        const assignmentId = req.params.assignmentId;
-
-        Assignment.delete(assignmentId)
+        const marksId = req.params.marksId;
+        
+        Marks.delete(marksId)
             .then(results => {
                 Response.Success(res, 200, "deleted successfully", results);
             })
@@ -165,5 +154,5 @@ exports.delete = async (req, res) => {
         console.log(error);
         Response.InternalServerError(res, "We are having issues! please try again soon");
     }
-
+    
 }

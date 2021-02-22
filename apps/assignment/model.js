@@ -1,27 +1,18 @@
 const mongoose = require('mongoose');
 
-const assignmenteschema = new mongoose.Schema({
+const assignmentSchema = new mongoose.Schema({
     title: String,
-    questions: [{
-        question: String,
-        unit: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'unit'
-        },
-        questionType: {
-            type: String,
-            enum: ['OPEN', 'MULTIPLE-CHOICE', 'SINGLE-CHOICE']
-        },
-        possibleAnswer: [{
-                answer: String
-        }],
-        answer: String,
-        points: Number
-    }], // deal with sub-questions
-
     subject: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'subject'
+    },
+    unit: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'unit'
+    },
+    school: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'school'
     },
     class: {
         type: mongoose.Schema.Types.ObjectId,
@@ -31,14 +22,47 @@ const assignmenteschema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user'
     },
+    questions: [
+        {
+            difficultLevel: {
+                type: String,
+                enum: ['EASY', 'MEDIUM', 'DIFFICULT']
+            },
+            questionObjective: {
+                type: String,
+                enum: ['REMEMBERING', 'UNDERSTANDING', 'APPLYING', 'ANALYSING', 'CREATING', 'EVALUATING']
+            },
+            question: String,
+            questionType: {
+                type: String,
+                enum: ['MULTI-CHOICE', 'TRUE/FALSE', 'MATCHING', 'FILL-IN-THE-BLANK', 'SHORT-ANSWER', 'LONG-ANSWER']
+            },
+            possibleAnswer: [{
+                answer: String
+            }],
+            answer: [{
+                answer: String
+            }],
+            points: Number
+        }
+    ],// deal with sub-questions later
     duration: Number,
     starts: Date,
     ends: Date,
-    published: {},
-    // how students will do assignment {online, traditional}
-    // assignment type: is group wqotrk
-    // test method
-    
-}, {timestamps: true});
+    assignmentSetting: {
+        type: String,
+        enum: ['ONLINE','IN-CLASS']
+    },
+    assignmentType: {
+        type: String,
+        enum: ['INDIVIDUAL','GROUP']
+    },
+    testMethod: {
+        type: String,
+        enum: ['ORAL','WRITTEN']
+    }
+}, {
+    timestamps: true
+});
 
-export default mongoose.model("assignment", assignmenteschema);
+export default mongoose.model("assignment", assignmentSchema);

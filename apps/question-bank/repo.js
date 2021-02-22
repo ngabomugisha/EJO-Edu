@@ -1,27 +1,61 @@
 import QuestionBank from './model'
 
-exports.create = async (firstName, lastName, school, questionBankClass) =>{
-try {
-    const newQuestionBank = new QuestionBank({
-        firstName,
-        lastName,
-        school,
-        class: questionBankClass
-    })
-    await newQuestionBank.save()
-    return newQuestionBank;
-} catch (error) {
-    throw error; 
-}
+exports.create = async (
+    author,
+    school,
+    subject,
+    unit,
+    difficultLevel,
+    questionsObjective,
+    question,
+    questionType,
+    possibleAnswer,
+    answer
+) => {
+    try {
+        const newQuestionBank = new QuestionBank({
+            author,
+            school,
+            subject,
+            unit,
+            difficultLevel,
+            questionsObjective,
+            question,
+            questionType,
+            possibleAnswer,
+            answer
+        })
+        await newQuestionBank.save()
+        return newQuestionBank;
+    } catch (error) {
+        throw error;
+    }
 };
 
-exports.update = async (questionBankId, firstName, lastName, questionBankClass) => {
+exports.update = async (
+    questionBankId,
+    difficultLevel,
+    questionsObjective,
+    question,
+    questionType,
+    possibleAnswer,
+    answer
+) => {
     try {
-        return await QuestionBank.findByIdAndUpdate(
-            {_id: questionBankId},
-            {firstName, lastName, class: questionBankClass},{new: true},
+        return await QuestionBank.findByIdAndUpdate({
+                _id: questionBankId
+            }, {
+                difficultLevel,
+                questionsObjective,
+                question,
+                questionType,
+                possibleAnswer,
+                answer
+            }, {
+                new: true
+            },
             (err, success) => {
-                if(err){
+                if (err) {
                     console.log(err);
                     return false;
                 }
@@ -33,31 +67,35 @@ exports.update = async (questionBankId, firstName, lastName, questionBankClass) 
     }
 }
 
-exports.getAllClassQuestionBanks = async (classId) => {
+exports.getUnitQuestionBank = async (unitId) => {
     try {
-        return await QuestionBank.find({class: classId})
-                .then(res => {
-                    return res;
-                })
-                .catch(err => {
-                    console.log(err);
-                    return false;
-                })
+        return await QuestionBank.find({
+                unit: unitId
+            })
+            .then(res => {
+                return res;
+            })
+            .catch(err => {
+                console.log(err);
+                return false;
+            })
     } catch (error) {
         throw error;
     }
 }
 
-exports.getAllSchoolQuestionBanks = async (schoolId) => {
+exports.getSubjectQuestionBank = async (subjectId) => {
     try {
-        return await QuestionBank.find({school: schoolId})
-                .then(res => {
-                    return res;
-                })
-                .catch(err => {
-                    console.log(err);
-                    return false;
-                })
+        return await QuestionBank.find({
+                subject: subjectId
+            })
+            .then(res => {
+                return res;
+            })
+            .catch(err => {
+                console.log(err);
+                return false;
+            })
     } catch (error) {
         throw error;
     }
@@ -66,13 +104,13 @@ exports.getAllSchoolQuestionBanks = async (schoolId) => {
 exports.getOneQuestionBank = async (questionBankId) => {
     try {
         return await QuestionBank.findById(questionBankId)
-                .then(res => {
-                    return res;
-                })
-                .catch(err => {
-                    console.log(err);
-                    return false;
-                })
+            .then(res => {
+                return res;
+            })
+            .catch(err => {
+                console.log(err);
+                return false;
+            })
     } catch (error) {
         throw error;
     }

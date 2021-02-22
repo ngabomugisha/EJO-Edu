@@ -65,7 +65,7 @@
 							"query": [
 								{
 									"key": "getAllData",
-									"value": null,
+									"value": "",
 									"disabled": true
 								}
 							]
@@ -3172,6 +3172,577 @@
 							"response": []
 						}
 					]
+				}
+			]
+		},
+		{
+			"name": "question bank",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"subject\": \"602c349dfd1613203834880d\",\r\n    \"unit\": \"602c38ced3f6860698532d2f\",\r\n    \"difficultLevel\": \"EASY\",\r\n    \"questionsObjective\": \"REMEMBERING\",\r\n    \"question\": \"What is your answer\",\r\n    \"questionType\": \"MULTI-CHOICE\",\r\n    \"possibleAnswer\": [\r\n        {\r\n            \"answer\": \"answer 1\"\r\n        },\r\n        {\r\n            \"answer\": \"answer 2\"\r\n        },\r\n        {\r\n            \"answer\": \"answer 3\"\r\n        }\r\n    ],\r\n    \"answer\": [\r\n        {\r\n            \"answer\": \"answer 1\"\r\n        },\r\n        {\r\n            \"answer\": \"answer 2\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/question-banks/",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"question-banks",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"difficultLevel\": \"MEDIUM\",\r\n    \"questionsObjective\": \"REMEMBERING\",\r\n    \"question\": \"What is your answer\",\r\n    \"questionType\": \"MULTI-CHOICE\",\r\n    \"possibleAnswer\": [\r\n        {\r\n            \"answer\": \"answer 1\"\r\n        },\r\n        {\r\n            \"answer\": \"answer 2\"\r\n        },\r\n        {\r\n            \"answer\": \"answer 3\"\r\n        }\r\n    ],\r\n    \"answer\": [\r\n        {\r\n            \"answer\": \"answer 1\"\r\n        },\r\n        {\r\n            \"answer\": \"answer 2\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/question-banks/603398fb5b190c18b82aa7b5",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"question-banks",
+								"603398fb5b190c18b82aa7b5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get one",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/question-banks/603398fb5b190c18b82aa7b5",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"question-banks",
+								"603398fb5b190c18b82aa7b5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get unit question bank",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/question-banks/602c38ced3f6860698532d2f/unit-question-bank",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"question-banks",
+								"602c38ced3f6860698532d2f",
+								"unit-question-bank"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get subject question bank",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/question-banks/602c349dfd1613203834880d/subject-question-bank",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"question-banks",
+								"602c349dfd1613203834880d",
+								"subject-question-bank"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/question-banks/603398fb5b190c18b82aa7b5",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"question-banks",
+								"603398fb5b190c18b82aa7b5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "assignment",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"subject\": \"602c349dfd1613203834880d\",\r\n    \"unit\": \"602c38ced3f6860698532d2f\",\r\n    \"assignedClass\": \"602c20e5eeb9ae2820b62123\",\r\n    \"questions\": [\r\n        {\r\n            \"difficultLevel\": \"EASY\",\r\n            \"questionsObjective\": \"REMEMBERING\",\r\n            \"question\": \"What is your answer\",\r\n            \"questionType\": \"MULTI-CHOICE\",\r\n            \"possibleAnswer\": [\r\n                {\r\n                    \"answer\": \"answer 1\"\r\n                },\r\n                {\r\n                    \"answer\": \"answer 2\"\r\n                },\r\n                {\r\n                    \"answer\": \"answer 3\"\r\n                }\r\n            ],\r\n            \"answer\": [\r\n                {\r\n                    \"answer\": \"answer 1\"\r\n                },\r\n                {\r\n                    \"answer\": \"answer 2\"\r\n                }\r\n            ],\r\n            \"points\": 7\r\n        }\r\n    ],\r\n    \"title\": \"Assignment 1\",\r\n    \"duration\": \"80\",\r\n    \"starts\": \"2021-06-31T17:58:09.010+00:00\",\r\n    \"ends\": \"2021-08-31T17:58:09.010+00:00\",\r\n    \"assignmentSetting\": \"ONLINE\",\r\n    \"assignmentType\": \"GROUP\",\r\n    \"testMethod\": \"ORAL\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/assignments/",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"assignments",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"questions\": [\r\n        {\r\n            \"difficultLevel\": \"EASY\",\r\n            \"questionsObjective\": \"REMEMBERING\",\r\n            \"question\": \"What is your answer\",\r\n            \"questionType\": \"MULTI-CHOICE\",\r\n            \"possibleAnswer\": [\r\n                {\r\n                    \"answer\": \"answer 1\"\r\n                },\r\n                {\r\n                    \"answer\": \"answer 2\"\r\n                },\r\n                {\r\n                    \"answer\": \"answer 3\"\r\n                }\r\n            ],\r\n            \"answer\": [\r\n                {\r\n                    \"answer\": \"answer 1\"\r\n                },\r\n                {\r\n                    \"answer\": \"answer 2\"\r\n                }\r\n            ],\r\n            \"points\": 7\r\n        }\r\n    ],\r\n    \"title\": \"Assignment 1\",\r\n    \"duration\": \"80\",\r\n    \"starts\": \"2021-06-31T17:58:09.010+00:00\",\r\n    \"ends\": \"2021-08-31T17:58:09.010+00:00\",\r\n    \"assignmentSetting\": \"ONLINE\",\r\n    \"assignmentType\": \"GROUP\",\r\n    \"testMethod\": \"ORAL\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/assignments/6033a2ff68825221b8e7d218",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"assignments",
+								"6033a2ff68825221b8e7d218"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get one",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/assignments/6033a2ff68825221b8e7d218",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"assignments",
+								"6033a2ff68825221b8e7d218"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get unit question bank",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/assignments/602c38ced3f6860698532d2f/unit-assignments",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"assignments",
+								"602c38ced3f6860698532d2f",
+								"unit-assignments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get subject question bank",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/assignments/602c349dfd1613203834880d/subject-assignments",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"assignments",
+								"602c349dfd1613203834880d",
+								"subject-assignments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/assignments/6033a2ff68825221b8e7d218",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"assignments",
+								"6033a2ff68825221b8e7d218"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "marks",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"student\": \"60317e67ec0fa31db03195ad\",\r\n    \"answers\": [\r\n        {\r\n            \"question\": \"6033aea27113dc0d7c8b8d38\",\r\n            \"awarededPoints\": 4,\r\n            \"answer\": [\r\n                        {\r\n                            \"answer\": \"answer 1\"\r\n                        },\r\n                        {\r\n                            \"answer\": \"answer 2\"\r\n                        }\r\n            ]\r\n        }\r\n    ],\r\n    \"totalMarks\": \"4\",\r\n    \"studentClass\": \"602c20e5eeb9ae2820b62123\",\r\n    \"subject\": \"602c349dfd1613203834880d\",\r\n    \"assignment\": \"6033a2ff68825221b8e7d218\",\r\n    \"started\": \"2021-06-31T17:10:09.010+00:00\",\r\n    \"ended\": \"2021-06-31T17:58:09.010+00:00\",\r\n    \"marksPublished\": false\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/marks/",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"marks",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"answers\": [\r\n        {\r\n            \"question\": \"6033aea27113dc0d7c8b8d38\",\r\n            \"awarededPoints\": 4,\r\n            \"answer\": [\r\n                        {\r\n                            \"answer\": \"answer 1\"\r\n                        },\r\n                        {\r\n                            \"answer\": \"answer 2\"\r\n                        }\r\n            ]\r\n        }\r\n    ],\r\n    \"totalMarks\": \"4\",\r\n    \"started\": \"2021-06-31T17:10:09.010+00:00\",\r\n    \"ended\": \"2021-06-31T17:58:09.010+00:00\",\r\n    \"marksPublished\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/marks/6033afeb401b01260412f3be",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"marks",
+								"6033afeb401b01260412f3be"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get one (one student)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/marks/6033b6c3fb773146c85c2248",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"marks",
+								"6033b6c3fb773146c85c2248"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get student subject marks",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/marks/60317e67ec0fa31db03195ad/602c349dfd1613203834880d/student-subject-marks",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"marks",
+								"60317e67ec0fa31db03195ad",
+								"602c349dfd1613203834880d",
+								"student-subject-marks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get assignment marks",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/marks/6033a2ff68825221b8e7d218/assignment-marks",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"marks",
+								"6033a2ff68825221b8e7d218",
+								"assignment-marks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/marks/6033afeb401b01260412f3be",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"marks",
+								"6033afeb401b01260412f3be"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},

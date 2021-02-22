@@ -1,24 +1,24 @@
-import StudentAssigment from './model'
+import Assignment from './model'
 
 exports.create = async (title, assignedClass, subject, teacher) =>{
 try {
-    const newStudentAssigment = new StudentAssigment({
+    const newAssignment = new Assignment({
         title,
         assignedClass,
         subject,
         teacher
     })
-    await newStudentAssigment.save()
-    return newStudentAssigment;
+    await newAssignment.save()
+    return newAssignment;
 } catch (error) {
     throw error; 
 }
 };
 
-exports.update = async (studentAssigmentId, title) => {
+exports.update = async (assignmentId, title) => {
     try {
-        return await StudentAssigment.findByIdAndUpdate(
-            {_id: studentAssigmentId},
+        return await Assignment.findByIdAndUpdate(
+            {_id: assignmentId},
             {title},{new: true},
             (err, success) => {
                 if(err){
@@ -33,9 +33,9 @@ exports.update = async (studentAssigmentId, title) => {
     }
 }
 
-exports.getAllClassSubjectStudentAssigmentes = async (classId, subjectId) => {
+exports.getAllClassSubjectAssignmentes = async (classId, subjectId) => {
     try {
-        return await StudentAssigment.find({class: classId, subject: subjectId})
+        return await Assignment.find({class: classId, subject: subjectId})
                 .populate({
                         path: "teacher"
                     })
@@ -52,9 +52,9 @@ exports.getAllClassSubjectStudentAssigmentes = async (classId, subjectId) => {
     }
 }
 
-exports.getOneStudentAssigment = async (studentAssigmentId) => {
+exports.getOneAssignment = async (assignmentId) => {
     try {
-        return await StudentAssigment.findById(studentAssigmentId)
+        return await Assignment.findById(assignmentId)
                 .populate({
                         path: "teacher"
                     })
@@ -71,9 +71,9 @@ exports.getOneStudentAssigment = async (studentAssigmentId) => {
     }
 }
 
-exports.delete = async (studentAssigmentId) => {
+exports.delete = async (assignmentId) => {
     try {
-        return await StudentAssigment.findByIdAndDelete(studentAssigmentId);
+        return await Assignment.findByIdAndDelete(assignmentId);
     } catch (error) {
         throw error;
     }

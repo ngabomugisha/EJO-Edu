@@ -1,27 +1,71 @@
 import Assignment from './model'
 
-exports.create = async (title, assignedClass, subject, teacher) =>{
-try {
-    const newAssignment = new Assignment({
-        title,
-        assignedClass,
-        subject,
-        teacher
-    })
-    await newAssignment.save()
-    return newAssignment;
-} catch (error) {
-    throw error; 
-}
+exports.create = async (
+    teacher,
+    school,
+    title,
+    subject,
+    assignedClass,
+    unit,
+    questions,
+    duration,
+    starts,
+    ends,
+    assignmentSetting,
+    assignmentType,
+    testMethod
+) => {
+    try {
+        const newAssignment = new Assignment({
+            teacher,
+            school,
+            title,
+            subject,
+            class: assignedClass,
+            unit,
+            questions,
+            duration,
+            starts,
+            ends,
+            assignmentSetting,
+            assignmentType,
+            testMethod
+        })
+        await newAssignment.save()
+        return newAssignment;
+    } catch (error) {
+        throw error;
+    }
 };
 
-exports.update = async (assignmentId, title) => {
+exports.update = async (
+    assignmentId,
+    title,
+    questions,
+    duration,
+    starts,
+    ends,
+    assignmentSetting,
+    assignmentType,
+    testMethod
+) => {
     try {
-        return await Assignment.findByIdAndUpdate(
-            {_id: assignmentId},
-            {title},{new: true},
+        return await Assignment.findByIdAndUpdate({
+                _id: assignmentId
+            }, {
+                title,
+                questions,
+                duration,
+                starts,
+                ends,
+                assignmentSetting,
+                assignmentType,
+                testMethod
+            }, {
+                new: true
+            },
             (err, success) => {
-                if(err){
+                if (err) {
                     console.log(err);
                     return false;
                 }
@@ -33,20 +77,35 @@ exports.update = async (assignmentId, title) => {
     }
 }
 
-exports.getAllClassSubjectAssignmentes = async (classId, subjectId) => {
+exports.getUnitAssignments = async (unitId, school) => {
     try {
-        return await Assignment.find({class: classId, subject: subjectId})
-                .populate({
-                        path: "teacher"
-                    })
-                .exec()
-                .then(res => {
-                    return res;
-                })
-                .catch(err => {
-                    console.log(err);
-                    return false;
-                })
+        return await Assignment.find({
+                unit: unitId, school
+            })
+            .then(res => {
+                return res;
+            })
+            .catch(err => {
+                console.log(err);
+                return false;
+            })
+    } catch (error) {
+        throw error;
+    }
+}
+
+exports.getSubjectAssignments = async (subjectId, school) => {
+    try {
+        return await Assignment.find({
+                subject: subjectId, school
+            })
+            .then(res => {
+                return res;
+            })
+            .catch(err => {
+                console.log(err);
+                return false;
+            })
     } catch (error) {
         throw error;
     }
@@ -55,17 +114,13 @@ exports.getAllClassSubjectAssignmentes = async (classId, subjectId) => {
 exports.getOneAssignment = async (assignmentId) => {
     try {
         return await Assignment.findById(assignmentId)
-                .populate({
-                        path: "teacher"
-                    })
-                .exec()
-                .then(res => {
-                    return res;
-                })
-                .catch(err => {
-                    console.log(err);
-                    return false;
-                })
+            .then(res => {
+                return res;
+            })
+            .catch(err => {
+                console.log(err);
+                return false;
+            })
     } catch (error) {
         throw error;
     }

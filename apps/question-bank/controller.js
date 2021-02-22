@@ -4,37 +4,64 @@ import Response from '../../utils/Responses';
 exports.create = async (req, res) => {
     try {
         const {
-            firstName,
-            lastName,
-            school,
-            questionBankClass
+            subject,
+            unit,
+            difficultLevel,
+            questionsObjective,
+            question,
+            questionType,
+            possibleAnswer,
+            answer
         } = req.body;
-
-        QuestionBank.create(firstName, lastName, school, questionBankClass)
-        .then(results => {
-            Response.Success(res, 200, "created successfully", results);
-        })
-        .catch(err => {
-            console.log(err);
-            Response.InternalServerError(res, "We are having issues! please try again soon");
-        });
+        const author = req.user._id
+        const school = req.user.school
+        QuestionBank.create(
+                author,
+                school,
+                subject,
+                unit,
+                difficultLevel,
+                questionsObjective,
+                question,
+                questionType,
+                possibleAnswer,
+                answer
+            )
+            .then(results => {
+                Response.Success(res, 200, "created successfully", results);
+            })
+            .catch(err => {
+                console.log(err);
+                Response.InternalServerError(res, "We are having issues! please try again soon");
+            });
 
     } catch (error) {
         console.log(error);
         Response.InternalServerError(res, "We are having issues! please try again soon");
     }
-    
+
 }
 
 exports.update = async (req, res) => {
     try {
         const questionBankId = req.params.questionBankId;
         const {
-            firstName,
-            lastName,
-            questionBankClass
+            difficultLevel,
+            questionsObjective,
+            question,
+            questionType,
+            possibleAnswer,
+            answer
         } = req.body;
-        QuestionBank.update(questionBankId, firstName, lastName, questionBankClass)
+        QuestionBank.update(
+                questionBankId,
+                difficultLevel,
+                questionsObjective,
+                question,
+                questionType,
+                possibleAnswer,
+                answer
+            )
             .then(results => {
                 Response.Success(res, 200, "updated successfully", results);
             })
@@ -47,13 +74,13 @@ exports.update = async (req, res) => {
         console.log(error);
         Response.InternalServerError(res, "We are having issues! please try again soon");
     }
-    
+
 }
 
-exports.getAllClassQuestionBanks = async (req, res) => {
+exports.getUnitQuestionBank = async (req, res) => {
     try {
-        const classId = req.params.classId;
-        QuestionBank.getAllClassQuestionBanks(classId)
+        const unitId = req.params.unitId;
+        QuestionBank.getUnitQuestionBank(unitId)
             .then(results => {
                 Response.Success(res, 200, "queried successfully", results);
             })
@@ -66,13 +93,13 @@ exports.getAllClassQuestionBanks = async (req, res) => {
         console.log(error);
         Response.InternalServerError(res, "We are having issues! please try again soon");
     }
-    
+
 }
 
-exports.getAllSchoolQuestionBanks = async (req, res) => {
+exports.getSubjectQuestionBank = async (req, res) => {
     try {
-        const schoolId = req.params.schoolId;
-        QuestionBank.getAllSchoolQuestionBanks(schoolId)
+        const subjectId = req.params.subjectId;
+        QuestionBank.getSubjectQuestionBank(subjectId)
             .then(results => {
                 Response.Success(res, 200, "queried successfully", results);
             })
@@ -85,7 +112,7 @@ exports.getAllSchoolQuestionBanks = async (req, res) => {
         console.log(error);
         Response.InternalServerError(res, "We are having issues! please try again soon");
     }
-    
+
 }
 
 exports.getOneQuestionBank = async (req, res) => {
@@ -105,13 +132,13 @@ exports.getOneQuestionBank = async (req, res) => {
         console.log(error);
         Response.InternalServerError(res, "We are having issues! please try again soon");
     }
-    
+
 }
 
 exports.delete = async (req, res) => {
     try {
         const questionBankId = req.params.questionBankId;
-        
+
         QuestionBank.delete(questionBankId)
             .then(results => {
                 Response.Success(res, 200, "deleted successfully", results);
@@ -125,5 +152,5 @@ exports.delete = async (req, res) => {
         console.log(error);
         Response.InternalServerError(res, "We are having issues! please try again soon");
     }
-    
+
 }
