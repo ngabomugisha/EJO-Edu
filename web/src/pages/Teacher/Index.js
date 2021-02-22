@@ -1,16 +1,18 @@
-import React ,{useState}from 'react'
+import React, { useState } from 'react'
 import PanelLayout from '../../components/Layouts/PanelLayout/Index'
 import Feed from '../../components/feed/Feed'
+import { useHistory } from 'react-router-dom'
 
 
 function Main() {
-
-const [page, setPage] = useState(null)
+    const history = useHistory()
+    history.block()
+    const [page, setPage] = useState(null)
 
     return (
         <>
             <PanelLayout selected={1} role="teacher">
-                <Feed/>
+                <Feed />
             </PanelLayout>
 
         </>

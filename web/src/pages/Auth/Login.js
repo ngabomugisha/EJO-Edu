@@ -1,13 +1,14 @@
 import './Login.css';
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, connect } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import { Button } from '@material-ui/core';
 import HomeLayout from '../../components/Layouts/HomeLayout';
 import { handleLogin } from '../../store/actions/auth.actions';
+import {SCHOOLADMIN, TEACHER} from './Users'
 
-const LoginPage = () => {
+const LoginPage = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = React.useState(false);
@@ -22,12 +23,29 @@ const LoginPage = () => {
     try {
       await dispatch(handleLogin({ email, password }));
       setIsLoading(false);
-      history.replace('/teacher');
+      
+      //load teacher's dashboard
+      switch (props.st.auth.user.role ) {
+        case TEACHER:
+          history.replace('/teacher')
+          break;
+          case SCHOOLADMIN:
+            history.replace('/schoolAdmin')
+            break;
+      
+        default:
+          break;
+      }
+
+
+
+
     } catch (error) {
       setErrMessage(error.message || error.error || error);
       setIsLoading(false);
     }
-  };
+  
+};
   return (
     <HomeLayout>
       <>
@@ -57,7 +75,7 @@ const LoginPage = () => {
             />
             <p>{errMessage}</p>
           </div>
-          <p class="forget-password"><Link to="/passwords">Forgot Password?</Link>
+          <p className="forget-password"><Link to="/passwords">Forgot Password?</Link>
           </p>
           <Button
             className="login-btn"
@@ -80,7 +98,15 @@ const LoginPage = () => {
         </div>
       </>
     </HomeLayout>
-  );
-};
+  )
+}
 
-export default LoginPage;
+const mapStateToProps = (state) => ({
+    st: state
+})
+
+const mapDispatchToProps = {
+  
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage)
