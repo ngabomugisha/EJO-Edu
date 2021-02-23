@@ -1,10 +1,11 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import './PanelLayout.css'
 import SideMenu from '../../sideMenu/SideMenu'
 import RightSide from '../../rightSide/RightSide'
 import StickyBox from "react-sticky-box";
 import FeedHead from '../../feed/FeedHead';
-
+import {TEACHER, SCHOOLADMIN} from '../../../pages/Auth/Users'
 
 const PanelLayout = (props) => {
 
@@ -14,11 +15,11 @@ const PanelLayout = (props) => {
             <div className='side-menu'>
 
                 <StickyBox>
-                    <SideMenu selected={props.selected} role={props.role} />
+                    <SideMenu selected={props.selected} role={props.state.auth.user.role} />
                 </StickyBox>
             </div>
             {
-                props.role === "teacher" ? 
+                props.state.auth.user.role === TEACHER ? 
                 <>
                     <div className='feed'>
                         <FeedHead />
@@ -39,4 +40,11 @@ const PanelLayout = (props) => {
     )
 }
 
-export default PanelLayout
+const mapStateToProps = (state) => ({
+    state : state
+})
+
+const mapDispatchToProps = {
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PanelLayout)

@@ -37,32 +37,20 @@ function Slide1() {
     };
     return (
         <div className='slide1-container'>
-            <div className='first-field'>
-                <div className="top-field">
-                    <TextField
-                        id="outlined-basic"
-                        variant="outlined"
-                        label="Birthday"
-                        type="date"
-                        color="primary"
-                        defaultValue="2017-05-24"
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                    /></div>
-                <div className='top-field'>
+            
+            <div className='topic'>
                     <FormControl variant="outlined" className={classes.formControl}>
-                        <InputLabel id="demo-simple-select-outlined-label">Select Term</InputLabel>
+                        <InputLabel id="demo-simple-select-outlined-label">Topic Area</InputLabel>
                         <Select
                             labelId="demo-simple-select-outlined-label"
                             id="demo-simple-select-outlined"
                             value={term}
                             onChange={handleChange}
-                            label="Select Term"
+                            label="Topic Area"
                             color="primary"
                         >
                             <MenuItem value="">
-                                <em>None</em>
+                                <em>Select Topic</em>
                             </MenuItem>
                             <MenuItem value={"First Term"}>First Term</MenuItem>
                             <MenuItem value={"Second Term"}>Second Term</MenuItem>
@@ -70,19 +58,39 @@ function Slide1() {
                         </Select>
                     </FormControl>
                 </div>
-            </div>
+
+                <div className='topic'>
+                    <FormControl variant="outlined" className={classes.formControl}>
+                        <InputLabel id="demo-simple-select-outlined-label">Sub Topic</InputLabel>
+                        <Select
+                            labelId="demo-simple-select-outlined-label"
+                            id="demo-simple-select-outlined"
+                            value={term}
+                            onChange={handleChange}
+                            label="Sub Topic"
+                            color="primary"
+                        >
+                            <MenuItem value="">
+                                <em>Select Sub-Topic</em>
+                            </MenuItem>
+                            <MenuItem value={"First Term"}>First Term</MenuItem>
+                            <MenuItem value={"Second Term"}>Second Term</MenuItem>
+                            <MenuItem value={"Third Term"}>Third Term</MenuItem>
+                        </Select>
+                    </FormControl>
+                </div>
             <div className="topic">
                 <FormControl variant="outlined" className={classes.formControl}>
-                    <InputLabel id="demo-simple-select-outlined-label">Age</InputLabel>
+                    <InputLabel id="demo-simple-select-outlined-label">Unit</InputLabel>
                     <Select
                         labelId="demo-simple-select-outlined-label"
                         id="demo-simple-select-outlined"
                         value="none"
                         onChange={handleChange}
-                        label="Age"
+                        label="Unit"
                     >
                         <MenuItem value="">
-                            <em>None</em>
+                            <em>Select Unit</em>
                         </MenuItem>
                         <MenuItem value={10}>Entreprenurship</MenuItem>
                         <MenuItem value={20}>Biology</MenuItem>
@@ -91,43 +99,35 @@ function Slide1() {
                         <MenuItem value={30}>Physics</MenuItem>
                     </Select>
                 </FormControl>
-            </div>
-            <h3>Units</h3>
-            <div className='unit'>
-                <input type='radio' value='' />
-            </div>
-            <div className='units'>
-                <div className='top'>
-                    <label><span className='spn1'>Expected 9</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className='spn2'>Covered 8</span></label><input type='radio' value='' />
                 </div>
-                <p>Food and Nutrition</p>
+                <div className="msg-field">
+                <TextField
+                    id="outlined-basic"
+                    variant="outlined"
+                    label="Key Unit Competency"
+                    type="text"
+                    value="To be able to explain the meaning of the 
+                    study of livi- ng organisms,
+                     divided into many specialized fields that
+                     cover their morphology, physiology, anatomy,
+                      behaviour, origin, and distribution."
+                    color="primary"
+                    multiline={true}
+                    rowsMax="8"
+                    disabled
+                />
             </div>
-
-            <div className='units'>
-                <div className='top'>
-                    <label><span className='spn1'>Expected 9</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className='spn2'>Covered 8</span></label><input type='radio' value='' />
-                </div>
-                <p>Holiday Activities</p>
+                <div className="topic">
+                <TextField
+                    id="outlined-basic"
+                    variant="outlined"
+                    label="Lesson"
+                    type="text"
+                    placeholder="Lesson 1"
+                    color="primary"
+                />
             </div>
-            {/*
-            <FormControl variant="outlined" color="primary" className={classes.formControl}>
-                    <InputLabel id="demo-simple-select-outlined-label">Select Topic</InputLabel>
-                    <Select
-                        labelId="demo-simple-select-outlined-label"
-                        id="demo-simple-select-outlined"
-                        value={Age}
-                        onChange={handleChange}
-                        label="Select Topic"
-                        color="primary"
-                    >
-                        <MenuItem value="">
-                            <em>None</em>
-                        </MenuItem>
-                        <MenuItem value={"First Term"}>First Term</MenuItem>
-                        <MenuItem value={"Second Term"}>Second Term</MenuItem>
-                        <MenuItem value={"Third Term"}>Third Term</MenuItem>
-                    </Select>
-</FormControl>*/}
+          
         </div>
     )
 }

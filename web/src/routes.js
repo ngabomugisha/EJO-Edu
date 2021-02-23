@@ -8,8 +8,10 @@ const ForgetPasswordPage = lazy(() => import('./pages/Auth/ForgetPassword'));
 
 //Teacher
 const TeacherDashboard = lazy(() => import('./pages/Teacher/Index'));
-const Assignment = lazy(() => import('./pages/Teacher/Assignment'))
+const AssignmentPage = lazy(() => import('./pages/Teacher/Assignment'))
+const LessonPlanPage = lazy(() => import('./pages/Teacher/LessonPlan'))
 const NewAssignmentPage = lazy(( )=> import('./components/newAssignment/NewAssignment'))
+const NewLessonPlanPage = lazy(() => import('./components/newLessonplan/NewLessonPlan'))
 
 //HeadTeacher
 const HeadTeacherDashboard = lazy(() => import('./pages/HeadTeacher/Index'));
@@ -18,13 +20,15 @@ const ReportPage = lazy(() => import('./pages/HeadTeacher/report/Index'))
 const CheckInOutPage = lazy(() => import('./pages/HeadTeacher/checkInOut/Index'))
 
 //School-Admin
-const schoolAdminDaschbord = lazy(() => import('./pages/SCHOOL-ADMIN/index'))
+const schoolAdminDaschbord = lazy(() =>import('./pages/SCHOOL-ADMIN/index'))
+const studentsPage = lazy(() => import('./pages/SCHOOL-ADMIN/student/index'))
+const teachersPage = lazy(() => import('./pages/SCHOOL-ADMIN/teacher/index'))
 
 export default () => {
   return (
     <Suspense
       fallback={
-        <div style={{ display: 'absolute', top: '50%', left: '50%' }}>
+        <div className="loading">
           <p>Loading.......</p>
         </div>
       }
@@ -35,9 +39,11 @@ export default () => {
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/passwords" component={ForgetPasswordPage} />
 
-
+          
           {/* Teacher routes */}
-          <Route exact path="/teacher/assignment" component={Assignment}/>
+          <Route exact path="/teacher/lessonPlan" component={LessonPlanPage}/>
+          <Route exact path="/teacher/newLessonPlan" component={NewLessonPlanPage}/>
+          <Route exact path="/teacher/assignment" component={AssignmentPage}/>
           <Route exact path="/teacher/newAssignment" component={NewAssignmentPage}/>
           <Route exact path="/teacher" component={TeacherDashboard} />
 
@@ -51,6 +57,8 @@ export default () => {
 
           {/* schoolAdmin routes */}
           <Route exact path="/schoolAdmin" component={schoolAdminDaschbord}/>
+          <Route exact path="/schoolAdmin/students" component={studentsPage}/>
+          <Route exact path="/schoolAdmin/teachers" component={teachersPage}/>
 
 
           {/* home */}

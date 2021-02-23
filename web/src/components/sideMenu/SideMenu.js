@@ -2,13 +2,14 @@ import './SideMenu.css';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import logo from '../../assets/icons/logo.svg';
+import { TEACHER, SCHOOLADMIN} from '../../pages/Auth/Users'
 import { Link, useHistory } from 'react-router-dom';
 import SideOption from '../sideOption/SideOption';
-import { BiHome } from 'react-icons/bi';
-import { RiBookletLine } from 'react-icons/ri';
+import { BiHome , BiDoorOpen} from 'react-icons/bi';
+import { RiBookletLine, RiDashboardLine } from 'react-icons/ri';
 import { IoSettingsOutline } from 'react-icons/io5'
+import { MdPeopleOutline } from "react-icons/md";
 import AssignmentTurnedInOutlinedIcon from '@material-ui/icons/AssignmentTurnedInOutlined';
-import { BiDoorOpen } from "react-icons/bi";
 
 const renderOptions = (active) => {
   switch (active) {
@@ -23,29 +24,29 @@ const renderOptions = (active) => {
 
 function renderSwitch(role, selected) {
   switch (role) {
-    case "teacher":
+    case TEACHER:
       return <>
         {
           {
             1:
               <><Link to="/teacher"><SideOption Icon={BiHome} text="Home" active /></Link>
                 <Link to="/teacher/assignment"><SideOption Icon={AssignmentTurnedInOutlinedIcon} text="Assignment" /></Link>
-                <SideOption Icon={RiBookletLine} text="Lesson Plan" />
+                <Link to="/teacher/lessonPlan"><SideOption Icon={RiBookletLine} text="Lesson Plan" /></Link>
                 <SideOption Icon={IoSettingsOutline} text="Settings" /></>,
             2:
               <><Link to="/teacher"><SideOption Icon={BiHome} text="Home" /></Link>
                 <Link to="/teacher/assignment"><SideOption Icon={AssignmentTurnedInOutlinedIcon} text="Assignment" active /></Link>
-                <SideOption Icon={RiBookletLine} text="Lesson Plan" />
+                <Link to="/teacher/lessonPlan"><SideOption Icon={RiBookletLine} text="Lesson Plan" /></Link>
                 <SideOption Icon={IoSettingsOutline} text="Settings" /></>,
             3:
               <><Link to="/teacher"><SideOption Icon={BiHome} text="Home" /></Link>
                 <Link to="/teacher/assignment"><SideOption Icon={AssignmentTurnedInOutlinedIcon} text="Assignment" /></Link>
-                <SideOption Icon={RiBookletLine} text="Lesson Plan" active />
+                <Link to="/teacher/lessonPlan"><SideOption Icon={RiBookletLine} text="Lesson Plan" active/></Link>
                 <SideOption Icon={IoSettingsOutline} text="Settings" /></>,
             4:
               <><Link to="/teacher"><SideOption Icon={BiHome} text="Home" active /></Link>
                 <Link to="/teacher/assignment"><SideOption Icon={AssignmentTurnedInOutlinedIcon} text="Assignment" /></Link>
-                <SideOption Icon={RiBookletLine} text="Lesson Plan" />
+                <Link to="/teacher/lessonPlan"><SideOption Icon={RiBookletLine} text="Lesson Plan" /></Link>
                 <SideOption Icon={IoSettingsOutline} text="Settings" active /></>
           }[selected]
         }
@@ -79,6 +80,36 @@ function renderSwitch(role, selected) {
         }
 
       </>
+      break;
+      case SCHOOLADMIN:
+        return <>
+          {
+            {
+              1:
+                <><Link to="/schoolAdmin"><SideOption Icon={RiDashboardLine} text="Dashboard" active /></Link>
+                  <Link to="/schoolAdmin/students"><SideOption Icon={MdPeopleOutline} text="Students" /></Link>
+                  <Link to="/schoolAdmin/teachers"><SideOption Icon={RiBookletLine} text="Teachers" /></Link>
+                  <Link to="/schoolAdmin"><SideOption Icon={IoSettingsOutline} text="Report" /></Link></>,
+              2:
+                <><Link to="/schoolAdmin"><SideOption Icon={RiDashboardLine} text="Dashboard" /></Link>
+                  <Link to="/schoolAdmin/students"><SideOption Icon={MdPeopleOutline} text="Students" active /></Link>
+                  <Link to="/schoolAdmin/teachers"><SideOption Icon={RiBookletLine} text="Teachers" /></Link>
+                  <Link to="/schoolAdmin"><SideOption Icon={IoSettingsOutline} text="Report"  /></Link></>,
+              3:
+                <><Link to="/schoolAdmin"><SideOption Icon={RiDashboardLine} text="Dashboard" /></Link>
+                  <Link to="/schoolAdmin/students"><SideOption Icon={MdPeopleOutline} text="Students" /></Link>
+                  <Link to="/schoolAdmin/teachers"><SideOption Icon={RiBookletLine} text="Teachers" active /></Link>
+                  <Link to="/schoolAdmin"><SideOption Icon={IoSettingsOutline} text="Report"  /></Link></>,
+              4:
+                <><Link to="/schoolAdmin"><SideOption Icon={RiDashboardLine} text="Dashboard" /></Link>
+                  <Link to="/schoolAdmin/students"><SideOption Icon={MdPeopleOutline} text="Students" /></Link>
+                  <Link to="/schoolAdmin/teachers"><SideOption Icon={RiBookletLine} text="Teachers" /></Link>
+                  <Link to="/schoolAdmin"><SideOption Icon={IoSettingsOutline} text="Report" active /></Link></>
+            }[selected]
+          }
+  
+        </>
+
       break;
 
     default:

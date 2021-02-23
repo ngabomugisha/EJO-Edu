@@ -6,7 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import { Button } from '@material-ui/core';
 import HomeLayout from '../../components/Layouts/HomeLayout';
 import { handleLogin } from '../../store/actions/auth.actions';
-import {SCHOOLADMIN, TEACHER} from './Users'
+import { SCHOOLADMIN, TEACHER } from './Users'
 
 const LoginPage = (props) => {
   const history = useHistory();
@@ -23,16 +23,16 @@ const LoginPage = (props) => {
     try {
       await dispatch(handleLogin({ email, password }));
       setIsLoading(false);
-      
+
       //load teacher's dashboard
-      switch (props.st.auth.user.role ) {
+      switch (props.st.auth.user.role) {
         case TEACHER:
           history.replace('/teacher')
           break;
-          case SCHOOLADMIN:
-            history.replace('/schoolAdmin')
-            break;
-      
+        case SCHOOLADMIN:
+          history.replace('/schoolAdmin')
+          break;
+
         default:
           break;
       }
@@ -44,8 +44,8 @@ const LoginPage = (props) => {
       setErrMessage(error.message || error.error || error);
       setIsLoading(false);
     }
-  
-};
+
+  };
   return (
     <HomeLayout>
       <>
@@ -102,11 +102,11 @@ const LoginPage = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-    st: state
+  st: state
 })
 
 const mapDispatchToProps = {
-  
+
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage)
