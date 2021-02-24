@@ -33,7 +33,7 @@ exports.update = async (classId, label) => {
     }
 }
 
-exports.getAllShoolclasses = async (schoolId) => {
+exports.getAllSchoolclasses = async (schoolId) => {
     try {
         return await Class.find({school: schoolId})
                 .populate({

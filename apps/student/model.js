@@ -5,6 +5,10 @@ const studentSchema = new mongoose.Schema({
     lastName: String,
     dateOfBirth: Date,
     boardingStatus: String,
+    gender: {
+        type: String,
+        enum: ['M','F']
+    },
     busRoute: String,
     address: {
         type: mongoose.Schema.Types.ObjectId,

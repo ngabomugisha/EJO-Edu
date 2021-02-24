@@ -15,6 +15,8 @@ router.use('/api/timetables', passport.authenticate("jwt", { session : false }),
 router.use('/api/question-banks', passport.authenticate("jwt", { session : false }), require('./apps/question-bank/router'));
 router.use('/api/assignments', passport.authenticate("jwt", { session : false }), require('./apps/assignment/router'));
 router.use('/api/marks', passport.authenticate("jwt", { session : false }), require('./apps/marks/router'));
+router.use('/api/class-teachers', passport.authenticate("jwt", { session : false }), require('./apps/class-teacher/router'));
+router.use('/api/participations', passport.authenticate("jwt", { session : false }), require('./apps/participation/router'));
 
 
 // re-routes to another routing file 
