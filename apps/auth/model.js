@@ -28,6 +28,10 @@ const userSchema = new mongoose.Schema({
         type: Number,
         default: null
     },
+    resetPasswordToken: {
+        type: String,
+        default: null
+    },
     isVerfied: {
         type: Boolean,
         default: false

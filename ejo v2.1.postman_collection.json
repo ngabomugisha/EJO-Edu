@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"John\",\r\n    \"lastName\": \"doe\",\r\n    \"email\": \"johndoe4@gmail.com\",\r\n    \"password\": \"password\",\r\n    \"school\": null, \r\n    \"role\": \"TEACHER\",\r\n    \"phoneNumber\": \"+250781321324\",\r\n    \"level\": \"BACHELOR\",\r\n    \"yearsOfExperience\": 3,\r\n    \"workingStatus\": \"PART-TIME\"\r\n}",
+							"raw": "{\r\n    \"firstName\": \"John\",\r\n    \"lastName\": \"doe\",\r\n    \"email\": \"johndoe4@gmail.com\",\r\n    \"school\": null, \r\n    \"role\": \"TEACHER\",\r\n    \"phoneNumber\": \"+250781321324\",\r\n    \"level\": \"BACHELOR\",\r\n    \"yearsOfExperience\": 3,\r\n    \"workingStatus\": \"PART-TIME\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -44,7 +44,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"johndoe@gmail.com\",\r\n    \"password\": \"866746\"\r\n}",
+							"raw": "{\r\n    \"email\": \"johndoe4@gmail.com\",\r\n    \"password\": \"password\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -146,6 +146,84 @@
 								"api",
 								"auth",
 								"regenerate-verification-digits"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "generate reset password token",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVmNjM0NWExMGMzOWNmMTM2OGU4YjdjYiIsImZpcnN0TmFtZSI6Im9kaWxvIiwibGFzdE5hbWUiOiJSdWdhbWJhIiwiZW1haWwiOiJvZGlsb3J1Z2FtYmFAZ21haWwuY29tIn0sImlhdCI6MTYwMDM0MTQxM30.Ok0s0OSLFGwVgqlKJu9Hc5Tqx9qYCgK2j851brkDjvg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"johndoe4@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/auth/generate-reset-password-token",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"auth",
+								"generate-reset-password-token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reset password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVmNjM0NWExMGMzOWNmMTM2OGU4YjdjYiIsImZpcnN0TmFtZSI6Im9kaWxvIiwibGFzdE5hbWUiOiJSdWdhbWJhIiwiZW1haWwiOiJvZGlsb3J1Z2FtYmFAZ21haWwuY29tIn0sImlhdCI6MTYwMDM0MTQxM30.Ok0s0OSLFGwVgqlKJu9Hc5Tqx9qYCgK2j851brkDjvg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"johndoe4@gmail.com\",\r\n    \"resetPasswordToken\": \"423904\",\r\n    \"newPassword\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/auth/reset-password",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"auth",
+								"reset-password"
 							]
 						}
 					},

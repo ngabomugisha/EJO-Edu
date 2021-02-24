@@ -79,6 +79,34 @@ exports.regenerateVerificationDigits = async (req, res) => {
     }
 }
 
+exports.generateResetPasswordToken = async (req, res) => {
+    try {
+        const {
+            email
+        } = req.body;
+
+        
+        const userData = await User.getUserByEmail(email);
+        if (!email || !userData)
+            return Response.validationError(res, "Email does not exist");
+
+        const resetPasswordToken = Math.floor(100000 + Math.random() * 900000);
+        const hashedToken = await bcrypt.hash(resetPasswordToken.toString(), 10);
+        await User.update(userData._id, {
+            resetPasswordToken: hashedToken
+        });
+
+        //Remember to send via email
+        return Response.Success(res, 200, {
+            resetPasswordToken
+        }, "Reset Password Token generated and sent via email");
+
+    } catch (error) {
+        console.log(error);
+        Response.InternalServerError(res, "We are having issues! please try again soon")
+    }
+}
+
 exports.verifyEmail = async (req, res) => {
     try {
         const {
@@ -206,13 +234,41 @@ exports.updatePassword = async (req, res) => {
         } = req.body;
         const userData = await User.getUserById(_id);
         if (!userData)
-            return Response.validationError(res, "wrong password");
+            return Response.validationError(res, "account does not exist");
 
         if (!await bcrypt.compare(oldPassword, userData.password))
             return Response.validationError(res, "wrong password");
 
         const hashedPassword = await bcrypt.hash(newPassword, 10);
         await User.update(_id, {
+            password: hashedPassword
+        });
+
+        return Response.Success(res, 200, "password updated successfully");
+
+    } catch (error) {
+        console.log(error);
+        return Response.InternalServerError(res, "We are having issues! please try again soon")
+    }
+}
+
+exports.resetPassword = async (req, res) => {
+    try {
+        const {
+            email,
+            resetPasswordToken,
+            newPassword
+        } = req.body;
+        const userData = await User.getUserByEmail(email);
+        if (!userData)
+            return Response.validationError(res, "wrong email");
+        console.log(resetPasswordToken)
+        if (!userData.resetPasswordToken || !await bcrypt.compare(resetPasswordToken, userData.resetPasswordToken))
+            return Response.validationError(res, "wrong token");
+
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+        await User.update(userData._id, {
+            resetPasswordToken: null,
             password: hashedPassword
         });
 
