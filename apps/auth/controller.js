@@ -295,3 +295,24 @@ exports.emailTaken = async (req, res) => {
         Response.InternalServerError(res, "We are having issues! please try again soon")
     }
 }
+
+
+exports.getSchoolEmployees = async (req, res) => {
+    try {
+        const schoolId = req.params.schoolId;
+
+        User.getSchoolEmployees(schoolId)
+            .then(results => {
+                Response.Success(res, 200, "queried successfully", results);
+            })
+            .catch(err => {
+                console.log(err);
+                Response.InternalServerError(res, "We are having issues! please try again soon");
+            });
+
+    } catch (error) {
+        console.log(error);
+        Response.InternalServerError(res, "We are having issues! please try again soon");
+    }
+    
+}

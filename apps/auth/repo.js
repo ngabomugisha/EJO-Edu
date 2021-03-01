@@ -39,6 +39,13 @@ exports.getUserById = async (id) => {
         throw error;
     }
 }
+exports.getSchoolEmployees = async (schoolId) => {
+    try {
+        return await user.find({school: schoolId});
+    } catch (error) {
+        throw error;
+    }
+}
 
 exports.update = async (_id, data) => {
     try {

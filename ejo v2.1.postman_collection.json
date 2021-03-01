@@ -374,6 +374,39 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "get all school employees",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"johndoe@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/auth/602b9ef1aab3f92010a7a4e0/school-employees",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"auth",
+								"602b9ef1aab3f92010a7a4e0",
+								"school-employees"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},

@@ -14,6 +14,8 @@ router.post('/regenerate-verification-digits', passport.authenticate("jwt", { se
 router.post('/verify-email', passport.authenticate("jwt", { session : false }), User.verifyEmail);
 router.post('/update-names', passport.authenticate("jwt", { session : false }), User.updateName);
 router.post('/update-password', passport.authenticate("jwt", { session : false }), User.updatePassword);
+router.get('/:schoolId/school-employees', passport.authenticate("jwt", { session : false }), User.getSchoolEmployees);
+
 router.post('/email-taken',  User.emailTaken);
 
 module.exports = router;
