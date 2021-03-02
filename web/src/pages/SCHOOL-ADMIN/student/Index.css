@@ -1,0 +1,21 @@
+.students-container{
+    padding: 50px;
+}
+.MuiButtonBase-root .MuiFab-root .MuiFab-primary{
+    position: fixed;
+    right: 2px !important;
+    
+}
+.paper-hd{
+    padding: 20px ;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+.paper-hd > h2{
+    color:#1f72c7
+}
+.MuiDialogActions-root {
+    justify-content: center !important;
+}

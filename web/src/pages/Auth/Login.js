@@ -6,7 +6,9 @@ import TextField from '@material-ui/core/TextField';
 import { Button } from '@material-ui/core';
 import HomeLayout from '../../components/Layouts/HomeLayout';
 import { handleLogin } from '../../store/actions/auth.actions';
-import { SCHOOLADMIN, TEACHER } from './Users'
+import { SCHOOLADMIN, TEACHER, SUPERADMIN } from './Users'
+import  Alert  from 'react-bootstrap/Alert';
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 const LoginPage = (props) => {
   const history = useHistory();
@@ -27,11 +29,14 @@ const LoginPage = (props) => {
       //load teacher's dashboard
       switch (props.st.auth.user.role) {
         case TEACHER:
-          history.replace('/teacher')
+          history.replace('/teacher');
           break;
         case SCHOOLADMIN:
           history.replace('/schoolAdmin')
           break;
+          case SUPERADMIN:
+            history.replace('/admin')
+            break;
 
         default:
           break;

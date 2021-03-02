@@ -189,10 +189,250 @@ function Slide2() {
                     </div>
                 </Tab>
                 <Tab eventKey="profile" title="Skills">
-                    <h2>Skills</h2>
+                <div className='knowledge-container'>
+                        <h5>Instructional Object</h5>
+
+                        <div className='topic'>
+                            <FormControl variant="outlined" className={classes.formControl}>
+                                <InputLabel id="demo-simple-select-outlined-label">Select Knowledge</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-outlined-label"
+                                    id="demo-simple-select-outlined"
+                                    value={term}
+                                    onChange={handleChange}
+                                    label="Select Knowledge"
+                                    color="primary"
+                                >
+                                    <MenuItem value="">
+                                        <em>Select Topic</em>
+                                    </MenuItem>
+                                    <MenuItem value={"First Term"}>First Term</MenuItem>
+                                    <MenuItem value={"Second Term"}>Second Term</MenuItem>
+                                    <MenuItem value={"Third Term"}>Third Term</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </div>
+                        <div className="topic">
+                            <FormControl variant="outlined" className={classes.formControl}>
+                                <InputLabel id="demo-simple-select-outlined-label">Cognitive Domain Level</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-outlined-label"
+                                    id="demo-simple-select-outlined"
+                                    value="Understanding"
+                                    onChange={handleChange}
+                                    label="Cognitive Domain Level"
+                                >
+                                    <MenuItem value="">
+                                        <em>None</em>
+                                    </MenuItem>
+                                    <MenuItem value={10}>Entreprenurship</MenuItem>
+                                    <MenuItem value={20}>Biology</MenuItem>
+                                    <MenuItem value={30}>Mathematics</MenuItem>
+                                    <MenuItem value={30}>Chemistry</MenuItem>
+                                    <MenuItem value={30}>Physics</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </div>
+                        <div className="topic">
+                            <FormControl variant="outlined" className={classes.formControl}>
+                                <InputLabel id="demo-simple-select-outlined-label">Standard Criteria Performance</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-outlined-label"
+                                    id="demo-simple-select-outlined"
+                                    value="Standard Criteria Performance"
+                                    onChange={handleChange}
+                                    label="Standard Criteria Performance"
+                                >
+                                    <MenuItem value="">
+                                        <em>None</em>
+                                    </MenuItem>
+                                    <MenuItem value={10}>Entreprenurship</MenuItem>
+                                    <MenuItem value={20}>Biology</MenuItem>
+                                    <MenuItem value={30}>Mathematics</MenuItem>
+                                    <MenuItem value={30}>Chemistry</MenuItem>
+                                    <MenuItem value={30}>Physics</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </div>
+                        <div className="topic">
+                            <FormControl variant="outlined" className={classes.formControl}>
+                                <InputLabel id="demo-simple-select-outlined-label">Instruction Material</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-outlined-label"
+                                    id="demo-simple-select-outlined"
+                                    value="Audio-visual"
+                                    onChange={handleChange}
+                                    label="Instruction Material"
+                                >
+                                    <MenuItem value="">
+                                        <em>None</em>
+                                    </MenuItem>
+                                    <MenuItem value={10}>Prints</MenuItem>
+                                    <MenuItem value={20}>Audio</MenuItem>
+                                    <MenuItem value={30}>Visuals</MenuItem>
+                                    <MenuItem value={40}>Audiovisuals</MenuItem>
+                                    <MenuItem value={50}>Electronic Interactives</MenuItem>
+                                    <MenuItem value={60}>Measurement tools </MenuItem>
+                                </Select>
+                            </FormControl>
+                        </div>
+                        <div className={classes.root}>
+                            <input
+                                accept="image/*"
+                                className={classes.input}
+                                id="contained-button-file"
+                                multiple
+                                type="file"
+                            />
+                            <label htmlFor="contained-button-file">
+                                <h7>Upload</h7>
+                            </label>
+                        </div>
+                        <div className='topic'>
+                            <FormControl variant="outlined" className={classes.formControl}>
+                                <InputLabel id="demo-simple-select-outlined-label">Other Materials and References</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-outlined-label"
+                                    id="demo-simple-select-outlined"
+                                    value="Other Materials and References"
+                                    onChange={handleChange}
+                                    label="Other Materials and References"
+                                    color="primary"
+                                >
+                                    <MenuItem value="">
+                                        <em>Select Topic</em>
+                                    </MenuItem>
+                                    <MenuItem value={"First Term"}>First Term</MenuItem>
+                                    <MenuItem value={"Second Term"}>Second Term</MenuItem>
+                                    <MenuItem value={"Third Term"}>Third Term</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </div>
+
+                    </div>
                 </Tab>
                 <Tab eventKey="contact" title="Attitude and Value">
-                    <h2>Attitude and Value</h2>
+                <div className='knowledge-container'>
+                        <h5>Instructional Object</h5>
+
+                        <div className='topic'>
+                            <FormControl variant="outlined" className={classes.formControl}>
+                                <InputLabel id="demo-simple-select-outlined-label">Select Knowledge</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-outlined-label"
+                                    id="demo-simple-select-outlined"
+                                    value={term}
+                                    onChange={handleChange}
+                                    label="Select Knowledge"
+                                    color="primary"
+                                >
+                                    <MenuItem value="">
+                                        <em>Select Topic</em>
+                                    </MenuItem>
+                                    <MenuItem value={"First Term"}>First Term</MenuItem>
+                                    <MenuItem value={"Second Term"}>Second Term</MenuItem>
+                                    <MenuItem value={"Third Term"}>Third Term</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </div>
+                        <div className="topic">
+                            <FormControl variant="outlined" className={classes.formControl}>
+                                <InputLabel id="demo-simple-select-outlined-label">Cognitive Domain Level</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-outlined-label"
+                                    id="demo-simple-select-outlined"
+                                    value="Understanding"
+                                    onChange={handleChange}
+                                    label="Cognitive Domain Level"
+                                >
+                                    <MenuItem value="">
+                                        <em>None</em>
+                                    </MenuItem>
+                                    <MenuItem value={10}>Entreprenurship</MenuItem>
+                                    <MenuItem value={20}>Biology</MenuItem>
+                                    <MenuItem value={30}>Mathematics</MenuItem>
+                                    <MenuItem value={30}>Chemistry</MenuItem>
+                                    <MenuItem value={30}>Physics</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </div>
+                        <div className="topic">
+                            <FormControl variant="outlined" className={classes.formControl}>
+                                <InputLabel id="demo-simple-select-outlined-label">Standard Criteria Performance</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-outlined-label"
+                                    id="demo-simple-select-outlined"
+                                    value="Standard Criteria Performance"
+                                    onChange={handleChange}
+                                    label="Standard Criteria Performance"
+                                >
+                                    <MenuItem value="">
+                                        <em>None</em>
+                                    </MenuItem>
+                                    <MenuItem value={10}>Entreprenurship</MenuItem>
+                                    <MenuItem value={20}>Biology</MenuItem>
+                                    <MenuItem value={30}>Mathematics</MenuItem>
+                                    <MenuItem value={30}>Chemistry</MenuItem>
+                                    <MenuItem value={30}>Physics</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </div>
+                        <div className="topic">
+                            <FormControl variant="outlined" className={classes.formControl}>
+                                <InputLabel id="demo-simple-select-outlined-label">Instruction Material</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-outlined-label"
+                                    id="demo-simple-select-outlined"
+                                    value="Audio-visual"
+                                    onChange={handleChange}
+                                    label="Instruction Material"
+                                >
+                                    <MenuItem value="">
+                                        <em>None</em>
+                                    </MenuItem>
+                                    <MenuItem value={10}>Prints</MenuItem>
+                                    <MenuItem value={20}>Audio</MenuItem>
+                                    <MenuItem value={30}>Visuals</MenuItem>
+                                    <MenuItem value={40}>Audiovisuals</MenuItem>
+                                    <MenuItem value={50}>Electronic Interactives</MenuItem>
+                                    <MenuItem value={60}>Measurement tools </MenuItem>
+                                </Select>
+                            </FormControl>
+                        </div>
+                        <div className={classes.root}>
+                            <input
+                                accept="image/*"
+                                className={classes.input}
+                                id="contained-button-file"
+                                multiple
+                                type="file"
+                            />
+                            <label htmlFor="contained-button-file">
+                                <h7>Upload</h7>
+                            </label>
+                        </div>
+                        <div className='topic'>
+                            <FormControl variant="outlined" className={classes.formControl}>
+                                <InputLabel id="demo-simple-select-outlined-label">Other Materials and References</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-outlined-label"
+                                    id="demo-simple-select-outlined"
+                                    value="Other Materials and References"
+                                    onChange={handleChange}
+                                    label="Other Materials and References"
+                                    color="primary"
+                                >
+                                    <MenuItem value="">
+                                        <em>Select Topic</em>
+                                    </MenuItem>
+                                    <MenuItem value={"First Term"}>First Term</MenuItem>
+                                    <MenuItem value={"Second Term"}>Second Term</MenuItem>
+                                    <MenuItem value={"Third Term"}>Third Term</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </div>
+
+                    </div>
                 </Tab>
             </Tabs>
 

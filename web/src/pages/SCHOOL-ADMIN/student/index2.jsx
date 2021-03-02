@@ -17,7 +17,7 @@ import { Paper, makeStyles, TableBody, TableRow, TableCell, Toolbar, InputAdornm
 import useTable from "../../../components/useTable";
 import { useDispatch, useSelector } from 'react-redux';
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
-import StudentForm from '../../../components/schoolAdmin/StudentForm'
+import studentForm from '../../../components/schoolAdmin/StudentForm'
 
 // const useStyles = makeStyles(theme => ({
 //     pageContent: {
@@ -70,7 +70,7 @@ export const Index = (props) => {
                 if (target.value == "")
                     return items;
                 else
-                    return items.filter(x => x.firstName.toLowerCase().includes(target.value) || x.lastName.toLowerCase().includes(target.value))
+                    return items.filter(x => x.fullName.toLowerCase().includes(target.value))
             }
         })
     }
@@ -93,7 +93,7 @@ export const Index = (props) => {
     function loadBody() {
         return (recordsAfterPagingAndSorting().map(item =>
         (<TableRow key={item._id}>
-            <TableCell  onClick={()=> alert(item.firstName)}>{item.firstName}</TableCell>
+            <TableCell>{item.firstName}</TableCell>
             <TableCell>{item.lastName}</TableCell>
             <TableCell>{item.gender}</TableCell>
             <TableCell>{(item.createdAt)}</TableCell>
@@ -134,7 +134,7 @@ export const Index = (props) => {
 
                     <Toolbar>
                         <Controls.Input
-                            label="Search Students"
+                            label="Search Employees"
                             InputProps={{
                                 startAdornment: (<InputAdornment position="start">
                                     <Search />
@@ -171,13 +171,12 @@ export const Index = (props) => {
 
 
                 <Popup
-                    title="Register Student Form"
+                    title="Employee Form"
                     openPopup={openPopup}
                     setOpenPopup={setOpenPopup}>
-                    <StudentForm recordForEdit= {recordForEdit}/></Popup>
+                    <studentForm />
 
-                    {/* <StudentForm /> */}
-
+                </Popup>
             </PanelLayout>
         </>
     )

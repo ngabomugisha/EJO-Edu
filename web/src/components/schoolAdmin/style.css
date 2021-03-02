@@ -1,0 +1,12 @@
+.card{
+    margin: 20px 0px 20px !important;
+    border-radius: 5px !important;
+    color: white !important;
+}
+.accordion>.card>.card-header {
+    background-color: #1f72c7;
+}
+
+.MuiGrid-container {
+    margin-bottom: 20px !important;
+}

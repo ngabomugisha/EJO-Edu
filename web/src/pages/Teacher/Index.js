@@ -11,10 +11,13 @@ function Main(props) {
 
     return (
         <>
-            <PanelLayout selected={1} role={props.state.auth.user.role}>
-                <Feed />
-            </PanelLayout>
-
+            {sessionStorage.getItem('isloggedin') ?
+                <PanelLayout selected={1} role={props.state.auth.user.role}>
+                    <Feed />
+                </PanelLayout>
+                :
+                history.replace('/')
+            }
         </>
     )
 }
@@ -24,7 +27,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-    
+
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main)
