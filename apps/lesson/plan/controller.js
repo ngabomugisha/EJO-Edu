@@ -201,6 +201,44 @@ exports.getOnePlan = async (req, res) => {
 
 }
 
+
+exports.getTopicDetails = async (req, res) => {
+    try {
+
+        const unitId = req.params.unitId;
+        const {
+            topic,
+            type
+        } = req.body
+        const teacher = req.user._id
+        Plan.getTopicDetails(unitId, topic, type, teacher)
+            .then(results => {
+                if(results.length > 0){
+                    
+                    const result = {
+                        numberOftimes: results.length
+                    }
+                    result.latest = {
+                        ...results[0].time,
+                        createdAt: results[0].createdAt
+                    }
+                    Response.Success(res, 200, "queried successfully", result);
+                }else{
+                    Response.Success(res, 200, "queried successfully", null);
+                }
+            })
+            .catch(err => {
+                console.log(err);
+                Response.InternalServerError(res, "We are having issues! please try again soon");
+            });
+
+    } catch (error) {
+        console.log(error);
+        Response.InternalServerError(res, "We are having issues! please try again soon");
+    }
+
+}
+
 exports.delete = async (req, res) => {
     try {
         const planId = req.params.planId;

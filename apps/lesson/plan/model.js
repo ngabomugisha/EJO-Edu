@@ -233,8 +233,11 @@ const planSchema = new mongoose.Schema({
         reason: String,
         otherComments: String
     },
-    time: Date,
-    // dateInterval: {}, // provisional and real  
+    time: {
+        start: Date,
+        provisionalEnd: Date,
+        realEnd: Date
+    }
 }, {timestamps: true});
 
 export default mongoose.model("plan", planSchema);

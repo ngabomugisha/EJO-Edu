@@ -106,7 +106,6 @@ exports.update = async (
     }
 }
 
-
 exports.evaluate = async (
     planId,
     studentSelfAssessment,
@@ -118,7 +117,8 @@ exports.evaluate = async (
             }, {
                 $set: {
                     studentSelfAssessment,
-                    teacherSelfAssessment
+                    teacherSelfAssessment,
+                    "time.realEnd": Date.now()
                 }
             }, {
                 upsert: true,
@@ -136,6 +136,7 @@ exports.evaluate = async (
         throw error;
     }
 }
+
 exports.getAllSubjectPlan = async (subjectId) => {
     try {
         return await Plan.find({
@@ -184,6 +185,33 @@ exports.getOnePlan = async (planId) => {
         throw error;
     }
 }
+
+exports.getTopicDetails = async (unitId, topic, type, teacher) => {
+    try {
+        return await Plan.find({
+                unit: unitId,
+                teacher: teacher,
+                [type] : {
+                    $elemMatch: {
+                        topic: topic
+                    }
+                },
+                
+            }).sort({
+                createdAt: -1
+            })
+            .then(res => {
+                return res;
+            })
+            .catch(err => {
+                console.log(err);
+                return false;
+            })
+    } catch (error) {
+        throw error;
+    }
+}
+
 
 exports.delete = async (planId) => {
     try {
