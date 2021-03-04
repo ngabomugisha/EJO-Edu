@@ -7,7 +7,7 @@ const studentSchema = new mongoose.Schema({
     boardingStatus: String,
     gender: {
         type: String,
-        enum: ['M','F']
+        enum: ['M','F', null]
     },
     busRoute: String,
     address: {
@@ -16,14 +16,14 @@ const studentSchema = new mongoose.Schema({
     },
     scholarshipStatus: {
         type: String,
-        enum: ['PRIVATE','SCHOOL','GOVERMENT']
+        enum: ['PRIVATE','SCHOOL','GOVERMENT', null]
     },
     allergies: String,
     permanentHealthConditions: [
         {
             condition: {
                 type:  String,
-                enum: ['VISUAL-DIFFICULTIES','PHYSICAL-IMPAIREMENT','HEARING-DIFFICULTIES','LEARNING-DIFFICULTIES','PHSYCHOLOGICAL-DIFFICULTIES']
+                enum: ['VISUAL-DIFFICULTIES','PHYSICAL-IMPAIREMENT','HEARING-DIFFICULTIES','LEARNING-DIFFICULTIES','PHSYCHOLOGICAL-DIFFICULTIES', null]
             }
         }
     ],
@@ -35,7 +35,7 @@ const studentSchema = new mongoose.Schema({
         email: String,
         maritalStatus: {
             type: String,
-            enum: ['SINGLE','MARIED','DIVORCED']
+            enum: ['SINGLE','MARIED','DIVORCED', null]
         }
     },
     father: {
@@ -46,7 +46,7 @@ const studentSchema = new mongoose.Schema({
         email: String,
         maritalStatus: {
             type: String,
-            enum: ['SINGLE','MARIED','DIVORCED']
+            enum: ['SINGLE','MARIED','DIVORCED', null]
         }
     },
     school: {
