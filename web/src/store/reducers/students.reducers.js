@@ -1,7 +1,7 @@
-import { HANDLE_FETCH_STUDENTS_SUCCESS } from '../types';
+import { HANDLE_FETCH_STUDENTS_SUCCESS, HANDLE_FETCH_STUDENTS_FAIL } from '../types';
 
 const INITIAL_STUDENTS_STATE = {
-  list: [],
+  list: [], error: { status: false, message: '' }
 };
 
 export default (state = INITIAL_STUDENTS_STATE, { type, payload }) => {
@@ -12,6 +12,13 @@ export default (state = INITIAL_STUDENTS_STATE, { type, payload }) => {
         list: payload,
       };
     default:
+      case HANDLE_FETCH_STUDENTS_FAIL:
+        return {
+          ...state,
+          error: {
+            status: true, message: payload
+          }
+        }
       return state;
   }
 };
