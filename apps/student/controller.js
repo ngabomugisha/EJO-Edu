@@ -21,6 +21,7 @@ exports.createFromCSV = async (req, res) => {
                     studentClass,
                     student["first name"],
                     student["last name"],
+                    student["registration number"],
                     student["gender"],
                     null,
                     null,
