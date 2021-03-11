@@ -1,40 +1,65 @@
-import Unit from './repo'
+import UnitPlan from './repo'
 import Response from '../../../utils/Responses';
+import Unit from '../unit/repo';
 
 exports.create = async (req, res) => {
     try {
         const {
-            name,
-            subTopic,
-            numberOfPeriods,
-            keyCompetency,
-            content,
-            activities
+            unit,
+            time,
+            subject
         } = req.body;
+        const teacher = req.user._id
+        const unitDetails = await Unit.getOneUnit(unit)
+        if (!unitDetails) {
+            return Response.validationError(res, "unit not found");
+        }
 
-        Unit.create(name, subTopic, numberOfPeriods, keyCompetency, content, activities)
-        .then(results => {
-            Response.Success(res, 200, "created successfully", results);
-        })
-        .catch(err => {
-            console.log(err);
-            Response.InternalServerError(res, "We are having issues! please try again soon");
-        });
+        UnitPlan.create(
+                unit,
+                time,
+                subject,
+                teacher,
+                unitDetails.name,
+                unitDetails.numberOfPeriods,
+                unitDetails.keyCompetency,
+                unitDetails.content,
+                unitDetails.activities
+            )
+            .then(results => {
+                Response.Success(res, 200, "created successfully", results);
+            })
+            .catch(err => {
+                console.log(err);
+                Response.InternalServerError(res, "We are having issues! please try again soon");
+            });
 
     } catch (error) {
         console.log(error);
         Response.InternalServerError(res, "We are having issues! please try again soon");
     }
-    
+
 }
 
 exports.update = async (req, res) => {
     try {
-        const unitId = req.params.unitId;
+        const unitPlanId = req.params.unitPlanId;
         const {
-            name, numberOfperiods, keyCompetency
+            time,
+            name,
+            numberOfPeriods,
+            keyCompetency,
+            content,
+            activities
         } = req.body;
-        Unit.update(unitId, name, numberOfperiods, keyCompetency)
+        UnitPlan.update(
+                unitPlanId,
+                time,
+                name,
+                numberOfPeriods,
+                keyCompetency,
+                content,
+                activities)
             .then(results => {
                 Response.Success(res, 200, "updated successfully", results);
             })
@@ -47,14 +72,15 @@ exports.update = async (req, res) => {
         console.log(error);
         Response.InternalServerError(res, "We are having issues! please try again soon");
     }
-    
+
 }
 
-exports.getAllSubTopicUnits = async (req, res) => {
+exports.getSubjectUnitPlans = async (req, res) => {
     try {
 
-        const subTopicId = req.params.subTopicId;
-        Unit.getAllSubTopicUnits(subTopicId)
+        const teacher = req.user._id
+        const subjectId = req.params.subjectId;
+        UnitPlan.getSubjectUnitPlans(subjectId, teacher)
             .then(results => {
                 Response.Success(res, 200, "queried successfully", results);
             })
@@ -67,14 +93,14 @@ exports.getAllSubTopicUnits = async (req, res) => {
         console.log(error);
         Response.InternalServerError(res, "We are having issues! please try again soon");
     }
-    
+
 }
 
-exports.getOneUnit = async (req, res) => {
+exports.getOneUnitPlan = async (req, res) => {
     try {
         const unitId = req.params.unitId;
-
-        Unit.getOneUnit(unitId)
+        const teacher = req.user._id
+        UnitPlan.getOneUnitPlan(unitId, teacher)
             .then(results => {
                 Response.Success(res, 200, "queried successfully", results);
             })
@@ -87,14 +113,14 @@ exports.getOneUnit = async (req, res) => {
         console.log(error);
         Response.InternalServerError(res, "We are having issues! please try again soon");
     }
-    
+
 }
 
 exports.delete = async (req, res) => {
     try {
-        const unitId = req.params.unitId;
-        
-        Unit.delete(unitId)
+        const unitPlanId = req.params.unitPlanId;
+
+        UnitPlan.delete(unitPlanId)
             .then(results => {
                 Response.Success(res, 200, "deleted successfully", results);
             })
@@ -107,5 +133,5 @@ exports.delete = async (req, res) => {
         console.log(error);
         Response.InternalServerError(res, "We are having issues! please try again soon");
     }
-    
+
 }

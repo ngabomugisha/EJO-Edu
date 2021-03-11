@@ -1,11 +1,11 @@
 import Unit from './model'
 
-exports.create = async (name, subTopic,  numberOfperiods, keyCompetency, content, activities) =>{
+exports.create = async (name, subTopic,  numberOfPeriods, keyCompetency, content, activities) =>{
 try {
     const newUnit = new Unit({
                 name,
                 subTopic,
-                numberOfperiods,
+                numberOfPeriods,
                 keyCompetency,
                 content,
                 activities

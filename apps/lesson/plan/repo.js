@@ -5,6 +5,7 @@ exports.create = async (
     school,
     name,
     unit,
+    unitPlanId,
     subject,
     keyUnitCompetency,
     lessonNumber,
@@ -21,28 +22,30 @@ exports.create = async (
     time
 ) => {
     try {
-        const newPlan = new Plan({
-            teacher,
-            school,
-            name,
-            unit,
-            subject,
-            keyUnitCompetency,
-            lessonNumber,
-            lessonName,
-            knowledge,
-            skills,
-            attitudesAndValues,
-            instructionalMaterial,
-            otherMaterialsAndReferences,
-            activities,
-            teachingTechniques,
-            studentSelfAssessment,
-            teacherSelfAssessment,
-            time
-        })
-        await newPlan.save()
-        return newPlan;
+        // const newPlan = new Plan({
+        //     teacher,
+        //     school,
+        //     name,
+        //     unit,
+        //     unitPlanId,
+        //     subject,
+        //     keyUnitCompetency,
+        //     lessonNumber,
+        //     lessonName,
+        //     knowledge,
+        //     skills,
+        //     attitudesAndValues,
+        //     instructionalMaterial,
+        //     otherMaterialsAndReferences,
+        //     activities,
+        //     teachingTechniques,
+        //     studentSelfAssessment,
+        //     teacherSelfAssessment,
+        //     time
+        // })
+        // await newPlan.save()
+        // return newPlan;
+        return {}
     } catch (error) {
         throw error;
     }
@@ -52,6 +55,7 @@ exports.update = async (
     planId,
     name,
     unit,
+    unitPlanId,
     subject,
     keyUnitCompetency,
     lessonNumber,
@@ -74,6 +78,7 @@ exports.update = async (
                 $set: {
                     name,
                     unit,
+                    unitPlanId,
                     subject,
                     keyUnitCompetency,
                     lessonNumber,
@@ -117,8 +122,7 @@ exports.evaluate = async (
             }, {
                 $set: {
                     studentSelfAssessment,
-                    teacherSelfAssessment,
-                    "time.realEnd": Date.now()
+                    teacherSelfAssessment
                 }
             }, {
                 upsert: true,
@@ -191,12 +195,12 @@ exports.getTopicDetails = async (unitId, topic, type, teacher) => {
         return await Plan.find({
                 unit: unitId,
                 teacher: teacher,
-                [type] : {
+                [type]: {
                     $elemMatch: {
                         topic: topic
                     }
                 },
-                
+
             }).sort({
                 createdAt: -1
             })

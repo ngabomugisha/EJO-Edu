@@ -234,9 +234,11 @@ const planSchema = new mongoose.Schema({
         otherComments: String
     },
     time: {
-        start: Date,
-        provisionalEnd: Date,
-        realEnd: Date
+        slotOnTimetable: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'timetable'
+        },
+        day: Date
     }
 }, {timestamps: true});
 

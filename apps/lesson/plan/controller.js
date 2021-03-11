@@ -1,11 +1,13 @@
 import Plan from './repo'
 import Response from '../../../utils/Responses';
+import UnitPlan from '../unit-plan/repo'
 
 exports.create = async (req, res) => {
     try {
         const {
             name,
             unit,
+            unitPlanId,
             subject,
             keyUnitCompetency,
             lessonNumber,
@@ -29,6 +31,7 @@ exports.create = async (req, res) => {
                 school,
                 name,
                 unit,
+                unitPlanId,
                 subject,
                 keyUnitCompetency,
                 lessonNumber,
@@ -44,7 +47,14 @@ exports.create = async (req, res) => {
                 teacherSelfAssessment,
                 time
             )
-            .then(results => {
+            .then(async (results) => {
+                // await UnitPlan.updateOneTopic(unitPlanId, "content.knowledgeAndUnderstanding", knowledge, time.day );
+                // await UnitPlan.updateOneTopic(unitPlanId, "content.skills", skills, time.day );
+                // await UnitPlan.updateOneTopic(unitPlanId, "content.attitudesAndValues", attitudesAndValues, time.day );
+
+                //activities
+                await UnitPlan.updateActivities(unitPlanId, activities, time.day );
+
                 Response.Success(res, 200, "created successfully", results);
             })
             .catch(err => {
@@ -65,6 +75,7 @@ exports.update = async (req, res) => {
         const {
             name,
             unit,
+            unitPlanId,
             subject,
             keyUnitCompetency,
             lessonNumber,
@@ -84,6 +95,7 @@ exports.update = async (req, res) => {
                 planId,
                 name,
                 unit,
+                unitPlanId,
                 subject,
                 keyUnitCompetency,
                 lessonNumber,
@@ -213,8 +225,8 @@ exports.getTopicDetails = async (req, res) => {
         const teacher = req.user._id
         Plan.getTopicDetails(unitId, topic, type, teacher)
             .then(results => {
-                if(results.length > 0){
-                    
+                if (results.length > 0) {
+
                     const result = {
                         numberOftimes: results.length
                     }
@@ -223,7 +235,7 @@ exports.getTopicDetails = async (req, res) => {
                         createdAt: results[0].createdAt
                     }
                     Response.Success(res, 200, "queried successfully", result);
-                }else{
+                } else {
                     Response.Success(res, 200, "queried successfully", null);
                 }
             })

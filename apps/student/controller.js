@@ -1,5 +1,46 @@
 import Student from './repo'
 import Response from '../../utils/Responses';
+import csvtojson from 'csvtojson'
+
+exports.createFromCSV = async (req, res) => {
+    try {
+        const {
+            studentClass
+        } = req.body;
+        
+        const school = req.user.school
+        console.log(studentClass, req.files.students[0])
+        const file = req.files.students[0].path
+        let students = []
+        csvtojson()
+        .fromFile(file)
+        .then(async (rows) => {
+            students = rows
+            rows.map(student => {
+                Student.create( school,
+                    studentClass,
+                    student["first name"],
+                    student["last name"],
+                    student["gender"],
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null
+                    )
+            })
+            Response.Success(res, 200, "created successfully", students);
+        })
+
+
+    } catch (error) {
+        console.log(error);
+        Response.InternalServerError(res, "We are having issues! please try again soon");
+    }
+
+}
 
 exports.create = async (req, res) => {
     try {
@@ -11,10 +52,10 @@ exports.create = async (req, res) => {
             dateOfBirth,
             address,
             scholarship,
+            ngo,
             allergies,
             permanentHealthConditions,
-            mother,
-            father
+            guardians
         } = req.body;
         const school = req.user.school
         Student.create(
@@ -26,10 +67,10 @@ exports.create = async (req, res) => {
                 dateOfBirth,
                 address,
                 scholarship,
+                ngo,
                 allergies,
                 permanentHealthConditions,
-                mother,
-                father
+                guardians
             )
             .then(results => {
                 Response.Success(res, 200, "created successfully", results);
@@ -57,10 +98,10 @@ exports.update = async (req, res) => {
             dateOfBirth,
             address,
             scholarship,
+            ngo,
             allergies,
             permanentHealthConditions,
-            mother,
-            father
+            guardians
         } = req.body;
         Student.update(
                 studentId,
@@ -71,10 +112,10 @@ exports.update = async (req, res) => {
                 dateOfBirth,
                 address,
                 scholarship,
+                ngo,
                 allergies,
                 permanentHealthConditions,
-                mother,
-                father
+                guardians
             )
             .then(results => {
                 Response.Success(res, 200, "updated successfully", results);

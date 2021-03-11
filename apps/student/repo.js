@@ -9,10 +9,10 @@ exports.create = async (
     dateOfBirth,
     address,
     scholarship,
+    ngo,
     allergies,
     permanentHealthConditions,
-    mother,
-    father
+    guardians
 ) => {
     try {
         const newStudent = new Student({
@@ -24,10 +24,10 @@ exports.create = async (
             dateOfBirth,
             address,
             scholarship,
+            ngo,
             allergies,
             permanentHealthConditions,
-            mother,
-            father
+            guardians
         })
         await newStudent.save()
         return newStudent;
@@ -45,10 +45,10 @@ exports.update = async (
     dateOfBirth,
     address,
     scholarship,
+    ngo,
     allergies,
     permanentHealthConditions,
-    mother,
-    father
+    guardians
 ) => {
     try {
         return await Student.findByIdAndUpdate({
@@ -61,10 +61,10 @@ exports.update = async (
                 dateOfBirth,
                 address,
                 scholarship,
+                ngo,
                 allergies,
                 permanentHealthConditions,
-                mother,
-                father
+                guardians
             }, {
                 new: true
             },

@@ -18,6 +18,14 @@ const studentSchema = new mongoose.Schema({
         type: String,
         enum: ['PRIVATE','SCHOOL','GOVERMENT', null]
     },
+    ngo: {
+        name: String,
+        contactPerson: {
+            title: String,
+            name: String,
+            phone: String
+        }
+    },
     allergies: String,
     permanentHealthConditions: [
         {
@@ -27,7 +35,7 @@ const studentSchema = new mongoose.Schema({
             }
         }
     ],
-    mother: {
+    guardians: [{
         firstName: String,
         lastName: String,
         identificationNumber: String,
@@ -35,20 +43,13 @@ const studentSchema = new mongoose.Schema({
         email: String,
         maritalStatus: {
             type: String,
-            enum: ['SINGLE','MARIED','DIVORCED', null]
-        }
-    },
-    father: {
-        firstName: String,
-        lastName: String,
-        identificationNumber: String,
-        phone: String,
-        email: String,
-        maritalStatus: {
+            enum: ['SINGLE','MARIED','DIVORCED', 'RE-MARIED', null]
+        },
+        relationship: {
             type: String,
-            enum: ['SINGLE','MARIED','DIVORCED', null]
+            enum: ['FATHER', 'MOTHER', 'GUARDIAN', null]
         }
-    },
+    }],
     school: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'school'
