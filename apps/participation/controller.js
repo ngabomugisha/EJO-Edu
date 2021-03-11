@@ -75,7 +75,7 @@ exports.addStudentParticipation = async (req, res) => {
 exports.getClassParticipation = async (req, res) => {
     try {
 
-        const classId = req.body.classId
+        const classId = req.params.classId
         const teacher = req.user._id
         console.log("class: ", classId)
         Participation.getClassParticipation(classId, teacher)
