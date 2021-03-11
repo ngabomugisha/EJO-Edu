@@ -4,7 +4,7 @@ const participationSchema = new mongoose.Schema({
     ended: Date,
     class: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'class'
+            ref: 'class'
     },
     teacher: {
         type: mongoose.Schema.Types.ObjectId,
@@ -14,23 +14,31 @@ const participationSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'subject'
     },
+    cycleNumber: {
+        type: Number,
+        default: 1
+    },
     students: [{
         student: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'student'
         },
-        positive: Boolean,
-        firstLevel: {
-            type: String
-        },
-        secondLevel: {
-            type: String
-        },
-        thirdLevel: {
-            type: String
-        },
-        time: Date
+        participation: [{
+            positive: Boolean,
+            firstLevel: {
+                type: String
+            },
+            secondLevel: {
+                type: String
+            },
+            thirdLevel: {
+                type: String
+            },
+            time: Date
+        }]
     }]
-}, {timestamps: true});
+}, {
+    timestamps: true
+});
 
 export default mongoose.model("participation", participationSchema);

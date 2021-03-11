@@ -42,7 +42,7 @@ exports.addStudentParticipation = async (req, res) => {
     try {
         const participationId = req.params.participationId;
         const {
-            studentId,
+            students,
             positive,
             firstLevel,
             secondLevel,
@@ -51,7 +51,7 @@ exports.addStudentParticipation = async (req, res) => {
 
         Participation.addStudentParticipation(
             participationId,
-            studentId,
+            students,
             positive,
             firstLevel,
             secondLevel,
@@ -72,12 +72,13 @@ exports.addStudentParticipation = async (req, res) => {
     
 }
 
-
-exports.getOneParticipation = async (req, res) => {
+exports.getClassParticipation = async (req, res) => {
     try {
-        const participationId = req.params.participationId;
 
-        Participation.getOneParticipation(participationId)
+        const classId = req.body.classId
+        const teacher = req.user._id
+
+        Participation.getClassParticipation(classId, teacher)
             .then(results => {
                 Response.Success(res, 200, "queried successfully", results);
             })
