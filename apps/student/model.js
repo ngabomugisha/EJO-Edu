@@ -5,6 +5,7 @@ const studentSchema = new mongoose.Schema({
     lastName: String,
     dateOfBirth: Date,
     boardingStatus: String,
+    registrationNumber: String,
     gender: {
         type: String,
         enum: ['M','F', null]
