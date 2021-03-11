@@ -65,7 +65,6 @@ exports.update = async (
     }
 }
 
-
 exports.updateOneTopic = async (
     unitPlanId,
     type,
@@ -109,7 +108,6 @@ exports.updateOneTopic = async (
         throw error;
     }
 }
-
 
 exports.updateActivities = async (
     unitPlanId,
