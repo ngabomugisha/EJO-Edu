@@ -77,7 +77,7 @@ exports.getClassParticipation = async (req, res) => {
 
         const classId = req.body.classId
         const teacher = req.user._id
-
+        console.log("class: ", classId)
         Participation.getClassParticipation(classId, teacher)
             .then(results => {
                 Response.Success(res, 200, "queried successfully", results);
