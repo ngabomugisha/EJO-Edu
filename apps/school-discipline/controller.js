@@ -1,27 +1,23 @@
-import Participation from './repo'
-import Student from '../student/repo'
+import SchoolDiscipline from './repo'
 import Response from '../../utils/Responses';
 
 exports.create = async (req, res) => {
     try {
         const {
-            assignedClass,
-            subject
+            firstLevel,
+            secondLevel,
+            thirdLevel,
+            forthLevel,
+            marks
         } = req.body;
-        const teacher = req.user._id
-        const rawStudents = await Student.getAllClassStudents(assignedClass);    
-        const students = [];
-        rawStudents.map(student => {
-            students.push({
-                student: student._id
-            })
-        })
-        
-        Participation.create(
-            assignedClass,
-            teacher,
-            subject,
-            students
+        const school = req.user.school
+        SchoolDiscipline.create(
+            school,
+            firstLevel,
+            secondLevel,
+            thirdLevel,
+            forthLevel,
+            marks
         )
         .then(results => {
             Response.Success(res, 200, "created successfully", results);
@@ -38,25 +34,43 @@ exports.create = async (req, res) => {
     
 }
 
-exports.addStudentParticipation = async (req, res) => {
+exports.update = async (req, res) => {
     try {
-        const participationId = req.params.participationId;
+        const schoolDisciplineId = req.params.schoolDisciplineId;
         const {
-            students,
-            positive,
             firstLevel,
             secondLevel,
-            record
-        } = req.body
-
-        Participation.addStudentParticipation(
-            participationId,
-            students,
-            positive,
+            thirdLevel,
+            forthLevel,
+            marks
+        } = req.body;
+        SchoolDiscipline.update(
+            schoolDisciplineId, 
             firstLevel,
             secondLevel,
-            record
+            thirdLevel,
+            forthLevel,
+            marks
             )
+            .then(results => {
+                Response.Success(res, 200, "updated successfully", results);
+            })
+            .catch(err => {
+                console.log(err);
+                Response.InternalServerError(res, "We are having issues! please try again soon");
+            });
+
+    } catch (error) {
+        console.log(error);
+        Response.InternalServerError(res, "We are having issues! please try again soon");
+    }
+    
+}
+
+exports.getAllSchoolDisciplines = async (req, res) => {
+    try {
+        const school = req.user.school
+        SchoolDiscipline.getAllSchoolDisciplines(school)
             .then(results => {
                 Response.Success(res, 200, "queried successfully", results);
             })
@@ -71,43 +85,13 @@ exports.addStudentParticipation = async (req, res) => {
     }
     
 }
-exports.addComment = async (req, res) => {
+
+
+exports.getOneSchoolDiscipline = async (req, res) => {
     try {
-        const participationId = req.params.participationId;
-        const {
-            student,
-            comment
-        } = req.body
+        const schoolDisciplineId = req.params.schoolDisciplineId;
 
-        const author = req.user._id
-        Participation.addComment(
-            participationId,
-            student,
-            comment,
-            author
-            )
-            .then(results => {
-                Response.Success(res, 200, "queried successfully", results);
-            })
-            .catch(err => {
-                console.log(err);
-                Response.InternalServerError(res, "We are having issues! please try again soon");
-            });
-
-    } catch (error) {
-        console.log(error);
-        Response.InternalServerError(res, "We are having issues! please try again soon");
-    }
-    
-}
-
-exports.getClassParticipation = async (req, res) => {
-    try {
-
-        const classId = req.params.classId
-        const teacher = req.user._id
-        console.log("class: ", classId)
-        Participation.getClassParticipation(classId, teacher)
+        SchoolDiscipline.getOneSchoolDiscipline(schoolDisciplineId)
             .then(results => {
                 Response.Success(res, 200, "queried successfully", results);
             })
@@ -125,9 +109,9 @@ exports.getClassParticipation = async (req, res) => {
 
 exports.delete = async (req, res) => {
     try {
-        const participationId = req.params.participationId;
+        const schoolDisciplineId = req.params.schoolDisciplineId;
         
-        Participation.delete(participationId)
+        SchoolDiscipline.delete(schoolDisciplineId)
             .then(results => {
                 Response.Success(res, 200, "deleted successfully", results);
             })

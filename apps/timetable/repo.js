@@ -116,6 +116,24 @@ exports.getAllClassTeacherSubjectTimetable = async (classId, teacherId, subjectI
         throw error;
     }
 }
+exports.getAllTeacherTimetable = async (teacherId) => {
+    try {
+        return await Timetable.find({
+                teacher: teacherId
+            })
+            .sort({"time.dayOfWeek": 1, "time.starts": 1})
+            .exec()
+            .then(res => {
+                return res;
+            })
+            .catch(err => {
+                console.log(err);
+                return false;
+            })
+    } catch (error) {
+        throw error;
+    }
+}
 
 exports.getOneTimetableSlot = async (timetableId) => {
     try {

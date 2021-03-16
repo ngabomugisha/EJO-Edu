@@ -128,6 +128,25 @@ exports.getAllClassTeacherSubjectTimetable = async (req, res) => {
     
 }
 
+exports.getAllTeacherTimetable = async (req, res) => {
+    try {
+        const teacherId = req.params.teacherId;
+        Timetable.getAllTeacherTimetable(teacherId)
+            .then(results => {
+                Response.Success(res, 200, "queried successfully", results);
+            })
+            .catch(err => {
+                console.log(err);
+                Response.InternalServerError(res, "We are having issues! please try again soon");
+            });
+
+    } catch (error) {
+        console.log(error);
+        Response.InternalServerError(res, "We are having issues! please try again soon");
+    }
+    
+}
+
 exports.getOneTimetableSlot = async (req, res) => {
     try {
         const timetableId = req.params.timetableId;

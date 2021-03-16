@@ -6,6 +6,7 @@ router.post('/', Timetable.create);
 router.put('/:timetableId', Timetable.update);
 router.get('/:classId/:teacherId/class-teacher', Timetable.getAllClassTeacherTimetable);
 router.get('/:classId/class', Timetable.getAllClassTimetable);
+router.get('/:teacherId/teacher', Timetable.getAllTeacherTimetable);
 router.get('/:classId/:teacherId/:subjectId/class-teacher-subject', Timetable.getAllClassTeacherSubjectTimetable);
 router.get('/:timetableId', Timetable.getOneTimetableSlot);
 router.delete('/:timetableId', Timetable.delete);

@@ -31,9 +31,22 @@ const participationSchema = new mongoose.Schema({
             secondLevel: {
                 type: String
             },
-            thirdLevel: {
-                type: String
+            record: [{
+                thirdLevel: {
+                    type: String
+                },
+                forthLevel: {
+                    type: String
+                }
+            }],
+            time: Date
+        }],
+        comments: [{
+            author: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'user'
             },
+            comment: String,
             time: Date
         }]
     }]

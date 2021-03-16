@@ -27,14 +27,14 @@ exports.addStudentParticipation = async (
     positive,
     firstLevel,
     secondLevel,
-    thirdLevel
+    record
 ) => {
     try {
         const participation = {
             positive,
             firstLevel,
             secondLevel,
-            thirdLevel,
+            record,
             time: Date.now()
         }
         let participationList = []
@@ -76,6 +76,43 @@ exports.addStudentParticipation = async (
             return {participationList, cycleFinished: true}
         }
         return {participationList}
+    } catch (error) {
+        throw error;
+    }
+}
+
+exports.addComment = async (
+    participationId,
+            student,
+            comment,
+            author
+) => {
+    try {
+        const record = {
+            student,
+            comment,
+            author,
+            time: Date.now()
+        }
+        return await Participation.findOneAndUpdate({
+                _id: participationId,
+                students: {
+                    $elemMatch: {
+                        student: student
+                    }
+                }
+
+            }, {
+                $push: {
+                    "students.$.comments": record
+                }
+            }, {
+                new: true
+            })
+            .populate({
+                path: 'students.student'
+            })
+            .exec();
     } catch (error) {
         throw error;
     }
