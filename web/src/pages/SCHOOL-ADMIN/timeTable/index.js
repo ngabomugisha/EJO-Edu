@@ -7,7 +7,7 @@ import RemoteData from '../../../components/schoolAdmin/TimeTable'
 export const Index = (props) => {
     return (
         <div>
-            <PanelLayout selected={4} role={props.state.auth.user.role} >
+            <PanelLayout selected={6} role={props.state.auth.user.role} >
                 <RemoteData/>
             </PanelLayout>
             

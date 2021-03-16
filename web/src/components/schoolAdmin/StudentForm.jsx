@@ -17,15 +17,18 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormLabel from '@material-ui/core/FormLabel';
 import { Formik, Field, Form } from 'formik'
 import * as Yup from 'yup'
 import Alert from '@material-ui/lab/Alert';
 import { Autocomplete } from 'formik-material-ui-lab'
 
 
-const permanentHealthConditionsOptions = ['VISUAL-DIFFICULTIES', 'PHYSICAL-IMPAIREMENT', 'HEARING-DIFFICULTIES', 'LEARNING-DIFFICULTIES', 'PHSYCHOLOGICAL-DIFFICULTIES']
+const permanentHealthConditionsOptions = [
+    {'condition' :'VISUAL-DIFFICULTIES'},
+    {'condition' : 'PHYSICAL-IMPAIREMENT'}, 
+    {'condition' :'HEARING-DIFFICULTIES'}, 
+    {'condition' :'LEARNING-DIFFICULTIES'},
+    {'condition' : 'PHSYCHOLOGICAL-DIFFICULTIES'}]
 const useStyles = makeStyles((theme) => ({
     paper: {
         marginTop: theme.spacing(8),
@@ -63,7 +66,7 @@ export const StudentForm = (props) => {
     const [d, setD] = useState('')
     const [s, setS] = useState("")
     const [c, setC] = useState('')
-    const [, setV] = useState('')
+    const [v, setV] = useState('')
     const [] = useState('')
     const [] = useState('')
     const [] = useState('')
@@ -112,6 +115,21 @@ export const StudentForm = (props) => {
     }
     let iniData = null
     const data = props.recordForEdit
+    console.log('DATAFOREDIT:',data)
+
+    if(data !== null && data.address !== undefined){
+        async function fetchV() {
+            const request = await https.get(`/addresses/villages/${data.address}`, { headers: { 'Authorization': `Basic ${localStorage.token}` } }
+            )
+                .then((response) => {
+                    setVillage(response.data)
+                });
+            return request
+        }
+        fetchV()
+        console.log('AFTER REQUEST',village)
+    }
+
     const initialValue = {
         firstName: null,
         lastName: null,
@@ -143,33 +161,33 @@ export const StudentForm = (props) => {
     if(!props.recordForEdit){
         iniData=initialValue
     }else{
-
+        
     const initialValuesforEdit = {
         firstName: data.firstName,
         lastName: data.lastName,
-        gender: data.gender,
-        studentClass: data.studentClass,
-        address: data.address,
-        scholarship: data.scholarship,
-        dateOfBirth: data.dateOfBirth,
-        allergies: data.allergies,
-        permanentHealthConditions: data.permanentHealthConditions,
+        gender: data.gender ? data.gender : "" ,
+        studentClass: data.studentClass ? data.studentClass : '',
+        address: data.address ? data.address : '',
+        scholarship: data.scholarship ? data.scholarship : '',
+        dateOfBirth: data.dateOfBirth ? (data.dateOfBirth).substring(0,10) : '',
+        allergies: data.allergies ? data.allergies: '',
+        permanentHealthConditions: data.permanentHealthConditions ? data.permanentHealthConditions : '',
         mother: {
-            firstName: data.mother.firstName,
-            lastName: data.mother.lastName,
-            identificationNumber: data.mother.identificationNumber,
-            phone: data.mother.phone,
-            email: data.mother.email,
-            maritalStatus: data.mother.maritalStatus
+            firstName: !data.mother ? '' : data.mother.firstName ? data.mother.firstName : '',
+            lastName: !data.mother ? '' : data.mother.lastName ? data.mother.lastName : '',
+            identificationNumber: !data.mother ? '' : data.mother.identificationNumber ? data.mother.identificationNumber : '',
+            phone: !data.mother ? '' : data.mother.phone ? data.mother.phone : '',
+            email: !data.mother ? '' :  data.mother.email ? data.mother.email : '',
+            maritalStatus: !data.mother ? '' :  data.mother.maritalStatus ? data.mother.maritalStatus : ''
         },
         father: {
-            firstName: data.father.firstName,
-            lastName: data.father.lastName,
-            identificationNumber: data.father.identificationNumber,
-            phone: data.father.phone,
-            email: data.father.email,
-            maritalStatus: data.father.maritalStatus
-        },
+            firstName: !data.father ? '' : data.father.firstName ? data.father.firstName : '',
+            lastName: !data.father ? '' : data.father.lastName ? data.father.lastName : '',
+            identificationNumber: !data.father ? '' : data.father.identificationNumber ? data.father.identificationNumber : '',
+            phone: !data.father ? '' : data.father.phone ? data.father.phone : '',
+            email: !data.father ? '' :  data.father.email ? data.father.email : '',
+            maritalStatus: !data.father ? '' :  data.father.maritalStatus ? data.father.maritalStatus : ''
+         },
     }
 
         iniData=initialValuesforEdit
@@ -219,9 +237,53 @@ export const StudentForm = (props) => {
         }
         fetchVillage()
     }, [c])
+
+
+// componentDidMount()
     useEffect(() => {
+
+        async function fetchVillage() {
+            const request = await https.get(`/addresses/villages`, { headers: { 'Authorization': `Basic ${localStorage.token}` } }
+            )
+                .then((response) => {
+                    setVillage(response.data)
+                });
+            return request
+        }
+        fetchVillage()
+
+        async function fetchCell() {
+            const request = await https.get(`/addresses/cells`, { headers: { 'Authorization': `Basic ${localStorage.token}` } }
+            )
+                .then((response) => {
+                    setCell(response.data)
+                });
+            return request
+        }
+        fetchCell()
+
+        async function fetchSector() {
+            const request = await https.get(`/addresses/sectors`, { headers: { 'Authorization': `Basic ${localStorage.token}` } }
+            )
+                .then((response) => {
+                    setSector(response.data)
+                });
+            return request
+        }
+        fetchSector()
+
+        async function fetchDistrict() {
+            const request = await https.get(`/addresses/districts`, { headers: { 'Authorization': `Basic ${localStorage.token}` } }
+            )
+                .then((response) => {
+                    setDistrict(response.data)
+                });
+            return request
+        }
+        fetchDistrict()
+
         async function fetchProvinces() {
-            const req = await https.get('/addresses/provinces')
+            const req = await https.get('/addresses/provinces', { headers: { 'Authorization': `Basic ${localStorage.token}` } })
                 .then((response) => {
                     setProvince(response.data)
                 });
@@ -238,6 +300,7 @@ export const StudentForm = (props) => {
         }
         fetchClasses()
         fetchProvinces()
+        
     }, [])
     return (
         <>
@@ -377,7 +440,7 @@ export const StudentForm = (props) => {
                                                     onChange={handleDistrict}
                                                     label="District"
                                                     fullWidth
-                                                    disabled={enableDistrict}>
+                                                    >
                                                     <MenuItem value="">
                                                         <em>None</em>
                                                     </MenuItem>
@@ -397,7 +460,6 @@ export const StudentForm = (props) => {
                                                     onChange={handleSector}
                                                     label="Sector"
                                                     fullWidth
-                                                    disabled={enableSector}
                                                 >
                                                     <MenuItem value="">
                                                         <em>None</em>
@@ -418,7 +480,6 @@ export const StudentForm = (props) => {
                                                     onChange={handleCell}
                                                     label="Cell"
                                                     fullWidth
-                                                    disabled={enableCell}
                                                 >
                                                     <MenuItem value="">
                                                         <em>None</em>
@@ -438,15 +499,17 @@ export const StudentForm = (props) => {
                                                 fullWidth
                                                 variant="outlined"
                                                 select
-                                                disabled={enableVillage}
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}
                                             >
+{console.log('please village #######@@@@@@@@@@@',village)}
                                                 <MenuItem value="">
                                                     <em>None</em>
                                                 </MenuItem>
-                                                {village != null ?
+                                                    
+                                                {
+                                                village == null ? "" : village.length > 0 ?
                                                     village.map(item => (<MenuItem key={item._id} value={item._id}>{item.name}</MenuItem>)) : null
                                                 }
                                             </Field>
@@ -700,7 +763,7 @@ export const StudentForm = (props) => {
                                             color="primary"
                                             type="submit"
                                         >
-                                            Submit
+                                            Save
                             </Button>
                                     </Grid>
                                 </Grid>

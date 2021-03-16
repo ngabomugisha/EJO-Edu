@@ -1,4 +1,5 @@
 import * as React from 'react';
+import './style.css'
 import Paper from '@material-ui/core/Paper';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { withStyles } from '@material-ui/core/styles';
