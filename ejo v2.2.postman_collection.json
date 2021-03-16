@@ -721,6 +721,290 @@
 			]
 		},
 		{
+			"name": "school discpline settings",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"school\": \"602c1e8feeb9ae2820b62120\",\r\n    \"firstLevel\": \"Responsibility\",\r\n    \"secondLevel\": \"Careful work\",\r\n    \"thirdLevel\": \"Motivation\",\r\n    \"forthLevel\": \"Encouragement\",\r\n    \"marks\": -2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/school-discipline/",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"school-discipline",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstLevel\": \"Responsibility\",\r\n    \"secondLevel\": \"Careful work\",\r\n    \"thirdLevel\": \"Motivation\",\r\n    \"forthLevel\": \"Encouragement\",\r\n    \"marks\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/school-discipline/60507420ae47f63e186aa99f",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"school-discipline",
+								"60507420ae47f63e186aa99f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get one",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/school-discipline/60507420ae47f63e186aa99f",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"school-discipline",
+								"60507420ae47f63e186aa99f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/school-discipline",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"school-discipline"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/school-discipline/60507420ae47f63e186aa99f",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"school-discipline",
+								"60507420ae47f63e186aa99f"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "student discipline",
+			"item": [
+				{
+					"name": "add student discipline entry",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"studentClass\": \"602c20e5eeb9ae2820b62123\",\r\n    \"students\": [\r\n        {\r\n            \"_id\": \"602c23ddbd2ce42e800e0f37\"\r\n        },\r\n        {\r\n            \"_id\": \"6036ae70d9b47604481d6fd3\"\r\n        }\r\n    ],\r\n    \"firstLevel\": \"Responsibility\",\r\n    \"secondLevel\": \"Careful work\",\r\n    \"thirdLevel\": \"Motivation\",\r\n    \"forthLevel\": \"Encouragement\",\r\n    \"marks\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/discipline/",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"discipline",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "comment on a student",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"studentClass\": \"602c20e5eeb9ae2820b62123\",\r\n    \"comment\": \"Responsibility test comment\",\r\n    \"student\": \"6036ae70d9b47604481d6fd3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/discipline/comment",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"discipline",
+								"comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get student discipline",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/discipline/6036ae70d9b47604481d6fd3/student",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"discipline",
+								"6036ae70d9b47604481d6fd3",
+								"student"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get class discipline",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/discipline/602c20e5eeb9ae2820b62123/class",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"discipline",
+								"602c20e5eeb9ae2820b62123",
+								"class"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "combination",
 			"item": [
 				{
@@ -1082,12 +1366,7 @@
 									"type": "file",
 									"src": "/C:/Users/odilo/Desktop/students - Sheet1.csv"
 								}
-							],
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							]
 						},
 						"url": {
 							"raw": "localhost:9000/api/students/create-from-csv",
@@ -2109,11 +2388,13 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:9000/api/timetables/",
+							"raw": "https://ejo-education.herokuapp.com/api/timetables/",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"ejo-education",
+								"herokuapp",
+								"com"
 							],
-							"port": "9000",
 							"path": [
 								"api",
 								"timetables",
@@ -2218,6 +2499,39 @@
 					"response": []
 				},
 				{
+					"name": "get teacher timetable",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/timetables/602b9cfc49ce7a0be4a35fc7/teacher",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"timetables",
+								"602b9cfc49ce7a0be4a35fc7",
+								"teacher"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "get class teacher timetable",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -2235,11 +2549,13 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:9000/api/timetables/602c20e5eeb9ae2820b62123/602b9cfc49ce7a0be4a35fc7/class-teacher",
+							"raw": "https://ejo-education.herokuapp.com/api/timetables/602c20e5eeb9ae2820b62123/602b9cfc49ce7a0be4a35fc7/class-teacher",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"ejo-education",
+								"herokuapp",
+								"com"
 							],
-							"port": "9000",
 							"path": [
 								"api",
 								"timetables",
@@ -2906,6 +3222,58 @@
 							"response": []
 						},
 						{
+							"name": "add image to topic/activity",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "topic",
+											"value": "Use of dynamic geometry and graph plotting to illustrate relationship e.g. geogebra ",
+											"type": "text"
+										},
+										{
+											"key": "location",
+											"value": "activities",
+											"type": "text"
+										},
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/odilo/Pictures/62798f30259c11ebb1e180e82c2616da-page-1-table-1.csv"
+										},
+										{
+											"key": "fileType",
+											"value": "image",
+											"type": "text"
+										}
+									],
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/units/60509e4db4cebe27688acd3b/add-file",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"units",
+										"60509e4db4cebe27688acd3b",
+										"add-file"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "get one",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
@@ -3175,7 +3543,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"unit\": \"602c38ced3f6860698532d2f\",\r\n    \"unitPlanId\": \"60473131fe2fc60c449b5f5b\",\r\n    \"subject\": \"602c349dfd1613203834880d\",\r\n    \"keyUnitCompetency\": \"Use trigonometric circle and identities to determine trigonometric ratios and apply them to solve related problems\",\r\n    \"lessonNumber\": 1,\r\n    \"lessonName\": \"First lesson \",\r\n    \"knowledge\": [\r\n        {\r\n            \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\",\r\n            \"bloomTaxonomy\": \"REMEMBERING\",\r\n            \"standardCriteriaPerfomance\": 80\r\n        },\r\n        {\r\n            \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\",\r\n            \"bloomTaxonomy\": \"REMEMBERING\",\r\n            \"standardCriteriaPerfomance\": 50\r\n        }\r\n    ],\r\n     \"skills\": [\r\n        {\r\n            \"topic\": \"Represent graphically sine, cosine and tangent, functions and, together with the unit circle, use to relate values of any angle to the value for a positive acute angle \",\r\n            \"bloomTaxonomy\": \"APPLYING\",\r\n            \"standardCriteriaPerfomance\": 20\r\n        },\r\n        {\r\n            \"topic\": \"Use trigonometry, including the sine and cosine rules, to solve problems involving triangles\",\r\n            \"bloomTaxonomy\": \"APPLYING\",\r\n            \"standardCriteriaPerfomance\": 50\r\n        }\r\n    ],\r\n     \"attitudesAndValues\": [\r\n        {\r\n            \"topic\": \"Appreciate the relationshi p between the trigonomet ric values for different angles \",\r\n            \"bloomTaxonomy\": \"CREATING\",\r\n            \"standardCriteriaPerfomance\": 30\r\n        },\r\n        {\r\n            \"topic\": \"Verify reasonable ness of answers when solving problems\",\r\n            \"bloomTaxonomy\": \"EVALUATING\",\r\n            \"standardCriteriaPerfomance\": 70\r\n        }\r\n    ],\r\n    \"instructionalMaterial\": {},\r\n    \"otherMaterialsAndReferences\": \"N/A\",\r\n    \"activities\": {\r\n        \"introduction\": {\r\n            \"activities\": [\r\n                {\r\n                    \"activity\": \"Mental task – imagine a point on the edge of a wheel – as the wheel turns how high is the point above the centre? – sketch the graph \"\r\n                }\r\n            ],\r\n            \"otherActivity\": \"\",\r\n            \"crossCuttingIssues\": \"ENVIRONMENT-AND-SUSTAINABILITY\",\r\n            \"crossCuttingIssuesComment\": \"No comment\",\r\n            \"competency\": \"RESEARCH-AND-PROBLEM-SOLVING\",\r\n            \"competencyComment\": \"No comment\"\r\n        },\r\n        \"development\": {\r\n            \"activities\": [\r\n                {\r\n                    \"activity\": \"Practical – on graph paper draw circle of 10cm radius and measure half chord length and distance from the centre to chord for angles (say multiples of 15 degree ) – plot use calculator to determine which is sine and cosine. What is the radius of the calculator’s circle? – unit circle  \"\r\n                }\r\n            ],\r\n            \"otherActivity\": \"\",\r\n            \"crossCuttingIssues\": \"ENVIRONMENT-AND-SUSTAINABILITY\",\r\n            \"crossCuttingIssuesComment\": \"No comment\",\r\n            \"competency\": \"RESEARCH-AND-PROBLEM-SOLVING\",\r\n            \"competencyComment\": \"No comment\"\r\n        },\r\n        \"conclusion\": {\r\n            \"activities\": [\r\n                {\r\n                    \"activity\": \"Use of dynamic geometry and graph plotting to illustrate relationship e.g. geogebra\"\r\n                }\r\n            ],\r\n            \"otherActivity\": \"\",\r\n            \"crossCuttingIssues\": \"ENVIRONMENT-AND-SUSTAINABILITY\",\r\n            \"crossCuttingIssuesComment\": \"No comment\",\r\n            \"competency\": \"RESEARCH-AND-PROBLEM-SOLVING\",\r\n            \"competencyComment\": \"No comment\"\r\n        },\r\n        \"exercises\": {\r\n            \"questions\": [\r\n                {\r\n                 \"difficultLevel\": \"MEDIUM\",\r\n                 \"questionsObjective\": \"REMEMBERING\",\r\n                 \"question\": \"What is the answer\",\r\n                 \"questionType\": \"MULTI-CHOICE\",\r\n                 \"possibleAnswer\": [\r\n                     {\r\n                         \"answer\": \"answer\"\r\n                     },\r\n                     {\r\n                         \"answer\": \"answer2\"\r\n                     },\r\n                     {\r\n                         \"answer\": \"answer3\"\r\n                     }\r\n                 ],\r\n                \"answers\": [\r\n                     {\r\n                         \"answer\": \"answer2\"\r\n                     },\r\n                     {\r\n                         \"answer\": \"answer3\"\r\n                     }\r\n                 ],\r\n                 \"points\": 10\r\n                      \r\n                }\r\n            ]\r\n        }\r\n    },\r\n    \"teachingTechniques\": {\r\n        \"introduction\": {\r\n            \"contentFocus\": \"LIVE-LECTURING\",\r\n            \"interactiveFocus\": \"GROUP-WORK\",\r\n            \"criticalThinking\": \"CLASS-DISCUSSIONS-DEBATES\",\r\n            \"production\": \"SKILLS-PRACTICE\",\r\n            \"problemSolving\": \"RESEARCH-INQUIRY\",\r\n            \"reflection\": \"REFLECTION-ON-LEARNING\",\r\n            \"sitingArrangement\": \"LECTURE/INDEPENDENT-WORK/TEST\",\r\n            \"duration\": 10\r\n        },\r\n        \"development\": {\r\n            \"contentFocus\": \"LIVE-LECTURING\",\r\n            \"interactiveFocus\": \"GROUP-WORK\",\r\n            \"criticalThinking\": \"CLASS-DISCUSSIONS-DEBATES\",\r\n            \"production\": \"SKILLS-PRACTICE\",\r\n            \"problemSolving\": \"RESEARCH-INQUIRY\",\r\n            \"reflection\": \"REFLECTION-ON-LEARNING\",\r\n            \"sitingArrangement\": \"LECTURE/INDEPENDENT-WORK/TEST\",\r\n            \"duration\": 10\r\n        },\r\n        \"conclusion\": {\r\n            \"contentFocus\": \"LIVE-LECTURING\",\r\n            \"interactiveFocus\": \"GROUP-WORK\",\r\n            \"criticalThinking\": \"CLASS-DISCUSSIONS-DEBATES\",\r\n            \"production\": \"SKILLS-PRACTICE\",\r\n            \"problemSolving\": \"RESEARCH-INQUIRY\",\r\n            \"reflection\": \"REFLECTION-ON-LEARNING\",\r\n            \"sitingArrangement\": \"LECTURE/INDEPENDENT-WORK/TEST\",\r\n            \"duration\": 10\r\n        }\r\n    },\r\n    \"time\": {\r\n        \"day\": \"2021-06-31T17:58:09.010+00:00\",\r\n        \"slotOnTimetable\": \"603159c6191af33cdc989ff0\"\r\n    }\r\n}",
+									"raw": "{\r\n    \"unit\": \"602c38ced3f6860698532d2f\",\r\n    \"unitPlanId\": \"60473131fe2fc60c449b5f5b\",\r\n    \"subject\": \"602c349dfd1613203834880d\",\r\n    \"keyUnitCompetency\": \"Use trigonometric circle and identities to determine trigonometric ratios and apply them to solve related problems\",\r\n    \"lessonNumber\": 1,\r\n    \"lessonName\": \"First lesson \",\r\n    \"knowledge\": {\r\n        \"topics\": [\r\n            {\r\n                \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\",\r\n                \"bloomTaxonomy\": \"REMEMBERING\",\r\n                \"standardCriteriaPerfomance\": 80\r\n            },\r\n            {\r\n                \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\",\r\n                \"bloomTaxonomy\": \"REMEMBERING\",\r\n                \"standardCriteriaPerfomance\": 50\r\n            }\r\n        ],\r\n        \"instructionalMaterial\": [\r\n            {\r\n                \"materialType\":\"\",\r\n                \"items\": [\r\n                    {\r\n                        \"item\" :\"TextBooks\"\r\n                    },\r\n                    {\r\n                        \"item\" :\"Handouts\"\r\n                    }\r\n                ],\r\n                \"uploads\": [\r\n                    {\"file1\": \"....\"}\r\n                ]\r\n            }\r\n        ],\r\n        \"otherMaterialsAndReferences\": \"N/A\"\r\n    },\r\n    \"skills\": {\r\n        \"topics\": [\r\n            {\r\n                \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\",\r\n                \"bloomTaxonomy\": \"REMEMBERING\",\r\n                \"standardCriteriaPerfomance\": 80\r\n            },\r\n            {\r\n                \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\",\r\n                \"bloomTaxonomy\": \"REMEMBERING\",\r\n                \"standardCriteriaPerfomance\": 50\r\n            }\r\n        ],\r\n        \"instructionalMaterial\": [\r\n            {\r\n                \"materialType\":\"\",\r\n                \"items\": [\r\n                    {\r\n                        \"item\" :\"TextBooks\"\r\n                    },\r\n                    {\r\n                        \"item\" :\"Handouts\"\r\n                    }\r\n                ],\r\n                \"uploads\": [\r\n                    {\"file1\": \"....\"}\r\n                ]\r\n            }\r\n        ],\r\n        \"otherMaterialsAndReferences\": \"N/A\"\r\n    },\r\n    \"attitudesAndValues\": {\r\n        \"topics\": [\r\n            {\r\n                \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\",\r\n                \"bloomTaxonomy\": \"REMEMBERING\",\r\n                \"standardCriteriaPerfomance\": 80\r\n            },\r\n            {\r\n                \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\",\r\n                \"bloomTaxonomy\": \"REMEMBERING\",\r\n                \"standardCriteriaPerfomance\": 50\r\n            }\r\n        ],\r\n        \"instructionalMaterial\": [\r\n            {\r\n                \"materialType\":\"\",\r\n                \"items\": [\r\n                    {\r\n                        \"item\" :\"TextBooks\"\r\n                    },\r\n                    {\r\n                        \"item\" :\"Handouts\"\r\n                    }\r\n                ],\r\n                \"uploads\": [\r\n                    {\"file1\": \"....\"}\r\n                ]\r\n            }\r\n        ],\r\n        \"otherMaterialsAndReferences\": \"N/A\"\r\n    },\r\n\r\n    \"activities\": {\r\n        \"introduction\": {\r\n            \"content\": {\r\n                \"activities\": [\r\n                    {\r\n                        \"activity\": \"Mental task – imagine a point on the edge of a wheel – as the wheel turns how high is the point above the centre? – sketch the graph \"\r\n                    }\r\n                ],\r\n                \"otherActivity\": \"\"\r\n            },\r\n            \"crossCuttingIssues\": {\r\n                \"issues\": [\r\n                    {\r\n                        \"issue\": \"ENVIRONMENT-AND-SUSTAINABILITY\"\r\n                    }\r\n                ],\r\n                \"omment\": \"No comment\"\r\n            },\r\n            \"competency\": {\r\n                \"competencies\": [\r\n                    {\r\n                        \"competency\": \"RESEARCH-AND-PROBLEM-SOLVING\"\r\n                    }\r\n                ],\r\n                \"comment\": \"No comment\"\r\n            }\r\n        },\r\n        \"development\": {\r\n            \"content\": {\r\n                \"activities\": [\r\n                    {\r\n                        \"activity\": \"Mental task – imagine a point on the edge of a wheel – as the wheel turns how high is the point above the centre? – sketch the graph \"\r\n                    }\r\n                ],\r\n                \"otherActivity\": \"\"\r\n            },\r\n            \"crossCuttingIssues\": {\r\n                \"issues\": [\r\n                    {\r\n                        \"issue\": \"ENVIRONMENT-AND-SUSTAINABILITY\"\r\n                    }\r\n                ],\r\n                \"omment\": \"No comment\"\r\n            },\r\n            \"competency\": {\r\n                \"competencies\": [\r\n                    {\r\n                        \"competency\": \"RESEARCH-AND-PROBLEM-SOLVING\"\r\n                    }\r\n                ],\r\n                \"comment\": \"No comment\"\r\n            }\r\n        },\r\n        \"conclusion\": {\r\n            \"content\": {\r\n                \"activities\": [\r\n                    {\r\n                        \"activity\": \"Mental task – imagine a point on the edge of a wheel – as the wheel turns how high is the point above the centre? – sketch the graph \"\r\n                    }\r\n                ],\r\n                \"otherActivity\": \"\"\r\n            },\r\n            \"crossCuttingIssues\": {\r\n                \"issues\": [\r\n                    {\r\n                        \"issue\": \"ENVIRONMENT-AND-SUSTAINABILITY\"\r\n                    }\r\n                ],\r\n                \"omment\": \"No comment\"\r\n            },\r\n            \"competency\": {\r\n                \"competencies\": [\r\n                    {\r\n                        \"competency\": \"RESEARCH-AND-PROBLEM-SOLVING\"\r\n                    }\r\n                ],\r\n                \"comment\": \"No comment\"\r\n            }\r\n        },\r\n        \r\n\r\n        \"exercises\": {\r\n            \"questions\": [\r\n                {\r\n                 \"difficultLevel\": \"MEDIUM\",\r\n                 \"questionsObjective\": \"REMEMBERING\",\r\n                 \"question\": \"What is the answer\",\r\n                 \"questionType\": \"MULTI-CHOICE\",\r\n                 \"possibleAnswer\": [\r\n                     {\r\n                         \"answer\": \"answer\"\r\n                     },\r\n                     {\r\n                         \"answer\": \"answer2\"\r\n                     },\r\n                     {\r\n                         \"answer\": \"answer3\"\r\n                     }\r\n                 ],\r\n                \"answers\": [\r\n                     {\r\n                         \"answer\": \"answer2\"\r\n                     },\r\n                     {\r\n                         \"answer\": \"answer3\"\r\n                     }\r\n                 ],\r\n                 \"points\": 10\r\n                      \r\n                }\r\n            ]\r\n        }\r\n    },\r\n    \"teachingTechniques\": {\r\n        \"introduction\": {\r\n            \"contentFocus\": [\r\n                {\r\n                    \"item\": \"LIVE-LECTURING\"\r\n                }\r\n            ],\r\n            \"interactiveFocus\": [\r\n                {\r\n                    \"item\": \"GROUP-WORK\"\r\n                }\r\n            ],\r\n            \"criticalThinking\": [\r\n                {\r\n                    \"item\": \"CLASS-DISCUSSIONS-DEBATES\"\r\n                }\r\n            ],\r\n            \"production\": [\r\n                {\r\n                    \"item\": \"SKILLS-PRACTICE\"\r\n                }\r\n            ],\r\n            \"problemSolving\": [\r\n                {\r\n                    \"item\": \"RESEARCH-INQUIRY\"\r\n                }\r\n            ],\r\n            \"reflection\": [\r\n                {\r\n                    \"item\": \"REFLECTION-ON-LEARNING\"\r\n                }\r\n            ],\r\n            \"sitingArrangement\": [\r\n                {\r\n                    \"item\": \"LECTURE/INDEPENDENT-WORK/TEST\"\r\n                }\r\n            ],\r\n            \"duration\": 10\r\n        },\r\n        \"development\": {\r\n            \"contentFocus\": [\r\n                {\r\n                    \"item\": \"LIVE-LECTURING\"\r\n                }\r\n            ],\r\n            \"interactiveFocus\": [\r\n                {\r\n                    \"item\": \"GROUP-WORK\"\r\n                }\r\n            ],\r\n            \"criticalThinking\": [\r\n                {\r\n                    \"item\": \"CLASS-DISCUSSIONS-DEBATES\"\r\n                }\r\n            ],\r\n            \"production\": [\r\n                {\r\n                    \"item\": \"SKILLS-PRACTICE\"\r\n                }\r\n            ],\r\n            \"problemSolving\": [\r\n                {\r\n                    \"item\": \"RESEARCH-INQUIRY\"\r\n                }\r\n            ],\r\n            \"reflection\": [\r\n                {\r\n                    \"item\": \"REFLECTION-ON-LEARNING\"\r\n                }\r\n            ],\r\n            \"sitingArrangement\": [\r\n                {\r\n                    \"item\": \"LECTURE/INDEPENDENT-WORK/TEST\"\r\n                }\r\n            ],\r\n            \"duration\": 10\r\n        },\r\n        \"conclusion\": {\r\n            \"contentFocus\": [\r\n                {\r\n                    \"item\": \"LIVE-LECTURING\"\r\n                }\r\n            ],\r\n            \"interactiveFocus\": [\r\n                {\r\n                    \"item\": \"GROUP-WORK\"\r\n                }\r\n            ],\r\n            \"criticalThinking\": [\r\n                {\r\n                    \"item\": \"CLASS-DISCUSSIONS-DEBATES\"\r\n                }\r\n            ],\r\n            \"production\": [\r\n                {\r\n                    \"item\": \"SKILLS-PRACTICE\"\r\n                }\r\n            ],\r\n            \"problemSolving\": [\r\n                {\r\n                    \"item\": \"RESEARCH-INQUIRY\"\r\n                }\r\n            ],\r\n            \"reflection\": [\r\n                {\r\n                    \"item\": \"REFLECTION-ON-LEARNING\"\r\n                }\r\n            ],\r\n            \"sitingArrangement\": [\r\n                {\r\n                    \"item\": \"LECTURE/INDEPENDENT-WORK/TEST\"\r\n                }\r\n            ],\r\n            \"duration\": 10\r\n        }\r\n    },\r\n    \"time\": {\r\n        \"day\": \"2021-06-31T17:58:09.010+00:00\",\r\n        \"slotOnTimetable\": \"603159c6191af33cdc989ff0\"\r\n    }\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -3623,41 +3991,13 @@
 			"name": "participation",
 			"item": [
 				{
-					"name": "create",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"assignedClass\": \"602c20e5eeb9ae2820b62123\",\r\n    \"subject\": \"602c349dfd1613203834880d\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:9000/api/participations",
-							"host": [
-								"localhost"
-							],
-							"port": "9000",
-							"path": [
-								"api",
-								"participations"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "add one student participation",
 					"request": {
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"studentId\": \"602c23ddbd2ce42e800e0f37\",\r\n    \"positive\": true,\r\n    \"firstLevel\": \"Cooperation and social harmony\",\r\n    \"secondLevel\": \"Emotional response \",\r\n    \"thirdLevel\": \"Optimism\"\r\n}",
+							"raw": "{\r\n    \"students\": [\r\n        {\r\n            \"_id\": \"602c23ddbd2ce42e800e0f37\"\r\n        },\r\n        {\r\n            \"_id\": \"6036ae70d9b47604481d6fd3\"\r\n        }\r\n    ],\r\n    \"positive\": true,\r\n    \"firstLevel\": \"Cooperation and social harmony\",\r\n    \"secondLevel\": \"Emotional response \",\r\n    \"record\": [\r\n        {\r\n            \"thirdLevel\": \"Spontaneity\",\r\n            \"forthLevel\": \"Creativity\"\r\n        },\r\n        {\r\n            \"thirdLevel\": \"Attention span\",\r\n            \"forthLevel\": \"Anticipation\"\r\n        }\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3665,7 +4005,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:9000/api/participations/6036c6bb34e0341ad471b9b5",
+							"raw": "localhost:9000/api/participations/604a781f80b33c4180192d4f",
 							"host": [
 								"localhost"
 							],
@@ -3673,14 +4013,44 @@
 							"path": [
 								"api",
 								"participations",
-								"6036c6bb34e0341ad471b9b5"
+								"604a781f80b33c4180192d4f"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "get one particpation cycle",
+					"name": "add comment to student",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"student\": \"602c23ddbd2ce42e800e0f37\",\r\n    \"comment\": \"Cooperation and social harmony was just test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/participations/604a781f80b33c4180192d4f/comment",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"participations",
+								"604a781f80b33c4180192d4f",
+								"comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get one particpation",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -3697,7 +4067,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:9000/api/participations/6036c02bd36d4905fcfa5673",
+							"raw": "localhost:9000/api/participations/602c20e5eeb9ae2820b62123",
 							"host": [
 								"localhost"
 							],
@@ -3705,7 +4075,7 @@
 							"path": [
 								"api",
 								"participations",
-								"6036c02bd36d4905fcfa5673"
+								"602c20e5eeb9ae2820b62123"
 							]
 						}
 					},
@@ -5418,6 +5788,27 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "test",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/uploads/public-files/1615896746439.csv",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"uploads",
+						"public-files",
+						"1615896746439.csv"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"auth": {
@@ -5425,7 +5816,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYwMmI5Y2ZjNDljZTdhMGJlNGEzNWZjNyIsImZpcnN0TmFtZSI6IkpvaG4iLCJsYXN0TmFtZSI6ImRvZSIsImVtYWlsIjoiam9obmRvZUBnbWFpbC5jb20iLCJyb2xlIjoiVEVBQ0hFUiIsInNjaG9vbCI6IjYwMmI5ZWYxYWFiM2Y5MjAxMGE3YTRlMCJ9LCJpYXQiOjE2MTM1MDczNjJ9.BHyUjA8So_Gmo7zgfes4Oj9Z9Yoael30bQwePOwg3pU",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYwMzE4NDNiYmViOTdmM2EwNGY0NDA4NCIsImZpcnN0TmFtZSI6IkpvaG4iLCJsYXN0TmFtZSI6ImRvZSIsImVtYWlsIjoiam9obmRvZTRAZ21haWwuY29tIiwicm9sZSI6IlRFQUNIRVIiLCJzY2hvb2wiOiI2MDJjMWU4ZmVlYjlhZTI4MjBiNjIxMjAifSwiaWF0IjoxNjE1ODkxMDc5fQ.TMos_pFmnO2khtbwmPNjIyTPqLt2V9IzUtjdx5B9XVg",
 				"type": "string"
 			}
 		]

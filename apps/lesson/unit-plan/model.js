@@ -28,6 +28,15 @@ const unitPlanSchema = new mongoose.Schema({
     content: {
         knowledgeAndUnderstanding: [{
             topic: String,
+            files: [{
+                fileType: String,
+                file: String
+            }],
+            bloomTaxonomy: {
+                type: String,
+                enum: ['REMEMBERING', 'UNDERSTANDING']
+            },
+            standardCriteriaPerfomance: Number,
             numberOftimesTaught: {
                 type: Number,
                 default: 0
@@ -36,6 +45,15 @@ const unitPlanSchema = new mongoose.Schema({
         }],
         skills: [{
             topic: String,
+            files: [{
+                fileType: String,
+                file: String
+            }],
+            bloomTaxonomy: {
+                type: String,
+                enum: ['REMEMBERING', 'UNDERSTANDING']
+            },
+            standardCriteriaPerfomance: Number,
             numberOftimesTaught: {
                 type: Number,
                 default: 0
@@ -44,6 +62,15 @@ const unitPlanSchema = new mongoose.Schema({
         }],
         attitudesAndValues: [{
             topic: String,
+            files: [{
+                fileType: String,
+                file: String
+            }],
+            bloomTaxonomy: {
+                type: String,
+                enum: ['REMEMBERING', 'UNDERSTANDING']
+            },
+            standardCriteriaPerfomance: Number,
             numberOftimesTaught: {
                 type: Number,
                 default: 0
@@ -53,6 +80,10 @@ const unitPlanSchema = new mongoose.Schema({
     },
     activities: [{
         activity: String,
+        files: [{
+            fileType: String,
+            file: String
+        }],
         numberOftimesTaught: {
             type: Number,
             default: 0

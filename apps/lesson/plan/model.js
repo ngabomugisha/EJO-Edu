@@ -22,6 +22,10 @@ const planSchema = new mongoose.Schema({
     lessonName: String,
     knowledge: [{
         topic: String,
+        files: [{
+            fileType: String,
+            file: String
+        }],
         bloomTaxonomy: {
             type: String,
             enum: ['REMEMBERING', 'UNDERSTANDING']
@@ -30,6 +34,10 @@ const planSchema = new mongoose.Schema({
     }],
     skills:[{
         topic: String,
+        files: [{
+            fileType: String,
+            file: String
+        }],
         bloomTaxonomy: {
             type: String,
             enum: ['APPLYING']
@@ -38,6 +46,10 @@ const planSchema = new mongoose.Schema({
     }],
     attitudesAndValues: [{
         topic: String,
+        files: [{
+            fileType: String,
+            file: String
+        }],
         bloomTaxonomy: {
             type: String,
             enum: ['CREATING', 'EVALUATING', 'ANALYZING']
@@ -55,7 +67,11 @@ const planSchema = new mongoose.Schema({
     activities: {
         introduction: {
             activities: [{
-                activity: String
+                activity: String,
+                files: [{
+                    fileType: String,
+                    file: String
+                }]
             }],
             otherActivity: String,
             crossCuttingIssues: {

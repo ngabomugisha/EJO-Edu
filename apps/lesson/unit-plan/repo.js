@@ -69,11 +69,15 @@ exports.updateOneTopic = async (
     unitPlanId,
     type,
     topics,
-    date
+    date,
+    bloomTaxonomy,
+    standardCriteriaPerfomance
 ) => {
     try {
         const  numberOftimesTaught= type +".$.numberOftimesTaught"
-        const  lastTaught= type +".$.lastTaught"
+        const  lastTaught = type +".$.lastTaught"
+        const  bloomTaxonomyPath = type +".$.bloomTaxonomy"
+        const  standardCriteriaPerfomancePath= type +".$.standardCriteriaPerfomance"
         topics.map(async (item) => {
             console.log(unitPlanId, item)
             const data = await UnitPlan.findOneAndUpdate({
@@ -88,7 +92,9 @@ exports.updateOneTopic = async (
                     $set: {
                         
                         [numberOftimesTaught]: 1,
-                        [lastTaught]: date
+                        [lastTaught]: date,
+                        [bloomTaxonomyPath]: bloomTaxonomy,
+                        [standardCriteriaPerfomancePath]: standardCriteriaPerfomance
 
                     }
                 }
@@ -112,7 +118,9 @@ exports.updateOneTopic = async (
 exports.updateActivities = async (
     unitPlanId,
     activities,
-    date
+    date,
+    bloomTaxonomy,
+    standardCriteriaPerfomance
 ) => {
     try {
         
@@ -134,7 +142,9 @@ exports.updateActivities = async (
                 , {
                     $set: {
                         "activities.$.numberOftimesTaught": 1,
-                        "activities.$.lastTaught": date
+                        "activities.$.lastTaught": date,
+                        "activities.$.bloomTaxonomy": bloomTaxonomy,
+                        "activities.$.standardCriteriaPerfomance": standardCriteriaPerfomance
                     }
                 }
                 //  {

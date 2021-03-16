@@ -50,6 +50,32 @@ exports.update = async (req, res) => {
     
 }
 
+exports.addFile = async (req, res) => {
+    try {
+        const unitId = req.params.unitId;
+        const {
+            topic,
+            location,
+            fileType
+        } = req.body;
+        const file = req.files.file[0].path
+        
+        Unit.addFile(unitId ,topic, location, file, fileType)
+            .then(results => {
+                Response.Success(res, 200, "updated successfully", results);
+            })
+            .catch(err => {
+                console.log(err);
+                Response.InternalServerError(res, "We are having issues! please try again soon");
+            });
+
+    } catch (error) {
+        console.log(error);
+        Response.InternalServerError(res, "We are having issues! please try again soon");
+    }
+    
+}
+
 exports.getAllSubTopicUnits = async (req, res) => {
     try {
 

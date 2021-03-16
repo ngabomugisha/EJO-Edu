@@ -10,17 +10,33 @@ const unitSchema = new mongoose.Schema({
     keyCompetency: String,
     content: {
         knowledgeAndUnderstanding: [{
-            topic: String
+            topic: String,
+            files: [{
+                fileType: String,
+                file: String
+            }]
         }],
         skills: [{
-            topic: String
+            topic: String,
+            files: [{
+                fileType: String,
+                file: String
+            }]
         }],
         attitudesAndValues: [{
-            topic: String
+            topic: String,
+            files: [{
+                fileType: String,
+                file: String
+            }]
         }]
     },
     activities: [{
-        activity: String
+        activity: String,
+        files: [{
+            fileType: String,
+            file: String
+        }]
     }]
 }, {timestamps: true});
 
