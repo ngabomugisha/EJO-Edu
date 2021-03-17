@@ -12,6 +12,8 @@ import { Button, Grid, TextField, Box } from '@material-ui/core'
 import { Formik, Field, Form } from 'formik'
 import Skeleton from "@material-ui/lab/Skeleton"
 import moment from 'moment';
+import Alert from 'react-bootstrap/Alert'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -35,41 +37,78 @@ export const Index = (props) => {
 
     const [mon, setMon] = useState([])
     const [tue, setTue] = useState([])
-    const [wes, setWes] = useState([])
+    const [wed, setWed] = useState([])
     const [thu, setThu] = useState([])
     const [fri, setFri] = useState([])
 
-    const [timetabledata, setTimetabledata] = useState({
+    const idToName = (id) => {
+        if(subject.length !== 0){
+            for(let sub in subject){
+                if(sub._id === id){
+                   return sub.label
+                }
+            }
+        }
+    }
+    
+    let timetabledata={
         events: {
             monday: mon,
             tuesday: tue,
-            wednesday: wes,
+            wednesday: wed,
             thursday: thu,
             friday: fri
         }
-    })
+    }
 
     const iniData = {
         "class": "",
         "teacher": "",
         "subject": ""
     }
-
+    let newSlot= {
+        "class": "",
+        "teacher": "",
+        "subject": "",
+        "term": "",
+        "time" : {
+            "dayOfWeek": 0,
+            "starts" : "",
+            "ends" : ""
+        }
+    }
     const putMon = (dt) => {
-        console.log("DATA HAS ARRIVED WELL",dt)
+
+        //this is for monday events
+        let sub = null
         setMon(dt.reduce(function (fit, opt) {
+
             if (opt.time.dayOfWeek == 1) {
                 var sm = {
-                    id: 1,
-                    name: opt.subject,
-                    type: "custom",
-                    startTime:
+                    'id': 1,
+                    'name': 'Subject : \n' + '' + subject.reduce(function (done, cond) {
+                        if(cond._id === opt.subject){
+                          var yes = cond.name
+                          done = yes
+                      }
+                      return done;
+                    }, []) + "& Teacher :" + 
+                    teacher.reduce(function (done2, cond2) {
+                      if (cond2._id === opt.teacher) {
+                        var yes2 = cond2.firstName + " "+""+cond2.lastName;
+                        done2 = yes2;
+                      }
+                      return done2;
+                    }, [])
+                    ,
+                    'type': "custom",
+                    'startTime':
                         moment("2018-02-23T" +
                         opt.time.starts.substring(0, 2) +
                         ":" +
                         opt.time.starts.substring(2, 4) +
                         ":00"),
-                    endTime:
+                    'endTime':
                         moment("2018-02-23T" +
                         opt.time.ends.substring(0, 2) +
                         ":" +
@@ -78,30 +117,222 @@ export const Index = (props) => {
                 };
                 fit.push(sm);
             }
+            console.log("RETURNED OBJECT:",fit)
             return fit;
         }, []))
-        setTimeout(() => {
-        console.log("INSIDE TIMEOUT",mon)
+
+        //this is for tuesday events
+        setTue(dt.reduce(function (fit, opt) {
+
+            if (opt.time.dayOfWeek == 2) {
+                var sm = {
+                    'id': 2,
+                    'name': subject.reduce(function (done, cond) {
+                        if(cond._id === opt.subject){
+                          var yes = cond.name
+                          done =yes
+                      }
+                      return done;
+                    }, [])+ "& Teacher :" + 
+                    teacher.reduce(function (done2, cond2) {
+                      if (cond2._id === opt.teacher) {
+                        var yes2 = cond2.firstName + " "+""+cond2.lastName;
+                        done2 = yes2;
+                      }
+                      return done2;
+                    }, [])
+                    ,
+                    'type': "custom",
+                    'startTime':
+                        moment("2018-02-23T" +
+                        opt.time.starts.substring(0, 2) +
+                        ":" +
+                        opt.time.starts.substring(2, 4) +
+                        ":00"),
+                    'endTime':
+                        moment("2018-02-23T" +
+                        opt.time.ends.substring(0, 2) +
+                        ":" +
+                        opt.time.ends.substring(2, 4) +
+                        ":00")
+                };
+                fit.push(sm);
+            }
+            console.log("RETURNED OBJECT:",fit)
+            return fit;
+        }, []))
+
+        //this for wensday
+        setWed(dt.reduce(function (fit, opt) {
+
+            if (opt.time.dayOfWeek == 3) {
+                var sm = {
+                    'id': 3,
+                    'name': subject.reduce(function (done, cond) {
+                        if(cond._id === opt.subject){
+                          var yes = cond.name
+                          done =yes
+                      }
+                      return done;
+                    }, [])+ "& Teacher :" + 
+                    teacher.reduce(function (done2, cond2) {
+                      if (cond2._id === opt.teacher) {
+                        var yes2 = cond2.firstName + " "+""+cond2.lastName;
+                        done2 = yes2;
+                      }
+                      return done2;
+                    }, [])
+                    ,
+                    'type': "custom",
+                    'startTime':
+                        moment("2018-02-23T" +
+                        opt.time.starts.substring(0, 2) +
+                        ":" +
+                        opt.time.starts.substring(2, 4) +
+                        ":00"),
+                    'endTime':
+                        moment("2018-02-23T" +
+                        opt.time.ends.substring(0, 2) +
+                        ":" +
+                        opt.time.ends.substring(2, 4) +
+                        ":00")
+                };
+                fit.push(sm);
+            }
+            console.log("RETURNED OBJECT:",fit)
+            return fit;
+        }, []))
+
+        //this is for thursday
+        setThu(dt.reduce(function (fit, opt) {
+
+            if (opt.time.dayOfWeek == 4) {
+                var sm = {
+                    'id': 4,
+                    'name': subject.reduce(function (done, cond) {
+                        if(cond._id === opt.subject){
+                          var yes = cond.name
+                          done =yes
+                      }
+                      return done;
+                    }, [])+ "& Teacher :" + 
+                    teacher.reduce(function (done2, cond2) {
+                      if (cond2._id === opt.teacher) {
+                        var yes2 = cond2.firstName + " "+""+cond2.lastName;
+                        done2 = yes2;
+                      }
+                      return done2;
+                    }, [])
+                    ,
+                    'type': "custom",
+                    'startTime':
+                        moment("2018-02-23T" +
+                        opt.time.starts.substring(0, 2) +
+                        ":" +
+                        opt.time.starts.substring(2, 4) +
+                        ":00"),
+                    'endTime':
+                        moment("2018-02-23T" +
+                        opt.time.ends.substring(0, 2) +
+                        ":" +
+                        opt.time.ends.substring(2, 4) +
+                        ":00")
+                };
+                fit.push(sm);
+            }
+            console.log("RETURNED OBJECT:",fit)
+            return fit;
+        }, []))
+
+        //this is for friday
+        setFri(dt.reduce(function (fit, opt) {
+
+            if (opt.time.dayOfWeek == 5) {
+                var sm = {
+                    'id': 5,
+                    'name': subject.reduce(function (done, cond) {
+                        if(cond._id === opt.subject){
+                          var yes = cond.name
+                          done =yes
+                      }
+                      return done;
+                    }, [])+ "& Teacher :" + 
+                    teacher.reduce(function (done2, cond2) {
+                      if (cond2._id === opt.teacher) {
+                        var yes2 = cond2.firstName + " "+""+cond2.lastName;
+                        done2 = yes2;
+                      }
+                      return done2;
+                    }, [])
+                    ,
+                    'type': "custom",
+                    'startTime':
+                        moment("2018-02-23T" +
+                        opt.time.starts.substring(0, 2) +
+                        ":" +
+                        opt.time.starts.substring(2, 4) +
+                        ":00"),
+                    'endTime':
+                        moment("2018-02-23T" +
+                        opt.time.ends.substring(0, 2) +
+                        ":" +
+                        opt.time.ends.substring(2, 4) +
+                        ":00")
+                };
+                fit.push(sm);
+            }
+            console.log("RETURNED OBJECT:",fit)
+            return fit;
+        }, []))
+
         if(mon.length > 0){
-        setTimetabledata({
+        timetabledata = {
             'events':{
                 ...timetabledata.events,
                 'monday': mon
             }
-        })
+        }
     }
-    }, 1000);
     
-    // if(timetabledata.events.monday.length === 0){
-    //     putMon(dt)
-    // }else{setLoadTimetable(true)}
+    if(tue.length > 0){
+        timetabledata = {
+            'events':{
+                ...timetabledata.events,
+                'tuesday': tue
+            }
+        }
+    }
+
+    if(wed.length > 0){
+        timetabledata = {
+            'events':{
+                ...timetabledata.events,
+                'wednesday': wed
+            }
+        }
+    }
+
+    if(fri.length > 0){
+        timetabledata = {
+            'events':{
+                ...timetabledata.events,
+                'friday': fri
+            }
+        }
+    }
 }
 
-
+ const handleSave =(val)=>{
+     if(val.class && val.teacher && val.subject){
+         console.log("PASSED DATA: ", val)
+     }else{
+         //
+     }
+ }
 
 
     const onSubmit = values => {
-        // alert(JSON.stringify(values, null, 2))
+        //  alert(JSON.stringify(window.event.name, null, 2))
 
         if (values.class != '' && values.teacher == "" && values.subject == '') {
             async function fetchSubjects() {
@@ -119,16 +350,55 @@ export const Index = (props) => {
 
         }
 
-        else if (values.class == '' && values.teacher != "" && values.subject == '') {
-            alert('teacher selected only : ', values.class)
+        else if (values.class == '' && values.teacher != "" && values.subject == '') {   
+            async function fetchSubjects() {
+            const req = await https.get(`/timetables/${values.teacher}/teacher`, { headers: { 'Authorization': `Basic ${localStorage.token}` } })
+                .then((res) => {
+                    setData(res.data)
+                    putMon(res.data)
+                }).catch(function (err) {
+                    console.log(err);
+                });
+            return req
+        }
+        console.log(fetchSubjects())
+        fetchSubjects()
         }
         else if (values.class != '' && values.teacher != "" && values.subject == '') {
-            alert('class and teacher selected  : ', values.class)
+            async function fetchSubjects() {
+            const req = await https.get(`/timetables/${values.class}/${values.teacher}/class-teacher`, { headers: { 'Authorization': `Basic ${localStorage.token}` } })
+                .then((res) => {
+                    setData(res.data)
+                    putMon(res.data)
+                }).catch(function (err) {
+                    console.log(err);
+                });
+            return req
+        }
+        console.log(fetchSubjects())
+        fetchSubjects()
+        }
+
+        else if (values.class != '' && values.teacher != "" && values.subject !== '') {
+            async function fetchSubjects() {
+            const req = await https.get(`/timetables/${values.class}/${values.teacher}/${values.subject}/class-teacher-subject`, { headers: { 'Authorization': `Basic ${localStorage.token}` } })
+                .then((res) => {
+                    setData(res.data)
+                    putMon(res.data)
+                }).catch(function (err) {
+                    console.log(err);
+                });
+            return req
+        }
+        console.log(fetchSubjects())
+        fetchSubjects()
+        }
+        else{
+            putMon([])
         }
 
     }
-
-
+    
     useEffect(() => {
 
         console.log("MONDAY DATA", timetabledata)
@@ -157,10 +427,11 @@ export const Index = (props) => {
         async function fetchTeachers() {
             const req = await https.get(`/auth/${school}/school-employees`, { headers: { 'Authorization': `Basic ${localStorage.token}` } })
                 .then((res) => {
-                    setTeacher(res.data)
+                    setTeacher((res.data).filter(tech => {return tech.role === 'TEACHER' }));
+                    // setTeacher(res.data)
                     console.log("TEACHERS : ", res.data)
                 }).catch(function (err) {
-                    console.log(err);
+                    alert(err);
                 });
             return req
         }
@@ -188,10 +459,11 @@ export const Index = (props) => {
                             <Formik
                                 initialValues={iniData}
                                 onSubmit={onSubmit}
+
                             >
                                 {(formik) => (
-                                    <Form>
-                                        <Grid container xs={12} justify="center" spacing={3}>
+                                    <form  onSubmit={formik.handleSubmit}>
+                                        <Grid container xs={12} justify="center" spacing={1}>
                                             <Grid item xs={3}>
                                                 <Field
                                                     as={TextField}
@@ -237,7 +509,7 @@ export const Index = (props) => {
                                                     }
                                                 </Field>
                                             </Grid>
-                                            <Grid item xs={3}>
+                                            <Grid item xs={2}>
                                                 <Field
                                                     as={TextField}
                                                     type="text"
@@ -259,11 +531,14 @@ export const Index = (props) => {
                                                     }
                                                 </Field>
                                             </Grid>
-                                            <Grid item xs={3} justify="center">
-                                                <Button fullWidth type="submit">check TimeTable</Button>
+                                            <Grid item xs={2} justify="center">
+                                                <button name="check" type="submit" className="check-btn">check TimeTable</button>
+                                            </Grid>
+                                            <Grid item xs={2} justify="center">
+                                                <button name="save" onClick={() => handleSave(formik.values)}  className="check-btn">New Slot</button>
                                             </Grid>
                                         </Grid>
-                                    </Form>)}
+                                    </form>)}
                             </Formik>
                         </div>
                     </div>
@@ -299,7 +574,10 @@ export const Index = (props) => {
                     </div>
                 </div>
             </PanelLayout>
-
+                        <div>
+                        <Alert  variant="warning" isOpen={true}>
+        This is a alert—check it out!
+      </Alert></div>
         </div>
     )
 }

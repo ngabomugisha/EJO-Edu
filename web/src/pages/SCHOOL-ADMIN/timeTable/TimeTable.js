@@ -17,12 +17,13 @@ export default class App extends Component {
   }
 
   renderEvent(event, defaultAttributes, styles) {
+    const name = event.name
     return (
       <div {...defaultAttributes}
-           title={event.name}
+           title={name}
            key={event.id}>
         <span className={styles.event_info}>
-          [ { event.name } ]
+           {name.includes('&')? name.substring(0,name.indexOf('&')):name}<br/>{name.includes('&')? name.substring(name.indexOf('&')+1):""} 
         </span>
         <span className={styles.event_info}>
           { event.startTime.format('HH:mm') } - { event.endTime.format('HH:mm') }
