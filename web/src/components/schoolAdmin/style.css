@@ -50,3 +50,11 @@
 .Cell-dayOfMonth-38{
 	display: none;
 }
+
+
+.MuiToolbar-regular {
+    display: none !important;
+}
+.Toolbar-toolbar-2{
+    display: none !important;
+}

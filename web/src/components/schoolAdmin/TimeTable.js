@@ -17,8 +17,8 @@ import {
   AppointmentForm,
   AppointmentTooltip,
   TodayButton,
-} from '@devexpress/dx-react-scheduler-material-ui';
-
+} from '@devexpress/dx-react-scheduler-material-ui'
+// '@devexpress/dx-react-scheduler-material-ui';
 const PUBLIC_KEY = 'AIzaSyBnNAISIUKe6xdhq1_rjor2rxoI3UlMY7k';
 const CALENDAR_ID = 'f7jnetm22dsjc3npc2lu3buvu4@group.calendar.google.com';
 
@@ -31,6 +31,7 @@ const getData = (setData, setLoading) => {
     .then((data) => {
       setTimeout(() => {
         setData(data.items);
+        console.log("data within:",data.items)
         setLoading(false);
       }, 600);
     });
@@ -111,7 +112,7 @@ export default () => {
   React.useEffect(() => {
     getData(setData, setLoading);
   }, [setData, currentViewName, currentDate]);
-  console.log(data)
+  console.log("DATA TO BE LOADED:",data)
   return (
     <Paper>
       <Scheduler
@@ -124,10 +125,10 @@ export default () => {
           onCurrentViewNameChange={setCurrentViewName}
           onCurrentDateChange={setCurrentDate}
         />
-        <DayView
+        {/* <DayView
           startDayHour={7.5}
           endDayHour={17.5}
-        />
+        /> */}
         <WeekView
           startDayHour={7.5}
           endDayHour={17.5}
@@ -136,9 +137,7 @@ export default () => {
         <Toolbar
           {...loading ? { rootComponent: ToolbarWithLoading } : null}
         />
-        <DateNavigator />
-        <TodayButton />
-        <ViewSwitcher />
+        
         {/* <AppointmentTooltip
           showOpenButton
           showCloseButton

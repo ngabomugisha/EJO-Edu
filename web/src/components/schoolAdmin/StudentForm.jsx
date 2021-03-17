@@ -50,6 +50,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 export const StudentForm = (props) => {
 
+    const school = props.state.auth.user.school;
     const [] = React.useState('');
     const classes = useStyles();
     const [, setClss] = useState([])
