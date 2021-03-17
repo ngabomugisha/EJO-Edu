@@ -101,7 +101,7 @@ export const StudentForm = (props) => {
    
         const options = {
             method: 'POST',
-            url: '/students/',
+            url: '/students',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem("token")}`

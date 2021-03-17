@@ -58,3 +58,12 @@
 .Toolbar-toolbar-2{
     display: none !important;
 }
+
+
+.timetable-form-container{
+	min-width: 100%;
+}
+
+.MuiDialog-paperWidthLg{
+	min-width: 80%;
+}

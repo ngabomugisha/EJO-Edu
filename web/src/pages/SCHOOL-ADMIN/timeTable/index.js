@@ -4,9 +4,10 @@ import { connect } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles';
 import PanelLayout from '../../../components/Layouts/PanelLayout/Index'
 import https from '../../../helpers/https'
-import RemoteData from '../../../components/schoolAdmin/TimeTable'
-import TimeTable from './TimeTable'
+import TimetableForm from '../../../components/schoolAdmin/TimetableForm'
+import TimeTable from '../timeTable/TimeTable'
 import InputLabel from '@material-ui/core/InputLabel';
+import Popup from '../../../components/popup/index'
 import MenuItem from '@material-ui/core/MenuItem';
 import { Button, Grid, TextField, Box } from '@material-ui/core'
 import { Formik, Field, Form } from 'formik'
@@ -14,6 +15,8 @@ import Skeleton from "@material-ui/lab/Skeleton"
 import moment from 'moment';
 import Alert from 'react-bootstrap/Alert'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import { handleFetchTerms , handleUpdateTerm } from '../../../store/actions/term.action'
+import { useDispatch, useSelector } from 'react-redux';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -30,27 +33,20 @@ export const Index = (props) => {
     const school = props.state.auth.user.school;
     const classes = useStyles();
     const [classs, setClasss] = React.useState([]);
+    const { list: ALL_TERMS } = useSelector((state) => state.terms);
     const [teacher, setTeacher] = React.useState([])
     const [subject, setSubject] = React.useState([])
     const [loadTimetable, setLoadTimetable] = useState(false)
     const [data, setData] = useState([])
+    const [openPopup, setOpenPopup] = useState(false)
 
     const [mon, setMon] = useState([])
     const [tue, setTue] = useState([])
     const [wed, setWed] = useState([])
     const [thu, setThu] = useState([])
     const [fri, setFri] = useState([])
+    const dispatch = useDispatch();
 
-    const idToName = (id) => {
-        if(subject.length !== 0){
-            for(let sub in subject){
-                if(sub._id === id){
-                   return sub.label
-                }
-            }
-        }
-    }
-    
     let timetabledata={
         events: {
             monday: mon,
@@ -325,10 +321,18 @@ export const Index = (props) => {
  const handleSave =(val)=>{
      if(val.class && val.teacher && val.subject){
          console.log("PASSED DATA: ", val)
+         setOpenPopup(true)
      }else{
          //
      }
  }
+ const fetchTermsData = async () => {
+    try {
+        await dispatch(handleFetchTerms());
+    } catch (error) {
+        console.log(error)
+    }
+};
 
 
     const onSubmit = values => {
@@ -400,9 +404,10 @@ export const Index = (props) => {
     }
     
     useEffect(() => {
+        fetchTermsData()
 
         console.log("MONDAY DATA", timetabledata)
-        if(timetabledata.events.monday.length != 0){
+        if(timetabledata.events.monday ||timetabledata.events.tuesday || timetabledata.events.wednesday || timetabledata.events.thursday || timetabledata.events.friday){
             setTimeout(() => {
                 setLoadTimetable(true)
             }, 2000);
@@ -411,6 +416,7 @@ export const Index = (props) => {
     }, [mon])
 
     useEffect(() => {
+        fetchTermsData()
 
         async function fetchSubjects() {
             const req = await https.get(`/lessons/subjects`, { headers: { 'Authorization': `Basic ${localStorage.token}` } })
@@ -486,7 +492,6 @@ export const Index = (props) => {
                                                     }
                                                 </Field>
                                             </Grid>
-
                                             <Grid item xs={3}>
                                                 <Field
                                                     as={TextField}
@@ -578,6 +583,14 @@ export const Index = (props) => {
                         <Alert  variant="warning" isOpen={true}>
         This is a alert—check it out!
       </Alert></div>
+
+      <Popup
+                    title="Create new timetable slot"
+                    openPopup={openPopup}
+                    setOpenPopup={setOpenPopup}>
+                    <TimetableForm class={classs} subject={subject} teachers={teacher} terms={ALL_TERMS}/>
+
+                </Popup>
         </div>
     )
 }
