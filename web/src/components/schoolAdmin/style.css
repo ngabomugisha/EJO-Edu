@@ -67,3 +67,17 @@
 .MuiDialog-paperWidthLg{
 	min-width: 80%;
 }
+
+.dropzone{
+	min-width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	border: 3px solid #1f72c7;
+	border-radius: 5px;
+	padding: 30px;
+}
+
+.dropzone-message{
+	align-self: center;
+}

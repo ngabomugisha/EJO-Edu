@@ -1,12 +1,12 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect, createRef} from 'react'
 import { connect } from 'react-redux'
-
+import https from '../../helpers/https'
 import Popup from '../popup/index'
 import Controls from "../../controls/Controls";
 import { Search } from "@material-ui/icons";
 import AddIcon from '@material-ui/icons/Add';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
-import { Paper, TableBody, TableRow, TableCell, Toolbar, InputAdornment, Grid } from '@material-ui/core';
+import { Paper, TableBody, TableRow, TableCell, MenuItem, InputAdornment, Grid, TextField } from '@material-ui/core';
 import useTable from "../../components/parts/useTable";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import Details from '../schoolAdmin/Details'
@@ -17,6 +17,9 @@ import MarksReport from '../../pages/SCHOOL-ADMIN/marksReport'
 import { DropzoneArea } from "material-ui-dropzone"
 import { createMuiTheme } from '@material-ui/core/styles';
 import purple from '@material-ui/core/colors/purple';
+import {useDropzone} from 'react-dropzone';
+import { Formik, Field, Form } from 'formik'
+
 
 const theme = createMuiTheme({
     palette: {
@@ -30,6 +33,36 @@ const theme = createMuiTheme({
 });
 export const Table = (props) => {
 
+    const dropzoneRef = createRef()
+    const openDialog = () => {
+    if(dropzoneRef.current){
+        dropzoneRef.current.open()
+    }
+}
+
+    function Accept(props) {
+        const {
+          getRootProps,
+          getInputProps,
+          isDragActive,
+          isDragAccept,
+          isDragReject
+        } = useDropzone({
+          accept: 'text/csv'
+        });
+      
+        return (
+          <div className="container">
+            <div className="my-dropzone" {...getRootProps({className: 'dropzone'})}>
+              <input {...getInputProps()} />
+              {isDragAccept && (<p className = "dropzone-message">All csv files will be accepted</p>)}
+              {isDragReject && (<p className = "dropzone-message">This File is not allowed use tepmlate</p>)}
+              {!isDragActive && (<p className = "dropzone-message">Drop CSV file here or click to browse</p>)}
+              <button className="check-btn-2" style={{}} type="button" onClick={openDialog}>Browse a file</button>
+            </div>
+          </div>
+        );
+      }
 
     const [isLoading, setIsLoading] = useState(true);
     const [recordForEdit, setRecordForEdit] = useState(null)
@@ -39,6 +72,9 @@ export const Table = (props) => {
     const [openPrintPopup, setOpenPrintPopup] = useState(false)
     const [uploadPopup, setUploadPopup] = useState(false)
     const [detailsPopup, setDetailsPopup] = useState(false)
+    const [file,setFile] = useState(null)
+    const [classs, setClasss] = useState([])
+    const [studentsClass, setStudentClass] = useState('')
     const headCells = props.head
     const {
         TblContainer,
@@ -96,13 +132,50 @@ export const Table = (props) => {
         ))
     }
 
+
+const handleupload = (e) => {
+    console.log(e.target.files[0])
+    if((e.target.files[0].name).substring((e.target.files[0].name).indexOf('.')+1)== 'csv'){
+    console.log("YES")
+        setFile(e.target.files[0])
+}
+}
+
+const upload = async () => {
+
+    console.log("button clicked",file)
+    const formData = new FormData()
+    
+    formData.append('studentClass', studentsClass._id)
+    formData.append('students',file)
+
+    for (var key of formData.entries()) {
+        console.log(key[0] + ', ' + key[1]);
+    }
+
+
+    const dat = {
+        'studentClass': studentsClass._id,
+        'students':file
+    }
+    console.log("DATA READY:" ,dat)
+    console.log("this is formData :",formData)
+    await https.post('/students/create-from-csv' , formData,  {  headers : { 'Content-Type' : 'multipart/form-data', 'Authorization': `Basic ${localStorage.token}` } })
+    .then((res)=>{
+        alert("%%%%%%%%%%%%%",res.status)
+    }).catch((erro) => {
+        console.log("@@@@@@",erro)
+    })
+}
+
+
 function loadTable(){
 
     return (<div className="student-container">
                     <Paper elevation={5}>
                         <div className="paper-hd"><h2>Students List</h2></div>
-                        <Toolbar>
-                            <Grid container spacing={3}>
+                        <div className="student-controls">
+                            <Grid container spacing={2}>
                                 <Grid item xs={4}>
                                     <Controls.Input
                                         label="Search Students"
@@ -135,7 +208,7 @@ function loadTable(){
                                     />
                                 </Grid>
                             </Grid>
-                        </Toolbar>
+                        </div>
                         <TblContainer>
                             <TblHead />
                             <TableBody>
@@ -167,15 +240,42 @@ function loadTable(){
                         openPopup={uploadPopup}
                         setOpenPopup={setUploadPopup}>
                         <div>
+                            <form>
                             <Grid container xs={12} spacing={2} minWidth={12} justify="center" direction="column">
-                                <Grid item xs={12}>
-                                    <DropzoneArea
-                                        acceptedFiles={['image/*']}
-                                        dropzoneText={"Drag and drop an Excel file here or click to select"}
-                                        onChange={(files) => console.log('Files:', files)}
-                                    />
+                                
+                                <Grid item xs={12} justify="center">   
+                                <TextField
+                                                type="text"
+                                                label="student Class"
+                                                select
+                                                id="select"
+                                                helperText="Please select studentClass"
+                                                variant="outlined"
+                                                fullWidth
+                                                onChange={(e) => setStudentClass(e.target.value)}
+                                                InputLabelProps={{
+                                                    shrink: true,
+                                                }}
+                                            >
+                                                <MenuItem value="">
+                                                    <em>NONE</em>
+                                                </MenuItem>
+                                                {classs != null ?
+                                                    classs.map(item => (<MenuItem key={item._id} value={item._id}>{item.level.name}</MenuItem>)) : null
+                                                }
+                                            </TextField>                           
+                                {/* <input type="file" onChange={handleupload}/> */}
+                                {/* <Accept onChange={(file) => console.log(file)}/> */}
+                                <DropzoneArea
+  acceptedFiles={['text/csv']}
+  filesLimit={1}
+  dropzoneText={"Drag and drop a CSV File here or click to browse"}
+  onChange={(files) => setFile(files[0])}
+/>
+                                <button className="check-btn" type="button" onClick={upload}>Upload data</button>
                                 </Grid>
                             </Grid>
+                            </form>
                         </div>
                     </Popup>
 
@@ -197,6 +297,20 @@ function loadTable(){
 
 }
 
+useEffect(() => {
+    async function fetchClasses() {
+        const req = await https.get(`/classes/602c1e8feeb9ae2820b62120/school-classes`, { headers: { 'Authorization': `Basic ${localStorage.token}` } })
+            .then((res) => {
+                setClasss(res.data)
+                console.log("CLASSES : ", res.data)
+            }).catch(function (err) {
+                console.log(err);
+            });
+        return req
+    }
+    fetchClasses()
+    console.log('CHOOSEN CLASS', studentsClass)
+}, [])
     return (
         <div>
                 {loadTable()}

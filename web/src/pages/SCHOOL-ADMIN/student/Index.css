@@ -92,7 +92,7 @@
   }
   
   .file-upload-content {
-    display: none;
+    display: block;
     text-align: center;
   }
   
@@ -167,4 +167,8 @@
   .remove-image:active {
     border: 0;
     transition: all .2s ease;
+  }
+
+  .student-controls{
+    padding: 20px;
   }
