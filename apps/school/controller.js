@@ -1,11 +1,47 @@
 import School from './repo'
 import Response from '../../utils/Responses';
 
+// const discipline = [
+//     {
+//         firstLevel: ,
+//         secondLevel: ,
+//         thirdevel: ,
+//         forthLevel: ,
+//         marks: 0
+//     },
+//     {
+//         firstLevel: ,
+//         secondLevel: ,
+//         thirdevel: ,
+//         forthLevel: ,
+//         marks: 0
+//     },
+//     {
+//         firstLevel: ,
+//         secondLevel: ,
+//         thirdevel: ,
+//         forthLevel: ,
+//         marks: 0
+//     },
+//     {
+//         firstLevel: ,
+//         secondLevel: ,
+//         thirdevel: ,
+//         forthLevel: ,
+//         marks: 0
+//     },
+// ]
+
+
 exports.create = async (req, res) => {
     try {
         const {
             name
         } = req.body;
+
+
+
+
 
         School.create(name)
         .then(results => {

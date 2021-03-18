@@ -177,7 +177,7 @@ exports.getUnitPlan = async (req, res) => {
     try {
 
         const unitId = req.params.unitId;
-        Plan.getAllSubjectPlan(unitId)
+        Plan.getAllUnitPlan(unitId)
             .then(results => {
                 Response.Success(res, 200, "queried successfully", results);
             })
