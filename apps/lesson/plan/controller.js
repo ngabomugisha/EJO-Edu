@@ -5,7 +5,6 @@ import UnitPlan from '../unit-plan/repo'
 exports.create = async (req, res) => {
     try {
         const {
-            name,
             unit,
             unitPlanId,
             subject,
@@ -15,12 +14,8 @@ exports.create = async (req, res) => {
             knowledge,
             skills,
             attitudesAndValues,
-            instructionalMaterial,
-            otherMaterialsAndReferences,
             activities,
             teachingTechniques,
-            studentSelfAssessment,
-            teacherSelfAssessment,
             time
 
         } = req.body;
@@ -29,7 +24,6 @@ exports.create = async (req, res) => {
         Plan.create(
                 teacher,
                 school,
-                name,
                 unit,
                 unitPlanId,
                 subject,
@@ -39,12 +33,8 @@ exports.create = async (req, res) => {
                 knowledge,
                 skills,
                 attitudesAndValues,
-                instructionalMaterial,
-                otherMaterialsAndReferences,
                 activities,
                 teachingTechniques,
-                studentSelfAssessment,
-                teacherSelfAssessment,
                 time
             )
             .then(async (results) => {
@@ -53,7 +43,7 @@ exports.create = async (req, res) => {
                 // await UnitPlan.updateOneTopic(unitPlanId, "content.attitudesAndValues", attitudesAndValues, time.day );
 
                 //activities
-                await UnitPlan.updateActivities(unitPlanId, activities, time.day );
+                // await UnitPlan.updateActivities(unitPlanId, activities, time.day);
 
                 Response.Success(res, 200, "created successfully", results);
             })
@@ -73,7 +63,8 @@ exports.update = async (req, res) => {
     try {
         const planId = req.params.planId;
         const {
-            name,
+            teacher,
+            school,
             unit,
             unitPlanId,
             subject,
@@ -83,17 +74,14 @@ exports.update = async (req, res) => {
             knowledge,
             skills,
             attitudesAndValues,
-            instructionalMaterial,
-            otherMaterialsAndReferences,
             activities,
             teachingTechniques,
-            studentSelfAssessment,
-            teacherSelfAssessment,
             time
         } = req.body;
         Plan.update(
                 planId,
-                name,
+                teacher,
+                school,
                 unit,
                 unitPlanId,
                 subject,
@@ -103,12 +91,8 @@ exports.update = async (req, res) => {
                 knowledge,
                 skills,
                 attitudesAndValues,
-                instructionalMaterial,
-                otherMaterialsAndReferences,
                 activities,
                 teachingTechniques,
-                studentSelfAssessment,
-                teacherSelfAssessment,
                 time
             )
             .then(results => {
@@ -212,7 +196,6 @@ exports.getOnePlan = async (req, res) => {
     }
 
 }
-
 
 exports.getTopicDetails = async (req, res) => {
     try {

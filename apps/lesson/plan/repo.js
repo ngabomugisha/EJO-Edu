@@ -3,7 +3,6 @@ import Plan from './model'
 exports.create = async (
     teacher,
     school,
-    name,
     unit,
     unitPlanId,
     subject,
@@ -13,39 +12,29 @@ exports.create = async (
     knowledge,
     skills,
     attitudesAndValues,
-    instructionalMaterial,
-    otherMaterialsAndReferences,
     activities,
     teachingTechniques,
-    studentSelfAssessment,
-    teacherSelfAssessment,
     time
 ) => {
     try {
-        // const newPlan = new Plan({
-        //     teacher,
-        //     school,
-        //     name,
-        //     unit,
-        //     unitPlanId,
-        //     subject,
-        //     keyUnitCompetency,
-        //     lessonNumber,
-        //     lessonName,
-        //     knowledge,
-        //     skills,
-        //     attitudesAndValues,
-        //     instructionalMaterial,
-        //     otherMaterialsAndReferences,
-        //     activities,
-        //     teachingTechniques,
-        //     studentSelfAssessment,
-        //     teacherSelfAssessment,
-        //     time
-        // })
-        // await newPlan.save()
-        // return newPlan;
-        return {}
+        const newPlan = new Plan({
+            teacher,
+            school,
+            unit,
+            unitPlanId,
+            subject,
+            keyUnitCompetency,
+            lessonNumber,
+            lessonName,
+            knowledge,
+            skills,
+            attitudesAndValues,
+            activities,
+            teachingTechniques,
+            time
+        })
+        await newPlan.save()
+        return newPlan;
     } catch (error) {
         throw error;
     }
@@ -53,7 +42,8 @@ exports.create = async (
 
 exports.update = async (
     planId,
-    name,
+    teacher,
+    school,
     unit,
     unitPlanId,
     subject,
@@ -63,12 +53,8 @@ exports.update = async (
     knowledge,
     skills,
     attitudesAndValues,
-    instructionalMaterial,
-    otherMaterialsAndReferences,
     activities,
     teachingTechniques,
-    studentSelfAssessment,
-    teacherSelfAssessment,
     time
 ) => {
     try {
@@ -76,7 +62,8 @@ exports.update = async (
                 _id: planId
             }, {
                 $set: {
-                    name,
+                    teacher,
+                    school,
                     unit,
                     unitPlanId,
                     subject,
@@ -86,12 +73,8 @@ exports.update = async (
                     knowledge,
                     skills,
                     attitudesAndValues,
-                    instructionalMaterial,
-                    otherMaterialsAndReferences,
                     activities,
                     teachingTechniques,
-                    studentSelfAssessment,
-                    teacherSelfAssessment,
                     time
                 }
             }, {
@@ -215,7 +198,6 @@ exports.getTopicDetails = async (unitId, topic, type, teacher) => {
         throw error;
     }
 }
-
 
 exports.delete = async (planId) => {
     try {

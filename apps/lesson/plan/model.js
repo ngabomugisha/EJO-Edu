@@ -20,231 +20,303 @@ const planSchema = new mongoose.Schema({
     keyUnitCompetency: String,
     lessonNumber: Number,
     lessonName: String,
-    knowledge: [{
-        topic: String,
-        files: [{
-            fileType: String,
-            file: String
-        }],
-        bloomTaxonomy: {
-            type: String,
-            enum: ['REMEMBERING', 'UNDERSTANDING']
-        },
-        standardCriteriaPerfomance: Number,
-    }],
-    skills:[{
-        topic: String,
-        files: [{
-            fileType: String,
-            file: String
-        }],
-        bloomTaxonomy: {
-            type: String,
-            enum: ['APPLYING']
-        },
-        standardCriteriaPerfomance: Number,
-    }],
-    attitudesAndValues: [{
-        topic: String,
-        files: [{
-            fileType: String,
-            file: String
-        }],
-        bloomTaxonomy: {
-            type: String,
-            enum: ['CREATING', 'EVALUATING', 'ANALYZING']
-        },
-        standardCriteriaPerfomance: Number,
-    }],
-    instructionalMaterial: [{
-        insType: {
-            type: String,
-            enum: ['PRINTS','AUDIO','VISUALS','AUDIO-VISUAL','ELECTRONIC-INTERACTIVES','MEASUMENT-TOOLS']
-        },
-        material: String,
-    }],
-    otherMaterialsAndReferences: String,
+    knowledge: {
+        topics: [
+            {
+                topic: String,
+                bloomTaxonomy: String,
+                standardCriteriaPerfomance: Number
+            }
+        ],
+        instructionalMaterial: [
+            {
+                materialType: String,
+                items: [
+                    {
+                        item : String
+                    }
+                ],
+                uploads: [
+                    { file: String }
+                ]
+            }
+        ],
+        otherMaterialsAndReferences: String
+    },
+    skills: {
+        topics: [
+            {
+                topic: String,
+                bloomTaxonomy: String,
+                standardCriteriaPerfomance: Number
+            }
+        ],
+        instructionalMaterial: [
+            {
+                materialType: String,
+                items: [
+                    {
+                        item : String
+                    }
+                ],
+                uploads: [
+                    { file: String }
+                ]
+            }
+        ],
+        otherMaterialsAndReferences: String
+    },
+    attitudesAndValues: {
+        topics: [
+            {
+                topic: String,
+                bloomTaxonomy: String,
+                standardCriteriaPerfomance: Number
+            }
+        ],
+        instructionalMaterial: [
+            {
+                materialType: String,
+                items: [
+                    {
+                        item : String
+                    }
+                ],
+                uploads: [
+                    { file: String }
+                ]
+            }
+        ],
+        otherMaterialsAndReferences: String
+    },
     activities: {
         introduction: {
-            activities: [{
-                activity: String,
-                files: [{
-                    fileType: String,
-                    file: String
-                }]
-            }],
-            otherActivity: String,
+            content: {
+                activities: [
+                    {
+                        activity: String
+                    }
+                ],
+                otherActivity: String
+            },
             crossCuttingIssues: {
-                type: String,
-                enum: ['GENOCIDE-STUDIES','ENVIRONMENT-AND-SUSTAINABILITY','GENDER','COMPREHENSIVE-SEXUALITY-EDUCATION','PEACE-AND-VALUES-EDUCATION','FINANCIAL-EDUCATION','STANDARDISATION-CULTURE','INCLUSIVE-EDUCATION']
+                issues: [
+                    {
+                        issue: String
+                    }
+                ],
+                comment: String
             },
-            crossCuttingIssuesComment: String,
             competency: {
-                type: String,
-                ENUM: ['CRITICAL-THINKING','RESEARCH-AND-PROBLEM-SOLVING','CREATIVITY-AND-INNOVATION','COMMUNICATION','COOPERATION-INTERPERSONAL-MANAGEMENT-AND-LIFE-SKILLS','LIFELONG-LEARNING']
-            },
-            competencyComment: String 
+                competencies: [
+                    {
+                        competency: String
+                    }
+                ],
+                comment: String
+            }
         },
+      
         development: {
-            activities: [{
-                activity: String
-            }],
-            otherActivity: String,
+            content: {
+                activities: [
+                    {
+                        activity: String
+                    }
+                ],
+                otherActivity: String
+            },
             crossCuttingIssues: {
-                type: String,
-                enum: ['GENOCIDE-STUDIES','ENVIRONMENT-AND-SUSTAINABILITY','GENDER','COMPREHENSIVE-SEXUALITY-EDUCATION','PEACE-AND-VALUES-EDUCATION','FINANCIAL-EDUCATION','STANDARDISATION-CULTURE','INCLUSIVE-EDUCATION']
+                issues: [
+                    {
+                        issue: String
+                    }
+                ],
+                comment: String
             },
-            crossCuttingIssuesComment: String,
             competency: {
-                type: String,
-                ENUM: ['CRITICAL-THINKING','RESEARCH-AND-PROBLEM-SOLVING','CREATIVITY-AND-INNOVATION','COMMUNICATION','COOPERATION-INTERPERSONAL-MANAGEMENT-AND-LIFE-SKILLS','LIFELONG-LEARNING']
-            },
-            competencyComment: String 
+                competencies: [
+                    {
+                        competency: String
+                    }
+                ],
+                comment: String
+            }
         },
+      
         conclusion: {
-            activities: [{
-                activity: String
-            }],
-            otherActivity: String,
+            content: {
+                activities: [
+                    {
+                        activity: String
+                    }
+                ],
+                otherActivity: String
+            },
             crossCuttingIssues: {
-                type: String,
-                enum: ['GENOCIDE-STUDIES','ENVIRONMENT-AND-SUSTAINABILITY','GENDER','COMPREHENSIVE-SEXUALITY-EDUCATION','PEACE-AND-VALUES-EDUCATION','FINANCIAL-EDUCATION','STANDARDISATION-CULTURE','INCLUSIVE-EDUCATION']
+                issues: [
+                    {
+                        issue: String
+                    }
+                ],
+                comment: String
             },
-            crossCuttingIssuesComment: String,
             competency: {
-                type: String,
-                ENUM: ['CRITICAL-THINKING','RESEARCH-AND-PROBLEM-SOLVING','CREATIVITY-AND-INNOVATION','COMMUNICATION','COOPERATION-INTERPERSONAL-MANAGEMENT-AND-LIFE-SKILLS','LIFELONG-LEARNING']
-            },
-            competencyComment: String 
+                competencies: [
+                    {
+                        competency: String
+                    }
+                ],
+                comment: String
+            }
         },
         exercises: {
-            questions: [{
-                difficultLevel: {
-                    type: String,
-                    enum: ['EASY','MEDIUM','DIFFICULT']
-                },
-                questionsObjective: {
-                    type: String,
-                    enum: ['REMEMBERING','UNDERSTANDING','APPLYING','ANALYSING','CREATING','EVALUATING']
-                },
-                question: String,
-                questionType: {
-                    type: String,
-                    enum: ['MULTI-CHOICE', 'TRUE/FALSE', 'MATCHING','FILL-IN-THE-BLANK','SHORT-ANSWER','LONG-ANSWER']
-                },
-                possibleAnswer: [{
-                        answer: String
-                }],
-                answers: [{
-                    answer: String
-                }],
-                points: Number
-            }]
+            questions: [
+                {
+                 difficultLevel: String,
+                 questionsObjective: String,
+                 question: String,
+                 questionType: String,
+                 possibleAnswer: [
+                     {
+                         answer: String
+                     }
+                 ],
+                answers: [
+                     {
+                         answer: String
+                     }
+                 ],
+                 points: Number
+                      
+                }
+            ]
         }
-    },
+    }, 
     teachingTechniques: {
-        introduction:{
-            contentFocus: {
-                type: String,
-                enum: ['LIVE-LECTURING','AUDIO-VISUAL-PRESENTATIONS','ASSINGED-READING/TEXT','GUEST-SPEAKERS','CLASSROOM-DISPLAYS','FIELD-VISIT','PEER-TEACHING']
-            },
-            interactiveFocus: {
-                type: String,
-                enum: ['GROUP-WORK','DIRECTED-QUESTION-AND-ANSWER','FACILITATED-SYNCHRONOUS-DISCUSSION','JIGSAW-COLLABORATIVE-INFORMATION-SHARING','GROUP-ASSIGNMENTS','PEER-TO-PEER-LEARNING']
-            },
-            criticalThinking: {
-                type: String,
-                enum: ['CLASS-DISCUSSIONS-DEBATES','RESPONSE-TO-AN-ASSIGNMENT']
-            },
-            production: {
-                type: String,
-                enum: ['SKILLS-PRACTICE','DEMONSTRATION-AND-MODELING','INFOGRAPHIC','ORAL-SUMMARY','WRITTEN-SUMMARY','CLASS-TEST']
-            },
-            problemSolving: {
-                type: String,
-                enum: ['RESEARCH-INQUIRY','SIMULATION','CASE-STUDY','CLASS-SOLUTION-AND-CONSEQUENCE','ROLE-PLAY']
-            },
-            reflection: {
-                type: String,
-                enum: ['REFLECTION-ON-LEARNING','SELF-ASSESSMENT','PRIOR-UNDERSTNDING']
-            },
-            sitingArrangement: {
-                type: String,
-                enum: ['LECTURE/INDEPENDENT-WORK/TEST','GROUP-WORK/STATIONS','DEMONSTRATION/DISCUSSION']
-            },
+        introduction: {
+            contentFocus: [
+                {
+                    item: String
+                }
+            ],
+            interactiveFocus: [
+                {
+                    item: String
+                }
+            ],
+            criticalThinking: [
+                {
+                    item: String
+                }
+            ],
+            production: [
+                {
+                    item: String
+                }
+            ],
+            problemSolving: [
+                {
+                    item: String
+                }
+            ],
+            reflection: [
+                {
+                    item: String
+                }
+            ],
+            sitingArrangement: [
+                {
+                    item: String
+                }
+            ],
             duration: Number
         },
-        development:{
-            contentFocus: {
-                type: String,
-                enum: ['LIVE-LECTURING','AUDIO-VISUAL-PRESENTATIONS','ASSINGED-READING/TEXT','GUEST-SPEAKERS','CLASSROOM-DISPLAYS','FIELD-VISIT','PEER-TEACHING']
-            },
-            interactiveFocus: {
-                type: String,
-                enum: ['GROUP-WORK','DIRECTED-QUESTION-AND-ANSWER','FACILITATED-SYNCHRONOUS-DISCUSSION','JIGSAW-COLLABORATIVE-INFORMATION-SHARING','GROUP-ASSIGNMENTS','PEER-TO-PEER-LEARNING']
-            },
-            criticalThinking: {
-                type: String,
-                enum: ['CLASS-DISCUSSIONS-DEBATES','RESPONSE-TO-AN-ASSIGNMENT']
-            },
-            production: {
-                type: String,
-                enum: ['SKILLS-PRACTICE','DEMONSTRATION-AND-MODELING','INFOGRAPHIC','ORAL-SUMMARY','WRITTEN-SUMMARY','CLASS-TEST']
-            },
-            problemSolving: {
-                type: String,
-                enum: ['RESEARCH-INQUIRY','SIMULATION','CASE-STUDY','CLASS-SOLUTION-AND-CONSEQUENCE','ROLE-PLAY']
-            },
-            reflection: {
-                type: String,
-                enum: ['REFLECTION-ON-LEARNING','SELF-ASSESSMENT','PRIOR-UNDERSTNDING']
-            },
-            sitingArrangement: {
-                type: String,
-                enum: ['LECTURE/INDEPENDENT-WORK/TEST','GROUP-WORK/STATIONS','DEMONSTRATION/DISCUSSION']
-            },
+        development: {
+            contentFocus: [
+                {
+                    item: String
+                }
+            ],
+            interactiveFocus: [
+                {
+                    item: String
+                }
+            ],
+            criticalThinking: [
+                {
+                    item: String
+                }
+            ],
+            production: [
+                {
+                    item: String
+                }
+            ],
+            problemSolving: [
+                {
+                    item: String
+                }
+            ],
+            reflection: [
+                {
+                    item: String
+                }
+            ],
+            sitingArrangement: [
+                {
+                    item: String
+                }
+            ],
             duration: Number
         },
-        conclusion:{
-            contentFocus: {
-                type: String,
-                enum: ['LIVE-LECTURING','AUDIO-VISUAL-PRESENTATIONS','ASSINGED-READING/TEXT','GUEST-SPEAKERS','CLASSROOM-DISPLAYS','FIELD-VISIT','PEER-TEACHING']
-            },
-            interactiveFocus: {
-                type: String,
-                enum: ['GROUP-WORK','DIRECTED-QUESTION-AND-ANSWER','FACILITATED-SYNCHRONOUS-DISCUSSION','JIGSAW-COLLABORATIVE-INFORMATION-SHARING','GROUP-ASSIGNMENTS','PEER-TO-PEER-LEARNING']
-            },
-            criticalThinking: {
-                type: String,
-                enum: ['CLASS-DISCUSSIONS-DEBATES','RESPONSE-TO-AN-ASSIGNMENT']
-            },
-            production: {
-                type: String,
-                enum: ['SKILLS-PRACTICE','DEMONSTRATION-AND-MODELING','INFOGRAPHIC','ORAL-SUMMARY','WRITTEN-SUMMARY','CLASS-TEST']
-            },
-            problemSolving: {
-                type: String,
-                enum: ['RESEARCH-INQUIRY','SIMULATION','CASE-STUDY','CLASS-SOLUTION-AND-CONSEQUENCE','ROLE-PLAY']
-            },
-            reflection: {
-                type: String,
-                enum: ['REFLECTION-ON-LEARNING','SELF-ASSESSMENT','PRIOR-UNDERSTNDING']
-            },
-            sitingArrangement: {
-                type: String,
-                enum: ['LECTURE/INDEPENDENT-WORK/TEST','GROUP-WORK/STATIONS','DEMONSTRATION/DISCUSSION']
-            },
+        conclusion: {
+            contentFocus: [
+                {
+                    item: String
+                }
+            ],
+            interactiveFocus: [
+                {
+                    item: String
+                }
+            ],
+            criticalThinking: [
+                {
+                    item: String
+                }
+            ],
+            production: [
+                {
+                    item: String
+                }
+            ],
+            problemSolving: [
+                {
+                    item: String
+                }
+            ],
+            reflection: [
+                {
+                    item: String
+                }
+            ],
+            sitingArrangement: [
+                {
+                    item: String
+                }
+            ],
             duration: Number
-        }
+        },  
     },
     studentSelfAssessment: {
         type: String,
-        enum: ['UNDERSTOOD','TOO-HARD','TOO-MUCH']
+        enum: ['UNDERSTOOD', 'TOO-HARD', 'TOO-MUCH']
     },
     teacherSelfAssessment: {
         assessment: {
             type: String,
-            enum: ['COMPLETED','NOT-COMPLETED']
+            enum: ['COMPLETED', 'NOT-COMPLETED']
         },
         reason: String,
         otherComments: String
@@ -256,6 +328,8 @@ const planSchema = new mongoose.Schema({
         },
         day: Date
     }
-}, {timestamps: true});
+}, {
+    timestamps: true
+});
 
 export default mongoose.model("plan", planSchema);
