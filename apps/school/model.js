@@ -8,14 +8,20 @@ const schoolSchema = new mongoose.Schema({
             given: String
         }
     }],
-    address: String,
+    address: {
+        type: mongoose.Schema.Types.ObjectId,
+            ref: 'village'
+    },
     gender: {
         type: String,
         enum: ['GIRLS-ONLY', 'BOYS-ONLY', 'MIXED']
     },
     educationalStage: [{
-        level: String
-    }], // primary[lower, upper], secondary[ordinary, advanced]
+        level: {
+            type: String,
+            enum: ['LOWER-PRIMARY', 'UPPER-PRIMARY','ORDINARY-LEVEL-SECONDARY','ADVANCED-LEVEL-SECONDARY']
+        }
+    }],
     status: {
         type: String,
         enum: ['PRIVATE', 'GOVERMENT-SCHOOL', 'GOVERMENT-AIDED']

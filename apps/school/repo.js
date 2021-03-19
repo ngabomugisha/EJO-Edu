@@ -1,24 +1,109 @@
 import School from './model'
+import SchoolDiscipline from '../school-discipline/repo'
 
-exports.create = async (name) =>{
-try {
-    const newSchool = new School({
-        name
+import {
+    negative,
+    positive,
+    infraction,
+    motivation
+} from './discipline'
+
+
+const setSchoolDisciplineSettings = (school) => {
+    positive.map((positiveItem) => {
+        infraction.map((infractionItem) => {
+            SchoolDiscipline.create(
+                school,
+                "responsibility and cleanliness",
+                positiveItem.item,
+                "infraction",
+                infractionItem.item,
+                0
+            )
+        })
+
+        motivation.map((motivationItem) => {
+            SchoolDiscipline.create(
+                school,
+                "responsibility and cleanliness",
+                positiveItem.item,
+                "infraction",
+                motivationItem.item,
+                0
+            )
+        })
     })
-    await newSchool.save()
-    return newSchool;
-} catch (error) {
-    throw error; 
+
+    negative.map((negativeItem) => {
+        infraction.map((infractionItem) => {
+            SchoolDiscipline.create(
+                school,
+                "indiscipline and rudeness",
+                negativeItem.item,
+                "infraction",
+                infractionItem.item,
+                0
+            )
+        })
+    })
 }
+
+
+exports.create = async (
+    name,
+    address,
+    gender,
+    educationalStage,
+    status,
+    disciplineMarks,
+    howLongIsClassPeriod
+
+) => {
+    try {
+        const newSchool = new School({
+            name,
+            address,
+            gender,
+            educationalStage,
+            status,
+            disciplineMarks,
+            howLongIsClassPeriod
+        })
+
+        await newSchool.save()
+        setSchoolDisciplineSettings(newSchool._id)
+        return newSchool;
+    } catch (error) {
+        throw error;
+    }
 };
 
-exports.update = async (schoolId, name) => {
+exports.update = async (
+    schoolId,
+    name,
+    address,
+    gender,
+    educationalStage,
+    status,
+    disciplineMarks,
+    howLongIsClassPeriod
+) => {
     try {
-        return await School.findByIdAndUpdate(
-            {_id: schoolId},
-            {name: name},{new: true},
+        return await School.findByIdAndUpdate({
+                _id: schoolId
+            }, {
+                name,
+                address,
+                gender,
+                educationalStage,
+                status,
+                disciplineMarks,
+                howLongIsClassPeriod
+            }, {
+                new: true
+            },
             (err, success) => {
-                if(err){
+                if (err) {
                     console.log(err);
                     return false;
                 }
@@ -33,13 +118,13 @@ exports.update = async (schoolId, name) => {
 exports.getAllSchools = async () => {
     try {
         return await School.find()
-                .then(res => {
-                    return res;
-                })
-                .catch(err => {
-                    console.log(err);
-                    return false;
-                })
+            .then(res => {
+                return res;
+            })
+            .catch(err => {
+                console.log(err);
+                return false;
+            })
     } catch (error) {
         throw error;
     }
@@ -48,13 +133,13 @@ exports.getAllSchools = async () => {
 exports.getOneSchool = async (schoolId) => {
     try {
         return await School.findById(schoolId)
-                .then(res => {
-                    return res;
-                })
-                .catch(err => {
-                    console.log(err);
-                    return false;
-                })
+            .then(res => {
+                return res;
+            })
+            .catch(err => {
+                console.log(err);
+                return false;
+            })
     } catch (error) {
         throw error;
     }

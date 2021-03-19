@@ -420,7 +420,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"test school\"\r\n}",
+							"raw": "{\r\n    \"name\": \"test school\",\r\n    \"address\": \"603179c1e383bb1b847eff2c\",\r\n    \"gender\": \"GIRLS-ONLY\",\r\n    \"educationalStage\": [\r\n        {\r\n            \"level\": \"LOWER-PRIMARY\"\r\n        },\r\n        {\r\n            \"level\": \"UPPER-PRIMARY\"\r\n        }\r\n    ],\r\n    \"status\": \"PRIVATE\",\r\n    \"disciplineMarks\": \"100\",\r\n    \"howLongIsClassPeriod\": \"50\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -730,7 +730,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"school\": \"602c1e8feeb9ae2820b62120\",\r\n    \"firstLevel\": \"Responsibility\",\r\n    \"secondLevel\": \"Careful work\",\r\n    \"thirdLevel\": \"Motivation\",\r\n    \"forthLevel\": \"Encouragement\",\r\n    \"marks\": -2\r\n}",
+							"raw": "{\r\n    \"school\": \"602c1e8feeb9ae2820b62120\",\r\n    \"firstLevel\": \"Indispline and Rudeness\",\r\n    \"forthLevel\": \"Warning\",\r\n    \"secondLevel\": \"Accompanied by a visitor without permission \",\r\n    \"thirdLevel\": \"Infraction\",\r\n    \"marks\": -2\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -885,7 +885,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"studentClass\": \"602c20e5eeb9ae2820b62123\",\r\n    \"students\": [\r\n        {\r\n            \"_id\": \"602c23ddbd2ce42e800e0f37\"\r\n        },\r\n        {\r\n            \"_id\": \"6036ae70d9b47604481d6fd3\"\r\n        }\r\n    ],\r\n    \"firstLevel\": \"Responsibility\",\r\n    \"secondLevel\": \"Careful work\",\r\n    \"thirdLevel\": \"Motivation\",\r\n    \"forthLevel\": \"Encouragement\",\r\n    \"marks\": 2\r\n}",
+							"raw": "{\r\n    \"studentClass\": \"602c20e5eeb9ae2820b62123\",\r\n    \"students\": [\r\n        {\r\n            \"_id\": \"602c23ddbd2ce42e800e0f37\"\r\n        },\r\n        {\r\n            \"_id\": \"6036ae70d9b47604481d6fd3\"\r\n        }\r\n    ],\r\n    \"firstLevel\": \"Indispline and Rudeness\",\r\n    \"forthLevel\": \"Warning\",\r\n    \"secondLevel\": \"Accompanied by a visitor without permission \",\r\n    \"thirdLevel\": \"Infraction\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1706,7 +1706,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"assignedClass\": \"602c20e5eeb9ae2820b62123\",\r\n    \"teacher\": \"602b9cfc49ce7a0be4a35fc7\",\r\n    \"subject\": \"602c349dfd1613203834880d\"\r\n}",
+							"raw": "{\r\n    \"assignedClass\": \"602c20e5eeb9ae2820b62123\",\r\n    \"teacher\": \"6031843bbeb97f3a04f44084\",\r\n    \"subject\": \"602c349dfd1613203834880d\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1840,7 +1840,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:9000/api/class-teachers/602b9cfc49ce7a0be4a35fc7/teacher-classes",
+							"raw": "localhost:9000/api/class-teachers/6031843bbeb97f3a04f44084/teacher-classes",
 							"host": [
 								"localhost"
 							],
@@ -1848,7 +1848,7 @@
 							"path": [
 								"api",
 								"class-teachers",
-								"602b9cfc49ce7a0be4a35fc7",
+								"6031843bbeb97f3a04f44084",
 								"teacher-classes"
 							]
 						}
@@ -3249,12 +3249,7 @@
 											"value": "image",
 											"type": "text"
 										}
-									],
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
+									]
 								},
 								"url": {
 									"raw": "localhost:9000/api/lessons/units/60509e4db4cebe27688acd3b/add-file",
@@ -3382,7 +3377,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"unit\": \"6031023397d2e742707b720e\",\r\n    \"time\": {\r\n        \"start\" : \"2021-06-31T17:58:09.010+00:00\",\r\n        \"end\" : \"2021-07-31T17:58:09.010+00:00\"\r\n    },\r\n    \"subject\": \"602c349dfd1613203834880d\"\r\n}",
+									"raw": "{\r\n    \"unit\": \"60509e4db4cebe27688acd3b\",\r\n    \"time\": {\r\n        \"start\" : \"2021-06-31T17:58:09.010+00:00\",\r\n        \"end\" : \"2021-07-31T17:58:09.010+00:00\"\r\n    },\r\n    \"subject\": \"602c349dfd1613203834880d\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -3452,7 +3447,7 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:9000/api/lessons/unit-plans/6031023397d2e742707b720e",
+									"raw": "localhost:9000/api/lessons/unit-plans/6035240d55ca8b00360caf0f",
 									"host": [
 										"localhost"
 									],
@@ -3461,7 +3456,7 @@
 										"api",
 										"lessons",
 										"unit-plans",
-										"6031023397d2e742707b720e"
+										"6035240d55ca8b00360caf0f"
 									]
 								}
 							},
@@ -3937,7 +3932,7 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:9000/api/lessons/plans/602c349dfd1613203834880d/unit-plan",
+									"raw": "localhost:9000/api/lessons/plans/6035216455ca8b00360caef1/unit-plan",
 									"host": [
 										"localhost"
 									],
@@ -3946,7 +3941,7 @@
 										"api",
 										"lessons",
 										"plans",
-										"602c349dfd1613203834880d",
+										"6035216455ca8b00360caef1",
 										"unit-plan"
 									]
 								}
@@ -4638,7 +4633,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"student\": \"60317e67ec0fa31db03195ad\",\r\n    \"answers\": [\r\n        {\r\n            \"question\": \"6033aea27113dc0d7c8b8d38\",\r\n            \"awarededPoints\": 4,\r\n            \"answer\": [\r\n                        {\r\n                            \"answer\": \"answer 1\"\r\n                        },\r\n                        {\r\n                            \"answer\": \"answer 2\"\r\n                        }\r\n            ]\r\n        }\r\n    ],\r\n    \"totalMarks\": \"4\",\r\n    \"studentClass\": \"602c20e5eeb9ae2820b62123\",\r\n    \"subject\": \"602c349dfd1613203834880d\",\r\n    \"assignment\": \"6033a2ff68825221b8e7d218\",\r\n    \"started\": \"2021-06-31T17:10:09.010+00:00\",\r\n    \"ended\": \"2021-06-31T17:58:09.010+00:00\",\r\n    \"marksPublished\": false\r\n\r\n}",
+							"raw": "{\r\n    \"student\": \"60317e67ec0fa31db03195ad\",\r\n    \"answers\": [\r\n        {\r\n            \"question\": \"6033aea27113dc0d7c8b8d38\",\r\n            \"awarededPoints\": 4,\r\n            \"answer\": [\r\n                        {\r\n                            \"answer\": \"answer 1\"\r\n                        },\r\n                        {\r\n                            \"answer\": \"answer 2\"\r\n                        }\r\n            ]\r\n        }\r\n    ],\r\n    \"totalMarks\": \"4\",\r\n    \"studentClass\": \"602c20e5eeb9ae2820b62123\",\r\n    \"subject\": \"602c349dfd1613203834880d\",\r\n    \"assignment\": \"6033a2ff68825221b8e7d218\",\r\n    \"started\": \"2021-06-31T17:10:09.010+00:00\",\r\n    \"ended\": \"2021-06-31T17:58:09.010+00:00\",\r\n    \"marksPublished\": false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -5795,16 +5790,17 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:9000/uploads/public-files/1615896746439.csv",
-					"protocol": "http",
+					"raw": "https://ejo-education.herokuapp.com/uploads/public-files/1615896576955.jpg",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"ejo-education",
+						"herokuapp",
+						"com"
 					],
-					"port": "9000",
 					"path": [
 						"uploads",
 						"public-files",
-						"1615896746439.csv"
+						"1615896576955.jpg"
 					]
 				}
 			},
