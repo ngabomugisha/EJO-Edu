@@ -33,7 +33,7 @@ const schoolSchema = new mongoose.Schema({
     howLongIsClassPeriod: {
         type: Number,
         default: 40
-    },
+    }
 }, {
     timestamps: true
 });

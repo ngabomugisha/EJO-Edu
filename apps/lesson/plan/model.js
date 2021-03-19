@@ -25,7 +25,12 @@ const planSchema = new mongoose.Schema({
             {
                 topic: String,
                 bloomTaxonomy: String,
-                standardCriteriaPerfomance: Number
+                selfCreated: Boolean,
+                standardCriteriaPerfomance: Number,
+                files: [{
+                    fileType: String,
+                    file: String
+                }],
             }
         ],
         instructionalMaterial: [
@@ -48,7 +53,12 @@ const planSchema = new mongoose.Schema({
             {
                 topic: String,
                 bloomTaxonomy: String,
-                standardCriteriaPerfomance: Number
+                selfCreated: Boolean,
+                standardCriteriaPerfomance: Number,
+                files: [{
+                    fileType: String,
+                    file: String
+                }],
             }
         ],
         instructionalMaterial: [
@@ -71,7 +81,12 @@ const planSchema = new mongoose.Schema({
             {
                 topic: String,
                 bloomTaxonomy: String,
-                standardCriteriaPerfomance: Number
+                selfCreated: Boolean,
+                standardCriteriaPerfomance: Number,
+                files: [{
+                    fileType: String,
+                    file: String
+                }],
             }
         ],
         instructionalMaterial: [
@@ -94,7 +109,11 @@ const planSchema = new mongoose.Schema({
             content: {
                 activities: [
                     {
-                        activity: String
+                        activity: String,
+                        files: [{
+                            fileType: String,
+                            file: String
+                        }],
                     }
                 ],
                 otherActivity: String
@@ -121,7 +140,11 @@ const planSchema = new mongoose.Schema({
             content: {
                 activities: [
                     {
-                        activity: String
+                        activity: String,
+                        files: [{
+                            fileType: String,
+                            file: String
+                        }],
                     }
                 ],
                 otherActivity: String
@@ -148,7 +171,11 @@ const planSchema = new mongoose.Schema({
             content: {
                 activities: [
                     {
-                        activity: String
+                        activity: String,
+                        files: [{
+                            fileType: String,
+                            file: String
+                        }],
                     }
                 ],
                 otherActivity: String

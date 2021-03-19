@@ -33,8 +33,7 @@ const unitPlanSchema = new mongoose.Schema({
                 file: String
             }],
             bloomTaxonomy: {
-                type: String,
-                enum: ['REMEMBERING', 'UNDERSTANDING']
+                type: String
             },
             standardCriteriaPerfomance: Number,
             numberOftimesTaught: {
@@ -50,8 +49,7 @@ const unitPlanSchema = new mongoose.Schema({
                 file: String
             }],
             bloomTaxonomy: {
-                type: String,
-                enum: ['REMEMBERING', 'UNDERSTANDING']
+                type: String
             },
             standardCriteriaPerfomance: Number,
             numberOftimesTaught: {
@@ -67,8 +65,7 @@ const unitPlanSchema = new mongoose.Schema({
                 file: String
             }],
             bloomTaxonomy: {
-                type: String,
-                enum: ['REMEMBERING', 'UNDERSTANDING']
+                type: String
             },
             standardCriteriaPerfomance: Number,
             numberOftimesTaught: {
