@@ -36,7 +36,7 @@ exports.addStudentDiscipline = async (req, res) => {
             disciplineAction.marks
             )
             .then(results => {
-                Response.Success(res, 200, "queried successfully", results);
+                Response.Success(res, 200, "created successfully", results);
             })
             .catch(err => {
                 console.log(err);
@@ -69,7 +69,7 @@ exports.addComment = async (req, res) => {
             school
             )
             .then(results => {
-                Response.Success(res, 200, "queried successfully", results);
+                Response.Success(res, 200, "Created successfully", results);
             })
             .catch(err => {
                 console.log(err);

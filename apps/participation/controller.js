@@ -56,7 +56,7 @@ exports.addStudentParticipation = async (req, res) => {
             record
             )
             .then(results => {
-                Response.Success(res, 200, "queried successfully", results);
+                Response.Success(res, 200, "created successfully", results);
             })
             .catch(err => {
                 console.log(err);
@@ -85,7 +85,7 @@ exports.addComment = async (req, res) => {
             author
             )
             .then(results => {
-                Response.Success(res, 200, "queried successfully", results);
+                Response.Success(res, 200, "created successfully", results);
             })
             .catch(err => {
                 console.log(err);
