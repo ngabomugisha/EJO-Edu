@@ -21,6 +21,7 @@ exports.create = async (req, res) => {
         } = req.body;
         const teacher = req.user._id
         const school = req.user.school
+        // console.log(JSON.stringify(req.body))
         Plan.create(
                 teacher,
                 school,
