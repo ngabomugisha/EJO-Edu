@@ -45,7 +45,6 @@ exports.addStudentParticipation = async (req, res) => {
             students,
             positive,
             firstLevel,
-            secondLevel,
             record
         } = req.body
 
@@ -54,7 +53,6 @@ exports.addStudentParticipation = async (req, res) => {
             students,
             positive,
             firstLevel,
-            secondLevel,
             record
             )
             .then(results => {

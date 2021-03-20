@@ -28,14 +28,11 @@ const participationSchema = new mongoose.Schema({
             firstLevel: {
                 type: String
             },
-            secondLevel: {
-                type: String
-            },
             record: [{
-                thirdLevel: {
+                secondLevel: {
                     type: String
                 },
-                forthLevel: {
+                thirdLevel: {
                     type: String
                 }
             }],

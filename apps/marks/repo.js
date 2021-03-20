@@ -102,6 +102,22 @@ exports.getAssignmentMarks = async (assignmentId, subjectId) => {
     }
 }
 
+exports.getClassMarks = async (classId) => {
+    try {
+        return await Marks.find({
+            class: classId
+        }
+        )
+        .populate({
+            path: "subject student assignment",
+            select: "title firstName lastName name"
+        })
+        .exec()
+    } catch (error) {
+        throw error;
+    }
+}
+
 exports.getOneMarks = async (marksId) => {
     try {
         return await Marks.findById(marksId)

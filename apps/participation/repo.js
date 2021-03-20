@@ -26,14 +26,12 @@ exports.addStudentParticipation = async (
     students,
     positive,
     firstLevel,
-    secondLevel,
     record
 ) => {
     try {
         const participation = {
             positive,
             firstLevel,
-            secondLevel,
             record,
             time: Date.now()
         }
