@@ -117,7 +117,7 @@ exports.getClassDiscipline = async (classId) => {
                 class: classId
             })
             .populate({
-                path: 'student'
+                path: 'student comments.author'
             })
             .exec()
             .then(res => {
@@ -140,7 +140,7 @@ exports.getStudentDiscipline = async (studentId) => {
                 student: studentId
             })
             .populate({
-                path: 'student'
+                path: 'student comments.author'
             })
             .exec()
             .then(res => {

@@ -53,7 +53,7 @@ exports.addStudentParticipation = async (
                 new: true
             })
             .populate({
-                path: 'students.student'
+                path: 'students.student students.comments.author'
             })
             .exec();
         }))
@@ -108,7 +108,7 @@ exports.addComment = async (
                 new: true
             })
             .populate({
-                path: 'students.student'
+                path: 'students.student students.comments.author'
             })
             .exec();
     } catch (error) {
@@ -124,7 +124,7 @@ exports.getClassParticipation = async (classId, teacher) => {
                 teacher: teacher
             })
             .populate({
-                path: 'students.student'
+                path: 'students.student students.comments.author'
             })
             .exec()
             .then(res => {
