@@ -10,6 +10,7 @@ import TextField from '@material-ui/core/TextField';
 import { Formik, Field, Form } from 'formik'
 import { handleFetchTerms , handleUpdateTerm } from '../../../store/actions/term.action'
 import { useDispatch, useSelector } from 'react-redux';
+import { MdDateRange } from "react-icons/md";
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -120,19 +121,27 @@ console.log('this is data to pass',data,typeof(data))
         <div>
 
             <PanelLayout selected={5} role={props.state.auth.user.role}>
+                        <div className="report-hd">
+                            <h3>Discipline settings</h3>
+                        </div>
                 <div className="term-continer">
                     <Paper elevation={4}>
                         <form>
                             <div className="paper-div">
                                 <Grid container xs={12} justify="center" spacing={3} >
-                                    <Grid item xs={2}>
-                                        <p className="terms">Terms</p>
+                                    <Grid className="grid-bg" item xs={2}>
+                                        <p className="terms-hd"><sub>Terms</sub>\<sup>Time Range</sup></p>
                                     </Grid>
-                                    <Grid item xs={5} justify="center">
+                                    <Grid className="grid-bg" item xs={4}>
                                         <p >Starting Date</p>
                                     </Grid>
-                                    <Grid item xs={5} justify="center">
+                                    <Grid className="grid-bg" item xs={4}>
                                         <p >Ending Date</p>
+                                    </Grid>
+
+                                    <Grid className="grid-bg" item xs={2}>
+
+
                                     </Grid>
 
                                     {isLoading ? <p>loading.......</p> :
@@ -140,26 +149,28 @@ console.log('this is data to pass',data,typeof(data))
                                             <p>loading.........</p> :
                                             ALL_TERMS.map(item => (
                                                 <>
-                                                    <Grid item xs={2}>
-                                                        <p key={item._id} className="terms">{item.name}</p>
+                                                    <Grid className="grid-bg" item xs={2}>
+                                                        <p key={item._id} className="terms"><MdDateRange/>&nbsp;&nbsp;&nbsp;{item.name}</p>
                                                     </Grid>
-                                                    <Grid item xs={4}>
+                                                    <Grid item xs={4} style={{display: "flex", justifyContent: "center"}}>
                                                         <TextField
                                                             id="date"
                                                             label="start of term"
                                                             variant="outlined"
                                                             type="date"
+                                                            fullWidth
                                                             name={item.name}
                                                             onChange={onChange_start}
                                                             defaultValue={(item.starts).substring(0, 10)}
                                                             className={classes.textField}
                                                         />
                                                     </Grid>
-                                                    <Grid item xs={4}>
+                                                    <Grid item xs={4} style={{display: "flex", justifyContent: "center"}}>
                                                         <TextField
                                                             id="date"
-                                                            label="start of term"
+                                                            label="End of term"
                                                             variant="outlined"
+                                                            fullWidth
                                                             name={item.name}
                                                             onChange={onChange_end}
                                                             type="date"
@@ -168,7 +179,7 @@ console.log('this is data to pass',data,typeof(data))
                                                         />
                                                     </Grid>
                                                     <Grid item xs={2}>
-                                                        <Button onClick={() => submitData(item._id, item.name)}>Update</Button>
+                                                        <button className="check-btn-1" onClick={() => submitData(item._id, item.name)}>Update</button>
                                                     </Grid>
                                                 </>))
                                     }

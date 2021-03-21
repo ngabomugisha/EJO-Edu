@@ -12,7 +12,7 @@ export const Index = (props) => {
   const [key, setKey] = useState('guest');
   return (
     <div>
-      <PanelLayout selected={2} role="headteacher">
+      <PanelLayout selected={2} role={props.state.auth.user.role}>
         <div className="checkio-hd"><h3>Check In/Out</h3></div>
         <div className="checkio-container">
           <div className="checkio-tabs">
@@ -71,7 +71,7 @@ export const Index = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-
+  state: state
 })
 
 const mapDispatchToProps = {

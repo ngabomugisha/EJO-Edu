@@ -5,6 +5,8 @@ import PanelLayout from '../../../components/Layouts/PanelLayout/Index'
 import { handleFetchStudent } from '../../../store/actions/student.actions'
 import { useDispatch, useSelector } from 'react-redux';
 import Table from '../../../components/parts/Table'
+import Skeleton from "@material-ui/lab/Skeleton"
+import { Box} from '@material-ui/core'
 
 
 export const Index = (props) => {
@@ -48,7 +50,70 @@ console.log('data from localstorage',JSON.parse(localStorage.getItem("students")
         {
             !isLoading ?
             <Table data={ALL_STUDENTS} head={headCells}/>:
-            <h3>loading......</h3>
+            (  <Box className="my-bx">
+                <div className="skeleton-line-students">
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                    <Skeleton width="20%" />
+                </div>
+            </Box>)
         }
                   
 

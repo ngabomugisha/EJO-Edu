@@ -6,7 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import { Button } from '@material-ui/core';
 import HomeLayout from '../../components/Layouts/HomeLayout';
 import { handleLogin } from '../../store/actions/auth.actions';
-import { SCHOOLADMIN, TEACHER, SUPERADMIN } from './Users'
+import { SCHOOLADMIN, TEACHER, SUPERADMIN, HEADSTUDY } from './Users'
 import  Alert  from 'react-bootstrap/Alert';
 import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -39,6 +39,9 @@ const LoginPage = (props) => {
           case SUPERADMIN:
             history.replace('/admin')
             break;
+            case HEADSTUDY:
+              history.replace('/headStudy')
+              break;
 
         default:
           break;

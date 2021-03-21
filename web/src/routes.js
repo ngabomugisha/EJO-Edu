@@ -15,11 +15,11 @@ import NewAssignmentPage from './components/newAssignment/NewAssignment'
 import NewLessonPlanPage from './components/newLessonplan/NewLessonPlan'
 import LessonPlanDetailsPage from './pages/Teacher/LessonPlanDetails'
 
-//HeadTeacher
-import HeadTeacherDashboard from './pages/HeadTeacher/Index';
-import ReadAnnouncement from './pages/HeadTeacher/announcement/Announcement'
-import ReportPage from './pages/HeadTeacher/report/Index'
-import CheckInOutPage from './pages/HeadTeacher/checkInOut/Index'
+//headStudy
+import headStudyDashboard from './pages/headStudy/Index';
+ import ReadAnnouncement from './components/announcements/ReadAnnouncement'
+import ReportPage from './pages/headStudy/report/Index'
+import CheckInOutPage from './pages/headStudy/checkInOut/Index'
 
 //School-Admin
 import schoolAdminDaschbord from './pages/SCHOOL-ADMIN/index'
@@ -29,6 +29,7 @@ import timeTablePage from './pages/SCHOOL-ADMIN/timeTable/index'
 import disciplinePage from './pages/SCHOOL-ADMIN/discipline/index'
 import termPage from './pages/SCHOOL-ADMIN/term/index'
 import questionsPage from './pages/SCHOOL-ADMIN/questions/index'
+import reportPage from './pages/SCHOOL-ADMIN/report/index'
 
 //Super-Admin
 import superAdminDashboard from './pages/SUPER-ADMIN/index'
@@ -62,11 +63,11 @@ export default () => {
           <Route exact path="/teacher" component={TeacherDashboard} />
 
 
-          {/* headTeacher routes */}
-          <Route exact path="/headTeacher" component={HeadTeacherDashboard} />
-          <Route exact path="/headTeacher/announcement" component={ReadAnnouncement} />
-          <Route exact path="/headTeacher/report" component={ReportPage} />
-          <Route exact path="/headTeacher/checkio" component={CheckInOutPage} />
+          {/* headStudy routes */}
+          <Route exact path="/headStudy" component={headStudyDashboard} />
+          <Route exact path="/headStudy/announcement" component={ReadAnnouncement} />
+          <Route exact path="/headStudy/report" component={ReportPage} />
+          <Route exact path="/headStudy/checkInOut" component={CheckInOutPage} />
 
 
           {/* schoolAdmin routes */}
@@ -75,6 +76,8 @@ export default () => {
           <Route exact path="/schoolAdmin/term" component={termPage} />
           <Route exact path="/schoolAdmin/discipline" component={disciplinePage} />
           <Route exact path="/schoolAdmin/questions" component={questionsPage} />
+          <Route exact path="/schoolAdmin/report" component={reportPage} />
+          
           <Route exact path="/schoolAdmin/teachers">
             <TeachersPage userData={userData} />
           </Route>

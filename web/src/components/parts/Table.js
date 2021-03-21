@@ -113,9 +113,9 @@ export const Table = (props) => {
         return (recordsAfterPagingAndSorting().map(item =>
         (<TableRow key={item._id}>
             <TableCell onClick={() => { setDetailsPopup(true); setRecordForEdit(item); }}>{item.firstName}</TableCell>
-            <TableCell>{item.lastName}</TableCell>
-            <TableCell>{item.gender}</TableCell>
-            <TableCell>{(item.createdAt)}</TableCell>
+            <TableCell onClick={() => { setDetailsPopup(true); setRecordForEdit(item); }}>{item.lastName}</TableCell>
+            <TableCell onClick={() => { setDetailsPopup(true); setRecordForEdit(item); }}>{item.gender}</TableCell>
+            <TableCell onClick={() => { setDetailsPopup(true); setRecordForEdit(item); }}>{(item.createdAt).substring(0,10)}</TableCell>
             <TableCell>
                 <Controls.ActionButton
                     color="primary"
@@ -212,17 +212,6 @@ function loadTable(){
                         <TblContainer>
                             <TblHead />
                             <TableBody>
-                                {/* {isLoading ? (
-                                    <SkeletonTheme color="lightGray">
-                                        <section>
-                                            <Skeleton fullWidth height={50} />
-                                            <Skeleton animation={false} />
-                                            <Skeleton animation="wave" />
-                                        </section>
-                                    </SkeletonTheme>
-                                ) : (loadBody()
-                                    )
-                                } */}
                                 {
                                     loadBody()
                                 }

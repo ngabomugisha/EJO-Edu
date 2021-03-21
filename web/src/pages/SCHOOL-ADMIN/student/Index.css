@@ -172,3 +172,11 @@
   .student-controls{
     padding: 20px;
   }
+
+  .skeleton-line-students{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    vertical-align: middle;
+    margin-top: 200px;
+}

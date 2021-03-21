@@ -12,7 +12,16 @@ import Container from '@material-ui/core/Container';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import MenuItem from '@material-ui/core/MenuItem';
 import { Formik, Field, Form } from 'formik'
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+import { KeyboardTimePicker } from '@material-ui/pickers'
+import * as Yup from "yup";
+import { isSameOrBeforeTime, isSameOrAfterTime } from "./util";
 
+
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -32,58 +41,121 @@ const useStyles = makeStyles((theme) => ({
     submit: {
         margin: theme.spacing(3, 0, 2),
     },
+    root: {
+        width: '100%',
+        '& > * + *': {
+            marginTop: theme.spacing(2),
+        },
+    },
 }));
 export const TimetableForm = (props) => {
-    const [] = React.useState('');
+    const [open, setOpen] = React.useState(false);
+    const [openformMsg, setOpenformMsg] = React.useState(false);
+    const [msg, setMsg] = useState('')
+    const [msgtype, setMsgtype] = useState('')
     const classes = useStyles();
-    
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpen(false);
+        setOpenformMsg(false)
+    };
 
     const initialValue = {
         "assignedClass": "",
         "teacher": "",
         "subject": "",
         "term": "",
-        "time": {
-            "dayOfWeek": 0,
-            "starts": "",
-            "ends": "",
-        }
+        "starts": "",
+        "ends": "",
+        "dayOfWeek": 0,
 
     }
 
-
     const onSubmit = values => {
+        const st = parseInt((values.starts).substring(0,2)+(values.starts).substring(3))
+        const en = parseInt((values.ends).substring(0,2)+(values.ends).substring(3))
 
-        let convertedData = {
-            ...values,
-            time:{
-                dayOfWeek : parseInt(values.time.dayOfWeek),
-                starts: (values.time.starts).substring(0,2)+(values.time.starts).substring(3),
-                ends: (values.time.ends).substring(0,2)+(values.time.ends).substring(3)
-            }
+        if(st > en) 
+        {
+            setMsg('starting time should not be after ending time')
+            setMsgtype('warning')
+            setOpenformMsg(true)
+        }
+        else if(st === en) 
+        {
+            setMsg('starting time and after ending time should not be the same')
+            setMsgtype('warning')
+            setOpenformMsg(true)
+        }
+        else if(st < parseInt("0800")) 
+        {
+            setMsg('starting time should not be before 8:00')
+            setMsgtype('warning')
+            setOpenformMsg(true)
         }
 
-        alert(JSON.stringify(convertedData, null, 2))
+        else if(en > parseInt("1700")) 
+        {
+            setMsg('endind time should not be after 17:00')
+            setMsgtype('warning')
+            setOpenformMsg(true)
+        }
+
+        else{
+        let convertedData = {
+            ...values,
+            time: {
+                dayOfWeek: parseInt(values.dayOfWeek),
+                starts: (values.starts).substring(0, 2) + (values.starts).substring(3),
+                ends: (values.ends).substring(0, 2) + (values.ends).substring(3)
+            }
+        }
+        // alert(JSON.stringify(convertedData, null, 2))
         console.log(convertedData)
         const options = {
             method: 'POST',
             url: '/timetables',
-            headers: { 'Authorization': `Bearer ${localStorage.getItem("token")}`
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("token")}`
             },
             data: convertedData
         };
 
-        https.post('/timetables', convertedData, { headers: {'Authorization' : `Basic ${localStorage.token}` } }).then((res) => {
-            if(res.status== 200)
-            return alert("Slot Recorded");
+        https.post('/timetables', convertedData, { headers: { 'Authorization': `Basic ${localStorage.token}` } }).then((res) => {
+            if (res.status == 200)
+                return setOpen(true)
             else
-            return alert("something went wrong")
+                return alert("something went wrong")
         })
+        }
+    }
+    const validations1 = (value) => {
 
     }
+    const SignupSchema = Yup.object().shape({
+        // (end_time, screma, self)
+        starts: Yup.string().test(
+            "start_time_test",
+            "Start time must be lower than end time",
+            value => {
+                console.log("hell", value);
+                return false;
+            }
+        ),
+        ends: Yup.string().test(
+            "end time test",
+            'end time should be like this',
+            value => {
+                console.log('hell yh:', value)
+                return false
+            }
+        )
+    });
 
 
-    
     return (
         <>
 
@@ -95,7 +167,7 @@ export const TimetableForm = (props) => {
                             initialValues={initialValue}
                             onSubmit={onSubmit}
                         >
-                            {() => (
+                            {({ errors, touched }) => (
                                 <Form>
                                     <Grid container xs={12} minWidth="xs" direction="row" spacing={2}>
 
@@ -174,7 +246,7 @@ export const TimetableForm = (props) => {
                                                 required
                                                 as={TextField}
                                                 label="choice a day"
-                                                name="time.dayOfWeek"
+                                                name="dayOfWeek"
                                                 variant="outlined"
                                                 type="text"
                                                 fullWidth
@@ -186,7 +258,7 @@ export const TimetableForm = (props) => {
                                                 <MenuItem value="1">
                                                     Monday
                                                 </MenuItem>
-                                                
+
                                                 <MenuItem value="2">
                                                     Tuesday
                                                 </MenuItem>
@@ -210,7 +282,7 @@ export const TimetableForm = (props) => {
                                                 type="time"
                                                 fullWidth
                                                 variant="outlined"
-                                                name="time.starts"
+                                                name="starts"
                                                 required
                                                 InputLabelProps={{
                                                     shrink: true,
@@ -225,7 +297,7 @@ export const TimetableForm = (props) => {
                                                 as={TextField}
                                                 label="End Time"
                                                 type="time"
-                                                name='time.ends'
+                                                name='ends'
                                                 fullWidth
                                                 variant="outlined"
                                                 required
@@ -236,7 +308,10 @@ export const TimetableForm = (props) => {
                                                     step: 300, // 5 min
                                                 }}
                                             />
-                                        </Grid> 
+                                            {errors.end && touched.ends ? (
+                                                <div>{errors.ends}</div>
+                                            ) : null}
+                                        </Grid>
                                         <Grid item xs={12} sm={3}>
                                             <Field
                                                 required
@@ -254,7 +329,7 @@ export const TimetableForm = (props) => {
                                                 <MenuItem value="">
                                                     <em>None</em>
                                                 </MenuItem>
-                                                {props.terms!= null ?
+                                                {props.terms != null ?
                                                     props.terms.map(item => (<MenuItem key={item._id} value={item._id}>{item.name}</MenuItem>)) : null
                                                 }
 
@@ -276,6 +351,17 @@ export const TimetableForm = (props) => {
                 </div>
                 <Box mt={5}>
                 </Box>
+                <Snackbar open={open} autoHideDuration={4000} onClose={handleClose}>
+                    <Alert onClose={handleClose} severity="success">
+                        New slot has been saved!
+        </Alert>
+                </Snackbar>
+
+                <Snackbar open={openformMsg} autoHideDuration={4000} onClose={handleClose} anchorOrigin={{ vertical : 'top', horizontal: 'center' }}>
+                    <Alert onClose={handleClose} severity={msgtype}>
+                        {msg}
+        </Alert>
+                </Snackbar>
             </Container>
         </>
     )
