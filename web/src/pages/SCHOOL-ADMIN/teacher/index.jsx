@@ -25,7 +25,9 @@ const headCells = [
 ]
 
 export const Index = (props) => {
-    const school = props.userData.school
+    // const school = props.userData.school
+
+    const school = props.state.auth.user.school;
     const [isLoading, setIsLoading] = useState(true);
     const dispatch = useDispatch();
     const { list: ALL_TEACHERS } = useSelector((state) => state.teachers);
@@ -107,14 +109,14 @@ export const Index = (props) => {
 
     //get student from selected class
     const fetchTeachersData = async (school) => {
-        // try {
-        //     await dispatch(handleFetchTeachers(school));
-        // } catch (error) {
-        //     alert("something went wrong",error)
-        // } finally {
-        //     setIsLoading(false);
+        try {
+            await dispatch(handleFetchTeachers(school));
+        } catch (error) {
+            alert("something went wrong",error)
+        } finally {
+            setIsLoading(false);
 
-        // }
+        }
         await dispatch(handleFetchTeachers(school));
     };
     useEffect(() => {

@@ -37,8 +37,8 @@ import schoolsPage from './pages/SUPER-ADMIN/schools/index'
 import coursesPage from './pages/SUPER-ADMIN/courses/index'
 
 export default () => {
-  const userData = useSelector((state) => state.auth.user)
-  console.log(userData)
+  // const userData = useSelector((state) => state.auth.user)
+  // console.log(userData)
   return (
     <Suspense
       fallback={
@@ -79,7 +79,7 @@ export default () => {
           <Route exact path="/schoolAdmin/report" component={reportPage} />
           
           <Route exact path="/schoolAdmin/teachers">
-            <TeachersPage userData={userData} />
+            <TeachersPage  />
           </Route>
           {/* <Route exact path="/props-through-render" render={(props) => <PropsPage {...props} title={`Props through render`} />} /> */}
           {/* <Route exact path="/schoolAdmin/teachers" userData={userData} component={teachersPage}/> */}

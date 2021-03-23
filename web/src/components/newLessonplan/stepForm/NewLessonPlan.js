@@ -326,17 +326,17 @@ const defaultData = {
 }
 
 
-const defaultData2 = {
-  firstName: "",
-  lastName: "",
-  nickName: "",
-  address: "",
-  city: "",
-  state: "",
-  zip: "",
-  phone: "",
-  email: "",
-};
+//  const defaultData = {
+//   firstName: "",
+//   lastName: "",
+//   nickName: "",
+//   address: "",
+//   city: "",
+//   state: "",
+//   zip: "",
+//   phone: "",
+//   email: "",
+// };
 
 const steps = [
   { id: "names" },

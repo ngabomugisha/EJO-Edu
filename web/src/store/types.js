@@ -1,6 +1,7 @@
 // login action
 export const HANDLE_LOGIN = 'HANDLE_LOGIN';
 export const HANDLE_LOGIN_SUCCESS = 'HANDLE_LOGIN_SUCCESS';
+export const HANDLE_LOGOUT = 'HANDLE_LOGOUT';
 export const HANDLE_LOGOUT_SUCCESS = 'HANDLE_LOGOUT_SUCCESS'
 
 

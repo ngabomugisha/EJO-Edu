@@ -1,6 +1,6 @@
 import './Login.css';
-import React from 'react';
-import { useDispatch, connect } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, connect, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import { Button } from '@material-ui/core';
@@ -13,11 +13,13 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 const LoginPage = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
+  const [fine, setFine] = useState(false);
+  const data = useSelector((state) => state.auth)
   const [isLoading, setIsLoading] = React.useState(false);
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [errMessage, setErrMessage] = React.useState('');
-
+  console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$", data)
   const handleSubmit = async () => {
     if (!password || !email) {
       setErrMessage("Email or Password are empty")
@@ -27,26 +29,26 @@ const LoginPage = (props) => {
     try {
       await dispatch(handleLogin({ email, password }));
       setIsLoading(false);
-
-      //load teacher's dashboard
-      switch (props.st.auth.user.role) {
-        case TEACHER:
-          history.replace('/teacher');
+      if(data != null) setFine(true)
+           if(fine){
+  switch (props.state.auth.user.role) {
+    case TEACHER:
+      history.replace('/teacher');
+      break;
+    case SCHOOLADMIN:
+      history.replace('/schoolAdmin')
+      break;
+      case SUPERADMIN:
+        history.replace('/admin')
+        break;
+        case HEADSTUDY:
+          history.replace('/headStudy')
           break;
-        case SCHOOLADMIN:
-          history.replace('/schoolAdmin')
-          break;
-          case SUPERADMIN:
-            history.replace('/admin')
-            break;
-            case HEADSTUDY:
-              history.replace('/headStudy')
-              break;
 
-        default:
-          break;
-      }
-
+    default:
+      break;
+  }
+}
 
 
 
@@ -56,6 +58,7 @@ const LoginPage = (props) => {
     }
 
   };
+ 
   return (
     <HomeLayout>
       <>
@@ -115,7 +118,7 @@ const LoginPage = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-  st: state
+  state: state
 })
 
 const mapDispatchToProps = {

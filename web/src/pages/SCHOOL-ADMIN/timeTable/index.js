@@ -6,14 +6,12 @@ import PanelLayout from '../../../components/Layouts/PanelLayout/Index'
 import https from '../../../helpers/https'
 import TimetableForm from '../../../components/schoolAdmin/TimetableForm'
 import TimeTable from '../timeTable/TimeTable'
-import InputLabel from '@material-ui/core/InputLabel';
 import Popup from '../../../components/popup/index'
 import MenuItem from '@material-ui/core/MenuItem';
 import { Button, Grid, TextField, Box } from '@material-ui/core'
 import { Formik, Field, Form } from 'formik'
 import Skeleton from "@material-ui/lab/Skeleton"
 import moment from 'moment';
-import Alert from 'react-bootstrap/Alert'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { handleFetchTerms, handleUpdateTerm } from '../../../store/actions/term.action'
 import { useDispatch, useSelector } from 'react-redux';
@@ -82,6 +80,7 @@ export const Index = (props) => {
             if (opt.time.dayOfWeek == 1) {
                 var sm = {
                     'id': 1,
+                    "_id": opt._id,
                     'name': 'Subject : \n' + '' + subject.reduce(function (done, cond) {
                         if (cond._id === opt.subject) {
                             var yes = cond.name
@@ -123,6 +122,7 @@ export const Index = (props) => {
             if (opt.time.dayOfWeek == 2) {
                 var sm = {
                     'id': 2,
+                    "_id": opt._id,
                     'name': subject.reduce(function (done, cond) {
                         if (cond._id === opt.subject) {
                             var yes = cond.name
@@ -164,6 +164,7 @@ export const Index = (props) => {
             if (opt.time.dayOfWeek == 3) {
                 var sm = {
                     'id': 3,
+                    "_id": opt._id,
                     'name': subject.reduce(function (done, cond) {
                         if (cond._id === opt.subject) {
                             var yes = cond.name
@@ -205,6 +206,7 @@ export const Index = (props) => {
             if (opt.time.dayOfWeek == 4) {
                 var sm = {
                     'id': 4,
+                    "_id": opt._id,
                     'name': subject.reduce(function (done, cond) {
                         if (cond._id === opt.subject) {
                             var yes = cond.name
@@ -246,6 +248,7 @@ export const Index = (props) => {
             if (opt.time.dayOfWeek == 5) {
                 var sm = {
                     'id': 5,
+                    "_id": opt._id,
                     'name': subject.reduce(function (done, cond) {
                         if (cond._id === opt.subject) {
                             var yes = cond.name
