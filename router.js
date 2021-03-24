@@ -19,6 +19,7 @@ router.use('/api/class-teachers', passport.authenticate("jwt", { session : false
 router.use('/api/participations', passport.authenticate("jwt", { session : false }), require('./apps/participation/router'));
 router.use('/api/school-discipline', passport.authenticate("jwt", { session : false }), require('./apps/school-discipline/router'));
 router.use('/api/discipline', passport.authenticate("jwt", { session : false }), require('./apps/discipline/router'));
+router.use('/api/announcements', passport.authenticate("jwt", { session : false }), require('./apps/announcement/router'));
 
 
 // re-routes to another routing file 

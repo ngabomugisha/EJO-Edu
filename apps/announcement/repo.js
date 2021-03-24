@@ -1,13 +1,9 @@
 import Announcement from './model'
 
-exports.create = async (announcement, receiverTypes, receivers, sender, school) =>{
+exports.create = async (announcement, sender, school) =>{
 try {
     const newAnnouncement = new Announcement({
-        announcement,
-        receiverTypes,
-        receivers,
-        sender,
-        school
+        announcement, sender, school
     })
     await newAnnouncement.save()
     return newAnnouncement;
@@ -19,6 +15,11 @@ try {
 exports.getSentAnnouncements = async (sender) => {
     try {
         return await Announcement.find({sender: sender})
+                .populate({
+                    path: 'sender',
+                    select: 'firstName lastName role'
+                })
+                .exec()
                 .then(res => {
                     return res;
                 })
@@ -31,9 +32,14 @@ exports.getSentAnnouncements = async (sender) => {
     }
 }
 
-exports.getReceivedAnnouncements = async (receiver) => {
+exports.getReceivedAnnouncements = async (school) => {
     try {
-        return await Announcement.find({receivers: receiver})
+        return await Announcement.find({school: school})
+                .populate({
+                    path: 'sender',
+                    select: 'firstName lastName role'
+                })
+                .exec()
                 .then(res => {
                     return res;
                 })

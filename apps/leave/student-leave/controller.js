@@ -6,12 +6,14 @@ exports.create = async (req, res) => {
         const {
             student,
             reason,
-            checkout
+            checkout,
+            leavingWithWho,
+            provisionalCheckin
         } = req.body;
         const checkedoutBy = req.user._id
         const school = req.user.school
 
-        StudentLeave.create(student, reason, checkout, checkedoutBy, school)
+        StudentLeave.create(student, reason, checkout, leavingWithWho, provisionalCheckin, checkedoutBy, school)
         .then(results => {
             Response.Success(res, 200, "created successfully", results);
         })

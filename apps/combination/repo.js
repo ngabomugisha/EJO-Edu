@@ -1,9 +1,9 @@
 import Combination from './model'
 
-exports.create = async (name) =>{
+exports.create = async (name, subjects) =>{
 try {
     const newCombination = new Combination({
-        name
+        name, subjects
     })
     await newCombination.save()
     return newCombination;
@@ -12,11 +12,11 @@ try {
 }
 };
 
-exports.update = async (combinationId, name) => {
+exports.update = async (combinationId, name, subjects) => {
     try {
         return await Combination.findByIdAndUpdate(
             {_id: combinationId},
-            {name: name},{new: true},
+            {name: name, subjects: subjects},{new: true},
             (err, success) => {
                 if(err){
                     console.log(err);

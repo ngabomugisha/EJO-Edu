@@ -11,6 +11,12 @@ exports.create = async (req, res) => {
             time
         } = req.body;
         const school = req.user.school
+
+        const checkConflicts = Timetable.checkConflicts(assignedClass, teacher, term, time)
+
+        if(checkConflicts){
+            return Response.validationError(res, "This entry is conflicing with an existing one, change time and try again");
+        }
         Timetable.create(
             school,
             assignedClass,
@@ -132,6 +138,25 @@ exports.getAllTeacherTimetable = async (req, res) => {
     try {
         const teacherId = req.params.teacherId;
         Timetable.getAllTeacherTimetable(teacherId)
+            .then(results => {
+                Response.Success(res, 200, "queried successfully", results);
+            })
+            .catch(err => {
+                console.log(err);
+                Response.InternalServerError(res, "We are having issues! please try again soon");
+            });
+
+    } catch (error) {
+        console.log(error);
+        Response.InternalServerError(res, "We are having issues! please try again soon");
+    }
+    
+}
+
+exports.getAllTodaysTeacherTimetable = async (req, res) => {
+    try {
+        const teacherId = req.params.teacherId;
+        Timetable.getAllTodaysTeacherTimetable(teacherId)
             .then(results => {
                 Response.Success(res, 200, "queried successfully", results);
             })

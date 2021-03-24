@@ -135,6 +135,26 @@ exports.getClassMarks = async (req, res) => {
     
 }
 
+exports.getClassSubjectMarks = async (req, res) => {
+    try {
+        const classId = req.params.classId
+        const subjectId = req.params.subjectId
+        Marks.getClassSubjectMarks(classId, subjectId)
+            .then(results => {
+                Response.Success(res, 200, "queried successfully", results);
+            })
+            .catch(err => {
+                console.log(err);
+                Response.InternalServerError(res, "We are having issues! please try again soon");
+            });
+
+    } catch (error) {
+        console.log(error);
+        Response.InternalServerError(res, "We are having issues! please try again soon");
+    }
+    
+}
+
 
 exports.getOneMarks = async (req, res) => {
     try {

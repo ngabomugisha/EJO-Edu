@@ -5,10 +5,15 @@ exports.create = async (req, res) => {
     try {
         const {
             slotOnTimetable,
-            students
+            students,
+            subject,
+            assignedClass
         } = req.body;
+        
+        const teacher = req.user._id;
+        const school = req.user.school
 
-        ClassAttendance.create(slotOnTimetable, students)
+        ClassAttendance.create(slotOnTimetable, students, subject, assignedClass, teacher, school)
         .then(results => {
             Response.Success(res, 200, "created successfully", results);
         })
@@ -44,12 +49,89 @@ exports.getClassAttendanceBySlotOnTimetable = async (req, res) => {
     
 }
 
-
 exports.getOneClassAttendance = async (req, res) => {
     try {
         const classAttendanceId = req.params.classAttendanceId;
 
         ClassAttendance.getOneClassAttendance(classAttendanceId)
+            .then(results => {
+                Response.Success(res, 200, "queried successfully", results);
+            })
+            .catch(err => {
+                console.log(err);
+                Response.InternalServerError(res, "We are having issues! please try again soon");
+            });
+
+    } catch (error) {
+        console.log(error);
+        Response.InternalServerError(res, "We are having issues! please try again soon");
+    }
+    
+}
+
+exports.getAllClassAttendances = async (req, res) => {
+    try {
+        const classId = req.params.classId;
+        ClassAttendance.getAllClassAttendances(classId)
+            .then(results => {
+                Response.Success(res, 200, "queried successfully", results);
+            })
+            .catch(err => {
+                console.log(err);
+                Response.InternalServerError(res, "We are having issues! please try again soon");
+            });
+
+    } catch (error) {
+        console.log(error);
+        Response.InternalServerError(res, "We are having issues! please try again soon");
+    }
+    
+}
+
+exports.getAllSubjectClassAttendances = async (req, res) => {
+    try {
+        const classId = req.params.classId;
+        const subjectId = req.params.subjectId;
+        ClassAttendance.getAllSubjectClassAttendances(classId, subjectId)
+            .then(results => {
+                Response.Success(res, 200, "queried successfully", results);
+            })
+            .catch(err => {
+                console.log(err);
+                Response.InternalServerError(res, "We are having issues! please try again soon");
+            });
+
+    } catch (error) {
+        console.log(error);
+        Response.InternalServerError(res, "We are having issues! please try again soon");
+    }
+    
+}
+exports.getOneStudentAttendanceBySubject = async (req, res) => {
+    try {
+        const studentId = req.params.studentId;
+        const subjectId = req.params.subjectId;
+        ClassAttendance.getOneStudentAttendanceBySubject(studentId, subjectId)
+            .then(results => {
+                Response.Success(res, 200, "queried successfully", results);
+            })
+            .catch(err => {
+                console.log(err);
+                Response.InternalServerError(res, "We are having issues! please try again soon");
+            });
+
+    } catch (error) {
+        console.log(error);
+        Response.InternalServerError(res, "We are having issues! please try again soon");
+    }
+    
+}
+
+exports.getOneStudentAttendance = async (req, res) => {
+    try {
+        const studentId = req.params.studentId;
+
+        ClassAttendance.getOneStudentAttendance(studentId)
             .then(results => {
                 Response.Success(res, 200, "queried successfully", results);
             })

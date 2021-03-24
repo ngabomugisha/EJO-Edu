@@ -10,6 +10,10 @@ const studentSchema = new mongoose.Schema({
         type: String,
         enum: ['M','F', null]
     },
+    studentProgram: {
+        type: String,
+        enum: ['BOARDING','DAY', null]
+    },
     busRoute: String,
     address: {
         type: mongoose.Schema.Types.ObjectId,

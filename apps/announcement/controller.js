@@ -4,15 +4,12 @@ import Response from '../../utils/Responses';
 exports.create = async (req, res) => {
     try {
         const {
-            announcement,
-            receiverTypes,
-            school
+            announcement
         } = req.body;
         
-        // receivers to be fetched
-        const receivers = []
         const sender = req.user._id
-        Announcement.create(announcement, receiverTypes, receivers, sender, school)
+        const school = req.user.school
+        Announcement.create(announcement, sender, school)
         .then(results => {
             Response.Success(res, 200, "created successfully", results);
         })
@@ -47,10 +44,10 @@ exports.getSentAnnouncements = async (req, res) => {
     
 }
 
-exports.getReceiverAnnouncements = async (req, res) => {
+exports.getReceivedAnnouncements = async (req, res) => {
     try {
-        const receiver = req.user._id
-        Announcement.getReceiverAnnouncements(receiver)
+        const school = req.user.school
+        Announcement.getReceivedAnnouncements(school)
             .then(results => {
                 Response.Success(res, 200, "queried successfully", results);
             })

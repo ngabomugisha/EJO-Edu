@@ -108,6 +108,29 @@ exports.getOneClassTeacher = async (classTeacherId) => {
     }
 }
 
+exports.getOneClassSubjects = async (classId) => {
+    try {
+        console.log(classId)
+        return await ClassTeacher.find({
+                class: classId
+            })
+            .populate({
+                path: ' teacher subject',
+                select: 'firstName lastName name'
+            })
+            .exec()
+            .then(res => {
+                return res;
+            })
+            .catch(err => {
+                console.log(err);
+                return false;
+            })
+    } catch (error) {
+        throw error;
+    }
+}
+
 exports.delete = async (classTeacherId) => {
     try {
         return await ClassTeacher.findByIdAndDelete(classTeacherId);

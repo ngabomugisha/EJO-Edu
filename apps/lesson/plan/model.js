@@ -133,9 +133,30 @@ const planSchema = new mongoose.Schema({
                     }
                 ],
                 comment: String
+            },
+            exercises: {
+                questions: [
+                    {
+                     difficultLevel: String,
+                     questionsObjective: String,
+                     question: String,
+                     questionType: String,
+                     possibleAnswer: [
+                         {
+                             answer: String
+                         }
+                     ],
+                    answers: [
+                         {
+                             answer: String
+                         }
+                     ],
+                     points: Number
+                          
+                    }
+                ]
             }
         },
-      
         development: {
             content: {
                 activities: [
@@ -164,9 +185,30 @@ const planSchema = new mongoose.Schema({
                     }
                 ],
                 comment: String
+            },
+            exercises: {
+                questions: [
+                    {
+                     difficultLevel: String,
+                     questionsObjective: String,
+                     question: String,
+                     questionType: String,
+                     possibleAnswer: [
+                         {
+                             answer: String
+                         }
+                     ],
+                    answers: [
+                         {
+                             answer: String
+                         }
+                     ],
+                     points: Number
+                          
+                    }
+                ]
             }
         },
-      
         conclusion: {
             content: {
                 activities: [
@@ -195,29 +237,29 @@ const planSchema = new mongoose.Schema({
                     }
                 ],
                 comment: String
+            },
+            exercises: {
+                questions: [
+                    {
+                     difficultLevel: String,
+                     questionsObjective: String,
+                     question: String,
+                     questionType: String,
+                     possibleAnswer: [
+                         {
+                             answer: String
+                         }
+                     ],
+                    answers: [
+                         {
+                             answer: String
+                         }
+                     ],
+                     points: Number
+                          
+                    }
+                ]
             }
-        },
-        exercises: {
-            questions: [
-                {
-                 difficultLevel: String,
-                 questionsObjective: String,
-                 question: String,
-                 questionType: String,
-                 possibleAnswer: [
-                     {
-                         answer: String
-                     }
-                 ],
-                answers: [
-                     {
-                         answer: String
-                     }
-                 ],
-                 points: Number
-                      
-                }
-            ]
         }
     }, 
     teachingTechniques: {

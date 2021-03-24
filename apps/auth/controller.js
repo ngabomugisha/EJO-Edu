@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import passportConfig from "../../config/passport";
 import Response from "../../utils/Responses";
+import Mailer from '../../utils/mail/mail'
 
 exports.createUser = async (req, res) => {
     try {
@@ -44,7 +45,9 @@ exports.createUser = async (req, res) => {
         const token = jwt.sign({
             user: data
         }, passportConfig.secret);
-
+        // set up the mail server
+        // const newMail = new Mailer({to: email, subject: "EJO: Password", header: null, messageBody: "Hello " + firstName + " " + lastName + " your password for Ejo system is: " +password, messageHeader: "Password"})
+        // newMail.sendMail()
         return Response.Success(res, 200, "user signed up successfully", {
             user: data,
             password,

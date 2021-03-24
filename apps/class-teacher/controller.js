@@ -86,12 +86,31 @@ exports.getOneTeacherClasses = async (req, res) => {
 
 }
 
-
 exports.getOneClassTeacher = async (req, res) => {
     try {
         const classTeacherId = req.params.classTeacherId;
 
         ClassTeacher.getOneClassTeacher(classTeacherId)
+            .then(results => {
+                Response.Success(res, 200, "queried successfully", results);
+            })
+            .catch(err => {
+                console.log(err);
+                Response.InternalServerError(res, "We are having issues! please try again soon");
+            });
+
+    } catch (error) {
+        console.log(error);
+        Response.InternalServerError(res, "We are having issues! please try again soon");
+    }
+
+}
+
+exports.getOneClassSubjects = async (req, res) => {
+    try {
+        const classId = req.params.classId;
+
+        ClassTeacher.getOneClassSubjects(classId)
             .then(results => {
                 Response.Success(res, 200, "queried successfully", results);
             })

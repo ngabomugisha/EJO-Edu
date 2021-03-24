@@ -135,9 +135,76 @@ exports.getAllTeacherTimetable = async (teacherId) => {
     }
 }
 
+exports.getAllTodaysTeacherTimetable = async (teacherId) => {
+    try {
+        var today = new Date();
+        var day = today.getDay();
+        return await Timetable.find({
+                teacher: teacherId,
+                "time.dayOfWeek": day
+            })
+            .populate({
+                path: "class subject",
+                populate: {
+                    path: "level combination"
+                }
+            })
+            .sort({"time.dayOfWeek": 1, "time.starts": 1})
+            .exec()
+            .then(res => {
+                return res;
+            })
+            .catch(err => {
+                console.log(err);
+                return false;
+            })
+    } catch (error) {
+        throw error;
+    }
+}
+
 exports.getOneTimetableSlot = async (timetableId) => {
     try {
         return await Timetable.findById(timetableId)
+            .exec()
+            .then(res => {
+                return res;
+            })
+            .catch(err => {
+                console.log(err);
+                return false;
+            })
+    } catch (error) {
+        throw error;
+    }
+}
+
+exports.checkConflicts = async (assignedClass, teacher, term, time) => {
+    try {
+        return await Timetable.findOne({
+            $or: [
+                {
+                class: assignedClass,
+                term,
+                'time.dayOfWeek': time.dayOfWeek,
+                $or: [
+                    { 'time.starts': {$lte: time.starts}, 'time.ends': {$gte: time.starts}},
+                    { 'time.ends': {$gte: time.ends}, 'time.starts': {$lte: time.ends}},
+                    { 'time.starts': {$gte: time.starts}, 'time.starts': {$lte: time.ends}}
+                ]
+                },
+                {
+                    teacher: teacher,
+                    term,
+                    'time.dayOfWeek': time.dayOfWeek,
+                    $or: [
+                        { 'time.starts': {$lte: time.starts}, 'time.ends': {$gte: time.starts}},
+                        { 'time.ends': {$gte: time.ends}, 'time.starts': {$lte: time.ends}},
+                        { 'time.starts': {$gte: time.starts}, 'time.starts': {$lte: time.ends}}
+                    ]
+                },
+            ]
+        })
             .exec()
             .then(res => {
                 return res;

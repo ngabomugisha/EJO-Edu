@@ -28,7 +28,12 @@ exports.update = async (teacherLeaveId, approved, approvedBy) => {
                 }
                 return success;
             }
-        );
+        )
+        .populate({
+            path: "teacher",
+            select: "firstName lastName role"
+        })
+        .exec();
     } catch (error) {
         throw error;
     }
@@ -37,6 +42,11 @@ exports.update = async (teacherLeaveId, approved, approvedBy) => {
 exports.getSchoolTeacherLeaves = async (schoolId) => {
     try {
         return await TeacherLeave.find({school: schoolId})
+                .populate({
+                    path: "teacher",
+                    select: "firstName lastName role"
+                })
+                .exec()
                 .then(res => {
                     return res;
                 })
@@ -52,6 +62,11 @@ exports.getSchoolTeacherLeaves = async (schoolId) => {
 exports.getOneTeacherLeave = async (teacherLeaveId) => {
     try {
         return await TeacherLeave.findById(teacherLeaveId)
+                .populate({
+                    path: "teacher",
+                    select: "firstName lastName role"
+                })
+                .exec()
                 .then(res => {
                     return res;
                 })

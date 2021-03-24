@@ -1,0 +1,6044 @@
+{
+	"info": {
+		"_postman_id": "10012fd4-018a-46a9-9d41-eeee517513d7",
+		"name": "ejo v2.3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "Create user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"John\",\r\n    \"lastName\": \"doe\",\r\n    \"email\": \"odilorugamba@gmail.com\",\r\n    \"school\": \"602b9ef1aab3f92010a7a4e0\", \r\n    \"role\": \"TEACHER\",\r\n    \"phoneNumber\": \"+250781321324\",\r\n    \"level\": \"BACHELOR\",\r\n    \"yearsOfExperience\": 3,\r\n    \"workingStatus\": \"PART-TIME\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/auth/signup",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sigin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"johndoe4@gmail.com\",\r\n    \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/auth/signin",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"auth",
+								"signin"
+							],
+							"query": [
+								{
+									"key": "getAllData",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verify token",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVmNjM0NWExMGMzOWNmMTM2OGU4YjdjYiIsImZpcnN0TmFtZSI6Im9kaWxvIiwibGFzdE5hbWUiOiJSdWdhbWJhIiwiZW1haWwiOiJvZGlsb3J1Z2FtYmFAZ21haWwuY29tIn0sImlhdCI6MTYwMDM0MTQxM30.Ok0s0OSLFGwVgqlKJu9Hc5Tqx9qYCgK2j851brkDjvg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8020/api/auth/verify-token",
+							"host": [
+								"localhost"
+							],
+							"port": "8020",
+							"path": [
+								"api",
+								"auth",
+								"verify-token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "regenerate verification digits",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVmNjM0NWExMGMzOWNmMTM2OGU4YjdjYiIsImZpcnN0TmFtZSI6Im9kaWxvIiwibGFzdE5hbWUiOiJSdWdhbWJhIiwiZW1haWwiOiJvZGlsb3J1Z2FtYmFAZ21haWwuY29tIn0sImlhdCI6MTYwMDM0MTQxM30.Ok0s0OSLFGwVgqlKJu9Hc5Tqx9qYCgK2j851brkDjvg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/auth/regenerate-verification-digits",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"auth",
+								"regenerate-verification-digits"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "generate reset password token",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVmNjM0NWExMGMzOWNmMTM2OGU4YjdjYiIsImZpcnN0TmFtZSI6Im9kaWxvIiwibGFzdE5hbWUiOiJSdWdhbWJhIiwiZW1haWwiOiJvZGlsb3J1Z2FtYmFAZ21haWwuY29tIn0sImlhdCI6MTYwMDM0MTQxM30.Ok0s0OSLFGwVgqlKJu9Hc5Tqx9qYCgK2j851brkDjvg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"johndoe4@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/auth/generate-reset-password-token",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"auth",
+								"generate-reset-password-token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reset password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVmNjM0NWExMGMzOWNmMTM2OGU4YjdjYiIsImZpcnN0TmFtZSI6Im9kaWxvIiwibGFzdE5hbWUiOiJSdWdhbWJhIiwiZW1haWwiOiJvZGlsb3J1Z2FtYmFAZ21haWwuY29tIn0sImlhdCI6MTYwMDM0MTQxM30.Ok0s0OSLFGwVgqlKJu9Hc5Tqx9qYCgK2j851brkDjvg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"johndoe4@gmail.com\",\r\n    \"resetPasswordToken\": \"423904\",\r\n    \"newPassword\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/auth/reset-password",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"auth",
+								"reset-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verify email",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVmNjM0NWExMGMzOWNmMTM2OGU4YjdjYiIsImZpcnN0TmFtZSI6Ik9kaWxvIDIiLCJsYXN0TmFtZSI6IlJ1Z2FtYmEgMiIsImVtYWlsIjoib2RpbG9ydWdhbWJhQGdtYWlsLmNvbSJ9LCJpYXQiOjE2MDA1OTQzODR9.3_tKpHyqx9214vz176RCSWemcoytpNUvEXj_Otw9lTk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"verificationDigits\": \"874815\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/auth/verify-email",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"auth",
+								"verify-email"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update names",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVmNjM0NWExMGMzOWNmMTM2OGU4YjdjYiIsImZpcnN0TmFtZSI6Im9kaWxvIiwibGFzdE5hbWUiOiJSdWdhbWJhIiwiZW1haWwiOiJvZGlsb3J1Z2FtYmFAZ21haWwuY29tIn0sImlhdCI6MTYwMDM0MTQxM30.Ok0s0OSLFGwVgqlKJu9Hc5Tqx9qYCgK2j851brkDjvg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Odilo 2\",\r\n    \"lastName\": \"Rugamba 2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8020/api/auth/update-names",
+							"host": [
+								"localhost"
+							],
+							"port": "8020",
+							"path": [
+								"api",
+								"auth",
+								"update-names"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVmNjM0NWExMGMzOWNmMTM2OGU4YjdjYiIsImZpcnN0TmFtZSI6Im9kaWxvIiwibGFzdE5hbWUiOiJSdWdhbWJhIiwiZW1haWwiOiJvZGlsb3J1Z2FtYmFAZ21haWwuY29tIn0sImlhdCI6MTYwMDM0MTQxM30.Ok0s0OSLFGwVgqlKJu9Hc5Tqx9qYCgK2j851brkDjvg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"oldPassword\": \"password\",\r\n    \"newPassword\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8020/api/auth/update-password",
+							"host": [
+								"localhost"
+							],
+							"port": "8020",
+							"path": [
+								"api",
+								"auth",
+								"update-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verify if email is taken",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"johndoe@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8020/api/auth/email-taken",
+							"host": [
+								"localhost"
+							],
+							"port": "8020",
+							"path": [
+								"api",
+								"auth",
+								"email-taken"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all school employees",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/auth/602b9ef1aab3f92010a7a4e0/school-employees",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"auth",
+								"602b9ef1aab3f92010a7a4e0",
+								"school-employees"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "school",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"test school\",\r\n    \"address\": \"603179c1e383bb1b847eff2c\",\r\n    \"gender\": \"GIRLS-ONLY\",\r\n    \"educationalStage\": [\r\n        {\r\n            \"level\": \"LOWER-PRIMARY\"\r\n        },\r\n        {\r\n            \"level\": \"UPPER-PRIMARY\"\r\n        }\r\n    ],\r\n    \"status\": \"PRIVATE\",\r\n    \"disciplineMarks\": \"100\",\r\n    \"howLongIsClassPeriod\": \"50\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/schools/",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"schools",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Lyce de kigali updated\",\r\n    \"address\": \"603179c1e383bb1b847eff2c\",\r\n    \"gender\": \"MIXED\",\r\n    \"educationalStage\": [\r\n        {\r\n            \"level\": \"LOWER-PRIMARY\"\r\n        },\r\n        {\r\n            \"level\": \"UPPER-PRIMARY\"\r\n        }\r\n    ],\r\n    \"status\": \"PRIVATE\",\r\n    \"disciplineMarks\": \"100\",\r\n    \"howLongIsClassPeriod\": \"50\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/schools/602c1e8feeb9ae2820b62120",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"schools",
+								"602c1e8feeb9ae2820b62120"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get one",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/schools/602c1e8feeb9ae2820b62120",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"schools",
+								"602c1e8feeb9ae2820b62120"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/schools",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"schools"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/schools/60264b6b86313c1718607c66",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"schools",
+								"60264b6b86313c1718607c66"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "level",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Senior 5\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/levels/",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"levels",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Senior 1 updated\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/levels/602c1f28eeb9ae2820b62121",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"levels",
+								"602c1f28eeb9ae2820b62121"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get one",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/levels/602c1f28eeb9ae2820b62121",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"levels",
+								"602c1f28eeb9ae2820b62121"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/schools",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"schools"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/levels/602c1f28eeb9ae2820b62121",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"levels",
+								"602c1f28eeb9ae2820b62121"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "announcement",
+			"item": [
+				{
+					"name": "send",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"announcement\": \"Announcement test 1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/announcements/",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"announcements",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get sent anouncements",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/announcements/sent",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"announcements",
+								"sent"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get received announcements",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/announcements/received",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"announcements",
+								"received"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/announcements/605a2a132ce0902f50945c17",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"announcements",
+								"605a2a132ce0902f50945c17"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "school discpline settings",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"school\": \"602c1e8feeb9ae2820b62120\",\r\n    \"firstLevel\": \"Indispline and Rudeness\",\r\n    \"forthLevel\": \"Warning\",\r\n    \"secondLevel\": \"Accompanied by a visitor without permission \",\r\n    \"thirdLevel\": \"Infraction\",\r\n    \"marks\": -2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/school-discipline/",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"school-discipline",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstLevel\": \"Responsibility\",\r\n    \"secondLevel\": \"Careful work\",\r\n    \"thirdLevel\": \"Motivation\",\r\n    \"forthLevel\": \"Encouragement\",\r\n    \"marks\": 2\r\n} ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/school-discipline/60507420ae47f63e186aa99f",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"school-discipline",
+								"60507420ae47f63e186aa99f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get one",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/school-discipline/60507420ae47f63e186aa99f",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"school-discipline",
+								"60507420ae47f63e186aa99f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/school-discipline",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"school-discipline"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/school-discipline/60507420ae47f63e186aa99f",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"school-discipline",
+								"60507420ae47f63e186aa99f"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "student discipline",
+			"item": [
+				{
+					"name": "add student discipline entry",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"studentClass\": \"602c20e5eeb9ae2820b62123\",\r\n    \"students\": [\r\n        {\r\n            \"_id\": \"602c23ddbd2ce42e800e0f37\"\r\n        },\r\n        {\r\n            \"_id\": \"6036ae70d9b47604481d6fd3\"\r\n        }\r\n    ],\r\n    \"firstLevel\": \"Indiscipline and Rudeness\",\r\n    \"secondLevel\": \"accompanied by a visitor without permission\",\r\n    \"thirdLevel\": \"Infraction\",\r\n    \"forthLevel\": \"Warning\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/discipline/",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"discipline",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "comment on a student",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"studentClass\": \"602c20e5eeb9ae2820b62123\",\r\n    \"comment\": \"Responsibility test comment\",\r\n    \"student\": \"6036ae70d9b47604481d6fd3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/discipline/comment",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"discipline",
+								"comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get student discipline",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/discipline/6036ae70d9b47604481d6fd3/student",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"discipline",
+								"6036ae70d9b47604481d6fd3",
+								"student"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get class discipline",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/discipline/602c20e5eeb9ae2820b62123/class",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"discipline",
+								"602c20e5eeb9ae2820b62123",
+								"class"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "combination",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"MPC\",\r\n    \"subjects\": [\r\n        {\r\n            \"subject\": \"Math\"\r\n        },\r\n        {\r\n            \"subject\": \"Physics\"\r\n        },\r\n        {\r\n            \"subject\": \"Computer\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/combinations/",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"combinations",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"MPC\",\r\n    \"subjects\": [\r\n        {\r\n            \"subject\": \"Math\"\r\n        },\r\n        {\r\n            \"subject\": \"Physics\"\r\n        },\r\n        {\r\n            \"subject\": \"Computer\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/combinations/602c1fb8eeb9ae2820b62122",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"combinations",
+								"602c1fb8eeb9ae2820b62122"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get one",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/combinations/602c1fb8eeb9ae2820b62122",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"combinations",
+								"602c1fb8eeb9ae2820b62122"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/combinations",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"combinations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/combinations/602c1fb8eeb9ae2820b62122",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"combinations",
+								"602c1fb8eeb9ae2820b62122"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "class",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"school\": \"602c1e8feeb9ae2820b62120\",\r\n    \"level\": \"605a288142433f2f7cbba846\",\r\n    \"combination\": \"602c1fb8eeb9ae2820b62122\",\r\n    \"label\": \"B\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/classes/",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"classes",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"label\": \"A\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/classes/602c20e5eeb9ae2820b62123",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"classes",
+								"602c20e5eeb9ae2820b62123"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get one",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/classes/602c20e5eeb9ae2820b62123",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"classes",
+								"602c20e5eeb9ae2820b62123"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all school classses",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/classes/602c1e8feeb9ae2820b62120/school-classes",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"classes",
+								"602c1e8feeb9ae2820b62120",
+								"school-classes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/classes/602c20e5eeb9ae2820b62123",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"classes",
+								"602c20e5eeb9ae2820b62123"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "student",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"studentClass\": \"602c20e5eeb9ae2820b62123\",\r\n    \"firstName\": \"Jane\",\r\n    \"lastName\": \"Doe\",\r\n    \"registrationNumber\": \"0078B\",\r\n    \"gender\": \"F\",\r\n    \"studentProgram\": \"BOARDING\",\r\n    \"dateOfBirth\": \"2021-06-31T17:58:09.010+00:00\",\r\n    \"address\": \"603179c1e383bb1b847eff2c\",\r\n    \"scholarship\": \"PRIVATE\",\r\n    \"ngo\": {\r\n        \"name\": \"Unicef\",\r\n        \"contactPerson\": {\r\n            \"title\": \"Secretary\",\r\n            \"name\": \"Kabera Eric\",\r\n            \"phone\": \"+250 784 274 637\"\r\n        }\r\n    },\r\n    \"allergies\": \"None\",\r\n    \"permanentHealthConditions\": [\r\n        {\r\n            \"condition\": \"VISUAL-DIFFICULTIES\"\r\n        },\r\n        {\r\n            \"condition\": \"PHYSICAL-IMPAIREMENT\"\r\n        }\r\n    ],\r\n    \"guardians\": [\r\n        {\r\n            \"firstName\": \"Jane\",\r\n            \"lastName\": \"Doe\",\r\n            \"identificationNumber\": \"199078989245\",\r\n            \"phone\": \"07841274637\",\r\n            \"email\": \"joghn@gmail.com\",\r\n            \"maritalStatus\": \"MARIED\",\r\n            \"relationship\": \"MOTHER\"\r\n        },\r\n        {\r\n            \"firstName\": \"John\",\r\n            \"lastName\": \"Doe\",\r\n            \"identificationNumber\": \"199078989245\",\r\n            \"phone\": \"07841274637\",\r\n            \"email\": \"joghn@gmail.com\",\r\n            \"maritalStatus\": \"MARIED\",\r\n            \"relationship\": \"FATHER\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/students/",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"students",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create students from csv",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "studentClass",
+									"value": "602c20e5eeb9ae2820b62123",
+									"type": "text"
+								},
+								{
+									"key": "students",
+									"type": "file",
+									"src": "/C:/Users/odilo/Desktop/students - Sheet1.csv"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:9000/api/students/create-from-csv",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"students",
+								"create-from-csv"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"studentClass\": \"602c20e5eeb9ae2820b62123\",\r\n    \"firstName\": \"Jane\",\r\n    \"lastName\": \"Doe\",\r\n    \"registrationNumber\": \"0078A\",\r\n    \"gender\": \"F\",\r\n    \"dateOfBirth\": \"2021-06-31T17:58:09.010+00:00\",\r\n    \"address\": \"603179c1e383bb1b847eff2c\",\r\n    \"scholarship\": \"PRIVATE\",\r\n    \"allergies\": \"None\",\r\n    \"permanentHealthConditions\": [\r\n        {\r\n            \"condition\": \"VISUAL-DIFFICULTIES\"\r\n        },\r\n        {\r\n            \"condition\": \"PHYSICAL-IMPAIREMENT\"\r\n        }\r\n    ],\r\n    \"mother\": {\r\n        \"firstName\": \"Jane\",\r\n        \"lastName\": \"Doe\",\r\n        \"identificationNumber\": \"199078989245\",\r\n        \"phone\": \"07841274637\",\r\n        \"email\": \"joghn@gmail.com\",\r\n        \"maritalStatus\": \"MARIED\"\r\n    },\r\n    \"father\": {\r\n        \"firstName\": \"John\",\r\n        \"lastName\": \"Doe\",\r\n        \"identificationNumber\": \"199078989245\",\r\n        \"phone\": \"07841274637\",\r\n        \"email\": \"joghn@gmail.com\",\r\n        \"maritalStatus\": \"MARIED\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/students/6036ae70d9b47604481d6fd3",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"students",
+								"6036ae70d9b47604481d6fd3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get one",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/students/60317e67ec0fa31db03195ad",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"students",
+								"60317e67ec0fa31db03195ad"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get class students",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/students/602c20e5eeb9ae2820b62123/class-students",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"students",
+								"602c20e5eeb9ae2820b62123",
+								"class-students"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get school students",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/students/602b9ef1aab3f92010a7a4e0/school-students",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"students",
+								"602b9ef1aab3f92010a7a4e0",
+								"school-students"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/students/60317e67ec0fa31db03195ad",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"students",
+								"60317e67ec0fa31db03195ad"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "term",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Term 1\",\r\n    \"starts\": \"2021-06-31T17:58:09.010+00:00\",\r\n    \"ends\": \"2021-10-31T17:58:09.010+00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/terms/",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"terms",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Term 1 updated\",\r\n    \"starts\": \"2021-06-31T17:58:09.010+00:00\",\r\n    \"ends\": \"2021-10-31T17:58:09.010+00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/terms/602c2806c13abd23f06cb84b",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"terms",
+								"602c2806c13abd23f06cb84b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get one",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/terms/602c2806c13abd23f06cb84b",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"terms",
+								"602c2806c13abd23f06cb84b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/terms",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"terms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/terms/602c2806c13abd23f06cb84b",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"terms",
+								"602c2806c13abd23f06cb84b"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "class teacher",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"assignedClass\": \"605a28b942433f2f7cbba848\",\r\n    \"teacher\": \"6031843bbeb97f3a04f44084\",\r\n    \"subject\": \"602c349dfd1613203834880d\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/class-teachers/",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"class-teachers",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"assignedClass\": \"602c20e5eeb9ae2820b62123\",\r\n    \"teacher\": \"602b9cfc49ce7a0be4a35fc7\",\r\n    \"subject\": \"602c349dfd1613203834880d\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/class-teachers/6036917123b9340d84a86bc0",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"class-teachers",
+								"6036917123b9340d84a86bc0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get one",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/class-teachers/6036917123b9340d84a86bc0",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"class-teachers",
+								"6036917123b9340d84a86bc0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get one class teachers",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/class-teachers/602c20e5eeb9ae2820b62123/class-teachers",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"class-teachers",
+								"602c20e5eeb9ae2820b62123",
+								"class-teachers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get one teacher classes",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/class-teachers/6031843bbeb97f3a04f44084/teacher-classes",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"class-teachers",
+								"6031843bbeb97f3a04f44084",
+								"teacher-classes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get one class subjects",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/class-teachers/605a28b942433f2f7cbba848/class-subjects",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"class-teachers",
+								"605a28b942433f2f7cbba848",
+								"class-subjects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/class-teachers/6036917123b9340d84a86bc0",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"class-teachers",
+								"6036917123b9340d84a86bc0"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "guest",
+			"item": [
+				{
+					"name": "checkin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Jane\",\r\n    \"lastName\": \"Doe\",\r\n    \"reason\": \"Visit student\",\r\n    \"checkin\": \"2021-06-31T17:58:09.010+00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/guests/",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"guests",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "checkout",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"checkout\": \"2021-06-31T17:58:09.010+00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/guests/602c2a8dc594ab07d8324a7a",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"guests",
+								"602c2a8dc594ab07d8324a7a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get one",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/guests/602c2a8dc594ab07d8324a7a",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"guests",
+								"602c2a8dc594ab07d8324a7a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get school guests",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/guests/602b9ef1aab3f92010a7a4e0/school-guests",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"guests",
+								"602b9ef1aab3f92010a7a4e0",
+								"school-guests"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/guests/602c2b31c594ab07d8324a7c",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"guests",
+								"602c2b31c594ab07d8324a7c"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Leave",
+			"item": [
+				{
+					"name": "teacher leave",
+					"item": [
+						{
+							"name": "apply",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"reason\": \"Any reason\",\r\n    \"starts\": \"2021-06-31T17:58:09.010+00:00\",\r\n    \"ends\": \"2021-06-31T17:58:09.010+00:00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/leaves/teacher-leaves",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"leaves",
+										"teacher-leaves"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "aprove",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"approved\": \"true\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/leaves/teacher-leaves/602c2cec1fede618c0c35723",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"leaves",
+										"teacher-leaves",
+										"602c2cec1fede618c0c35723"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get one",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/leaves/teacher-leaves/602c2cec1fede618c0c35723",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"leaves",
+										"teacher-leaves",
+										"602c2cec1fede618c0c35723"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get school techer leaves",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/leaves/teacher-leaves/602b9ef1aab3f92010a7a4e0/school-teacher-leaves",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"leaves",
+										"teacher-leaves",
+										"602b9ef1aab3f92010a7a4e0",
+										"school-teacher-leaves"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/leaves/teacher-leaves/602c2cec1fede618c0c35723",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"leaves",
+										"teacher-leaves",
+										"602c2cec1fede618c0c35723"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "student leave",
+					"item": [
+						{
+							"name": "checkout",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{  \r\n    \"student\": \"602c2368bd2ce42e800e0f36\",\r\n    \"reason\": \"SICK\",\r\n    \"checkout\": \"2021-06-31T17:58:09.010+00:00\",\r\n    \"provisionalCheckin\": \"2021-07-31T17:58:09.010+00:00\",\r\n    \"leavingWithWho\": {\r\n        \"firstName\": \"Oliver\",\r\n        \"lastName\": \"Nkundiye\",\r\n        \"phone\": \"0789288293\",\r\n        \"identificationNumber\": \"199078429823520589\",\r\n        \"relationship\": \"Mother\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/leaves/student-leaves",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"leaves",
+										"student-leaves"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "checkin",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"checkin\": \"2021-06-31T17:58:09.010+00:00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/leaves/student-leaves/605a34650f5416204078a422",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"leaves",
+										"student-leaves",
+										"605a34650f5416204078a422"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get one",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/leaves/student-leaves/605a34650f5416204078a422",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"leaves",
+										"student-leaves",
+										"605a34650f5416204078a422"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get school student leaves",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/leaves/student-leaves/602b9ef1aab3f92010a7a4e0/school-student-leaves",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"leaves",
+										"student-leaves",
+										"602b9ef1aab3f92010a7a4e0",
+										"school-student-leaves"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/leaves/student-leaves/602c2f70efb2743b9068c15e",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"leaves",
+										"student-leaves",
+										"602c2f70efb2743b9068c15e"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "timetable",
+			"item": [
+				{
+					"name": "create a slot",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"assignedClass\":\"602c20e5eeb9ae2820b62123\",\r\n    \"teacher\":\"602b9cfc49ce7a0be4a35fc7\",\r\n    \"subject\":\"602c349dfd1613203834880d\",\r\n    \"term\":\"602c2806c13abd23f06cb84b\",\r\n    \"time\": {\r\n        \"dayOfWeek\": 1,\r\n        \"starts\": \"0900\",\r\n        \"ends\": \"1050\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/timetables/",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"timetables",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"teacher\":\"602b9cfc49ce7a0be4a35fc7\",\r\n    \"subject\":\"602c349dfd1613203834880d\",\r\n    \"term\":\"602c2806c13abd23f06cb84b\",\r\n    \"time\": {\r\n        \"dayOfWeek\": 2,\r\n        \"starts\": \"0830\",\r\n        \"ends\": \"0930\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/timetables/603159c6191af33cdc989ff0",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"timetables",
+								"603159c6191af33cdc989ff0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get one",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/timetables/603159c6191af33cdc989ff0",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"timetables",
+								"603159c6191af33cdc989ff0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get class timetable",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/timetables/602c20e5eeb9ae2820b62123/class",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"timetables",
+								"602c20e5eeb9ae2820b62123",
+								"class"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get teacher timetable",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/timetables/602b9cfc49ce7a0be4a35fc7/teacher",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"timetables",
+								"602b9cfc49ce7a0be4a35fc7",
+								"teacher"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get today's teacher timetable",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/timetables/602b9cfc49ce7a0be4a35fc7/teacher-today",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"timetables",
+								"602b9cfc49ce7a0be4a35fc7",
+								"teacher-today"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get class teacher timetable",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ejo-education.herokuapp.com/api/timetables/602c20e5eeb9ae2820b62123/602b9cfc49ce7a0be4a35fc7/class-teacher",
+							"protocol": "https",
+							"host": [
+								"ejo-education",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"timetables",
+								"602c20e5eeb9ae2820b62123",
+								"602b9cfc49ce7a0be4a35fc7",
+								"class-teacher"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get class teacher subject timetable",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/timetables/602c20e5eeb9ae2820b62123/602b9cfc49ce7a0be4a35fc7/602c349dfd1613203834880d/class-teacher-subject",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"timetables",
+								"602c20e5eeb9ae2820b62123",
+								"602b9cfc49ce7a0be4a35fc7",
+								"602c349dfd1613203834880d",
+								"class-teacher-subject"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/guests/603159c6191af33cdc989ff0",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"guests",
+								"603159c6191af33cdc989ff0"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Lesson",
+			"item": [
+				{
+					"name": "subject",
+					"item": [
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Math Senior 4\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/subjects",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"subjects"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create from csv",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "subject",
+											"type": "file",
+											"src": "/C:/Users/odilo/Desktop/subject - Scheme of work .csv"
+										},
+										{
+											"key": "name",
+											"value": "Math Senior 4",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/subjects/create-from-csv",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"subjects",
+										"create-from-csv"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Math Senior 4\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/subjects/602c349dfd1613203834880d",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"subjects",
+										"602c349dfd1613203834880d"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get one",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/subjects/602c349dfd1613203834880d",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"subjects",
+										"602c349dfd1613203834880d"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/subjects",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"subjects"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/subjects/602c349dfd1613203834880d",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"subjects",
+										"602c349dfd1613203834880d"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "topic",
+					"item": [
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Introduction to math\",\r\n    \"subject\": \"602c349dfd1613203834880d\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/topics",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"topics"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"TRIGONOMETRY\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/topics/602c35c1e02a0e3a3878ae39",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"topics",
+										"602c35c1e02a0e3a3878ae39"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get one",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/topics/602c35c1e02a0e3a3878ae39",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"topics",
+										"602c35c1e02a0e3a3878ae39"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get subject topics",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/topics/602c349dfd1613203834880d/subject-topics",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"topics",
+										"602c349dfd1613203834880d",
+										"subject-topics"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/topics/602c349dfd1613203834880d",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"topics",
+										"602c349dfd1613203834880d"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "subtopic",
+					"item": [
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Introduction to math part 1\",\r\n    \"topic\": \"602c35c1e02a0e3a3878ae39\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/subtopics",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"subtopics"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Trigonometric circle and identities\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/subtopics/602c37a5edf8520e142247a1",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"subtopics",
+										"602c37a5edf8520e142247a1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get one",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/subtopics/602c37a5edf8520e142247a1",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"subtopics",
+										"602c37a5edf8520e142247a1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get topic subtopics",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/subtopics/602c35c1e02a0e3a3878ae39/topic-subTopics",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"subtopics",
+										"602c35c1e02a0e3a3878ae39",
+										"topic-subTopics"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/subtopics/602c349dfd1613203834880d",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"subtopics",
+										"602c349dfd1613203834880d"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "unit",
+					"item": [
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Fundamentals of trigonometry\",\r\n    \"subTopic\": \"602c37a5edf8520e142247a1\",\r\n    \"numberOfPeriods\": 26,\r\n    \"keyCompetency\": \" Use trigonometric circle and identities to determine trigonometric ratios and apply them to solve related problems\",\r\n    \"content\": {\r\n        \"knowledgeAndUnderstanding\": [\r\n             {\r\n                \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\"\r\n            },\r\n            {\r\n                \"topic\": \"know special values (30 degree, 45degree, 60degree). - Convert radians to degree and vice versa. \"\r\n            },\r\n            {\r\n                \"topic\": \"Differentiate between complementary angles, supplementary angles and coterminal angles \"\r\n            }\r\n        ],\r\n        \"skills\": [\r\n            {\r\n                \"topic\": \"Represent graphically sine, cosine and tangent, functions and, together with the unit circle, use to relate values of any angle to the value for a positive acute angle \"\r\n            },\r\n            {\r\n                \"topic\": \"Use trigonometry, including the sine and cosine rules, to solve problems involving triangles \"\r\n            }\r\n        ],\r\n        \"attitudesAndValues\": [\r\n            {\r\n                \"topic\": \"Appreciate the relationshi p between the trigonomet ric values for different angles \"\r\n            },\r\n            {\r\n                \"topic\": \"Verify reasonable ness of answers when solving problems \"\r\n            }\r\n        ]\r\n    },\r\n    \"activities\": [\r\n        {\r\n            \"activity\": \"Mental task – imagine a point on the edge of a wheel – as the wheel turns how high is the point above the centre? – sketch the graph \"\r\n        },\r\n        {\r\n            \"activity\": \"Practical – on graph paper draw circle of 10cm radius and measure half chord length and distance from the centre to chord for angles (say multiples of 15 degree ) – plot use calculator to determine which is sine and cosine. What is the radius of the calculator’s circle? – unit circle  \"\r\n        },\r\n        {\r\n            \"activity\": \"Use of dynamic geometry and graph plotting to illustrate relationship e.g. geogebra \"\r\n        },\r\n        {\r\n            \"activity\": \"In groups use unit circle and graphs to determine the relationship between trigonometric functions of any angle and the value for an acute positive angle – generalise. \"\r\n        },\r\n        {\r\n            \"activity\": \"Group investigation -What angle subtends an arc length equal to the radius? – define a radian, make a table of equivalences \"\r\n        },\r\n        {\r\n            \"activity\": \"Derive trigonometric identities, sine and cosine rules \"\r\n        },\r\n        {\r\n            \"activity\": \"Apply trigonometry to practical problems involving triangles and angles.\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/units",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"units"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"intro to math part 1 unit 1 updated\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/units/602c38ced3f6860698532d2f",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"units",
+										"602c38ced3f6860698532d2f"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "add image to topic/activity",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "topic",
+											"value": "Use of dynamic geometry and graph plotting to illustrate relationship e.g. geogebra ",
+											"type": "text"
+										},
+										{
+											"key": "location",
+											"value": "activities",
+											"type": "text"
+										},
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/odilo/Pictures/62798f30259c11ebb1e180e82c2616da-page-1-table-1.csv"
+										},
+										{
+											"key": "fileType",
+											"value": "image",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/units/60509e4db4cebe27688acd3b/add-file",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"units",
+										"60509e4db4cebe27688acd3b",
+										"add-file"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get one",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/units/602c38ced3f6860698532d2f",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"units",
+										"602c38ced3f6860698532d2f"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get subtopic units",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/units/602c37a5edf8520e142247a1/subTopic-units",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"units",
+										"602c37a5edf8520e142247a1",
+										"subTopic-units"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/units/602c37a5edf8520e142247a1",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"units",
+										"602c37a5edf8520e142247a1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "unit plan",
+					"item": [
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"unit\": \"60509e4db4cebe27688acd3b\",\r\n    \"time\": {\r\n        \"start\" : \"2021-06-31T17:58:09.010+00:00\",\r\n        \"end\" : \"2021-07-31T17:58:09.010+00:00\"\r\n    },\r\n    \"subject\": \"602c349dfd1613203834880d\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/unit-plans",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"unit-plans"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"time\": {\r\n        \"start\": \"2021-07-01T17:58:09.010Z\",\r\n        \"end\": \"2021-07-31T17:58:09.010Z\"\r\n    },\r\n    \"name\": \"Fundamentals of trigonometry updated\",\r\n    \"keyCompetency\": \" Use trigonometric circle and identities to determine trigonometric ratios and apply them to solve related problems\",\r\n    \"content\": {\r\n        \"knowledgeAndUnderstanding\": [\r\n            {\r\n                \"numberOftimesTaught\": 0,\r\n                \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\"\r\n            },\r\n            {\r\n                \"numberOftimesTaught\": 0,\r\n                \"topic\": \"know special values (30 degree, 45degree, 60degree). - Convert radians to degree and vice versa. \"\r\n            },\r\n            {\r\n                \"numberOftimesTaught\": 0,\r\n                \"topic\": \"Differentiate between complementary angles, supplementary angles and coterminal angles \"\r\n            }\r\n        ],\r\n        \"skills\": [\r\n            {\r\n                \"numberOftimesTaught\": 0,\r\n                \"topic\": \"Represent graphically sine, cosine and tangent, functions and, together with the unit circle, use to relate values of any angle to the value for a positive acute angle \"\r\n            },\r\n            {\r\n                \"numberOftimesTaught\": 0,\r\n                \"topic\": \"Use trigonometry, including the sine and cosine rules, to solve problems involving triangles \"\r\n            }\r\n        ],\r\n        \"attitudesAndValues\": [\r\n            {\r\n                \"numberOftimesTaught\": 0,\r\n                \"topic\": \"Appreciate the relationshi p between the trigonomet ric values for different angles \"\r\n            },\r\n            {\r\n                \"numberOftimesTaught\": 0,\r\n                \"topic\": \"Verify reasonable ness of answers when solving problems \"\r\n            }\r\n        ]\r\n    },\r\n    \"activities\": [\r\n        {\r\n            \"numberOftimesTaught\": 0,\r\n            \"activity\": \"Mental task – imagine a point on the edge of a wheel – as the wheel turns how high is the point above the centre? – sketch the graph \"\r\n        },\r\n        {\r\n            \"numberOftimesTaught\": 0,\r\n            \"activity\": \"Practical – on graph paper draw circle of 10cm radius and measure half chord length and distance from the centre to chord for angles (say multiples of 15 degree ) – plot use calculator to determine which is sine and cosine. What is the radius of the calculator’s circle? – unit circle  \"\r\n        },\r\n        {\r\n            \"numberOftimesTaught\": 0,\r\n            \"activity\": \"Use of dynamic geometry and graph plotting to illustrate relationship e.g. geogebra \"\r\n        },\r\n        {\r\n            \"numberOftimesTaught\": 0,\r\n            \"activity\": \"In groups use unit circle and graphs to determine the relationship between trigonometric functions of any angle and the value for an acute positive angle – generalise. \"\r\n        },\r\n        {\r\n            \"numberOftimesTaught\": 0,\r\n            \"activity\": \"Group investigation -What angle subtends an arc length equal to the radius? – define a radian, make a table of equivalences \"\r\n        },\r\n        {\r\n            \"numberOftimesTaught\": 0,\r\n            \"activity\": \"Derive trigonometric identities, sine and cosine rules \"\r\n        },\r\n        {\r\n            \"numberOftimesTaught\": 0,\r\n            \"activity\": \"Apply trigonometry to practical problems involving triangles and angles.\"\r\n        }\r\n    ]\r\n}\r\n   ",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/unit-plans/60473131fe2fc60c449b5f5b",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"unit-plans",
+										"60473131fe2fc60c449b5f5b"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get one {unitId}",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/unit-plans/6035240d55ca8b00360caf0f",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"unit-plans",
+										"6035240d55ca8b00360caf0f"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get subject unit plans",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/unit-plans/602c349dfd1613203834880d/subject-unit-plans",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"unit-plans",
+										"602c349dfd1613203834880d",
+										"subject-unit-plans"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/unit-plans/6047219a62faf531b8323b38",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"unit-plans",
+										"6047219a62faf531b8323b38"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "lesson plan",
+					"item": [
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"unit\": \"602c38ced3f6860698532d2f\",\r\n    \"unitPlanId\": \"60473131fe2fc60c449b5f5b\",\r\n    \"subject\": \"602c349dfd1613203834880d\",\r\n    \"keyUnitCompetency\": \"Use trigonometric circle and identities to determine trigonometric ratios and apply them to solve related problems\",\r\n    \"lessonNumber\": 1,\r\n    \"lessonName\": \"First lesson \",\r\n    \"knowledge\": {\r\n        \"topics\": [\r\n            {\r\n                \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\",\r\n                \"bloomTaxonomy\": \"REMEMBERING\",\r\n                \"standardCriteriaPerfomance\": 80\r\n            },\r\n            {\r\n                \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\",\r\n                \"bloomTaxonomy\": \"REMEMBERING\",\r\n                \"standardCriteriaPerfomance\": 50,\r\n                \"selfCreated\": true\r\n            }\r\n        ],\r\n        \"instructionalMaterial\": [\r\n            {\r\n                \"materialType\":\"\",\r\n                \"items\": [\r\n                    {\r\n                        \"item\" :\"TextBooks\"\r\n                    },\r\n                    {\r\n                        \"item\" :\"Handouts\"\r\n                    }\r\n                ],\r\n                \"uploads\": [\r\n                    {\"file1\": \"....\"}\r\n                ]\r\n            }\r\n        ],\r\n        \"otherMaterialsAndReferences\": \"N/A\"\r\n    },\r\n    \"skills\": {\r\n        \"topics\": [\r\n            {\r\n                \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\",\r\n                \"bloomTaxonomy\": \"REMEMBERING\",\r\n                \"standardCriteriaPerfomance\": 80\r\n            },\r\n            {\r\n                \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\",\r\n                \"bloomTaxonomy\": \"REMEMBERING\",\r\n                \"standardCriteriaPerfomance\": 50\r\n            }\r\n        ],\r\n        \"instructionalMaterial\": [\r\n            {\r\n                \"materialType\":\"\",\r\n                \"items\": [\r\n                    {\r\n                        \"item\" :\"TextBooks\"\r\n                    },\r\n                    {\r\n                        \"item\" :\"Handouts\"\r\n                    }\r\n                ],\r\n                \"uploads\": [\r\n                    {\"file1\": \"....\"}\r\n                ]\r\n            }\r\n        ],\r\n        \"otherMaterialsAndReferences\": \"N/A\"\r\n    },\r\n    \"attitudesAndValues\": {\r\n        \"topics\": [\r\n            {\r\n                \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\",\r\n                \"bloomTaxonomy\": \"REMEMBERING\",\r\n                \"standardCriteriaPerfomance\": 80\r\n            },\r\n            {\r\n                \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\",\r\n                \"bloomTaxonomy\": \"REMEMBERING\",\r\n                \"standardCriteriaPerfomance\": 50\r\n            }\r\n        ],\r\n        \"instructionalMaterial\": [\r\n            {\r\n                \"materialType\":\"\",\r\n                \"items\": [\r\n                    {\r\n                        \"item\" :\"TextBooks\"\r\n                    },\r\n                    {\r\n                        \"item\" :\"Handouts\"\r\n                    }\r\n                ],\r\n                \"uploads\": [\r\n                    {\"file1\": \"....\"}\r\n                ]\r\n            }\r\n        ],\r\n        \"otherMaterialsAndReferences\": \"N/A\"\r\n    },\r\n\r\n    \"activities\": {\r\n        \"introduction\": {\r\n            \"content\": {\r\n                \"activities\": [\r\n                    {\r\n                        \"activity\": \"Mental task – imagine a point on the edge of a wheel – as the wheel turns how high is the point above the centre? – sketch the graph \"\r\n                    }\r\n                ],\r\n                \"otherActivity\": \"\"\r\n            },\r\n            \"crossCuttingIssues\": {\r\n                \"issues\": [\r\n                    {\r\n                        \"issue\": \"ENVIRONMENT-AND-SUSTAINABILITY\"\r\n                    }\r\n                ],\r\n                \"omment\": \"No comment\"\r\n            },\r\n            \"competency\": {\r\n                \"competencies\": [\r\n                    {\r\n                        \"competency\": \"RESEARCH-AND-PROBLEM-SOLVING\"\r\n                    }\r\n                ],\r\n                \"comment\": \"No comment\"\r\n            },\r\n            \"exercises\": {\r\n                \"questions\": [\r\n                    {\r\n                    \"difficultLevel\": \"MEDIUM\",\r\n                    \"questionsObjective\": \"REMEMBERING\",\r\n                    \"question\": \"What is the answer\",\r\n                    \"questionType\": \"MULTI-CHOICE\",\r\n                    \"possibleAnswer\": [\r\n                        {\r\n                            \"answer\": \"answer\"\r\n                        },\r\n                        {\r\n                            \"answer\": \"answer2\"\r\n                        },\r\n                        {\r\n                            \"answer\": \"answer3\"\r\n                        }\r\n                    ],\r\n                    \"answers\": [\r\n                        {\r\n                            \"answer\": \"answer2\"\r\n                        },\r\n                        {\r\n                            \"answer\": \"answer3\"\r\n                        }\r\n                    ],\r\n                    \"points\": 10\r\n                        \r\n                    }\r\n                ]\r\n            }\r\n        },\r\n        \"development\": {\r\n            \"content\": {\r\n                \"activities\": [\r\n                    {\r\n                        \"activity\": \"Mental task – imagine a point on the edge of a wheel – as the wheel turns how high is the point above the centre? – sketch the graph \"\r\n                    }\r\n                ],\r\n                \"otherActivity\": \"\"\r\n            },\r\n            \"crossCuttingIssues\": {\r\n                \"issues\": [\r\n                    {\r\n                        \"issue\": \"ENVIRONMENT-AND-SUSTAINABILITY\"\r\n                    }\r\n                ],\r\n                \"omment\": \"No comment\"\r\n            },\r\n            \"competency\": {\r\n                \"competencies\": [\r\n                    {\r\n                        \"competency\": \"RESEARCH-AND-PROBLEM-SOLVING\"\r\n                    }\r\n                ],\r\n                \"comment\": \"No comment\"\r\n            },\r\n            \"exercises\": {\r\n                \"questions\": [\r\n                    {\r\n                    \"difficultLevel\": \"MEDIUM\",\r\n                    \"questionsObjective\": \"REMEMBERING\",\r\n                    \"question\": \"What is the answer\",\r\n                    \"questionType\": \"MULTI-CHOICE\",\r\n                    \"possibleAnswer\": [\r\n                        {\r\n                            \"answer\": \"answer\"\r\n                        },\r\n                        {\r\n                            \"answer\": \"answer2\"\r\n                        },\r\n                        {\r\n                            \"answer\": \"answer3\"\r\n                        }\r\n                    ],\r\n                    \"answers\": [\r\n                        {\r\n                            \"answer\": \"answer2\"\r\n                        },\r\n                        {\r\n                            \"answer\": \"answer3\"\r\n                        }\r\n                    ],\r\n                    \"points\": 10\r\n                        \r\n                    }\r\n                ]\r\n            }\r\n        },\r\n        \"conclusion\": {\r\n            \"content\": {\r\n                \"activities\": [\r\n                    {\r\n                        \"activity\": \"Mental task – imagine a point on the edge of a wheel – as the wheel turns how high is the point above the centre? – sketch the graph \"\r\n                    }\r\n                ],\r\n                \"otherActivity\": \"\"\r\n            },\r\n            \"crossCuttingIssues\": {\r\n                \"issues\": [\r\n                    {\r\n                        \"issue\": \"ENVIRONMENT-AND-SUSTAINABILITY\"\r\n                    }\r\n                ],\r\n                \"omment\": \"No comment\"\r\n            },\r\n            \"competency\": {\r\n                \"competencies\": [\r\n                    {\r\n                        \"competency\": \"RESEARCH-AND-PROBLEM-SOLVING\"\r\n                    }\r\n                ],\r\n                \"comment\": \"No comment\"\r\n            },\r\n            \"exercises\": {\r\n                \"questions\": [\r\n                    {\r\n                    \"difficultLevel\": \"MEDIUM\",\r\n                    \"questionsObjective\": \"REMEMBERING\",\r\n                    \"question\": \"What is the answer\",\r\n                    \"questionType\": \"MULTI-CHOICE\",\r\n                    \"possibleAnswer\": [\r\n                        {\r\n                            \"answer\": \"answer\"\r\n                        },\r\n                        {\r\n                            \"answer\": \"answer2\"\r\n                        },\r\n                        {\r\n                            \"answer\": \"answer3\"\r\n                        }\r\n                    ],\r\n                    \"answers\": [\r\n                        {\r\n                            \"answer\": \"answer2\"\r\n                        },\r\n                        {\r\n                            \"answer\": \"answer3\"\r\n                        }\r\n                    ],\r\n                    \"points\": 10\r\n                        \r\n                    }\r\n                ]\r\n            }\r\n        }\r\n    },\r\n    \"teachingTechniques\": {\r\n        \"introduction\": {\r\n            \"contentFocus\": [\r\n                {\r\n                    \"item\": \"LIVE-LECTURING\"\r\n                }\r\n            ],\r\n            \"interactiveFocus\": [\r\n                {\r\n                    \"item\": \"GROUP-WORK\"\r\n                }\r\n            ],\r\n            \"criticalThinking\": [\r\n                {\r\n                    \"item\": \"CLASS-DISCUSSIONS-DEBATES\"\r\n                }\r\n            ],\r\n            \"production\": [\r\n                {\r\n                    \"item\": \"SKILLS-PRACTICE\"\r\n                }\r\n            ],\r\n            \"problemSolving\": [\r\n                {\r\n                    \"item\": \"RESEARCH-INQUIRY\"\r\n                }\r\n            ],\r\n            \"reflection\": [\r\n                {\r\n                    \"item\": \"REFLECTION-ON-LEARNING\"\r\n                }\r\n            ],\r\n            \"sitingArrangement\": [\r\n                {\r\n                    \"item\": \"LECTURE/INDEPENDENT-WORK/TEST\"\r\n                }\r\n            ],\r\n            \"duration\": 10\r\n        },\r\n        \"development\": {\r\n            \"contentFocus\": [\r\n                {\r\n                    \"item\": \"LIVE-LECTURING\"\r\n                }\r\n            ],\r\n            \"interactiveFocus\": [\r\n                {\r\n                    \"item\": \"GROUP-WORK\"\r\n                }\r\n            ],\r\n            \"criticalThinking\": [\r\n                {\r\n                    \"item\": \"CLASS-DISCUSSIONS-DEBATES\"\r\n                }\r\n            ],\r\n            \"production\": [\r\n                {\r\n                    \"item\": \"SKILLS-PRACTICE\"\r\n                }\r\n            ],\r\n            \"problemSolving\": [\r\n                {\r\n                    \"item\": \"RESEARCH-INQUIRY\"\r\n                }\r\n            ],\r\n            \"reflection\": [\r\n                {\r\n                    \"item\": \"REFLECTION-ON-LEARNING\"\r\n                }\r\n            ],\r\n            \"sitingArrangement\": [\r\n                {\r\n                    \"item\": \"LECTURE/INDEPENDENT-WORK/TEST\"\r\n                }\r\n            ],\r\n            \"duration\": 10\r\n        },\r\n        \"conclusion\": {\r\n            \"contentFocus\": [\r\n                {\r\n                    \"item\": \"LIVE-LECTURING\"\r\n                }\r\n            ],\r\n            \"interactiveFocus\": [\r\n                {\r\n                    \"item\": \"GROUP-WORK\"\r\n                }\r\n            ],\r\n            \"criticalThinking\": [\r\n                {\r\n                    \"item\": \"CLASS-DISCUSSIONS-DEBATES\"\r\n                }\r\n            ],\r\n            \"production\": [\r\n                {\r\n                    \"item\": \"SKILLS-PRACTICE\"\r\n                }\r\n            ],\r\n            \"problemSolving\": [\r\n                {\r\n                    \"item\": \"RESEARCH-INQUIRY\"\r\n                }\r\n            ],\r\n            \"reflection\": [\r\n                {\r\n                    \"item\": \"REFLECTION-ON-LEARNING\"\r\n                }\r\n            ],\r\n            \"sitingArrangement\": [\r\n                {\r\n                    \"item\": \"LECTURE/INDEPENDENT-WORK/TEST\"\r\n                }\r\n            ],\r\n            \"duration\": 10\r\n        }\r\n    },\r\n    \"time\": {\r\n        \"day\": \"2021-06-31T17:58:09.010+00:00\",\r\n        \"slotOnTimetable\": \"603159c6191af33cdc989ff0\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/plans",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"plans"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"unit\": \"602c38ced3f6860698532d2f\",\r\n    \"subject\": \"602c349dfd1613203834880d\",\r\n    \"keyUnitCompetency\": \"Use trigonometric circle and identities to determine trigonometric ratios and apply them to solve related problems\",\r\n    \"lessonNumber\": 1,\r\n    \"lessonName\": \"First lesson updated\",\r\n    \"knowledge\": [\r\n        {\r\n            \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle updated\",\r\n            \"bloomTaxonomy\": \"REMEMBERING\",\r\n            \"standardCriteriaPerfomance\": 80\r\n        },\r\n        {\r\n            \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\",\r\n            \"bloomTaxonomy\": \"REMEMBERING\",\r\n            \"standardCriteriaPerfomance\": 50\r\n        }\r\n    ],\r\n     \"skills\": [\r\n        {\r\n            \"topic\": \"Represent graphically sine, cosine and tangent, functions and, together with the unit circle, use to relate values of any angle to the value for a positive acute angle \",\r\n            \"bloomTaxonomy\": \"APPLYING\",\r\n            \"standardCriteriaPerfomance\": 20\r\n        },\r\n        {\r\n            \"topic\": \"Use trigonometry, including the sine and cosine rules, to solve problems involving triangles\",\r\n            \"bloomTaxonomy\": \"APPLYING\",\r\n            \"standardCriteriaPerfomance\": 50\r\n        }\r\n    ],\r\n     \"attitudesAndValues\": [\r\n        {\r\n            \"topic\": \"Appreciate the relationshi p between the trigonomet ric values for different angles \",\r\n            \"bloomTaxonomy\": \"CREATING\",\r\n            \"standardCriteriaPerfomance\": 30\r\n        },\r\n        {\r\n            \"topic\": \"Verify reasonable ness of answers when solving problems\",\r\n            \"bloomTaxonomy\": \"EVALUATING\",\r\n            \"standardCriteriaPerfomance\": 70\r\n        }\r\n    ],\r\n    \"instructionalMaterial\": {},\r\n    \"otherMaterialsAndReferences\": \"N/A\",\r\n    \"activities\": {\r\n        \"introduction\": {\r\n            \"activities\": [\r\n                {\r\n                    \"activity\": \"Mental task – imagine a point on the edge of a wheel – as the wheel turns how high is the point above the centre? – sketch the graph \"\r\n                }\r\n            ],\r\n            \"otherActivity\": \"\",\r\n            \"crossCuttingIssues\": \"ENVIRONMENT-AND-SUSTAINABILITY\",\r\n            \"crossCuttingIssuesComment\": \"No comment\",\r\n            \"competency\": \"RESEARCH-AND-PROBLEM-SOLVING\",\r\n            \"competencyComment\": \"No comment\"\r\n        },\r\n        \"development\": {\r\n            \"activities\": [\r\n                {\r\n                    \"activity\": \"Practical – on graph paper draw circle of 10cm radius and measure half chord length and distance from the centre to chord for angles (say multiples of 15 degree ) – plot use calculator to determine which is sine and cosine. What is the radius of the calculator’s circle? – unit circle  \"\r\n                }\r\n            ],\r\n            \"otherActivity\": \"\",\r\n            \"crossCuttingIssues\": \"ENVIRONMENT-AND-SUSTAINABILITY\",\r\n            \"crossCuttingIssuesComment\": \"No comment\",\r\n            \"competency\": \"RESEARCH-AND-PROBLEM-SOLVING\",\r\n            \"competencyComment\": \"No comment\"\r\n        },\r\n        \"conclusion\": {\r\n            \"activities\": [\r\n                {\r\n                    \"activity\": \"Use of dynamic geometry and graph plotting to illustrate relationship e.g. geogebra\"\r\n                }\r\n            ],\r\n            \"otherActivity\": \"\",\r\n            \"crossCuttingIssues\": \"ENVIRONMENT-AND-SUSTAINABILITY\",\r\n            \"crossCuttingIssuesComment\": \"No comment\",\r\n            \"competency\": \"RESEARCH-AND-PROBLEM-SOLVING\",\r\n            \"competencyComment\": \"No comment\"\r\n        }\r\n    },\r\n    \"teachingTechniques\": {\r\n        \"introduction\": {\r\n            \"contentFocus\": \"LIVE-LECTURING\",\r\n            \"interactiveFocus\": \"GROUP-WORK\",\r\n            \"criticalThinking\": \"CLASS-DISCUSSIONS-DEBATES\",\r\n            \"production\": \"SKILLS-PRACTICE\",\r\n            \"problemSolving\": \"RESEARCH-INQUIRY\",\r\n            \"reflection\": \"REFLECTION-ON-LEARNING\",\r\n            \"sitingArrangement\": \"LECTURE/INDEPENDENT-WORK/TEST\",\r\n            \"duration\": 10\r\n        },\r\n        \"development\": {\r\n            \"contentFocus\": \"LIVE-LECTURING\",\r\n            \"interactiveFocus\": \"GROUP-WORK\",\r\n            \"criticalThinking\": \"CLASS-DISCUSSIONS-DEBATES\",\r\n            \"production\": \"SKILLS-PRACTICE\",\r\n            \"problemSolving\": \"RESEARCH-INQUIRY\",\r\n            \"reflection\": \"REFLECTION-ON-LEARNING\",\r\n            \"sitingArrangement\": \"LECTURE/INDEPENDENT-WORK/TEST\",\r\n            \"duration\": 10\r\n        },\r\n        \"conclusion\": {\r\n            \"contentFocus\": \"LIVE-LECTURING\",\r\n            \"interactiveFocus\": \"GROUP-WORK\",\r\n            \"criticalThinking\": \"CLASS-DISCUSSIONS-DEBATES\",\r\n            \"production\": \"SKILLS-PRACTICE\",\r\n            \"problemSolving\": \"RESEARCH-INQUIRY\",\r\n            \"reflection\": \"REFLECTION-ON-LEARNING\",\r\n            \"sitingArrangement\": \"LECTURE/INDEPENDENT-WORK/TEST\",\r\n            \"duration\": 10\r\n        }\r\n    },\r\n    \"time\": {\r\n        \"start\": \"2021-06-31T17:58:09.010+00:00\",\r\n        \"provisionalEnd\": \"2021-06-31T17:58:09.010+00:00\",\r\n        \"realEnd\": \"2021-06-31T17:58:09.010+00:00\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/plans/60311a2b701e7a2790f9ce6a",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"plans",
+										"60311a2b701e7a2790f9ce6a"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "evaluate",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"studentSelfAssessment\": \"UNDERSTOOD\",\r\n    \"teacherSelfAssessment\": {\r\n        \"assessment\": \"COMPLETED\",\r\n        \"reason\": \"No comment\",\r\n        \"otherComments\": \"\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/plans/60311a2b701e7a2790f9ce6a/evaluate",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"plans",
+										"60311a2b701e7a2790f9ce6a",
+										"evaluate"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get one",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/plans/60311a2b701e7a2790f9ce6a",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"plans",
+										"60311a2b701e7a2790f9ce6a"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get subject plan",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/plans/602c349dfd1613203834880d/subject-plan",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"plans",
+										"602c349dfd1613203834880d",
+										"subject-plan"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get topic details",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\",\r\n    \"type\": \"knowledge\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/plans/602c38ced3f6860698532d2f/topic-details",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"plans",
+										"602c38ced3f6860698532d2f",
+										"topic-details"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get unit plan",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/plans/6035216455ca8b00360caef1/unit-plan",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"plans",
+										"6035216455ca8b00360caef1",
+										"unit-plan"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/plan/602c349dfd1613203834880d",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"plan",
+										"602c349dfd1613203834880d"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "participation",
+			"item": [
+				{
+					"name": "add one student participation",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"students\": [\r\n        {\r\n            \"_id\": \"602c2368bd2ce42e800e0f36\"\r\n        },\r\n        {\r\n            \"_id\": \"602c23ddbd2ce42e800e0f37\"\r\n        }\r\n    ],\r\n    \"positive\": true,\r\n    \"firstLevel\": \"Cooperation and social harmony\",\r\n    \"record\": [\r\n        {\r\n            \"secondLevel\": \"Emotional response\",\r\n            \"thirdLevel\": \"Admiration\"\r\n        },\r\n        {\r\n            \"secondLevel\": \"Attention span\",\r\n            \"thirdLevel\": \"Anticipation\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/participations/60574a0e54f7cb07b80cfa5b",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"participations",
+								"60574a0e54f7cb07b80cfa5b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add comment to student",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"student\": \"602c23ddbd2ce42e800e0f37\",\r\n    \"comment\": \"Comment test\"\r\n} ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/participations/60558d01eda8203cfc877dd9/comment",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"participations",
+								"60558d01eda8203cfc877dd9",
+								"comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get one particpation",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/participations/602c20e5eeb9ae2820b62123",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"participations",
+								"602c20e5eeb9ae2820b62123"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/participations/6036c02bd36d4905fcfa5673",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"participations",
+								"6036c02bd36d4905fcfa5673"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Attendance",
+			"item": [
+				{
+					"name": "class-attendance",
+					"item": [
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"slotOnTimetable\": \"603159c6191af33cdc989ff0\",\r\n    \"subject\": \"602c349dfd1613203834880d\",\r\n    \"assignedClass\": \"602c20e5eeb9ae2820b62123\",\r\n    \"students\": [\r\n        {\r\n            \"student\": \"602c2368bd2ce42e800e0f37\",\r\n            \"present\": true\r\n        },\r\n        {\r\n            \"student\": \"602c2368bd2ce42e800e0f36\",\r\n            \"present\": false\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/attendances/class-attendances",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"attendances",
+										"class-attendances"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get one",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/attendances/class-attendances/6031639fec1c72346cd88f39",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"attendances",
+										"class-attendances",
+										"6031639fec1c72346cd88f39"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all class attendances",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/attendances/class-attendances/602c20e5eeb9ae2820b62123/class",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"attendances",
+										"class-attendances",
+										"602c20e5eeb9ae2820b62123",
+										"class"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all class attendances by subject",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/attendances/class-attendances/602c20e5eeb9ae2820b62123/602c349dfd1613203834880d/class-subject",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"attendances",
+										"class-attendances",
+										"602c20e5eeb9ae2820b62123",
+										"602c349dfd1613203834880d",
+										"class-subject"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get attendance by timetable slot",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/attendances/class-attendances/603159c6191af33cdc989ff0/timetable-slot",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"attendances",
+										"class-attendances",
+										"603159c6191af33cdc989ff0",
+										"timetable-slot"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get one student attendance details",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/attendances/class-attendances/602c2368bd2ce42e800e0f36/student",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"attendances",
+										"class-attendances",
+										"602c2368bd2ce42e800e0f36",
+										"student"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get one student attendance details by subject",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/attendances/class-attendances/602c2368bd2ce42e800e0f36/602c349dfd1613203834880d/student-subject",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"attendances",
+										"class-attendances",
+										"602c2368bd2ce42e800e0f36",
+										"602c349dfd1613203834880d",
+										"student-subject"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/attendances/class-attendances/6031639fec1c72346cd88f39",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"attendances",
+										"class-attendances",
+										"6031639fec1c72346cd88f39"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "question bank",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"subject\": \"602c349dfd1613203834880d\",\r\n    \"unit\": \"602c38ced3f6860698532d2f\",\r\n    \"difficultLevel\": \"EASY\",\r\n    \"questionsObjective\": \"REMEMBERING\",\r\n    \"question\": \"What is your answer\",\r\n    \"questionType\": \"MULTI-CHOICE\",\r\n    \"possibleAnswer\": [\r\n        {\r\n            \"answer\": \"answer 1\"\r\n        },\r\n        {\r\n            \"answer\": \"answer 2\"\r\n        },\r\n        {\r\n            \"answer\": \"answer 3\"\r\n        }\r\n    ],\r\n    \"answer\": [\r\n        {\r\n            \"answer\": \"answer 1\"\r\n        },\r\n        {\r\n            \"answer\": \"answer 2\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/question-banks/",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"question-banks",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"difficultLevel\": \"MEDIUM\",\r\n    \"questionsObjective\": \"REMEMBERING\",\r\n    \"question\": \"What is your answer\",\r\n    \"questionType\": \"MULTI-CHOICE\",\r\n    \"possibleAnswer\": [\r\n        {\r\n            \"answer\": \"answer 1\"\r\n        },\r\n        {\r\n            \"answer\": \"answer 2\"\r\n        },\r\n        {\r\n            \"answer\": \"answer 3\"\r\n        }\r\n    ],\r\n    \"answer\": [\r\n        {\r\n            \"answer\": \"answer 1\"\r\n        },\r\n        {\r\n            \"answer\": \"answer 2\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/question-banks/603398fb5b190c18b82aa7b5",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"question-banks",
+								"603398fb5b190c18b82aa7b5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get one",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/question-banks/603398fb5b190c18b82aa7b5",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"question-banks",
+								"603398fb5b190c18b82aa7b5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get unit question bank",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/question-banks/602c38ced3f6860698532d2f/unit-question-bank",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"question-banks",
+								"602c38ced3f6860698532d2f",
+								"unit-question-bank"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get subject question bank",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/question-banks/602c349dfd1613203834880d/subject-question-bank",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"question-banks",
+								"602c349dfd1613203834880d",
+								"subject-question-bank"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/question-banks/603398fb5b190c18b82aa7b5",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"question-banks",
+								"603398fb5b190c18b82aa7b5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "assignment",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"subject\": \"602c349dfd1613203834880d\",\r\n    \"unit\": \"602c38ced3f6860698532d2f\",\r\n    \"assignedClass\": \"602c20e5eeb9ae2820b62123\",\r\n    \"questions\": [\r\n        {\r\n            \"difficultLevel\": \"EASY\",\r\n            \"questionsObjective\": \"REMEMBERING\",\r\n            \"question\": \"What is your answer\",\r\n            \"questionType\": \"MULTI-CHOICE\",\r\n            \"possibleAnswer\": [\r\n                {\r\n                    \"answer\": \"answer 1\"\r\n                },\r\n                {\r\n                    \"answer\": \"answer 2\"\r\n                },\r\n                {\r\n                    \"answer\": \"answer 3\"\r\n                }\r\n            ],\r\n            \"answer\": [\r\n                {\r\n                    \"answer\": \"answer 1\"\r\n                },\r\n                {\r\n                    \"answer\": \"answer 2\"\r\n                }\r\n            ],\r\n            \"points\": 7\r\n        }\r\n    ],\r\n    \"title\": \"Assignment 1\",\r\n    \"duration\": \"80\",\r\n    \"starts\": \"2021-06-31T17:58:09.010+00:00\",\r\n    \"ends\": \"2021-08-31T17:58:09.010+00:00\",\r\n    \"assignmentSetting\": \"ONLINE\",\r\n    \"assignmentType\": \"GROUP\",\r\n    \"testMethod\": \"ORAL\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/assignments/",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"assignments",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"questions\": [\r\n        {\r\n            \"difficultLevel\": \"EASY\",\r\n            \"questionsObjective\": \"REMEMBERING\",\r\n            \"question\": \"What is your answer\",\r\n            \"questionType\": \"MULTI-CHOICE\",\r\n            \"possibleAnswer\": [\r\n                {\r\n                    \"answer\": \"answer 1\"\r\n                },\r\n                {\r\n                    \"answer\": \"answer 2\"\r\n                },\r\n                {\r\n                    \"answer\": \"answer 3\"\r\n                }\r\n            ],\r\n            \"answer\": [\r\n                {\r\n                    \"answer\": \"answer 1\"\r\n                },\r\n                {\r\n                    \"answer\": \"answer 2\"\r\n                }\r\n            ],\r\n            \"points\": 7\r\n        }\r\n    ],\r\n    \"title\": \"Assignment 1\",\r\n    \"duration\": \"80\",\r\n    \"starts\": \"2021-06-31T17:58:09.010+00:00\",\r\n    \"ends\": \"2021-08-31T17:58:09.010+00:00\",\r\n    \"assignmentSetting\": \"ONLINE\",\r\n    \"assignmentType\": \"GROUP\",\r\n    \"testMethod\": \"ORAL\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/assignments/6033a2ff68825221b8e7d218",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"assignments",
+								"6033a2ff68825221b8e7d218"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get one",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/assignments/6033a2ff68825221b8e7d218",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"assignments",
+								"6033a2ff68825221b8e7d218"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get unit question bank",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/assignments/602c38ced3f6860698532d2f/unit-assignments",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"assignments",
+								"602c38ced3f6860698532d2f",
+								"unit-assignments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get subject question bank",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/assignments/602c349dfd1613203834880d/subject-assignments",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"assignments",
+								"602c349dfd1613203834880d",
+								"subject-assignments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/assignments/6033a2ff68825221b8e7d218",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"assignments",
+								"6033a2ff68825221b8e7d218"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "marks",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"student\": \"602c23ddbd2ce42e800e0f37\",\r\n    \"answers\": [\r\n        {\r\n            \"question\": \"6033aea27113dc0d7c8b8d38\",\r\n            \"awarededPoints\": 4,\r\n            \"answer\": [\r\n                        {\r\n                            \"answer\": \"answer 1\"\r\n                        },\r\n                        {\r\n                            \"answer\": \"answer 2\"\r\n                        }\r\n            ]\r\n        }\r\n    ],\r\n    \"totalMarks\": \"4\",\r\n    \"studentClass\": \"602c20e5eeb9ae2820b62123\",\r\n    \"subject\": \"602c349dfd1613203834880d\",\r\n    \"assignment\": \"6033a2ff68825221b8e7d218\",\r\n    \"started\": \"2021-06-31T17:10:09.010+00:00\",\r\n    \"ended\": \"2021-06-31T17:58:09.010+00:00\",\r\n    \"marksPublished\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/marks/",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"marks",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"answers\": [\r\n        {\r\n            \"question\": \"6033aea27113dc0d7c8b8d38\",\r\n            \"awarededPoints\": 4,\r\n            \"answer\": [\r\n                        {\r\n                            \"answer\": \"answer 1\"\r\n                        },\r\n                        {\r\n                            \"answer\": \"answer 2\"\r\n                        }\r\n            ]\r\n        }\r\n    ],\r\n    \"totalMarks\": \"4\",\r\n    \"started\": \"2021-06-31T17:10:09.010+00:00\",\r\n    \"ended\": \"2021-06-31T17:58:09.010+00:00\",\r\n    \"marksPublished\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/marks/6033afeb401b01260412f3be",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"marks",
+								"6033afeb401b01260412f3be"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get one (one student)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/marks/6033b6c3fb773146c85c2248",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"marks",
+								"6033b6c3fb773146c85c2248"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get student subject marks",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/marks/60317e67ec0fa31db03195ad/602c349dfd1613203834880d/student-subject-marks",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"marks",
+								"60317e67ec0fa31db03195ad",
+								"602c349dfd1613203834880d",
+								"student-subject-marks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get assignment marks",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/marks/6033a2ff68825221b8e7d218/assignment-marks",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"marks",
+								"6033a2ff68825221b8e7d218",
+								"assignment-marks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get class marks",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/marks/602c20e5eeb9ae2820b62123/class-marks",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"marks",
+								"602c20e5eeb9ae2820b62123",
+								"class-marks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get class subject marks",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/marks/602c20e5eeb9ae2820b62123/602c349dfd1613203834880d/class-subject-marks",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"marks",
+								"602c20e5eeb9ae2820b62123",
+								"602c349dfd1613203834880d",
+								"class-subject-marks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/marks/6033afeb401b01260412f3be",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"marks",
+								"6033afeb401b01260412f3be"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "address",
+			"item": [
+				{
+					"name": "province",
+					"item": [
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Kigali city\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/provinces",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"provinces"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Kigali\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/provinces/603172eb2d9ca610986f3404",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"provinces",
+										"603172eb2d9ca610986f3404"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get one",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/provinces/603172eb2d9ca610986f3404",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"provinces",
+										"603172eb2d9ca610986f3404"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/provinces",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"provinces"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/provinces/603172eb2d9ca610986f3404",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"provinces",
+										"603172eb2d9ca610986f3404"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "district",
+					"item": [
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Kicukiro\",\r\n    \"province\": \"603172eb2d9ca610986f3404\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/districts",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"districts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"kicukiro.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/districts/603174370595342a28537999",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"districts",
+										"603174370595342a28537999"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get one",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/districts/603174370595342a28537999",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"districts",
+										"603174370595342a28537999"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/districts",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"districts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get province districts",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/districts/603172eb2d9ca610986f3404/province-districts",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"districts",
+										"603172eb2d9ca610986f3404",
+										"province-districts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/districts/603174370595342a28537999",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"districts",
+										"603174370595342a28537999"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "sector",
+					"item": [
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Kicukiro\",\r\n    \"district\": \"603174370595342a28537999\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/sectors",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"sectors"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"kicukiro.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/sectors/603176ccf756be2ce0677824",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"sectors",
+										"603176ccf756be2ce0677824"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get one",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/sectors/603176ccf756be2ce0677824",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"sectors",
+										"603176ccf756be2ce0677824"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/sectors",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"sectors"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get district sectors",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/sectors/603174370595342a28537999/district-sectors",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"sectors",
+										"603174370595342a28537999",
+										"district-sectors"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/sectors/603176ccf756be2ce0677824",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"sectors",
+										"603176ccf756be2ce0677824"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "cell",
+					"item": [
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Kicukiro\",\r\n    \"sector\": \"603176ccf756be2ce0677824\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/cells",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"cells"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"kicukiro.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/cells/603177c214de77175020799f",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"cells",
+										"603177c214de77175020799f"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get one",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/sectors/603177c214de77175020799f",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"sectors",
+										"603177c214de77175020799f"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/cells",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"cells"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get sector cells",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/cells/603176ccf756be2ce0677824/sector-cells",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"cells",
+										"603176ccf756be2ce0677824",
+										"sector-cells"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get sector cells Copy",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/cells/603176ccf756be2ce0677824/sector-cells",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"cells",
+										"603176ccf756be2ce0677824",
+										"sector-cells"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/cells/603177c214de77175020799f",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"cells",
+										"603177c214de77175020799f"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "village",
+					"item": [
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Kicukiro\",\r\n    \"cell\": \"603177c214de77175020799f\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/villages",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"villages"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"kicukiro.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/villages/603179c1e383bb1b847eff2c",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"villages",
+										"603179c1e383bb1b847eff2c"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get one",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/villages/603179c1e383bb1b847eff2c",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"villages",
+										"603179c1e383bb1b847eff2c"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/villages",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"villages"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get cell villages",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/villages/603177c214de77175020799f/cell-villages",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"villages",
+										"603177c214de77175020799f",
+										"cell-villages"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/addresses/villages/603179c1e383bb1b847eff2c",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"addresses",
+										"villages",
+										"603179c1e383bb1b847eff2c"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "test",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://ejo-education.herokuapp.com/uploads/public-files/1615896576955.jpg",
+					"protocol": "https",
+					"host": [
+						"ejo-education",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"uploads",
+						"public-files",
+						"1615896576955.jpg"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYwMzE4NDNiYmViOTdmM2EwNGY0NDA4NCIsImZpcnN0TmFtZSI6IkpvaG4iLCJsYXN0TmFtZSI6ImRvZSIsImVtYWlsIjoiam9obmRvZTRAZ21haWwuY29tIiwicm9sZSI6IlRFQUNIRVIiLCJzY2hvb2wiOiI2MDJjMWU4ZmVlYjlhZTI4MjBiNjIxMjAifSwiaWF0IjoxNjE1ODkxMDc5fQ.TMos_pFmnO2khtbwmPNjIyTPqLt2V9IzUtjdx5B9XVg",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

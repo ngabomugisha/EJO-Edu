@@ -1,13 +1,9 @@
 import StudentLeave from './model'
 
-exports.create = async (student, reason, checkout, checkedoutBy, school) =>{
+exports.create = async (student, reason, checkout, leavingWithWho, provisionalCheckin, checkedoutBy, school) =>{
 try {
     const newStudentLeave = new StudentLeave({
-        student,
-        reason,
-        checkout,
-        checkedoutBy,
-        school
+        student, reason, checkout, leavingWithWho, provisionalCheckin, checkedoutBy, school
     })
     await newStudentLeave.save()
     return newStudentLeave;
@@ -28,7 +24,12 @@ exports.update = async (studentLeaveId, checkin, checkedinBy) => {
                 }
                 return success;
             }
-        );
+        )
+        .populate({
+            path: "checkedinBy checkedoutBy student",
+            select: "firstName lastName role gender"
+        })
+        .exec();
     } catch (error) {
         throw error;
     }
@@ -37,6 +38,11 @@ exports.update = async (studentLeaveId, checkin, checkedinBy) => {
 exports.getSchoolStudentLeaves = async (schoolId) => {
     try {
         return await StudentLeave.find({school: schoolId})
+                .populate({
+                    path: "checkedinBy checkedoutBy student",
+                    select: "firstName lastName role gender"
+                })
+                .exec()
                 .then(res => {
                     return res;
                 })
@@ -52,6 +58,11 @@ exports.getSchoolStudentLeaves = async (schoolId) => {
 exports.getOneStudentLeave = async (studentLeaveId) => {
     try {
         return await StudentLeave.findById(studentLeaveId)
+                .populate({
+                    path: "checkedinBy checkedoutBy student",
+                    select: "firstName lastName role gender"
+                })
+                .exec()
                 .then(res => {
                     return res;
                 })

@@ -36,6 +36,7 @@ exports.addStudentParticipation = async (
             time: Date.now()
         }
         let participationList = []
+        console.log(participation)
         await Promise.all(students.map( async student => {
             participationList = await Participation.findOneAndUpdate({
                 _id: participationId,

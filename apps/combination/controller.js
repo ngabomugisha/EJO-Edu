@@ -4,10 +4,11 @@ import Response from '../../utils/Responses';
 exports.create = async (req, res) => {
     try {
         const {
-            name
+            name,
+            subjects
         } = req.body;
 
-        Combination.create(name)
+        Combination.create(name, subjects)
         .then(results => {
             Response.Success(res, 200, "created successfully", results);
         })
@@ -27,9 +28,10 @@ exports.update = async (req, res) => {
     try {
         const combinationId = req.params.combinationId;
         const {
-            name
+            name,
+            subjects
         } = req.body;
-        Combination.update(combinationId, name)
+        Combination.update(combinationId, name, subjects)
             .then(results => {
                 Response.Success(res, 200, "updated successfully", results);
             })

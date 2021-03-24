@@ -1,4 +1,5 @@
 import Marks from './model'
+import Student from '../student/model'
 
 exports.create = async (
     student,
@@ -104,15 +105,65 @@ exports.getAssignmentMarks = async (assignmentId, subjectId) => {
 
 exports.getClassMarks = async (classId) => {
     try {
-        return await Marks.find({
-            class: classId
-        }
-        )
-        .populate({
-            path: "subject student assignment",
-            select: "title firstName lastName name"
+        console.log(classId)
+        return await Marks.aggregate([
+        {
+            $group: {
+                _id: {
+                    class: "$class",
+                    student: "$student",
+                    subject: "$subject"
+                },
+                totalMarks: {
+                    $sum: "$totalMarks"
+                }
+            }
+        },
+        // {
+        //     $match: {
+        //         class: classId
+        //     }
+        // }
+    ]
+        ).then(async data => {
+            return await Student.populate(data, {
+                path: "_id.student"
+
+            })
         })
-        .exec()
+    } catch (error) {
+        throw error;
+    }
+}
+
+exports.getClassSubjectMarks = async (classId, subjectId) => {
+    try {
+        return await Marks.aggregate([
+        {
+            $group: {
+                _id: {
+                    class: "$class",
+                    student: "$student",
+                    subject: "$subject"
+                },
+                totalMarks: {
+                    $sum: "$totalMarks"
+                }
+            }
+        },
+        // {
+        //     $match: {
+        //         class: classId,
+        //         subject: subjectId
+        //     }
+        // }
+    ]
+        ).then(async data => {
+            return await Student.populate(data, {
+                path: "_id.student"
+
+            })
+        })
     } catch (error) {
         throw error;
     }

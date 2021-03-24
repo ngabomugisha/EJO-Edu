@@ -6,6 +6,7 @@ router.post('/', ClassTeacher.create);
 router.put('/:classTeacherId', ClassTeacher.update);
 router.get('/:classId/class-teachers', ClassTeacher.getOneClassTeachers);
 router.get('/:teacherId/teacher-classes', ClassTeacher.getOneTeacherClasses);
+router.get('/:classId/class-subjects', ClassTeacher.getOneClassSubjects);
 router.get('/:classTeacherId', ClassTeacher.getOneClassTeacher);
 router.delete('/:classTeacherId', ClassTeacher.delete);
 
