@@ -36,6 +36,19 @@ const questionBankSchema = new mongoose.Schema({
     answer: [{
         answer: String
     }]
+    // subQuestions: [{
+    //     title: String,
+    //     questionType: {
+    //         type: String,
+    //         enum: ['MULTI-CHOICE', 'TRUE/FALSE', 'MATCHING', 'FILL-IN-THE-BLANK', 'SHORT-ANSWER', 'LONG-ANSWER']
+    //     },
+    //     possibleAnswer: [{
+    //         answer: String
+    //     }],
+    //     answer: [{
+    //         answer: String
+    //     }]
+    // }]
 }, {
     timestamps: true
 });

@@ -190,7 +190,7 @@ exports.checkConflicts = async (assignedClass, teacher, term, time) => {
                 $or: [
                     { 'time.starts': {$lte: time.starts}, 'time.ends': {$gte: time.starts}},
                     { 'time.ends': {$gte: time.ends}, 'time.starts': {$lte: time.ends}},
-                    { 'time.starts': {$gte: time.starts}, 'time.starts': {$lte: time.ends}}
+                    // { 'time.starts': {$gte: time.starts}, 'time.starts': {$lte: time.ends}}
                 ]
                 },
                 {
@@ -200,7 +200,7 @@ exports.checkConflicts = async (assignedClass, teacher, term, time) => {
                     $or: [
                         { 'time.starts': {$lte: time.starts}, 'time.ends': {$gte: time.starts}},
                         { 'time.ends': {$gte: time.ends}, 'time.starts': {$lte: time.ends}},
-                        { 'time.starts': {$gte: time.starts}, 'time.starts': {$lte: time.ends}}
+                        // { 'time.starts': {$gte: time.starts}, 'time.starts': {$lte: time.ends}}
                     ]
                 },
             ]

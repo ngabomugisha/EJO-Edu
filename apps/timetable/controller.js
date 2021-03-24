@@ -12,8 +12,8 @@ exports.create = async (req, res) => {
         } = req.body;
         const school = req.user.school
 
-        const checkConflicts = Timetable.checkConflicts(assignedClass, teacher, term, time)
-
+        const checkConflicts = await Timetable.checkConflicts(assignedClass, teacher, term, time)
+        console.log(checkConflicts)
         if(checkConflicts){
             return Response.validationError(res, "This entry is conflicing with an existing one, change time and try again");
         }

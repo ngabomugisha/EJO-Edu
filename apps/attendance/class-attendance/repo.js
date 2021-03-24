@@ -47,6 +47,11 @@ exports.getAllSubjectClassAttendances = async (classId, subjectId) => {
     try {
         console.log(classId, subjectId)
         return await ClassAttendance.find({class: classId, subject: subjectId})
+                .populate({
+                    path: "students.student",
+                    select: "firstName lastName gender"
+                })
+                .exec()
                 .then(res => {
                     return res;
                 })
