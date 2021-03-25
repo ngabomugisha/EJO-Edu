@@ -20,3 +20,7 @@
 ;
 
 }
+.subject-select{
+  display: flex;
+  justify-content: center;
+}

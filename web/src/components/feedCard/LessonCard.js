@@ -2,7 +2,7 @@ import React from 'react'
 import './LessonCard.css'
 import {Link} from 'react-router-dom'
 
-function LessonCard({title, tag, details, link, time, size, covered}) {
+function LessonCard({title, tag, details, link, time, size, covered, data}) {
     return (
         <div className='card2-container'>
             <div className='card2-hd'>
@@ -24,7 +24,7 @@ function LessonCard({title, tag, details, link, time, size, covered}) {
                 <p className='card2-covered'>
                     Cover: {covered}
                 </p>
-                <Link to='/teacher/lessonPlan/details'>
+                <Link params={data} to='/teacher/lessonPlan/details'>
                 <p className='card2-link'>
                     {link.txt}
                 </p>

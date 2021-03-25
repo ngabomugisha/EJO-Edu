@@ -29,3 +29,8 @@
     font-weight: 400;
     font-size: 1rem;
 }
+
+.select-subject{
+    display: flex;
+    justify-content: space-evenly;
+}

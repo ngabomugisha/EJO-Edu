@@ -1,17 +1,44 @@
-import { HANDLE_FETCH_LESSONPLAN_SUCCESS, HANDLE_ADD_LESSONPLAN_SUCCESS} from '../types';
+// import { HANDLE_FETCH_LESSONPLANS_SUCCESS} from '../types';
 
-const INITIAL_LESSONPLAN_STATE = {
-  list: [],
+// const INITIAL_LESSONPLAN_STATE = {
+//   list: [],
+// };
+
+// export default (state = INITIAL_LESSONPLAN_STATE, { type, payload }) => {
+//   switch (type) {
+//     case HANDLE_FETCH_LESSONPLAN_SUCCESS:
+//       return {
+//         ...state,
+//         list: payload,
+//       };break;
+//     default:
+//       return state;
+//   }
+// };
+
+
+import { HANDLE_FETCH_LESSONPLANS_SUCCESS, HANDLE_FETCH_LESSONPLANS_FAIL } from '../types';
+
+const INITIAL_LESSONPLANS_STATE = {
+  list: [], error: { status: false,loading: true, message: '' }, loading:true
 };
 
-export default (state = INITIAL_LESSONPLAN_STATE, { type, payload }) => {
+export default (state = INITIAL_LESSONPLANS_STATE, { type, payload }) => {
   switch (type) {
-    case HANDLE_FETCH_LESSONPLAN_SUCCESS:
+    case HANDLE_FETCH_LESSONPLANS_SUCCESS:
       return {
         ...state,
         list: payload,
-      };break;
+        loading: false
+      };
     default:
+      case HANDLE_FETCH_LESSONPLANS_FAIL:
+        return {
+          ...state,
+          error: {
+            status: true, message: payload
+          }
+        }
       return state;
   }
 };
