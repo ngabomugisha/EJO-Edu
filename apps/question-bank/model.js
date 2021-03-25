@@ -21,7 +21,7 @@ const questionBankSchema = new mongoose.Schema({
         type: String,
         enum: ['EASY', 'MEDIUM', 'DIFFICULT']
     },
-    questionObjective: {
+    questionsObjective: {
         type: String,
         enum: ['REMEMBERING', 'UNDERSTANDING', 'APPLYING', 'ANALYSING', 'CREATING', 'EVALUATING']
     },
