@@ -30,6 +30,10 @@ const classAttendanceSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: 'student'
         },
+        absenceReason: {
+            type: String,
+            default: null
+        },
         present: {
             type: Boolean
         }

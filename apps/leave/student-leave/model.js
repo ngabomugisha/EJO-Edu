@@ -5,6 +5,10 @@ const studentLeaveSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'student'
     },
+    class: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'class'
+    },
     school: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'school'

@@ -5,6 +5,7 @@ exports.create = async (req, res) => {
     try {
         const {
             student,
+            studentClass,
             reason,
             checkout,
             leavingWithWho,
@@ -13,7 +14,7 @@ exports.create = async (req, res) => {
         const checkedoutBy = req.user._id
         const school = req.user.school
 
-        StudentLeave.create(student, reason, checkout, leavingWithWho, provisionalCheckin, checkedoutBy, school)
+        StudentLeave.create(student, studentClass, reason, checkout, leavingWithWho, provisionalCheckin, checkedoutBy, school)
         .then(results => {
             Response.Success(res, 200, "created successfully", results);
         })
@@ -57,6 +58,25 @@ exports.getSchoolStudentLeaves = async (req, res) => {
 
         const schoolId = req.params.schoolId;
         StudentLeave.getSchoolStudentLeaves(schoolId)
+            .then(results => {
+                Response.Success(res, 200, "queried successfully", results);
+            })
+            .catch(err => {
+                console.log(err);
+                Response.InternalServerError(res, "We are having issues! please try again soon");
+            });
+
+    } catch (error) {
+        console.log(error);
+        Response.InternalServerError(res, "We are having issues! please try again soon");
+    }
+    
+}
+exports.getClassStudentsOnLeave = async (req, res) => {
+    try {
+
+        const classId = req.params.classId;
+        StudentLeave.getClassStudentsOnLeave(classId)
             .then(results => {
                 Response.Success(res, 200, "queried successfully", results);
             })

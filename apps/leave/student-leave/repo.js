@@ -1,9 +1,9 @@
 import StudentLeave from './model'
 
-exports.create = async (student, reason, checkout, leavingWithWho, provisionalCheckin, checkedoutBy, school) =>{
+exports.create = async (student, studentClass, reason, checkout, leavingWithWho, provisionalCheckin, checkedoutBy, school) =>{
 try {
     const newStudentLeave = new StudentLeave({
-        student, reason, checkout, leavingWithWho, provisionalCheckin, checkedoutBy, school
+        student, class: studentClass, reason, checkout, leavingWithWho, provisionalCheckin, checkedoutBy, school
     })
     await newStudentLeave.save()
     return newStudentLeave;
@@ -55,6 +55,29 @@ exports.getSchoolStudentLeaves = async (schoolId) => {
     }
 }
 
+exports.getClassStudentsOnLeave = async (classId) => {
+    try {
+        console.log(classId)
+        return await StudentLeave.find({
+                    class: classId,
+                    checkin: null
+                })
+                .populate({
+                    path: "checkedinBy checkedoutBy student",
+                    select: "firstName lastName role gender"
+                })
+                .exec()
+                .then(res => {
+                    return res;
+                })
+                .catch(err => {
+                    console.log(err);
+                    return false;
+                })
+    } catch (error) {
+        throw error;
+    }
+}
 exports.getOneStudentLeave = async (studentLeaveId) => {
     try {
         return await StudentLeave.findById(studentLeaveId)

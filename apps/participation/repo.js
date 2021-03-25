@@ -36,7 +36,6 @@ exports.addStudentParticipation = async (
             time: Date.now()
         }
         let participationList = []
-        console.log(participation)
         await Promise.all(students.map( async student => {
             participationList = await Participation.findOneAndUpdate({
                 _id: participationId,
@@ -58,20 +57,17 @@ exports.addStudentParticipation = async (
             })
             .exec();
         }))
-        let checkAllEqual = true
-        const n = participationList.cycleNumber
+        
+        let smallest = participationList.students[0].participation.length
         await Promise.all(participationList.students.map(async student => {
-            if(student.participation.length > participationList.cycleNumber){
-                participationList.cycleNumber = student.participation.length + 1
-                await Participation.findByIdAndUpdate(participationList._id, {cycleNumber: student.participation.length + 1})
-            }
-            if(n != student.participation.length){
-                checkAllEqual = false
+            if(smallest > student.participation.length){
+                smallest = student.participation.length
             }
         }))
-        if(checkAllEqual){
-            participationList.cycleNumber = participationList.cycleNumber + 1
-            await Participation.findByIdAndUpdate(participationList._id, {cycleNumber: participationList.cycleNumber + 1})
+        
+        if(smallest > participationList.cycleNumber){
+            participationList.cycleNumber = smallest + 1
+            await Participation.findByIdAndUpdate(participationList._id, {cycleNumber: smallest + 1})
             return {participationList, cycleFinished: true}
         }
         return {participationList}
