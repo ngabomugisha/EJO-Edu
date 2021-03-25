@@ -28,7 +28,7 @@ export const Review = ({ formData, navigation }) => {
 
   return (
     <Container maxWidth='sm'>
-      <h3>Review</h3>
+      {/* <h3>Review</h3>
       <RenderAccordion summary="Names" go={ go } details={[
         { 'First Name': firstName },
         { 'Last Name': lastName },
@@ -43,7 +43,10 @@ export const Review = ({ formData, navigation }) => {
       <RenderAccordion summary="Contact" go={ go } details={[
         { 'Phone': phone },
         { 'Email': email },
-      ]} />
+      ]} /> */}
+
+
+      <h3>Ready to submit </h3>
       <Button
         color="primary"
         variant="contained"

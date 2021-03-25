@@ -27,7 +27,7 @@ margin-bottom: 40px;
 
 .msg-field > .MuiInputBase-root, .msg-field .MuiOutlinedInput-root {
     width: 100%;
-    min-height: 40vh;
+    min-height: fit-content !important;
 
 }
 

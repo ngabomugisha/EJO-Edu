@@ -72,7 +72,7 @@ export const LessonPlan_start = ({ formData, setForm, navigation }) => {
   };
   const handleunit = (event) => {
     setUni(event.target.value);
-    formData.unit = event.target.value
+    formData.unit = event.target.value;
     // formData.keyUnitCompetency = event.target.value
     setKeyUnitComp(
       units.reduce(function (fit, condition) {
@@ -525,6 +525,9 @@ export const LessonPlan_start = ({ formData, setForm, navigation }) => {
               shrink: true,
             }}
           >
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
             {subj.map((item) => (
               <MenuItem key={item._id} value={item._id}>
                 {item.name}
@@ -669,6 +672,7 @@ export const LessonPlan_start = ({ formData, setForm, navigation }) => {
           <TextField
             label="Key Unit Competency"
             name="keyUnitCompetency"
+            defaultValue="Key Unit Competency"
             value={keyUnitComp}
             multiline
             margin="normal"

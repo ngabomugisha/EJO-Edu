@@ -26,7 +26,7 @@ const PanelLayout = (props) => {
             default:
                 return <>
                     <div className='main-panel'>
-                        {props.children}
+                        {props.children && props.children}
                     </div>
                 </>
                 break;
@@ -35,6 +35,7 @@ const PanelLayout = (props) => {
     return (
         <div className="panel-layout-container">
             <div className='side-menu'>
+            
                     <SideMenu selected={props.selected} role={props.state.auth.user.role} />
             </div>
             {renderSwitch(props.state.auth.user.role)}

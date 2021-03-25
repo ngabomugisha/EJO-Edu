@@ -15,7 +15,7 @@ import Slide3 from './lessonPlanSlide/Slide3';
 import { useForm, useStep } from "react-hooks-helper";
 import { LessonPlan_start } from "./stepForm/LessonPlan_start";
 import { LessonPlan_2 } from "./stepForm/LessonPlan_2";
-import { Contact } from "./stepForm/Contact";
+import { LessonPlan_3 } from "./stepForm/LessonPlan_3";
 import { Review } from "./stepForm/Review";
 import { Submit } from "./stepForm/Submit";
 
@@ -341,7 +341,7 @@ const defaultData2 = {
 const steps = [
   { id: "names" },
   { id: "LessonPlan_2" },
-  { id: "contact" },
+  { id: "LessonPlan_3" },
   { id: "review" },
   { id: "submit" },
 ];
@@ -363,8 +363,8 @@ const renderswitch = (id) => {
     return <LessonPlan_start {...props} />;
   case "LessonPlan_2":
     return <LessonPlan_2 {...props} />;
-  case "contact":
-    return <Contact {...props} />;
+  case "LessonPlan_3":
+    return <LessonPlan_3 {...props} />;
   case "review":
     return <Review {...props} />;
   case "submit":

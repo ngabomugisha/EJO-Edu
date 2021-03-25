@@ -7,6 +7,7 @@ import { Button } from '@material-ui/core';
 import HomeLayout from '../../components/Layouts/HomeLayout';
 import { handleLogin } from '../../store/actions/auth.actions';
 import { SCHOOLADMIN, TEACHER, SUPERADMIN, HEADSTUDY } from './Users'
+import logoAfrica from '../../assets/img/white-logo.png';
 import  Alert  from 'react-bootstrap/Alert';
 import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -63,6 +64,9 @@ const LoginPage = (props) => {
     <HomeLayout>
       <>
         <div className="login-form">
+        <div className="africa">
+          <img src={logoAfrica}/>
+        </div>
           <div className="login-field">
             <TextField
               label="Email"
