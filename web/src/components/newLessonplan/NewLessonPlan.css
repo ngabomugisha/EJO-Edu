@@ -23,3 +23,21 @@
     padding-top: 40px;
     padding-bottom: 20px;
 }
+
+.menu-option{
+    display: block;
+    max-width: 500px;
+    word-wrap: break-word;
+    
+}
+
+.menu-option > h3{
+    display: flex;
+    white-space: pre-wrap;
+    font-size: 1rem;
+}
+
+
+.menu-option > p {
+    color : #0052cc     
+}

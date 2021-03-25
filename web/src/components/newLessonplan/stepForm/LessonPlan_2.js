@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Container from "@material-ui/core/Container";
+import '../NewLessonPlan.css'
 import https from '../../../helpers/https'
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -15,6 +16,7 @@ import PlusOneRoundedIcon from "@material-ui/icons/PlusOneRounded";
 import Tooltip from "react-bootstrap/Tooltip";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import {v4 as uuidv4} from "uuid"
+import img from '../../../assets/img/home.png'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,6 +38,9 @@ const useStyles = makeStyles((theme) => ({
   input: {
     display: "none",
   },
+  select:{
+    backgroundColor: "#ff0",
+  }
 }));
 
 export const LessonPlan_2 = ({ formData, setForm, navigation }) => {
@@ -64,6 +69,7 @@ export const LessonPlan_2 = ({ formData, setForm, navigation }) => {
           }
           return i;
       })
+      formData.knowledge = inputs.knowledge
   }
 
 
@@ -86,12 +92,12 @@ const handleRemoveInput = id => {
 
     async function fetchUnit() {
         const req = await https
-          .get(`/lessons/units/6031023397d2e742707b720e`, {
+          .get(`/lessons/unit-plans/6035240d55ca8b00360caf0f`, {
             headers: { Authorization: `Basic ${localStorage.token}` },
           })
           .then((res) => {
-            setUnits(res.data);
-            console.log("UNITS : ", res.data);
+            setUnits(res.data.content.knowledgeAndUnderstanding);
+            console.log("UNITS : ", res.data.content.knowledgeAndUnderstanding);
           })
           .catch(function (err) {
             console.log(err);
@@ -125,8 +131,11 @@ const handleRemoveInput = id => {
                   onChange={e => handleChangeInput(input.id,e)}
                   label="Select Knowledge"
                   color="primary"
+                  autoWidth={false}
                 >
-                <MenuItem value="">None</MenuItem>
+                  {units && units.map(item => (
+                    <MenuItem key={item._id} value={item._id}><div className="menu-option"><h3>{item.topic}</h3><p><i>{item.bloomTaxonomy && `bloom :${item.bloomTaxonomy}`}</i></p></div></MenuItem>
+                  ))}
                 </Select>
               </FormControl>
             </div>
@@ -142,14 +151,9 @@ const handleRemoveInput = id => {
                   onChange={e => handleChangeInput(input.id,e)}
                   label="Cognitive Domain Level"
                 >
-                  <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
-                  <MenuItem value={10}>Entreprenurship</MenuItem>
-                  <MenuItem value={20}>Biology</MenuItem>
-                  <MenuItem value={30}>Mathematics</MenuItem>
-                  <MenuItem value={30}>Chemistry</MenuItem>
-                  <MenuItem value={30}>Physics</MenuItem>
+                  {/* {units.map(item => {
+                    <MenuItem key={item._id} value={item._id}>{item.</MenuItem>
+                  })} */}
                 </Select>
               </FormControl>
             </div>
