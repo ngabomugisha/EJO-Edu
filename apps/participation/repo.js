@@ -65,7 +65,7 @@ exports.addStudentParticipation = async (
             }
         }))
         
-        if(smallest > participationList.cycleNumber){
+        if(smallest >= participationList.cycleNumber){
             participationList.cycleNumber = smallest + 1
             await Participation.findByIdAndUpdate(participationList._id, {cycleNumber: smallest + 1})
             return {participationList, cycleFinished: true}
