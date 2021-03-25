@@ -20,6 +20,7 @@ exports.create = async (req, res) => {
                 time,
                 subject,
                 teacher,
+                unitDetails.subTopic,
                 unitDetails.name,
                 unitDetails.numberOfPeriods,
                 unitDetails.keyCompetency,
@@ -81,6 +82,27 @@ exports.getSubjectUnitPlans = async (req, res) => {
         const teacher = req.user._id
         const subjectId = req.params.subjectId;
         UnitPlan.getSubjectUnitPlans(subjectId, teacher)
+            .then(results => {
+                Response.Success(res, 200, "queried successfully", results);
+            })
+            .catch(err => {
+                console.log(err);
+                Response.InternalServerError(res, "We are having issues! please try again soon");
+            });
+
+    } catch (error) {
+        console.log(error);
+        Response.InternalServerError(res, "We are having issues! please try again soon");
+    }
+
+}
+
+exports.getSubTopicUnitPlans = async (req, res) => {
+    try {
+
+        const teacher = req.user._id
+        const subTopicId = req.params.subTopicId;
+        UnitPlan.getSubTopicUnitPlans(subTopicId, teacher)
             .then(results => {
                 Response.Success(res, 200, "queried successfully", results);
             })

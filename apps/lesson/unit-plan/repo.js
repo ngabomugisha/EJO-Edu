@@ -5,6 +5,7 @@ exports.create = async (
     time,
     subject,
     teacher,
+    subTopic,
     name,
     numberOfPeriods,
     keyCompetency,
@@ -17,6 +18,7 @@ exports.create = async (
             time,
             subject,
             teacher,
+            subTopic,
             name,
             numberOfPeriods,
             keyCompetency,
@@ -169,6 +171,24 @@ exports.getSubjectUnitPlans = async (subjectId, teacher) => {
     try {
         return await UnitPlan.find({
                 subject: subjectId,
+                teacher: teacher
+            })
+            .then(res => {
+                return res;
+            })
+            .catch(err => {
+                console.log(err);
+                return false;
+            })
+    } catch (error) {
+        throw error;
+    }
+}
+
+exports.getSubTopicUnitPlans = async (subTopicId, teacher) => {
+    try {
+        return await UnitPlan.find({
+                subTopic: subTopicId,
                 teacher: teacher
             })
             .then(res => {
