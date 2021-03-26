@@ -1,9 +1,12 @@
 import Plan from './model'
+import Student from '../../student/model'
+import Term from '../../term/model'
 
 exports.create = async (
     teacher,
     school,
     unit,
+    assignedClass,
     unitPlanId,
     subject,
     keyUnitCompetency,
@@ -17,10 +20,23 @@ exports.create = async (
     time
 ) => {
     try {
+
+        const term = await Term.findOne({
+                starts: {$lte: time.day},
+                ends: {$gte: time.day},
+        })
+
+        const classSize = await Student.countDocuments({
+            class: assignedClass
+        })
+
         const newPlan = new Plan({
             teacher,
             school,
             unit,
+            term: term?._id,
+            classSize: classSize,
+            class: assignedClass,
             unitPlanId,
             subject,
             keyUnitCompetency,
@@ -161,6 +177,18 @@ exports.getAllUnitPlan = async (unitId) => {
 exports.getOnePlan = async (planId) => {
     try {
         return await Plan.findById(planId)
+            .populate({
+                path: 'term class subject',
+                select: 'name starts ends level combination label ',
+                populate: {
+                    path: 'level combination'
+                }
+            })
+            .populate({
+                path: 'teacher',
+                select: 'firstName lastName'
+            })
+            .exec()
             .then(res => {
                 return res;
             })

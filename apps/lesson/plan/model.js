@@ -9,6 +9,15 @@ const planSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'school'
     },
+    class: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'class'
+    },
+    classSize: Number,
+    term: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'term'
+    },
     unit: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'unit'

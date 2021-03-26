@@ -6,6 +6,7 @@ exports.create = async (req, res) => {
     try {
         const {
             unit,
+            assignedClass,
             unitPlanId,
             subject,
             keyUnitCompetency,
@@ -26,6 +27,7 @@ exports.create = async (req, res) => {
                 teacher,
                 school,
                 unit,
+                assignedClass,
                 unitPlanId,
                 subject,
                 keyUnitCompetency,
@@ -67,6 +69,7 @@ exports.update = async (req, res) => {
             teacher,
             school,
             unit,
+            assignedClass,
             unitPlanId,
             subject,
             keyUnitCompetency,
@@ -84,6 +87,7 @@ exports.update = async (req, res) => {
                 teacher,
                 school,
                 unit,
+                assignedClass,
                 unitPlanId,
                 subject,
                 keyUnitCompetency,
