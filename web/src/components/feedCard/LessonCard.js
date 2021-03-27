@@ -4,9 +4,9 @@ import {Link} from 'react-router-dom'
 
 function LessonCard({title, tag, details, link, time, size, covered, data}) {
     return (
-        <div className='card2-container'>
-            <div className='card2-hd'>
-                <h4 className='card2-title'>{title}</h4>
+        <div className='card-container'>
+            <div className='card-hd'>
+                <h4 className='card-title'>{title}</h4>
                 <h4 className='card2-tag'>{tag}</h4>
             </div>
             <div className='card2-body'>

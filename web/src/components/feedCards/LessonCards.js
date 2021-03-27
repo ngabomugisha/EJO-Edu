@@ -1,5 +1,6 @@
 import React, { useEffect , useState} from 'react'
 import './FeedCards.css'
+import { connect } from 'react-redux'
 import https from '../../helpers/https'
 import { handleFetchLessonPlan } from '../../store/actions/lessonPlans.actions'
 import { useDispatch, useSelector } from 'react-redux';
@@ -26,7 +27,6 @@ const useStyles = makeStyles((theme) => ({
 
 function LessonCards(props) {
     const dispatch = useDispatch();
-    const { list: ALL_LESSONPLAN } = useSelector((state) => state.lessonPlans);
     const classes = useStyles();
     const [subject, setSubject] = React.useState('');
     const [subjects, setSubjects] = React.useState('');
@@ -136,9 +136,10 @@ useEffect(() => {
     </div>
         )}
 
-const mapStateToProps = (state) => ({
-    state: state
-})
+function mapStateToProps(state){
+  const lesss = state.lessonPlans
+  return(lesss) 
+}
 
 const mapDispatchToProps = {
 

@@ -20,7 +20,7 @@
 import { HANDLE_FETCH_LESSONPLANS_SUCCESS, HANDLE_FETCH_LESSONPLANS_FAIL } from '../types';
 
 const INITIAL_LESSONPLANS_STATE = {
-  list: [], error: { status: false,loading: true, message: '' }, loading:true
+  list: [],
 };
 
 export default (state = INITIAL_LESSONPLANS_STATE, { type, payload }) => {

@@ -12,27 +12,31 @@ import  Alert  from 'react-bootstrap/Alert';
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 const LoginPage = (props) => {
+
   const history = useHistory();
   const dispatch = useDispatch();
-  const [fine, setFine] = useState(false);
+  // const [fine, setFine] = useState(false);
   const data = useSelector((state) => state.auth)
   const [isLoading, setIsLoading] = React.useState(false);
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [errMessage, setErrMessage] = React.useState('');
+let fine = false
   console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$", data)
+
   const handleSubmit = async () => {
     if (!password || !email) {
       setErrMessage("Email or Password are empty")
-      return setErrMessage;}
+      return setErrMessage;
+    }
     setErrMessage('');
     setIsLoading(true);
     try {
-      await dispatch(handleLogin({ email, password }));
-      setIsLoading(false);
-      if(data != null) setFine(true)
-           if(fine){
-  switch (props.state.auth.user.role) {
+      const res = await dispatch(handleLogin({ email, password }));
+      console.log("!!!!!!!!!!!!!!!!!!11",res)
+      // if(data != null) fine =true
+               
+  switch (res.user.role) {
     case TEACHER:
       history.replace('/teacher');
       break;
@@ -48,8 +52,9 @@ const LoginPage = (props) => {
 
     default:
       break;
-  }
 }
+
+setIsLoading(false);
 
 
 
