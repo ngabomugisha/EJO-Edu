@@ -8,7 +8,6 @@ import hardSet from 'redux-persist/lib/stateReconciler/hardSet'
 
 const persistConfig = {
   key: 'root',
-  whitelist: ['auth'],
   storage,
   stateReconciler: hardSet,
 };
@@ -21,6 +20,6 @@ export const store = createStore(
   composeWithDevTools(applyMiddleware(thunk))
 );
 
-console.log('Data from Store', store);
+console.log('Data from Store', store.getState());
 
 export const persistor = persistStore(store);

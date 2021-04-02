@@ -10,8 +10,6 @@ import { Button } from '@material-ui/core';
 import Slide2 from './lessonPlanSlide/Slide2'
 import Slide1 from './lessonPlanSlide/Slide1'
 import Slide3 from './lessonPlanSlide/Slide3';
-
-
 import { useForm, useStep } from "react-hooks-helper";
 import { LessonPlan_start } from "./stepForm/LessonPlan_start";
 import { LessonPlan_2 } from "./stepForm/LessonPlan_2";

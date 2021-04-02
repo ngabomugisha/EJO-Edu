@@ -1,48 +1,43 @@
-import React, { useState, useEffect }  from 'react'
+import React, { useState, useEffect } from 'react'
 import './Feed.css'
 import { useHistory } from 'react-router-dom'
 import { Link } from 'react-router-dom'
-
 import https from "../../helpers/https"
 import { connect } from "react-redux";
 import { useDispatch, useSelector } from 'react-redux';
-import PanelLayout from "../../components/Layouts/PanelLayout/Index";
-import Feed from "../../components/feed/Feed";
-import Mixed from "../../components/feedCards/Mixed";
-import { makeStyles } from "@material-ui/core/styles";
-import { Button, Dialog, TextField, MenuItem, Grid } from "@material-ui/core";
-import { Formik, useFormik, Field, Form } from "formik";
+import { Button, Dialog, TextField, MenuItem } from "@material-ui/core";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import InputLabel from "@material-ui/core/InputLabel";
-import Input from "@material-ui/core/Input";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
+import {
+  handleFetchTeacherData, handleSetTeacherData
+} from '../../store/actions/data/teacher.data.actions'
 
 
-const useStyles = makeStyles((theme) => ({
-    container: {
-      display: "flex",
-      flexWrap: "wrap",
-    },
-    formControl: {
-      margin: theme.spacing(1),
-      minWidth: 120,
-    },
-  }));
 
 function FeedHead(props) {
-    const teacher = props.state.auth.user._id;
 
-    const classSelectes = ((JSON.parse(localStorage.getItem("unitSelected"))).class)
-    const subjectSelected = ((JSON.parse(localStorage.getItem("unitSelected"))).subject)
-    const topicSelected = ((JSON.parse(localStorage.getItem("unitSelected"))).topic)
-    const subTopSelected = ((JSON.parse(localStorage.getItem("unitSelected"))).subtopic)
-    const unitSelected = ((JSON.parse(localStorage.getItem("unitSelected"))).unit)
-    console.log("TEACHER",teacher)
-    const [data,setData] = useState(null)
-  const classes = useStyles();
+  const SELECTED = useSelector(state => state.teacherData)
+
+  const teacher = props.state.auth.user._id;
+  const dispatch = useDispatch()
+
+  let classSelected = null
+  let subjectSelected = null
+  let topicSelected = null
+  let subTopSelected = null
+  let unitSelected = null
+
+  if (SELECTED.data) {
+    classSelected = (SELECTED.data.class)
+    subjectSelected = (SELECTED.data.subject)
+    topicSelected = (SELECTED.data.topic)
+    subTopSelected = (SELECTED.data.subtopic)
+    unitSelected = (SELECTED.data.unit)
+  }
+
+  let DATA = null
+  // const [DATA, setDATA] = useState(null)
   const [open, setOpen] = React.useState(false);
   const [classs, setClasss] = React.useState(null);
   const [clas, setClas] = React.useState(null)
@@ -64,13 +59,19 @@ function FeedHead(props) {
 
 
   const handleClickOpen = () => {
-      setTimeout(() => {
-          
     setOpen(true);
-      }, 1000);
   };
 
   const handleClose = () => {
+
+    DATA = {
+      "class": clas,
+      "subject": sub,
+      "topic": top,
+      "subtopic": subTop,
+      "unit": uni}
+      
+    props.handleSetTeacherData(DATA)
     setOpen(false);
   };
 
@@ -81,279 +82,273 @@ function FeedHead(props) {
   const history = useHistory();
   const [page, setPage] = useState(null);
 
-const handleChange = (e) =>{
+  const handleChange = (e) => {
 
-    if(e.target.name==="class")
-    setClas(e.target.value)
+    if (e.target.name === "class")
+      setClas(e.target.value)
 
-    if(e.target.name==="subject")
-    setSub(e.target.value)
+    if (e.target.name === "subject")
+      setSub(e.target.value)
 
-    if(e.target.name==="topic")
-    setTop(e.target.value)
+    if (e.target.name === "topic")
+      setTop(e.target.value)
 
-    if(e.target.name==="subTopic")
-    setSubTop(e.target.value)
+    if (e.target.name === "subTopic")
+      setSubTop(e.target.value)
 
-    if(e.target.name==="unit"){
-    setUni(e.target.value)
-    let DATA = {
-        "class": clas,
-        "subject":sub,
-        "topic" : top,
-        "subtopic":subTop,
-        "unit": uni,
-    }
-    localStorage.setItem("unitSelected", JSON.stringify(DATA))
+    if (e.target.name === "unit") {
+      setUni(e.target.value)
+    console.log("DATA:",DATA)
+
     }
 
-}
-useEffect(() => {
-    
-    async function fetchUnit() {
-        const req = await https.get(`/lessons/units/${subTop}/subTopic-units`, { headers: { 'Authorization': `Basic ${localStorage.token}` } })
-            .then((res) => {
-                setUnit(res.data)
-            }).catch(function (err) {
-                console.log(err);
-            });
-        return req
-    }
-    fetchUnit()
-}, [subTop])
-useEffect(() => {
-    
-    async function fetchSupTop() {
-        const req = await https.get(`/lessons/subtopics/${top}/topic-subTopics`, { headers: { 'Authorization': `Basic ${localStorage.token}` } })
-            .then((res) => {
-                setSubTopic(res.data)
-            }).catch(function (err) {
-                console.log(err);
-            });
-        return req
-    }
-    fetchSupTop()
-}, [top])
-useEffect(() => {
-
-    async function fetchTopic() {
-        const req = await https.get(`/lessons/topics/${sub}/subject-topics`, { headers: { 'Authorization': `Basic ${localStorage.token}` } })
-            .then((res) => {
-                setTopic(res.data)
-            }).catch(function (err) {
-                console.log(err);
-            });
-        return req
-    }
-    fetchTopic()
-    
-}, [sub])
+  }
   useEffect(() => {
 
+    async function fetchUnit() {
+      const req = await https.get(`/lessons/units/${subTop}/subTopic-units`, { headers: { 'Authorization': `Basic ${localStorage.token}` } })
+        .then((res) => {
+          setUnit(res.data)
+        }).catch(function (err) {
+          console.log(err);
+        });
+      return req
+    }
+    fetchUnit()
+  }, [subTop])
+  useEffect(() => {
+
+    async function fetchSupTop() {
+      const req = await https.get(`/lessons/subtopics/${top}/topic-subTopics`, { headers: { 'Authorization': `Basic ${localStorage.token}` } })
+        .then((res) => {
+          setSubTopic(res.data)
+        }).catch(function (err) {
+          console.log(err);
+        });
+      return req
+    }
+    fetchSupTop()
+  }, [top])
+  useEffect(() => {
+
+    async function fetchTopic() {
+      const req = await https.get(`/lessons/topics/${sub}/subject-topics`, { headers: { 'Authorization': `Basic ${localStorage.token}` } })
+        .then((res) => {
+          setTopic(res.data)
+        }).catch(function (err) {
+          console.log(err);
+        });
+      return req
+    }
+    fetchTopic()
+
+  }, [sub])
+  useEffect(() => {
+    
+
     async function fetchClasses() {
-        const req = await https.get(`/class-teachers/${teacher}/teacher-classes`, { headers: { 'Authorization': `Basic ${localStorage.token}` } })
-            .then((res) => {
-                console.log("CLASSES",res.data)
-                setClasss(res.data)
-            }).catch(function (err) {
-                console.log(err);
-            });
-        return req
+      const req = await https.get(`/class-teachers/${teacher}/teacher-classes`, { headers: { 'Authorization': `Basic ${localStorage.token}` } })
+        .then((res) => {
+          setClasss(res.data)
+        }).catch(function (err) {
+          console.log(err);
+        });
+      return req
     }
     fetchClasses()
-    console.log("%%%%%%%%%%",subject)
     setSubject()
 
-if(classSelectes) setClas(classSelectes)
-if(subjectSelected) setSub(subjectSelected)
-if(topicSelected) setTop(topicSelected)
-if(subTopSelected) setSubTop(subTopSelected)
-if(unitSelected) setUni(unitSelected)
+    setClas(classSelected)
+    setSub(subjectSelected)
+    setTop(topicSelected)
+    setSubTop(subTopSelected)
+    setUni(unitSelected)
 
-console.log('THESE ARE DATA SELECTED: CLASS:',clas,"SUBJECT :", sub)
-}, [])
+  },[])
+    if (!SELECTED) setOpen(true)
 
-    return (
-        <>
-            <div className="hd">
-                <div className="hd-txt">
-                    <h2>Overview</h2>
-                </div>
-                <div className="hd-btn">
-                    <Link to='/teacher/newAssignment'>
-                        <Button
-                            variant="outlined"
-                            size="medium"
-                            color="primary">
-                            New Assignment
+  return (
+    <>
+      <div className="hd">
+        <div className="hd-txt">
+          <h2>Overview</h2>
+        </div>
+        <div className="hd-btn">
+          <Link to='/teacher/newAssignment'>
+            <Button
+              variant="outlined"
+              size="medium"
+              color="primary">
+              New Assignment
                         </Button>
-                    </Link>
-                    <Link to='/teacher/newLessonPlan'>
-                        <Button variant="outlined" size="medium" color="primary">
-                            New Lesson Plan
+          </Link>
+          <Link to='/teacher/newLessonPlan'>
+            <Button variant="outlined" size="medium" color="primary">
+              New Lesson Plan
                         </Button>
-                    </Link>
-                </div>
-            </div>
-            <div className="check-btn" style={{display:"flex",justifyContent:"center", color: "red"}}>
-            <Button onClick={handleClickOpen}>
-              Select Subject Topic Sub-topic
-            </Button>
-            <Dialog fullWidth maxWidth="md" open={open} onClose={handleClose}>
-              <DialogTitle>select All</DialogTitle>
-              <DialogContent>
-                {/* <Formik initialValues={initValue} onSubmit={onSubmit}>
+          </Link>
+        </div>
+      </div>
+      <div style={{ display: "flex", justifyContent: "center", color: "red" }}>
+        <button className="check-btn" onClick={handleClickOpen}>
+          Select Subject Topic Sub-topic Unit
+            </button>
+        <Dialog fullWidth maxWidth="md" open={open} onClose={handleClose}>
+          <DialogTitle>select All</DialogTitle>
+          <DialogContent>
+            {/* <Formik initialValues={initValue} onSubmit={onSubmit}>
                   {(formik) => ( */}
-                    <form>
-                    {console.log("%%%%%%%%%%%%%%%%",clas)}
-                    <div className="form-field">
-                            <TextField
-                              label="Class"
-                              value={clas}
-                              name="class"
-                              variant="outlined"
-                              type="text"
-                              fullWidth="true"
-                              onChange={handleChange}
-                              select
-                              InputLabelProps={{
-                                shrink: true,
-                              }}
-                            >
-                              <MenuItem value="">
-                                <em>None</em>
-                              </MenuItem>
-                              {classs &&
-                                  classs.map(item => (
-                                      <MenuItem key={item._id} value={item.subject}>{item.class.level.name}&nbsp;{item.class.combination.name}&nbsp;{item.class.label}</MenuItem>
-                                  ))
-                              }
-                            </TextField>
+            <form>
+              <div className="form-field">
+                <TextField
+                  label="Class"
+                  value={clas}
+                  name="class"
+                  variant="outlined"
+                  type="text"
+                  fullWidth="true"
+                  onChange={handleChange}
+                  select
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                >
+                  <MenuItem value="">
+                    <em>None</em>
+                  </MenuItem>
+                  {classs &&
+                    classs.map(item => (
+                      <MenuItem key={item.subject} value={item.subject}>{item.class.level.name}&nbsp;{item.class.combination.name}&nbsp;{item.class.label}</MenuItem>
+                    ))
+                  }
+                </TextField>
 
 
-                            <TextField
-                              label="Subject"
-                              value={sub}
-                              name="subject"
-                              variant="outlined"
-                              type="text"
-                              fullWidth="true"
-                              onChange={handleChange}
-                              select
-                              InputLabelProps={{
-                                shrink: true,
-                              }}
-                            >
-                              <MenuItem value="">
-                                <em>None</em>
-                              </MenuItem>{clas &&
-                              <MenuItem key={clas._id} value={clas._id}>{clas.name}</MenuItem>}
-                            </TextField>
-
-
-
-
-                            <TextField
-                              label="Topic"
-                              variant="outlined"
-                              type="text"
-                              value={top}
-                              name="topic"
-                              fullWidth="true"
-                              onChange={handleChange}
-                              select
-                              InputLabelProps={{
-                                shrink: true,
-                              }}
-                            >
-                              <MenuItem value="">
-                                <em>None</em>
-                              </MenuItem>
-
-                              {topic &&
-                                  topic.map(item => (
-                                      <MenuItem key={item._id} value={item._id}>{item.name}</MenuItem>
-                                  ))
-                              }
-                            </TextField>
+                <TextField
+                  label="Subject"
+                  value={sub}
+                  name="subject"
+                  variant="outlined"
+                  type="text"
+                  fullWidth="true"
+                  onChange={handleChange}
+                  select
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                >
+                  <MenuItem value="">
+                    <em>None</em>
+                  </MenuItem>{clas &&
+                    <MenuItem key={clas._id} value={clas._id}>{clas.name}</MenuItem>}
+                </TextField>
 
 
 
 
-                            <TextField
-                              label="Sub-topic"
-                              variant="outlined"
-                              type="text"
-                              name="subTopic"
-                              fullWidth="true"
-                              onChange={handleChange}
-                              minWidth="xl"
-                              value={subTop}
-                              select
-                              InputLabelProps={{
-                                shrink: true,
-                              }}
-                            >
-                              <MenuItem value="">
-                                <em>None</em>
-                              </MenuItem>
-                              {subTopic &&
-                                subTopic.map(item => (
-                                      <MenuItem key={item._id} value={item._id}>{item.name}</MenuItem>
-                                  ))
-                              }
-                            </TextField>
+                <TextField
+                  label="Topic"
+                  variant="outlined"
+                  type="text"
+                  value={top}
+                  name="topic"
+                  fullWidth="true"
+                  onChange={handleChange}
+                  select
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                >
+                  <MenuItem value="">
+                    <em>None</em>
+                  </MenuItem>
+
+                  {topic &&
+                    topic.map(item => (
+                      <MenuItem key={item._id} value={item._id}>{item.name}</MenuItem>
+                    ))
+                  }
+                </TextField>
 
 
 
 
-                            <TextField
-                              label="Unit"
-                              variant="outlined"
-                              type="text"
-                              fullWidth="true"
-                              name="unit"
-                              value={uni}
-                              minWidth="xl"
-                              onChange = {handleChange}
-                              select
-                              InputLabelProps={{
-                                shrink: true,
-                              }}
-                            >
-                              <MenuItem value="">
-                                <em>None</em>
-                              </MenuItem>
-                              {unit &&
-                                  unit.map(item => (
-                                      <MenuItem key={item._id} value={item._id}>{item.name}</MenuItem>
-                                  ))
-                              }
-                            </TextField>
-                              </div>
-                    </form>
-                  {/* )}
+                <TextField
+                  label="Sub-topic"
+                  variant="outlined"
+                  type="text"
+                  name="subTopic"
+                  fullWidth="true"
+                  onChange={handleChange}
+                  minWidth="xl"
+                  value={subTop}
+                  select
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                >
+                  <MenuItem value="">
+                    <em>None</em>
+                  </MenuItem>
+                  {subTopic &&
+                    subTopic.map(item => (
+                      <MenuItem key={item._id} value={item._id}>{item.name}</MenuItem>
+                    ))
+                  }
+                </TextField>
+
+
+
+
+                <TextField
+                  label="Unit"
+                  variant="outlined"
+                  type="text"
+                  fullWidth="true"
+                  name="unit"
+                  value={uni}
+                  minWidth="xl"
+                  onChange={handleChange}
+                  select
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                >
+                  <MenuItem value="">
+                    <em>None</em>
+                  </MenuItem>
+                  {unit &&
+                    unit.map(item => (
+                      <MenuItem key={item._id} value={item._id}>{item.name}</MenuItem>
+                    ))
+                  }
+                </TextField>
+              </div>
+            </form>
+            {/* )}
                 </Formik> */}
-              </DialogContent>
-              <DialogActions>
-                <Button onClick={handleClose} color="primary">
-                  Cancel
+          </DialogContent>
+          <DialogActions>
+            {/* <Button onClick={handleClose} color="primary">
+              Cancel
+                </Button> */}
+            <Button onClick={handleClose} color="primary">
+              Ok
                 </Button>
-                <Button onClick={handleClose} color="primary">
-                  Ok
-                </Button>
-              </DialogActions>
-            </Dialog>
-          </div>
-        </>
-    )
+          </DialogActions>
+        </Dialog>
+      </div>
+    </>
+  )
 }
 
 const mapStateToProps = (state) => ({
-    state: state,
-  });
-  
-  const mapDispatchToProps = {};
-  
-  export default connect(mapStateToProps, mapDispatchToProps)(FeedHead);
-  
+  state: state,
+});
+
+const mapDispatchToProps = {
+  handleFetchTeacherData,
+  handleSetTeacherData
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(FeedHead);

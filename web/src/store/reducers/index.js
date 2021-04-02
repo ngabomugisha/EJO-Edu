@@ -7,6 +7,11 @@ import teachers from './teachers.reducers'
 import terms from './terms.reducers'
 import questions from './question.reduces'
 import lessonPlans from './lessonPlans.reducers'
+import teacherData from './data/teacher.data.reducer'
+import subjects from './subject.reducers'
+import subtopics from './subtopic.reducers'
+import topics from './topic.reducers'
+import units from './units.reducers'
 
 const reducers = combineReducers({
   auth,
@@ -16,7 +21,12 @@ const reducers = combineReducers({
   teachers,
   terms,
   questions,
-  lessonPlans
+  lessonPlans,
+  teacherData,
+  subjects,
+  topics,
+  subtopics,
+  units,
 });
 
 export default reducers;

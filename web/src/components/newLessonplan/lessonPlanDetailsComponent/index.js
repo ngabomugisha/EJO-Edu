@@ -58,7 +58,6 @@ useEffect(() => {
           })
           .then((res) => {
             setSubjects(res.data);
-            console.log("SUBJECTS : ", res.data);
           })
           .catch(function (err) {
             console.log(err);
@@ -66,7 +65,6 @@ useEffect(() => {
         return req;
       }
       fetchSubjects();
-      console.log("REICVED DATA:", props.data)
 }, [])
 
 

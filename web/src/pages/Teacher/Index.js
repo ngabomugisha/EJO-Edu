@@ -1,22 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
 import https from "../../helpers/https"
-import { connect } from "react-redux";
-import { useDispatch, useSelector } from 'react-redux';
+import { connect, useDispatch, useSelector } from "react-redux";
 import PanelLayout from "../../components/Layouts/PanelLayout/Index";
 import Feed from "../../components/feed/Feed";
 import { useHistory } from "react-router-dom";
 import Mixed from "../../components/feedCards/Mixed";
 import { makeStyles } from "@material-ui/core/styles";
-import { Button, Dialog, TextField, MenuItem, Grid } from "@material-ui/core";
-import { Formik, useFormik, Field, Form } from "formik";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import InputLabel from "@material-ui/core/InputLabel";
-import Input from "@material-ui/core/Input";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
+import {handleFetchTeacherData, handleSetTeacherData} from '../../store/actions/data/teacher.data.actions'
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -30,7 +21,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Main(props) {
-    const teacher = props.state.auth.user._id;
+
+  const SELECTED = useSelector(state => state.teacherData)
+  const dispatch = useDispatch()
+    const teacher = props.auth.user._id;
     console.log("TEACHER",teacher)
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
@@ -48,14 +42,29 @@ function Main(props) {
   const history = useHistory();
   const [page, setPage] = useState(null);
 
+  const classSelectes = null
+  const subjectSelected = null
+  const topicSelected = null
+  const subTopSelected = null
+  const unitSelected = null
+// if(localStorage.getItem("unitSelected") !== null){
+//   const classSelectes = ((JSON.parse(localStorage.getItem("unitSelected"))).class)
+//   const subjectSelected = ((JSON.parse(localStorage.getItem("unitSelected"))).subject)
+//   const topicSelected = ((JSON.parse(localStorage.getItem("unitSelected"))).topic)
+//   const subTopSelected = ((JSON.parse(localStorage.getItem("unitSelected"))).subtopic)
+//   const unitSelected = ((JSON.parse(localStorage.getItem("unitSelected"))).unit)
 
-  const classSelectes = ((JSON.parse(localStorage.getItem("unitSelected"))).class)
-  const subjectSelected = ((JSON.parse(localStorage.getItem("unitSelected"))).subject)
-  const topicSelected = ((JSON.parse(localStorage.getItem("unitSelected"))).topic)
-  const subTopSelected = ((JSON.parse(localStorage.getItem("unitSelected"))).subtopic)
-  const unitSelected = ((JSON.parse(localStorage.getItem("unitSelected"))).unit)
+console.log("SELELELELELELELEL",SELECTED)
+if(SELECTED !=null){
+  const classSelectes = (SELECTED.data.class)
+  const subjectSelected = (SELECTED.data.subject)
+  const topicSelected = (SELECTED.data.topic)
+  const subTopSelected = (SELECTED.data.subtopic)
+  const unitSelected = (SELECTED.data.unit)
 
+console.log(classSelectes,subjectSelected,"%%%%%%")
 
+}
   useEffect(() => {
 
     async function fetchClasses() {
@@ -69,27 +78,26 @@ function Main(props) {
         return req
     }
     fetchClasses()
-    console.log("%%%%%%%%%%",subject)
     setSubject()
 
-    if(classSelectes) setClas(classSelectes)
-    if(subjectSelected) setSub(subjectSelected)
-    if(topicSelected) setTop(topicSelected)
-    if(subTopSelected) setSubTop(subTopSelected)
-    if(unitSelected) setUni(unitSelected)
-
+    setClas(classSelectes)
+    setSub(subjectSelected)
+    setTop(topicSelected)
+    setSubTop(subTopSelected)
+    setUni(unitSelected)
 }, [])
 
   return (
     <>
       {sessionStorage.getItem("isloggedin") ? (
-        <PanelLayout selected={1} role={props.state.auth.user.role}>
+        <PanelLayout selected={1} role={props.auth.user.role}>
          
-          <Feed>
-          {uni !== "" &&
+          {/* <Feed>
             <Mixed DATA={uni}/>
-          }
-          </Feed>
+          </Feed> */}
+
+
+          
         </PanelLayout>
       ) : (
         history.replace("/")
@@ -98,10 +106,18 @@ function Main(props) {
   );
 }
 
-const mapStateToProps = (state) => ({
-  state: state,
-});
+function mapStateToProps(state){
+  const {auth} = state
+  const {teacherData} = state
+  return{
+      auth : auth,
+      teacherData : teacherData
+  }
+}
 
-const mapDispatchToProps = {};
+const mapDispatchToProps =  ({
+  handleFetchTeacherData,
+  handleSetTeacherData
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

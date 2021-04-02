@@ -22,7 +22,6 @@ const LoginPage = (props) => {
   const [password, setPassword] = React.useState('');
   const [errMessage, setErrMessage] = React.useState('');
 let fine = false
-  console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$", data)
 
   const handleSubmit = async () => {
     if (!password || !email) {
@@ -33,7 +32,6 @@ let fine = false
     setIsLoading(true);
     try {
       const res = await dispatch(handleLogin({ email, password }));
-      console.log("!!!!!!!!!!!!!!!!!!11",res)
       // if(data != null) fine =true
                
   switch (res.user.role) {

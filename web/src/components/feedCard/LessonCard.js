@@ -3,7 +3,7 @@ import './LessonCard.css'
 import {Link} from 'react-router-dom'
 
 function LessonCard({title, tag, details, link, time, size, covered, data}) {
-    return (
+    return (<>
         <div className='card-container'>
             <div className='card-hd'>
                 <h4 className='card-title'>{title}</h4>
@@ -22,9 +22,12 @@ function LessonCard({title, tag, details, link, time, size, covered, data}) {
                     Expected: {size}
                 </p>
                 <p className='card2-covered'>
-                    Cover: {covered}
+                    Covered: {covered}
                 </p>
-                <Link params={data} to='/teacher/lessonPlan/details'>
+                <Link to={{
+                    pathname: '/teacher/lessonPlan/details',
+                    stat: data
+            }} >
                 <p className='card2-link'>
                     {link.txt}
                 </p>
@@ -32,6 +35,7 @@ function LessonCard({title, tag, details, link, time, size, covered, data}) {
 
             </div>
         </div>
+        </>
     )
 }
 

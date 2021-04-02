@@ -147,7 +147,6 @@ export const LessonPlan_2 = ({ formData, setForm, navigation }) => {
     instructionalMaterial,
     otherMaterialsReferences,
   } = formData;
-  console.log("FORM DATA, ", formData);
 
   const imgSetter = (ob) => {
     setImg(ob);
@@ -161,7 +160,6 @@ export const LessonPlan_2 = ({ formData, setForm, navigation }) => {
         })
         .then((res) => {
           setUnits(res.data.content.knowledgeAndUnderstanding);
-          console.log("UNITS : ", res.data.content.knowledgeAndUnderstanding);
         })
         .catch(function (err) {
           console.log(err);

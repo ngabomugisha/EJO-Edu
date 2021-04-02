@@ -82,7 +82,6 @@ export const Index = (props) => {
         const req = await https.get(`/leaves/teacher-leaves/${school}/school-teacher-leaves`, { headers: { 'Authorization': `Basic ${localStorage.token}` } })
             .then((res) => {
                 setLeave(res.data)
-                console.log("LEAVE : ", res.data)
             }).catch(function (err) {
                 console.log(err);
             });

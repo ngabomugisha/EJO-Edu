@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import {connect } from 'react-redux'
 import PanelLayout from '../../components/Layouts/PanelLayout/Index'
-import Announcement from '../../components/announcements/index'
+import Announcement from '../../components/announcements/Index'
 import { useHistory } from 'react-router-dom'
 
 
