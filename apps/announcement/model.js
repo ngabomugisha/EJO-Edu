@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const announcementSchema = new mongoose.Schema({
+    topic: String,
     announcement: String,
     sender: {
         type: mongoose.Schema.Types.ObjectId,

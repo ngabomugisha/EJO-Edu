@@ -1,9 +1,9 @@
 import Announcement from './model'
 
-exports.create = async (announcement, sender, school) =>{
+exports.create = async (topic, announcement, sender, school) =>{
 try {
     const newAnnouncement = new Announcement({
-        announcement, sender, school
+        topic, announcement, sender, school
     })
     await newAnnouncement.save()
     return newAnnouncement;

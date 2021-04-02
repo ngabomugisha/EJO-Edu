@@ -4,12 +4,13 @@ import Response from '../../utils/Responses';
 exports.create = async (req, res) => {
     try {
         const {
+            topic,
             announcement
         } = req.body;
         
         const sender = req.user._id
         const school = req.user.school
-        Announcement.create(announcement, sender, school)
+        Announcement.create(topic, announcement, sender, school)
         .then(results => {
             Response.Success(res, 200, "created successfully", results);
         })
