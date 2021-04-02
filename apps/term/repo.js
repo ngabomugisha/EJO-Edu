@@ -1,11 +1,12 @@
 import Term from './model'
 
-exports.create = async (name, starts, ends) =>{
+exports.create = async (name, starts, ends, school) =>{
 try {
     const newTerm = new Term({
         name,
         starts,
-        ends
+        ends,
+        school
     })
     await newTerm.save()
     return newTerm;
@@ -32,9 +33,9 @@ exports.update = async (termId, name, starts, ends) => {
     }
 }
 
-exports.getAllTerms = async () => {
+exports.getAllTerms = async (school) => {
     try {
-        return await Term.find()
+        return await Term.find({school})
                 .then(res => {
                     return res;
                 })

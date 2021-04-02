@@ -8,8 +8,8 @@ exports.create = async (req, res) => {
             starts,
             ends
         } = req.body;
-
-        Term.create(name, starts, ends)
+        const school = req.user.school
+        Term.create(name, starts, ends, school)
         .then(results => {
             Response.Success(res, 200, "created successfully", results);
         })
@@ -51,8 +51,8 @@ exports.update = async (req, res) => {
 
 exports.getAllTerms = async (req, res) => {
     try {
-
-        Term.getAllTerms()
+        const school = req.user.school
+        Term.getAllTerms(school)
             .then(results => {
                 Response.Success(res, 200, "queried successfully", results);
             })
@@ -67,7 +67,6 @@ exports.getAllTerms = async (req, res) => {
     }
     
 }
-
 
 exports.getOneTerm = async (req, res) => {
     try {
