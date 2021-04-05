@@ -56,17 +56,7 @@ export const Index = (props) => {
             }
         })
     }
-    //     // Async / Await
-    // const getTeachersList = async url => {
-    //     try {
-    //         const response = await https.get(`/auth/602b9ef1aab3f92010a7a4e0/school-employees`,{ headers: {'Authorization' : `Basic ${localStorage.token}` } })
-    //         setRecords(response.data)
-    //         console.log('this is data after fetch', records)
-    //     } catch (error) {
-    //         console.log('error:', error);
-    //     }
-    // };
-
+    
 
     function loadBody() {
         return (
@@ -97,15 +87,6 @@ export const Index = (props) => {
         setRecordForEdit(item)
         setOpenPopup(true)
     }
-
-    // let getTeachersList = async () => {
-    //     let res = await https.get(`/auth/602b9ef1aab3f92010a7a4e0/school-employees`,{ headers: {'Authorization' : `Basic ${localStorage.token}` } })
-    //     let { data } = res.data;
-    //     setTeachers(data );
-
-    //     setIsLoading(false);
-    // };
-
 
     //get student from selected class
     const fetchTeachersData = async (school) => {

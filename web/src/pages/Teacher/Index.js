@@ -42,29 +42,22 @@ function Main(props) {
   const history = useHistory();
   const [page, setPage] = useState(null);
 
-  const classSelectes = null
-  const subjectSelected = null
-  const topicSelected = null
-  const subTopSelected = null
-  const unitSelected = null
-// if(localStorage.getItem("unitSelected") !== null){
-//   const classSelectes = ((JSON.parse(localStorage.getItem("unitSelected"))).class)
-//   const subjectSelected = ((JSON.parse(localStorage.getItem("unitSelected"))).subject)
-//   const topicSelected = ((JSON.parse(localStorage.getItem("unitSelected"))).topic)
-//   const subTopSelected = ((JSON.parse(localStorage.getItem("unitSelected"))).subtopic)
-//   const unitSelected = ((JSON.parse(localStorage.getItem("unitSelected"))).unit)
 
-console.log("SELELELELELELELEL",SELECTED)
-if(SELECTED !=null){
-  const classSelectes = (SELECTED.data.class)
-  const subjectSelected = (SELECTED.data.subject)
-  const topicSelected = (SELECTED.data.topic)
-  const subTopSelected = (SELECTED.data.subtopic)
-  const unitSelected = (SELECTED.data.unit)
+  let classSelected = null
+  let subjectSelected = null
+  let topicSelected = null
+  let subTopSelected = null
+  let unitSelected = null
 
-console.log(classSelectes,subjectSelected,"%%%%%%")
+  if (SELECTED != undefined && SELECTED.data != undefined) {
+    classSelected = (SELECTED.data.class)
+    subjectSelected = (SELECTED.data.subject)
+    topicSelected = (SELECTED.data.topic)
+    subTopSelected = (SELECTED.data.subtopic)
+    unitSelected = (SELECTED.data.unit)
+  }
 
-}
+
   useEffect(() => {
 
     async function fetchClasses() {
@@ -80,11 +73,11 @@ console.log(classSelectes,subjectSelected,"%%%%%%")
     fetchClasses()
     setSubject()
 
-    setClas(classSelectes)
-    setSub(subjectSelected)
-    setTop(topicSelected)
-    setSubTop(subTopSelected)
-    setUni(unitSelected)
+    if(classSelected) setClas(classSelected)
+    if(subjectSelected) setSub(subjectSelected)
+    if(topicSelected) setTop(topicSelected)
+    if(subTopSelected) setSubTop(subTopSelected)
+    if(unitSelected) setUni(unitSelected)
 }, [])
 
   return (
@@ -92,12 +85,9 @@ console.log(classSelectes,subjectSelected,"%%%%%%")
       {sessionStorage.getItem("isloggedin") ? (
         <PanelLayout selected={1} role={props.auth.user.role}>
          
-          {/* <Feed>
+          <Feed>
             <Mixed DATA={uni}/>
-          </Feed> */}
-
-
-          
+          </Feed>
         </PanelLayout>
       ) : (
         history.replace("/")

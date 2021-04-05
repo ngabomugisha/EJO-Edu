@@ -14,7 +14,7 @@ const PanelLayout = (props) => {
                 return <>
                     <div className='feed'>
                         <FeedHead />
-                        {props.children}
+                        {props.children && props.children}
                     </div>
                     <div className='right-side'>
                         <StickyBox>

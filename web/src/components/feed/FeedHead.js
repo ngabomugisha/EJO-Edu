@@ -16,28 +16,11 @@ import {
 
 
 function FeedHead(props) {
-
-  const SELECTED = useSelector(state => state.teacherData)
-
   const teacher = props.state.auth.user._id;
   const dispatch = useDispatch()
-
-  let classSelected = null
-  let subjectSelected = null
-  let topicSelected = null
-  let subTopSelected = null
-  let unitSelected = null
-
-  if (SELECTED.data) {
-    classSelected = (SELECTED.data.class)
-    subjectSelected = (SELECTED.data.subject)
-    topicSelected = (SELECTED.data.topic)
-    subTopSelected = (SELECTED.data.subtopic)
-    unitSelected = (SELECTED.data.unit)
-  }
-
+  const history = useHistory();
+  props.handleFetchTeacherData()
   let DATA = null
-  // const [DATA, setDATA] = useState(null)
   const [open, setOpen] = React.useState(false);
   const [classs, setClasss] = React.useState(null);
   const [clas, setClas] = React.useState(null)
@@ -49,6 +32,7 @@ function FeedHead(props) {
   const [subTop, setSubTop] = React.useState(null);
   const [unit, setUnit] = useState(null)
   const [uni, setUni] = useState(null)
+  const {list : SELECTED} = useSelector(state => state.teacherData)
   const initValue = {
     class: "",
     subject: "",
@@ -56,6 +40,23 @@ function FeedHead(props) {
     subtopic: "",
     unit: "",
   };
+
+
+  let classSelected = null
+  let subjectSelected = null
+  let topicSelected = null
+  let subTopSelected = null
+  let unitSelected = null
+
+  if (SELECTED != undefined) {
+    if(SELECTED.data != undefined){
+    classSelected = (SELECTED.data.class)
+    subjectSelected = (SELECTED.data.subject)
+    topicSelected = (SELECTED.data.topic)
+    subTopSelected = (SELECTED.data.subtopic)
+    unitSelected = (SELECTED.data.unit)
+  }
+}
 
 
   const handleClickOpen = () => {
@@ -79,7 +80,6 @@ function FeedHead(props) {
     alert(JSON.stringify(values));
   };
 
-  const history = useHistory();
   const [page, setPage] = useState(null);
 
   const handleChange = (e) => {
@@ -346,9 +346,13 @@ const mapStateToProps = (state) => ({
   state: state,
 });
 
-const mapDispatchToProps = {
-  handleFetchTeacherData,
-  handleSetTeacherData
-};
-
+const mapDispatchToProps = dispatch => ({
+  handleFetchTeacherData : () => {
+    dispatch(handleFetchTeacherData())
+  },
+  handleSetTeacherData : () => {
+    dispatch(handleSetTeacherData())
+  }
+  
+  })
 export default connect(mapStateToProps, mapDispatchToProps)(FeedHead);

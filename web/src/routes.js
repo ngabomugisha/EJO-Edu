@@ -30,6 +30,7 @@ import disciplinePage from './pages/SCHOOL-ADMIN/discipline/index'
 import termPage from './pages/SCHOOL-ADMIN/term/index'
 import questionsPage from './pages/SCHOOL-ADMIN/questions/index'
 import reportPage from './pages/SCHOOL-ADMIN/report/index'
+import classesPage from './pages/SCHOOL-ADMIN/classes/Index'
 
 //Super-Admin
 import superAdminDashboard from './pages/SUPER-ADMIN/index'
@@ -68,6 +69,7 @@ export default () => {
           <Route exact path="/headStudy/announcement" component={ReadAnnouncement} />
           <Route exact path="/headStudy/report" component={ReportPage} />
           <Route exact path="/headStudy/checkInOut" component={CheckInOutPage} />
+          <Route exact path="/headStudy/timetable" component={timeTablePage} />
 
 
           {/* schoolAdmin routes */}
@@ -77,6 +79,7 @@ export default () => {
           <Route exact path="/schoolAdmin/discipline" component={disciplinePage} />
           <Route exact path="/schoolAdmin/questions" component={questionsPage} />
           <Route exact path="/schoolAdmin/report" component={reportPage} />
+          <Route exact path="/schoolAdmin/classes" component={classesPage} />
           
           <Route exact path="/schoolAdmin/teachers">
             <TeachersPage  />

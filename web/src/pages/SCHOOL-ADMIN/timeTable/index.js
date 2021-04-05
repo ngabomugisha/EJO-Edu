@@ -15,6 +15,7 @@ import moment from 'moment';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { handleFetchTerms, handleUpdateTerm } from '../../../store/actions/term.action'
 import { useDispatch, useSelector } from 'react-redux';
+import {SCHOOLADMIN} from '../../../pages/Auth/Users'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -459,7 +460,7 @@ export const Index = (props) => {
 
     return (
         <div>
-            <PanelLayout selected={6} role={props.state.auth.user.role} >
+            <PanelLayout selected={props.state.auth.user.role === SCHOOLADMIN ? 6 : 3} role={props.state.auth.user.role} >
                 <div className="timeTable-container">
                     <div>
                         <div className="form-container">
@@ -471,7 +472,7 @@ export const Index = (props) => {
                                 {(formik) => (
                                     <form onSubmit={formik.handleSubmit}>
                                         <Grid container xs={12} justify="center" spacing={1}>
-                                            <Grid item xs={3}>
+                                            <Grid item xs={2}>
                                                 <Field
                                                     as={TextField}
                                                     type="text"
@@ -537,7 +538,7 @@ export const Index = (props) => {
                                                     }
                                                 </Field>
                                             </Grid>
-                                            <Grid item xs={2} justify="center">
+                                            <Grid item xs={3} justify="center">
                                                 <button name="check" type="submit" className="check-btn">check TimeTable</button>
                                             </Grid>
                                             <Grid item xs={2} justify="center">
