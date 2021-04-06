@@ -25,12 +25,13 @@ const headCells = [
 ]
 
 export const Index = (props) => {
-    // const school = props.userData.school
-
-    const school = props.state.auth.user.school;
+    let school = null
+    let role = null
+    if (props.state.auth != undefined){if(props.state.auth.user != undefined) {school = props.state.auth.user.school; role = props.state.auth.user.role}}
     const [isLoading, setIsLoading] = useState(true);
     const dispatch = useDispatch();
     const { list: ALL_TEACHERS } = useSelector((state) => state.teachers);
+    console.log("TEEACCHHEEERR:",ALL_TEACHERS)
     const [recordForEdit, setRecordForEdit] = useState(null)
     const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
     const [openPopup, setOpenPopup] = useState(false)
@@ -88,30 +89,30 @@ export const Index = (props) => {
         setOpenPopup(true)
     }
 
-    //get student from selected class
-    const fetchTeachersData = async (school) => {
-        try {
-            await dispatch(handleFetchTeachers(school));
-        } catch (error) {
-            alert("something went wrong",error)
-        } finally {
-            setIsLoading(false);
+    // //get student from selected class
+    // const fetchTeachersData = async (school) => {
+    //     try {
+    //         await dispatch(handleFetchTeachers(school));
+    //     } catch (error) {
+    //         alert("something went wrong",error)
+    //     } finally {
+    //         setIsLoading(false);
 
-        }
-        await dispatch(handleFetchTeachers(school));
-    };
+    //     }
+    // };
     useEffect(() => {
+        // props.handleFetchTeachers(school)
         console.log('school data, effect = >', school)
         if (school) {
-            const fetchedData = fetchTeachersData(school);
-            console.log('fetchedData', fetchedData);
+            if(ALL_TEACHERS.length> 0)
             setIsLoading(false)
         }
-    }, [records, school]);
+
+    }, []);
     console.log('school data = >', school)
     return (
         <>
-            <PanelLayout selected={3} role={props.state.auth.user.role}>
+            <PanelLayout selected={3} role={role}>
                 <div className="teacher-container">
                     <Paper elevation={5}>
                         <div className="paper-hd"><h2>Teachers List</h2></div>
@@ -176,8 +177,10 @@ const mapStateToProps = (state) => ({
     state: state
 })
 
-const mapDispatchToProps = {
-
-}
+const mapDispatchToProps = dispatch => ({
+    handleFetchTeachers: (school) => {
+        dispatch(handleFetchTeachers(school))
+    }
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(Index)

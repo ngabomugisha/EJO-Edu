@@ -19,7 +19,6 @@ function FeedHead(props) {
   const teacher = props.state.auth.user._id;
   const dispatch = useDispatch()
   const history = useHistory();
-  props.handleFetchTeacherData()
   let DATA = null
   const [open, setOpen] = React.useState(false);
   const [classs, setClasss] = React.useState(null);
@@ -76,6 +75,15 @@ function FeedHead(props) {
     setOpen(false);
   };
 
+  const fetchClasses = async () => {
+    const req = await https.get(`/class-teachers/${teacher}/teacher-classes`, { headers: { 'Authorization': `Basic ${localStorage.token}` } })
+      .then((res) => {
+        setClasss(res.data)
+      }).catch(function (err) {
+        console.log(err);
+      });
+    return req
+  }
   const onSubmit = (values) => {
     alert(JSON.stringify(values));
   };
@@ -144,20 +152,9 @@ function FeedHead(props) {
 
   }, [sub])
   useEffect(() => {
-    
-
-    async function fetchClasses() {
-      const req = await https.get(`/class-teachers/${teacher}/teacher-classes`, { headers: { 'Authorization': `Basic ${localStorage.token}` } })
-        .then((res) => {
-          setClasss(res.data)
-        }).catch(function (err) {
-          console.log(err);
-        });
-      return req
-    }
+    props.handleFetchTeacherData()
     fetchClasses()
     setSubject()
-
     setClas(classSelected)
     setSub(subjectSelected)
     setTop(topicSelected)

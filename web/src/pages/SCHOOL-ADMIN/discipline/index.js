@@ -6,10 +6,13 @@ import Table from './Table'
 import { Button, Paper, TextField } from '@material-ui/core'
 
 export const index = (props) => {
+    let school = null
+    let role = null
+    if (props.state.auth != undefined){if(props.state.auth.user != undefined) {school = props.state.auth.user.school; role = props.state.auth.user.role}}
     return (
         <div>
             
-            <PanelLayout selected={4} role={props.state.auth.user.role}>
+            <PanelLayout selected={4} role={role}>
                         <div className="report-hd">
                             <h3>Terms settings</h3>
                         </div>

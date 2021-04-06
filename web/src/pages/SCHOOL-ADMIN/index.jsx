@@ -15,7 +15,9 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Bullet from '../SCHOOL-ADMIN/marksReport/index'
 
 export const Index = (props) => {
-    const school = props.state.auth.user.school;
+    let school = null
+    let role = null
+    if (props.state.auth != undefined){if(props.state.auth.user != undefined) {school = props.state.auth.user.school; role = props.state.auth.user.role}}
     const { list: ALL_STUDENTS } = useSelector((state) => state.students);
     const { list: ALL_SCHOOLS } = useSelector((state) => state.schools)
     const { list: ALL_CLASSES } = useSelector((state) => state.classes)
@@ -98,7 +100,7 @@ export const Index = (props) => {
     return (
         <>
             {!props.state.auth.user ? history.replace('/') :
-                <PanelLayout selected={1} role={props.state.auth.user.role}>
+                <PanelLayout selected={1} role={role}>
                     <div className="report-container">
                         <div className="report-hd">
                             <h3>Dashboard</h3>

@@ -4,16 +4,23 @@ import https from '../../../helpers/https'
 import PanelLayout from '../../../components/Layouts/PanelLayout/Index'
 import { connect } from 'react-redux'
 import AGTABLE from '../../../components/parts/AG_TABLE'
-import { handleFetchClasses } from '../../../store/actions/classes.actions'
+import { handleFetchClasses, handleAddClass, handleUpdateClass, handleDeleteClass } from '../../../store/actions/classes.actions'
 import { handleFetchCombination } from '../../../store/actions/combinations.actions'
 import { handleFetchLevels } from '../../../store/actions/levels.actions'
-import { TextField, Grid, Snackbar, Switch, Select, MenuItem, Paper, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControl, FormControlLabel, InputLabel } from '@material-ui/core'
+import { TextField, Grid, Snackbar, Switch, Select, MenuItem, Paper, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControl, FormControlLabel, InputLabel } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import MuiAlert from '@material-ui/lab/Alert';
 import Skeleton from "@material-ui/lab/Skeleton"
 import { Box } from '@material-ui/core'
 import EditorWrapText from 'material-ui/svg-icons/editor/wrap-text'
-
+import { AgGridReact, AgGridColumn } from 'ag-grid-react';
+import 'ag-grid-community/dist/styles/ag-grid.css';
+import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
+import 'ag-grid-enterprise'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { Button } from 'react-bootstrap';
+import EditorFormatListBulleted from 'material-ui/svg-icons/editor/format-list-bulleted'
+import { DeleteForeverTwoTone } from '@material-ui/icons'
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -65,20 +72,42 @@ const useStyles = makeStyles((theme) => ({
 
 
 export const Index = (props) => {
+    const [gridApi, setGridApi] = useState(null);
+    const [gridColumnApi, setGridColumnApi] = useState(null);
+    const [rowData, setRowData] = useState(null);
+    const onGridReady = (params) => {
+        setGridApi(params.api);
+        setGridColumnApi(params.columnApi);
+        const updateData = (data) => {
+            setRowData(data);
+        };
+    }
+    const onExportClick = () => {
+        gridApi.exportDataAsExcel({ allColumns: false });
+    }
+    const searchDivStyle = { backgroundColor: "#dedede", padding: 10, display: "flex" }
+    const searchStyle = {
+        width: "100%", padding: "10px 20px", borderRadius: 20, outline: 0,
+        border: "2px #1F72C6 solid", fontSize: "100%"
+    }
+    const onFilterTextChange = (e) => {
+        gridApi.setQuickFilter(e.target.value)
+    }
     let school = null
+    let role = null
     let p2 = null
     let edit = null
-    if (props.state.auth != undefined) school = props.state.auth.user.school;
-    const { list: CLASSES } = props.state.classes
+    if (props.state.auth != undefined) { if (props.state.auth.user != undefined) { school = props.state.auth.user.school; role = props.state.auth.user.role } }
+    const [CLASSES, setCLASSES] = useState(props.state.classes)
     const { list: COMBINATIONS } = props.state.combinations
     const { list: LEVELS } = props.state.levels
-    // console.log("******&&&&&&^^^^^^%%%%%%%%$$$$$$$", CLASSES)
-    // console.log("******&&&&&&^^^^^^%%%%%%%%$$$$$$$", props.state)
     const [openMsg, setOpenMsg] = useState(false)
     const [Data, setData] = useState([])
+    const [msg , setMsg] = useState(null)
+    const [type, setType] = useState(null)
     const [id, setId] = useState(null)
     const [updating, setUpdating] = useState(false)
-    const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(false)
     const classes = useStyles();
     const [classData, setClassData] = useState({
         school: school,
@@ -90,56 +119,68 @@ export const Index = (props) => {
     const [fullWidth, setFullWidth] = React.useState(true);
     const [maxWidth, setMaxWidth] = React.useState('md');
     const handleClickOpen = () => {
-        console.log("^^^^^^^^^^^^^^^^^", edit)
         setOpen(true);
     };
-
+    const handleOpenMsg = (ty,msg) => {
+        setMsg(msg)
+        setType(ty)
+        setOpenMsg(true)
+    }
     const handleCloseMsg = () => {
+        setIsLoading(false)
         setOpenMsg(false)
     }
     const handleClose = () => {
         setOpen(false)
     }
 
-    const handleUpdate = () => {
-        // setIsLoading(true)
-        console.log("$$$$$$$$$$$$$$$$", id)
-        if (classData.level !== null && classData.combination !== null && classData.label !== null)
-            https.put(`/classes/${id}`, classData, { headers: { 'Authorization': `Basic ${localStorage.token}` } })
-                .then((res) => {
-                    if (res.status == 200) {
-                        setOpenMsg(true);
-                        setOpen(false)
-                        update()
-                    }
-                    else {
-                        return alert("something went wrong")
-                        setOpen(false)
-                    }
-                })
-        setOpen(false);
-        setUpdating(false)
+    const handleUpdate = async () => {
+        if (classData.level !== null && classData.combination !== null && classData.label !== null){
+            props.handleUpdateClass({id: id, data: classData})
+                        handleOpenMsg('success', 'Class Updated')
+                        setTimeout(() => {
+                            props.handleFetchClasses(school)
+                            setCLASSES(props.state.classes)
+                            setData(formatData(CLASSES.list))
+                            update()
+                            setData(formatData(CLASSES.list))
+                        }, 0);
+                        setOpen(false);
+                        setUpdating(false)
+                        setClassData({
+                            school: school,
+                            level: null,
+                            combination: null,
+                            label: null
+                        })
+        }
     };
     const handleCreate = () => {
-        update()
-        setIsLoading(true)
-        if (classData.level !== null && classData.combination !== null && classData.label !== null)
-            https.post('/classes/', classData, { headers: { 'Authorization': `Basic ${localStorage.token}` } })
-                .then((res) => {
-                    if (res.status == 200) {
-                        setOpenMsg(true);
-                        setOpen(false)
-                        update()
-                    }
-                    else {
-                        return alert("something went wrong")
-                        setOpen(false)
-                    }
-                })
-        // setOpen(false);
+        props.handleAddClass(classData)   
+        handleOpenMsg('success', 'Class Updated')
+        setTimeout(() => {
+            props.handleFetchClasses(school)
+            setCLASSES(props.state.classes)
+            setData(formatData(CLASSES.list))
+            update()
+            setData(formatData(CLASSES.list))
+        }, 0);
+    };
+
+    const handleDelete = (i) => {
+        props.handleDeleteClass(i)   
+        handleOpenMsg('warning', 'Class Deleted')
+        setTimeout(() => {
+            props.handleFetchClasses(school)
+            setCLASSES(props.state.classes)
+            setData(formatData(CLASSES.list))
+            update()
+            setData(formatData(CLASSES.list))
+        }, 0);
     };
 
     const handleChange = e => {
+        console.log("YOU ARE FCKD")
         if (e.target.name === 'level') setClassData(
             {
                 ...classData,
@@ -157,21 +198,21 @@ export const Index = (props) => {
                 ...classData,
                 label: e.target.value
             })
+            console.log("CLASSES DATA:",classData)
     }
+
     const formatData = (unformatted) => {
         let i = 1
         const formatted = []
-        //if (unformatted.combination != null && unformatted.level != null && unformatted.label != null)
         unformatted.forEach(i => formatted.push({ level: i.level.name, combination: i.combination.name, label: i.label, id: i._id }))
         return formatted
     }
     const editRow = (parms) => {
-        console.log("************", parms)
         const level = parms['data']['level']
         const combination = parms['data']['combination']
         const label = parms['data']['label']
         p2 = Object.assign({}, parms['data']);
-        edit ={
+        edit = {
             school: school,
             level: (LEVELS.find(item => item.name === p2.level))._id,
             combination: (COMBINATIONS.find(item => item.name === p2.combination))._id,
@@ -182,13 +223,21 @@ export const Index = (props) => {
         setUpdating(true)
         handleClickOpen()
     }
-    const columns = [{ headerName: 'Level', field: 'level', sortable: true, filter: true, checkboxSelection: true, flex: 1 },
+    const deleteRow = (parms) => {
+        console.log(parms.value,"%%%%%")
+        setId(parms.value)
+        handleDelete(parms.value)
+        setUpdating(true)
+    }
+    const columns = [{ headerName: 'Level', field: 'level', sortable: true, filter: true, checkboxSelection: true, headerCheckboxSelection: true, flex: 1 },
     { headerName: 'Combination', field: 'combination', sortable: true, filter: true, flex: 1 },
-    { headerName: 'ID', field: 'id', hide: true},
+    { headerName: 'ID', field: 'id', hide: true },
     { headerName: 'Label', field: 'label', flex: 1 },
-    { headerName: "Action", field: "id",
-        cellRendererFramework: (params) => <div>
-            <div style={{color:"#1F72C6", cursor: "pointer", borderRadius:"4px", backgroundColor: "whitesmoke", textAlign: 'center'}} className="edit-btn-class" onClick={() => editRow(params)}>Edit</div>
+    {
+        headerName: "Action", field: "id",
+        cellRendererFramework: (params) => <div style={{display: "flex"}}>
+            <div style={{ color: "#1F72C6", cursor: "pointer", borderRadius: "4px", backgroundColor: "whitesmoke", textAlign: 'center', padding:"5px" }} className="edit-btn-class" onClick={() => editRow(params)}>Edit</div>
+            <div style={{ color: "#f00", cursor: "pointer", borderRadius: "4px", backgroundColor: "whitesmoke", textAlign: 'center', padding:"3px" }} className="edit-btn-class" onClick={() => deleteRow(params)}>Delete</div>
         </div>
     }]
 
@@ -196,31 +245,55 @@ export const Index = (props) => {
         props.handleFetchClasses(school)
         props.handleFetchCombination()
         props.handleFetchLevels()
+        setCLASSES(props.state.classes)
         setTimeout(() => {
-            setData(formatData(CLASSES))
-            setIsLoading(false)
-        }, 2000);
+            setData(formatData(CLASSES.list))
+        }, 0);
     }
 
     useEffect(() => {
         update()
+        if(props.state.classes.list){
+            setCLASSES(props.state.classes)
+        }
+    },[CLASSES])
 
-    }, [])
     return (
         <div>
-            <PanelLayout selected={4} role={props.state.auth.user.role}>
-
+            <PanelLayout selected={4} role={role}>
                 <div style={{ display: "flex", justifyContent: "space-between" }}>
                     <div className="paper-hd"><h2>Classes List</h2></div>
                     <div className='add-btn'><button onClick={handleClickOpen} className='check-btn' style={{ wordWrap: "normal" }}>Add a new class</button></div>
                 </div>
                 <div className='classes-cont'>
-
                     {
                         !isLoading ?
-                            <AGTABLE
-                                data={Data}
-                                columns={columns} /> :
+                            <div style={{ width: "100%", height: '100%' }}>
+                                <div style={{ height: '90%', boxSizing: 'border-box' }}>
+                                    <div style={searchDivStyle}>
+                                        <input type="search" style={searchStyle} onChange={onFilterTextChange} placeholder="search ....." />
+                                        <Button onClick={() => onExportClick()}>export</Button>
+                                    </div>
+                                    <div
+                                        id="myGrid"
+                                        style={{
+                                            height: '100%',
+                                            width: "100%",
+                                        }}
+                                        className="ag-theme-alpine">
+                                        <AgGridReact
+                                            columnDefs={columns}
+                                            rowData={formatData(props.list)}
+                                            rowSelection={'multiple'}
+                                            onGridReady={onGridReady}
+                                            defaultColDef={{ flex: 1 }}
+                                        />
+                                    </div>
+                                </div>
+                            </div> :
+                            // <AGTABLE
+                            //     data={Data}
+                            //     columns={columns} /> :
                             (<Box className="my-bx">
                                 <div className="skeleton-line-students">
                                     <Skeleton width="20%" />
@@ -376,36 +449,40 @@ export const Index = (props) => {
                         <Button onClick={handleClose} color="primary">
                             Cancel
                         </Button>
-                                {updating?
-                        <Button onClick={handleUpdate} color="primary">
-                            Update
-                        </Button>:
-                        <Button onClick={handleCreate} color="primary">
-                            Create
+                        {updating ?
+                            <Button onClick={handleUpdate} color="primary">
+                                Update
+                        </Button> :
+                            <Button onClick={handleCreate} color="primary">
+                                Create
                         </Button>
                         }
 
                     </DialogActions>
                 </Dialog>
-                {/* 
+
                 <Snackbar open={openMsg} autoHideDuration={6000} onClose={handleCloseMsg}>
-                    <Alert onClose={handleCloseMsg} severity="success">
-                        Class created!
+                    <Alert onClose={handleCloseMsg} severity={type}>
+                        {msg}
                                     </Alert>
-                </Snackbar> */}
+                </Snackbar>
             </div>
 
         </div>
     )
 }
 
-const mapStateToProps = (state) => ({
-    state: state
-})
+const mapStateToProps = (state) => {
+    const {classes} = state
+    const {list} = classes
+    return {
+        state,list 
+    }
+}
 
 const mapDispatchToProps = dispatch => ({
-    handleFetchClasses: (school) => {
-        dispatch(handleFetchClasses(school))
+    handleFetchClasses: async (school) => {
+        await dispatch(handleFetchClasses(school))
     },
 
     handleFetchCombination: () => {
@@ -413,6 +490,16 @@ const mapDispatchToProps = dispatch => ({
     },
     handleFetchLevels: () => {
         dispatch(handleFetchLevels())
+    },
+
+    handleAddClass: (data) => {
+        dispatch(handleAddClass(data))
+    },
+    handleUpdateClass: (data) => {
+        dispatch(handleUpdateClass(data))
+    },
+    handleDeleteClass: (data) => {
+        dispatch(handleDeleteClass(data))
     }
 })
 

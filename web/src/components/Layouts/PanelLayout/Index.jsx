@@ -8,6 +8,9 @@ import FeedHead from '../../feed/FeedHead';
 import { TEACHER, SCHOOLADMIN } from '../../../pages/Auth/Users'
 
 const PanelLayout = (props) => {
+    let school = null
+    let role = null
+    if (props.state.auth != undefined){if(props.state.auth.user != undefined) {school = props.state.auth.user.school; role = props.state.auth.user.role}}
     function renderSwitch(role) {
         switch (role) {
             case TEACHER:
@@ -36,9 +39,9 @@ const PanelLayout = (props) => {
         <div className="panel-layout-container">
             <div className='side-menu'>
             
-                    <SideMenu selected={props.selected} role={props.state.auth.user.role} />
+                    <SideMenu selected={props.selected} role={role} />
             </div>
-            {renderSwitch(props.state.auth.user.role)}
+            {renderSwitch(role)}
         </div>
     )
 }

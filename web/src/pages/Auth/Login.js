@@ -8,7 +8,7 @@ import HomeLayout from '../../components/Layouts/HomeLayout';
 import { handleLogin } from '../../store/actions/auth.actions';
 import { SCHOOLADMIN, TEACHER, SUPERADMIN, HEADSTUDY } from './Users'
 import logoAfrica from '../../assets/img/white-logo.png';
-import  Alert  from 'react-bootstrap/Alert';
+import Alert from 'react-bootstrap/Alert';
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 const LoginPage = (props) => {
@@ -21,7 +21,7 @@ const LoginPage = (props) => {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [errMessage, setErrMessage] = React.useState('');
-let fine = false
+  let fine = false
 
   const handleSubmit = async () => {
     if (!password || !email) {
@@ -33,26 +33,30 @@ let fine = false
     try {
       const res = await dispatch(handleLogin({ email, password }));
       // if(data != null) fine =true
-               
-  switch (res.user.role) {
-    case TEACHER:
-      history.replace('/teacher');
-      break;
-    case SCHOOLADMIN:
-      history.replace('/schoolAdmin')
-      break;
-      case SUPERADMIN:
-        history.replace('/admin')
-        break;
+
+      switch (res.user.role) {
+        case TEACHER:
+          history.replace('/teacher');
+          setIsLoading(false);
+          break;
+        case SCHOOLADMIN:
+          history.replace('/schoolAdmin')
+          setIsLoading(false);
+          break;
+        case SUPERADMIN:
+          history.replace('/admin')
+          setIsLoading(false);
+          break;
         case HEADSTUDY:
           history.replace('/headStudy')
+          setIsLoading(false);
           break;
 
-    default:
-      break;
-}
+        default:
+          setIsLoading(false);
+          break;
+      }
 
-setIsLoading(false);
 
 
 
@@ -62,14 +66,14 @@ setIsLoading(false);
     }
 
   };
- 
+  console.log("%$%$%$%$%$%$%$%", props.state)
   return (
     <HomeLayout>
       <>
         <div className="login-form">
-        <div className="africa">
-          <img src={logoAfrica}/>
-        </div>
+          <div className="africa">
+            <img src={logoAfrica} />
+          </div>
           <div className="login-field">
             <TextField
               label="Email"

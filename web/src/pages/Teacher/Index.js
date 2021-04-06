@@ -57,19 +57,19 @@ function Main(props) {
     unitSelected = (SELECTED.data.unit)
   }
 
+  const fetchClasses = async () => {
+    const req = await https.get(`/class-teachers/${teacher}/teacher-classes`, { headers: { 'Authorization': `Basic ${localStorage.token}` } })
+        .then((res) => {
+            console.log("CLASSES",res.data)
+            setClasss(res.data)
+        }).catch(function (err) {
+            console.log(err);
+        });
+    return req
+}
 
   useEffect(() => {
 
-    async function fetchClasses() {
-        const req = await https.get(`/class-teachers/${teacher}/teacher-classes`, { headers: { 'Authorization': `Basic ${localStorage.token}` } })
-            .then((res) => {
-                console.log("CLASSES",res.data)
-                setClasss(res.data)
-            }).catch(function (err) {
-                console.log(err);
-            });
-        return req
-    }
     fetchClasses()
     setSubject()
 

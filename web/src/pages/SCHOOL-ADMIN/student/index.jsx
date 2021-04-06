@@ -10,8 +10,10 @@ import { Box} from '@material-ui/core'
 
 
 export const Index = (props) => {
+    let school = null
+    let role = null
+    if (props.state.auth != undefined){if(props.state.auth.user != undefined) {school = props.state.auth.user.school; role = props.state.auth.user.role}}
 
-    const school = props.state.auth.user.school;
     const [isLoading, setIsLoading] = useState(true);
     const dispatch = useDispatch();
     const { list: ALL_STUDENTS } = useSelector((state) => state.students);
@@ -45,7 +47,7 @@ export const Index = (props) => {
 console.log('data from localstorage',JSON.parse(localStorage.getItem("students")))
     return (
         <>
-            <PanelLayout selected={2} role={props.state.auth.user.role}>
+            <PanelLayout selected={2} role={role}>
 
         {
             !isLoading ?
