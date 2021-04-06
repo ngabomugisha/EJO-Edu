@@ -730,7 +730,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"announcement\": \"Announcement test 1\"\r\n}",
+							"raw": "{\r\n    \"topic\": \"Announcement topic\",\r\n    \"announcement\": \"Announcement test 1\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1540,6 +1540,36 @@
 					"response": []
 				},
 				{
+					"name": "expel student",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"expelled\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/students/602c23ddbd2ce42e800e0f37/expel",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"students",
+								"602c23ddbd2ce42e800e0f37",
+								"expel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "get one",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -2216,7 +2246,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"reason\": \"Any reason\",\r\n    \"starts\": \"2021-06-31T17:58:09.010+00:00\",\r\n    \"ends\": \"2021-06-31T17:58:09.010+00:00\"\r\n}",
+									"raw": "{\r\n    \"applyTo\": \"Head master\",\r\n    \"reason\": \"Any reason\",\r\n    \"otherReason\": \"Any reason\",\r\n    \"starts\": \"2021-06-31T17:58:09.010+00:00\",\r\n    \"ends\": \"2021-06-31T17:58:09.010+00:00\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2377,7 +2407,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{  \r\n    \"student\": \"602c2368bd2ce42e800e0f36\",\r\n    \"reason\": \"SICK\",\r\n    \"checkout\": \"2021-06-31T17:58:09.010+00:00\",\r\n    \"provisionalCheckin\": \"2021-07-31T17:58:09.010+00:00\",\r\n    \"leavingWithWho\": {\r\n        \"firstName\": \"Oliver\",\r\n        \"lastName\": \"Nkundiye\",\r\n        \"phone\": \"0789288293\",\r\n        \"identificationNumber\": \"199078429823520589\",\r\n        \"relationship\": \"Mother\"\r\n    }\r\n}",
+									"raw": "{  \r\n    \"student\": \"602c2368bd2ce42e800e0f36\",\r\n    \"studentClass\": \"602c20e5eeb9ae2820b62123\",\r\n    \"reason\": \"SICK\",\r\n    \"checkout\": \"2021-06-31T17:58:09.010+00:00\",\r\n    \"provisionalCheckin\": \"2021-07-31T17:58:09.010+00:00\",\r\n    \"leavingWithWho\": {\r\n        \"firstName\": \"Oliver\",\r\n        \"lastName\": \"Nkundiye\",\r\n        \"phone\": \"0789288293\",\r\n        \"identificationNumber\": \"199078429823520589\",\r\n        \"relationship\": \"Mother\"\r\n    }\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2406,7 +2436,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"checkin\": \"2021-06-31T17:58:09.010+00:00\"\r\n}",
+									"raw": "{\r\n    \"checkin\": \"2020-05-31T17:58:09.010+00:00\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2414,7 +2444,7 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:9000/api/leaves/student-leaves/605a34650f5416204078a422",
+									"raw": "localhost:9000/api/leaves/student-leaves/605c2e1fa4e1e61714a0b0bb",
 									"host": [
 										"localhost"
 									],
@@ -2423,7 +2453,7 @@
 										"api",
 										"leaves",
 										"student-leaves",
-										"605a34650f5416204078a422"
+										"605c2e1fa4e1e61714a0b0bb"
 									]
 								}
 							},
@@ -2497,6 +2527,40 @@
 							"response": []
 						},
 						{
+							"name": "get class students on leave",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/leaves/student-leaves/602c20e5eeb9ae2820b62123/class-students-on-leave",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"leaves",
+										"student-leaves",
+										"602c20e5eeb9ae2820b62123",
+										"class-students-on-leave"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "delete",
 							"request": {
 								"method": "DELETE",
@@ -2540,7 +2604,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"assignedClass\":\"602c20e5eeb9ae2820b62123\",\r\n    \"teacher\":\"602b9cfc49ce7a0be4a35fc7\",\r\n    \"subject\":\"602c349dfd1613203834880d\",\r\n    \"term\":\"602c2806c13abd23f06cb84b\",\r\n    \"time\": {\r\n        \"dayOfWeek\": 1,\r\n        \"starts\": \"0900\",\r\n        \"ends\": \"1050\"\r\n    }\r\n}",
+							"raw": "{\r\n    \"assignedClass\":\"602c20e5eeb9ae2820b62123\",\r\n    \"teacher\":\"6031843bbeb97f3a04f44084\",\r\n    \"subject\":\"602c349dfd1613203834880d\",\r\n    \"term\":\"602c2806c13abd23f06cb84b\",\r\n    \"time\": {\r\n        \"dayOfWeek\": 4,\r\n        \"starts\": \"0800\",\r\n        \"ends\": \"0950\"\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2776,7 +2840,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:9000/api/timetables/602c20e5eeb9ae2820b62123/602b9cfc49ce7a0be4a35fc7/602c349dfd1613203834880d/class-teacher-subject",
+							"raw": "localhost:9000/api/timetables/602c20e5eeb9ae2820b62123/6031843bbeb97f3a04f44084/602c349dfd1613203834880d/class-teacher-subject",
 							"host": [
 								"localhost"
 							],
@@ -2785,7 +2849,7 @@
 								"api",
 								"timetables",
 								"602c20e5eeb9ae2820b62123",
-								"602b9cfc49ce7a0be4a35fc7",
+								"6031843bbeb97f3a04f44084",
 								"602c349dfd1613203834880d",
 								"class-teacher-subject"
 							]
@@ -2870,7 +2934,7 @@
 										{
 											"key": "subject",
 											"type": "file",
-											"src": "/C:/Users/odilo/Desktop/subject - Scheme of work .csv"
+											"src": []
 										},
 										{
 											"key": "name",
@@ -3061,13 +3125,16 @@
 							"response": []
 						},
 						{
-							"name": "update",
+							"name": "get one",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
-								"method": "PUT",
+								"method": "GET",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"TRIGONOMETRY\"\r\n}",
+									"raw": "",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -3091,16 +3158,13 @@
 							"response": []
 						},
 						{
-							"name": "get one",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
+							"name": "update",
 							"request": {
-								"method": "GET",
+								"method": "PUT",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "",
+									"raw": "{\r\n    \"name\": \"TRIGONOMETRY\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -3351,6 +3415,268 @@
 					]
 				},
 				{
+					"name": "unit plan",
+					"item": [
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"unit\": \"606c16450eec750a7ce40bc6\",\r\n    \"time\": {\r\n        \"start\" : \"2021-06-31T17:58:09.010+00:00\",\r\n        \"end\" : \"2021-07-31T17:58:09.010+00:00\"\r\n    },\r\n    \"subject\": \"602c349dfd1613203834880d\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/unit-plans",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"unit-plans"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"time\": {\r\n        \"start\": \"2021-07-01T17:58:09.010Z\",\r\n        \"end\": \"2021-07-31T17:58:09.010Z\"\r\n    },\r\n    \"name\": \"Fundamentals of trigonometry updated\",\r\n    \"keyCompetency\": \" Use trigonometric circle and identities to determine trigonometric ratios and apply them to solve related problems\",\r\n    \"content\": {\r\n        \"knowledgeAndUnderstanding\": [\r\n            {\r\n                \"numberOftimesTaught\": 0,\r\n                \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\"\r\n            },\r\n            {\r\n                \"numberOftimesTaught\": 0,\r\n                \"topic\": \"know special values (30 degree, 45degree, 60degree). - Convert radians to degree and vice versa. \"\r\n            },\r\n            {\r\n                \"numberOftimesTaught\": 0,\r\n                \"topic\": \"Differentiate between complementary angles, supplementary angles and coterminal angles \"\r\n            }\r\n        ],\r\n        \"skills\": [\r\n            {\r\n                \"numberOftimesTaught\": 0,\r\n                \"topic\": \"Represent graphically sine, cosine and tangent, functions and, together with the unit circle, use to relate values of any angle to the value for a positive acute angle \"\r\n            },\r\n            {\r\n                \"numberOftimesTaught\": 0,\r\n                \"topic\": \"Use trigonometry, including the sine and cosine rules, to solve problems involving triangles \"\r\n            }\r\n        ],\r\n        \"attitudesAndValues\": [\r\n            {\r\n                \"numberOftimesTaught\": 0,\r\n                \"topic\": \"Appreciate the relationshi p between the trigonomet ric values for different angles \"\r\n            },\r\n            {\r\n                \"numberOftimesTaught\": 0,\r\n                \"topic\": \"Verify reasonable ness of answers when solving problems \"\r\n            }\r\n        ]\r\n    },\r\n    \"activities\": [\r\n        {\r\n            \"numberOftimesTaught\": 0,\r\n            \"activity\": \"Mental task – imagine a point on the edge of a wheel – as the wheel turns how high is the point above the centre? – sketch the graph \"\r\n        },\r\n        {\r\n            \"numberOftimesTaught\": 0,\r\n            \"activity\": \"Practical – on graph paper draw circle of 10cm radius and measure half chord length and distance from the centre to chord for angles (say multiples of 15 degree ) – plot use calculator to determine which is sine and cosine. What is the radius of the calculator’s circle? – unit circle  \"\r\n        },\r\n        {\r\n            \"numberOftimesTaught\": 0,\r\n            \"activity\": \"Use of dynamic geometry and graph plotting to illustrate relationship e.g. geogebra \"\r\n        },\r\n        {\r\n            \"numberOftimesTaught\": 0,\r\n            \"activity\": \"In groups use unit circle and graphs to determine the relationship between trigonometric functions of any angle and the value for an acute positive angle – generalise. \"\r\n        },\r\n        {\r\n            \"numberOftimesTaught\": 0,\r\n            \"activity\": \"Group investigation -What angle subtends an arc length equal to the radius? – define a radian, make a table of equivalences \"\r\n        },\r\n        {\r\n            \"numberOftimesTaught\": 0,\r\n            \"activity\": \"Derive trigonometric identities, sine and cosine rules \"\r\n        },\r\n        {\r\n            \"numberOftimesTaught\": 0,\r\n            \"activity\": \"Apply trigonometry to practical problems involving triangles and angles.\"\r\n        }\r\n    ]\r\n}\r\n   ",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/unit-plans/60473131fe2fc60c449b5f5b",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"unit-plans",
+										"60473131fe2fc60c449b5f5b"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get one {unitId}",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/unit-plans/6035240d55ca8b00360caf0f",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"unit-plans",
+										"6035240d55ca8b00360caf0f"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get subject unit plans",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/unit-plans/602c349dfd1613203834880d/subject-unit-plans",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"unit-plans",
+										"602c349dfd1613203834880d",
+										"subject-unit-plans"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get subtopic unit plans",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/unit-plans/602c37a5edf8520e142247a1/subtopic-unit-plans",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"unit-plans",
+										"602c37a5edf8520e142247a1",
+										"subtopic-unit-plans"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get topic unit plans",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/unit-plans/602c35c1e02a0e3a3878ae39/topic-unit-plans",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"unit-plans",
+										"602c35c1e02a0e3a3878ae39",
+										"topic-unit-plans"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get topic list unit plans",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"topicsList\": [\"602c35c1e02a0e3a3878ae39\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/unit-plans/topics-list-unit-plans",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"unit-plans",
+										"topics-list-unit-plans"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/unit-plans/6047219a62faf531b8323b38",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"unit-plans",
+										"6047219a62faf531b8323b38"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "unit",
 					"item": [
 						{
@@ -3360,7 +3686,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Fundamentals of trigonometry\",\r\n    \"subTopic\": \"602c37a5edf8520e142247a1\",\r\n    \"numberOfPeriods\": 26,\r\n    \"keyCompetency\": \" Use trigonometric circle and identities to determine trigonometric ratios and apply them to solve related problems\",\r\n    \"content\": {\r\n        \"knowledgeAndUnderstanding\": [\r\n             {\r\n                \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\"\r\n            },\r\n            {\r\n                \"topic\": \"know special values (30 degree, 45degree, 60degree). - Convert radians to degree and vice versa. \"\r\n            },\r\n            {\r\n                \"topic\": \"Differentiate between complementary angles, supplementary angles and coterminal angles \"\r\n            }\r\n        ],\r\n        \"skills\": [\r\n            {\r\n                \"topic\": \"Represent graphically sine, cosine and tangent, functions and, together with the unit circle, use to relate values of any angle to the value for a positive acute angle \"\r\n            },\r\n            {\r\n                \"topic\": \"Use trigonometry, including the sine and cosine rules, to solve problems involving triangles \"\r\n            }\r\n        ],\r\n        \"attitudesAndValues\": [\r\n            {\r\n                \"topic\": \"Appreciate the relationshi p between the trigonomet ric values for different angles \"\r\n            },\r\n            {\r\n                \"topic\": \"Verify reasonable ness of answers when solving problems \"\r\n            }\r\n        ]\r\n    },\r\n    \"activities\": [\r\n        {\r\n            \"activity\": \"Mental task – imagine a point on the edge of a wheel – as the wheel turns how high is the point above the centre? – sketch the graph \"\r\n        },\r\n        {\r\n            \"activity\": \"Practical – on graph paper draw circle of 10cm radius and measure half chord length and distance from the centre to chord for angles (say multiples of 15 degree ) – plot use calculator to determine which is sine and cosine. What is the radius of the calculator’s circle? – unit circle  \"\r\n        },\r\n        {\r\n            \"activity\": \"Use of dynamic geometry and graph plotting to illustrate relationship e.g. geogebra \"\r\n        },\r\n        {\r\n            \"activity\": \"In groups use unit circle and graphs to determine the relationship between trigonometric functions of any angle and the value for an acute positive angle – generalise. \"\r\n        },\r\n        {\r\n            \"activity\": \"Group investigation -What angle subtends an arc length equal to the radius? – define a radian, make a table of equivalences \"\r\n        },\r\n        {\r\n            \"activity\": \"Derive trigonometric identities, sine and cosine rules \"\r\n        },\r\n        {\r\n            \"activity\": \"Apply trigonometry to practical problems involving triangles and angles.\"\r\n        }\r\n    ]\r\n}",
+									"raw": "{\r\n    \"name\": \"Fundamentals of trigonometry\",\r\n    \"topic\": \"602c35c1e02a0e3a3878ae39\",\r\n    \"subTopic\": \"602c37a5edf8520e142247a1\",\r\n    \"numberOfPeriods\": 26,\r\n    \"keyCompetency\": \" Use trigonometric circle and identities to determine trigonometric ratios and apply them to solve related problems\",\r\n    \"content\": {\r\n        \"knowledgeAndUnderstanding\": [\r\n             {\r\n                \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\"\r\n            },\r\n            {\r\n                \"topic\": \"know special values (30 degree, 45degree, 60degree). - Convert radians to degree and vice versa. \"\r\n            },\r\n            {\r\n                \"topic\": \"Differentiate between complementary angles, supplementary angles and coterminal angles \"\r\n            }\r\n        ],\r\n        \"skills\": [\r\n            {\r\n                \"topic\": \"Represent graphically sine, cosine and tangent, functions and, together with the unit circle, use to relate values of any angle to the value for a positive acute angle \"\r\n            },\r\n            {\r\n                \"topic\": \"Use trigonometry, including the sine and cosine rules, to solve problems involving triangles \"\r\n            }\r\n        ],\r\n        \"attitudesAndValues\": [\r\n            {\r\n                \"topic\": \"Appreciate the relationshi p between the trigonomet ric values for different angles \"\r\n            },\r\n            {\r\n                \"topic\": \"Verify reasonable ness of answers when solving problems \"\r\n            }\r\n        ]\r\n    },\r\n    \"activities\": [\r\n        {\r\n            \"activity\": \"Mental task – imagine a point on the edge of a wheel – as the wheel turns how high is the point above the centre? – sketch the graph \"\r\n        },\r\n        {\r\n            \"activity\": \"Practical – on graph paper draw circle of 10cm radius and measure half chord length and distance from the centre to chord for angles (say multiples of 15 degree ) – plot use calculator to determine which is sine and cosine. What is the radius of the calculator’s circle? – unit circle  \"\r\n        },\r\n        {\r\n            \"activity\": \"Use of dynamic geometry and graph plotting to illustrate relationship e.g. geogebra \"\r\n        },\r\n        {\r\n            \"activity\": \"In groups use unit circle and graphs to determine the relationship between trigonometric functions of any angle and the value for an acute positive angle – generalise. \"\r\n        },\r\n        {\r\n            \"activity\": \"Group investigation -What angle subtends an arc length equal to the radius? – define a radian, make a table of equivalences \"\r\n        },\r\n        {\r\n            \"activity\": \"Derive trigonometric identities, sine and cosine rules \"\r\n        },\r\n        {\r\n            \"activity\": \"Apply trigonometry to practical problems involving triangles and angles.\"\r\n        }\r\n    ]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -3527,6 +3853,40 @@
 							"response": []
 						},
 						{
+							"name": "get topic units",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/lessons/units/602c35c1e02a0e3a3878ae39/topic-units",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"lessons",
+										"units",
+										"602c35c1e02a0e3a3878ae39",
+										"topic-units"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "delete",
 							"request": {
 								"method": "DELETE",
@@ -3559,167 +3919,6 @@
 					]
 				},
 				{
-					"name": "unit plan",
-					"item": [
-						{
-							"name": "create",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"unit\": \"60509e4db4cebe27688acd3b\",\r\n    \"time\": {\r\n        \"start\" : \"2021-06-31T17:58:09.010+00:00\",\r\n        \"end\" : \"2021-07-31T17:58:09.010+00:00\"\r\n    },\r\n    \"subject\": \"602c349dfd1613203834880d\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:9000/api/lessons/unit-plans",
-									"host": [
-										"localhost"
-									],
-									"port": "9000",
-									"path": [
-										"api",
-										"lessons",
-										"unit-plans"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "update",
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"time\": {\r\n        \"start\": \"2021-07-01T17:58:09.010Z\",\r\n        \"end\": \"2021-07-31T17:58:09.010Z\"\r\n    },\r\n    \"name\": \"Fundamentals of trigonometry updated\",\r\n    \"keyCompetency\": \" Use trigonometric circle and identities to determine trigonometric ratios and apply them to solve related problems\",\r\n    \"content\": {\r\n        \"knowledgeAndUnderstanding\": [\r\n            {\r\n                \"numberOftimesTaught\": 0,\r\n                \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\"\r\n            },\r\n            {\r\n                \"numberOftimesTaught\": 0,\r\n                \"topic\": \"know special values (30 degree, 45degree, 60degree). - Convert radians to degree and vice versa. \"\r\n            },\r\n            {\r\n                \"numberOftimesTaught\": 0,\r\n                \"topic\": \"Differentiate between complementary angles, supplementary angles and coterminal angles \"\r\n            }\r\n        ],\r\n        \"skills\": [\r\n            {\r\n                \"numberOftimesTaught\": 0,\r\n                \"topic\": \"Represent graphically sine, cosine and tangent, functions and, together with the unit circle, use to relate values of any angle to the value for a positive acute angle \"\r\n            },\r\n            {\r\n                \"numberOftimesTaught\": 0,\r\n                \"topic\": \"Use trigonometry, including the sine and cosine rules, to solve problems involving triangles \"\r\n            }\r\n        ],\r\n        \"attitudesAndValues\": [\r\n            {\r\n                \"numberOftimesTaught\": 0,\r\n                \"topic\": \"Appreciate the relationshi p between the trigonomet ric values for different angles \"\r\n            },\r\n            {\r\n                \"numberOftimesTaught\": 0,\r\n                \"topic\": \"Verify reasonable ness of answers when solving problems \"\r\n            }\r\n        ]\r\n    },\r\n    \"activities\": [\r\n        {\r\n            \"numberOftimesTaught\": 0,\r\n            \"activity\": \"Mental task – imagine a point on the edge of a wheel – as the wheel turns how high is the point above the centre? – sketch the graph \"\r\n        },\r\n        {\r\n            \"numberOftimesTaught\": 0,\r\n            \"activity\": \"Practical – on graph paper draw circle of 10cm radius and measure half chord length and distance from the centre to chord for angles (say multiples of 15 degree ) – plot use calculator to determine which is sine and cosine. What is the radius of the calculator’s circle? – unit circle  \"\r\n        },\r\n        {\r\n            \"numberOftimesTaught\": 0,\r\n            \"activity\": \"Use of dynamic geometry and graph plotting to illustrate relationship e.g. geogebra \"\r\n        },\r\n        {\r\n            \"numberOftimesTaught\": 0,\r\n            \"activity\": \"In groups use unit circle and graphs to determine the relationship between trigonometric functions of any angle and the value for an acute positive angle – generalise. \"\r\n        },\r\n        {\r\n            \"numberOftimesTaught\": 0,\r\n            \"activity\": \"Group investigation -What angle subtends an arc length equal to the radius? – define a radian, make a table of equivalences \"\r\n        },\r\n        {\r\n            \"numberOftimesTaught\": 0,\r\n            \"activity\": \"Derive trigonometric identities, sine and cosine rules \"\r\n        },\r\n        {\r\n            \"numberOftimesTaught\": 0,\r\n            \"activity\": \"Apply trigonometry to practical problems involving triangles and angles.\"\r\n        }\r\n    ]\r\n}\r\n   ",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:9000/api/lessons/unit-plans/60473131fe2fc60c449b5f5b",
-									"host": [
-										"localhost"
-									],
-									"port": "9000",
-									"path": [
-										"api",
-										"lessons",
-										"unit-plans",
-										"60473131fe2fc60c449b5f5b"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "get one {unitId}",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:9000/api/lessons/unit-plans/6035240d55ca8b00360caf0f",
-									"host": [
-										"localhost"
-									],
-									"port": "9000",
-									"path": [
-										"api",
-										"lessons",
-										"unit-plans",
-										"6035240d55ca8b00360caf0f"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "get subject unit plans",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:9000/api/lessons/unit-plans/602c349dfd1613203834880d/subject-unit-plans",
-									"host": [
-										"localhost"
-									],
-									"port": "9000",
-									"path": [
-										"api",
-										"lessons",
-										"unit-plans",
-										"602c349dfd1613203834880d",
-										"subject-unit-plans"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "delete",
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:9000/api/lessons/unit-plans/6047219a62faf531b8323b38",
-									"host": [
-										"localhost"
-									],
-									"port": "9000",
-									"path": [
-										"api",
-										"lessons",
-										"unit-plans",
-										"6047219a62faf531b8323b38"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
 					"name": "lesson plan",
 					"item": [
 						{
@@ -3729,7 +3928,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"unit\": \"602c38ced3f6860698532d2f\",\r\n    \"unitPlanId\": \"60473131fe2fc60c449b5f5b\",\r\n    \"subject\": \"602c349dfd1613203834880d\",\r\n    \"keyUnitCompetency\": \"Use trigonometric circle and identities to determine trigonometric ratios and apply them to solve related problems\",\r\n    \"lessonNumber\": 1,\r\n    \"lessonName\": \"First lesson \",\r\n    \"knowledge\": {\r\n        \"topics\": [\r\n            {\r\n                \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\",\r\n                \"bloomTaxonomy\": \"REMEMBERING\",\r\n                \"standardCriteriaPerfomance\": 80\r\n            },\r\n            {\r\n                \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\",\r\n                \"bloomTaxonomy\": \"REMEMBERING\",\r\n                \"standardCriteriaPerfomance\": 50,\r\n                \"selfCreated\": true\r\n            }\r\n        ],\r\n        \"instructionalMaterial\": [\r\n            {\r\n                \"materialType\":\"\",\r\n                \"items\": [\r\n                    {\r\n                        \"item\" :\"TextBooks\"\r\n                    },\r\n                    {\r\n                        \"item\" :\"Handouts\"\r\n                    }\r\n                ],\r\n                \"uploads\": [\r\n                    {\"file1\": \"....\"}\r\n                ]\r\n            }\r\n        ],\r\n        \"otherMaterialsAndReferences\": \"N/A\"\r\n    },\r\n    \"skills\": {\r\n        \"topics\": [\r\n            {\r\n                \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\",\r\n                \"bloomTaxonomy\": \"REMEMBERING\",\r\n                \"standardCriteriaPerfomance\": 80\r\n            },\r\n            {\r\n                \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\",\r\n                \"bloomTaxonomy\": \"REMEMBERING\",\r\n                \"standardCriteriaPerfomance\": 50\r\n            }\r\n        ],\r\n        \"instructionalMaterial\": [\r\n            {\r\n                \"materialType\":\"\",\r\n                \"items\": [\r\n                    {\r\n                        \"item\" :\"TextBooks\"\r\n                    },\r\n                    {\r\n                        \"item\" :\"Handouts\"\r\n                    }\r\n                ],\r\n                \"uploads\": [\r\n                    {\"file1\": \"....\"}\r\n                ]\r\n            }\r\n        ],\r\n        \"otherMaterialsAndReferences\": \"N/A\"\r\n    },\r\n    \"attitudesAndValues\": {\r\n        \"topics\": [\r\n            {\r\n                \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\",\r\n                \"bloomTaxonomy\": \"REMEMBERING\",\r\n                \"standardCriteriaPerfomance\": 80\r\n            },\r\n            {\r\n                \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\",\r\n                \"bloomTaxonomy\": \"REMEMBERING\",\r\n                \"standardCriteriaPerfomance\": 50\r\n            }\r\n        ],\r\n        \"instructionalMaterial\": [\r\n            {\r\n                \"materialType\":\"\",\r\n                \"items\": [\r\n                    {\r\n                        \"item\" :\"TextBooks\"\r\n                    },\r\n                    {\r\n                        \"item\" :\"Handouts\"\r\n                    }\r\n                ],\r\n                \"uploads\": [\r\n                    {\"file1\": \"....\"}\r\n                ]\r\n            }\r\n        ],\r\n        \"otherMaterialsAndReferences\": \"N/A\"\r\n    },\r\n\r\n    \"activities\": {\r\n        \"introduction\": {\r\n            \"content\": {\r\n                \"activities\": [\r\n                    {\r\n                        \"activity\": \"Mental task – imagine a point on the edge of a wheel – as the wheel turns how high is the point above the centre? – sketch the graph \"\r\n                    }\r\n                ],\r\n                \"otherActivity\": \"\"\r\n            },\r\n            \"crossCuttingIssues\": {\r\n                \"issues\": [\r\n                    {\r\n                        \"issue\": \"ENVIRONMENT-AND-SUSTAINABILITY\"\r\n                    }\r\n                ],\r\n                \"omment\": \"No comment\"\r\n            },\r\n            \"competency\": {\r\n                \"competencies\": [\r\n                    {\r\n                        \"competency\": \"RESEARCH-AND-PROBLEM-SOLVING\"\r\n                    }\r\n                ],\r\n                \"comment\": \"No comment\"\r\n            },\r\n            \"exercises\": {\r\n                \"questions\": [\r\n                    {\r\n                    \"difficultLevel\": \"MEDIUM\",\r\n                    \"questionsObjective\": \"REMEMBERING\",\r\n                    \"question\": \"What is the answer\",\r\n                    \"questionType\": \"MULTI-CHOICE\",\r\n                    \"possibleAnswer\": [\r\n                        {\r\n                            \"answer\": \"answer\"\r\n                        },\r\n                        {\r\n                            \"answer\": \"answer2\"\r\n                        },\r\n                        {\r\n                            \"answer\": \"answer3\"\r\n                        }\r\n                    ],\r\n                    \"answers\": [\r\n                        {\r\n                            \"answer\": \"answer2\"\r\n                        },\r\n                        {\r\n                            \"answer\": \"answer3\"\r\n                        }\r\n                    ],\r\n                    \"points\": 10\r\n                        \r\n                    }\r\n                ]\r\n            }\r\n        },\r\n        \"development\": {\r\n            \"content\": {\r\n                \"activities\": [\r\n                    {\r\n                        \"activity\": \"Mental task – imagine a point on the edge of a wheel – as the wheel turns how high is the point above the centre? – sketch the graph \"\r\n                    }\r\n                ],\r\n                \"otherActivity\": \"\"\r\n            },\r\n            \"crossCuttingIssues\": {\r\n                \"issues\": [\r\n                    {\r\n                        \"issue\": \"ENVIRONMENT-AND-SUSTAINABILITY\"\r\n                    }\r\n                ],\r\n                \"omment\": \"No comment\"\r\n            },\r\n            \"competency\": {\r\n                \"competencies\": [\r\n                    {\r\n                        \"competency\": \"RESEARCH-AND-PROBLEM-SOLVING\"\r\n                    }\r\n                ],\r\n                \"comment\": \"No comment\"\r\n            },\r\n            \"exercises\": {\r\n                \"questions\": [\r\n                    {\r\n                    \"difficultLevel\": \"MEDIUM\",\r\n                    \"questionsObjective\": \"REMEMBERING\",\r\n                    \"question\": \"What is the answer\",\r\n                    \"questionType\": \"MULTI-CHOICE\",\r\n                    \"possibleAnswer\": [\r\n                        {\r\n                            \"answer\": \"answer\"\r\n                        },\r\n                        {\r\n                            \"answer\": \"answer2\"\r\n                        },\r\n                        {\r\n                            \"answer\": \"answer3\"\r\n                        }\r\n                    ],\r\n                    \"answers\": [\r\n                        {\r\n                            \"answer\": \"answer2\"\r\n                        },\r\n                        {\r\n                            \"answer\": \"answer3\"\r\n                        }\r\n                    ],\r\n                    \"points\": 10\r\n                        \r\n                    }\r\n                ]\r\n            }\r\n        },\r\n        \"conclusion\": {\r\n            \"content\": {\r\n                \"activities\": [\r\n                    {\r\n                        \"activity\": \"Mental task – imagine a point on the edge of a wheel – as the wheel turns how high is the point above the centre? – sketch the graph \"\r\n                    }\r\n                ],\r\n                \"otherActivity\": \"\"\r\n            },\r\n            \"crossCuttingIssues\": {\r\n                \"issues\": [\r\n                    {\r\n                        \"issue\": \"ENVIRONMENT-AND-SUSTAINABILITY\"\r\n                    }\r\n                ],\r\n                \"omment\": \"No comment\"\r\n            },\r\n            \"competency\": {\r\n                \"competencies\": [\r\n                    {\r\n                        \"competency\": \"RESEARCH-AND-PROBLEM-SOLVING\"\r\n                    }\r\n                ],\r\n                \"comment\": \"No comment\"\r\n            },\r\n            \"exercises\": {\r\n                \"questions\": [\r\n                    {\r\n                    \"difficultLevel\": \"MEDIUM\",\r\n                    \"questionsObjective\": \"REMEMBERING\",\r\n                    \"question\": \"What is the answer\",\r\n                    \"questionType\": \"MULTI-CHOICE\",\r\n                    \"possibleAnswer\": [\r\n                        {\r\n                            \"answer\": \"answer\"\r\n                        },\r\n                        {\r\n                            \"answer\": \"answer2\"\r\n                        },\r\n                        {\r\n                            \"answer\": \"answer3\"\r\n                        }\r\n                    ],\r\n                    \"answers\": [\r\n                        {\r\n                            \"answer\": \"answer2\"\r\n                        },\r\n                        {\r\n                            \"answer\": \"answer3\"\r\n                        }\r\n                    ],\r\n                    \"points\": 10\r\n                        \r\n                    }\r\n                ]\r\n            }\r\n        }\r\n    },\r\n    \"teachingTechniques\": {\r\n        \"introduction\": {\r\n            \"contentFocus\": [\r\n                {\r\n                    \"item\": \"LIVE-LECTURING\"\r\n                }\r\n            ],\r\n            \"interactiveFocus\": [\r\n                {\r\n                    \"item\": \"GROUP-WORK\"\r\n                }\r\n            ],\r\n            \"criticalThinking\": [\r\n                {\r\n                    \"item\": \"CLASS-DISCUSSIONS-DEBATES\"\r\n                }\r\n            ],\r\n            \"production\": [\r\n                {\r\n                    \"item\": \"SKILLS-PRACTICE\"\r\n                }\r\n            ],\r\n            \"problemSolving\": [\r\n                {\r\n                    \"item\": \"RESEARCH-INQUIRY\"\r\n                }\r\n            ],\r\n            \"reflection\": [\r\n                {\r\n                    \"item\": \"REFLECTION-ON-LEARNING\"\r\n                }\r\n            ],\r\n            \"sitingArrangement\": [\r\n                {\r\n                    \"item\": \"LECTURE/INDEPENDENT-WORK/TEST\"\r\n                }\r\n            ],\r\n            \"duration\": 10\r\n        },\r\n        \"development\": {\r\n            \"contentFocus\": [\r\n                {\r\n                    \"item\": \"LIVE-LECTURING\"\r\n                }\r\n            ],\r\n            \"interactiveFocus\": [\r\n                {\r\n                    \"item\": \"GROUP-WORK\"\r\n                }\r\n            ],\r\n            \"criticalThinking\": [\r\n                {\r\n                    \"item\": \"CLASS-DISCUSSIONS-DEBATES\"\r\n                }\r\n            ],\r\n            \"production\": [\r\n                {\r\n                    \"item\": \"SKILLS-PRACTICE\"\r\n                }\r\n            ],\r\n            \"problemSolving\": [\r\n                {\r\n                    \"item\": \"RESEARCH-INQUIRY\"\r\n                }\r\n            ],\r\n            \"reflection\": [\r\n                {\r\n                    \"item\": \"REFLECTION-ON-LEARNING\"\r\n                }\r\n            ],\r\n            \"sitingArrangement\": [\r\n                {\r\n                    \"item\": \"LECTURE/INDEPENDENT-WORK/TEST\"\r\n                }\r\n            ],\r\n            \"duration\": 10\r\n        },\r\n        \"conclusion\": {\r\n            \"contentFocus\": [\r\n                {\r\n                    \"item\": \"LIVE-LECTURING\"\r\n                }\r\n            ],\r\n            \"interactiveFocus\": [\r\n                {\r\n                    \"item\": \"GROUP-WORK\"\r\n                }\r\n            ],\r\n            \"criticalThinking\": [\r\n                {\r\n                    \"item\": \"CLASS-DISCUSSIONS-DEBATES\"\r\n                }\r\n            ],\r\n            \"production\": [\r\n                {\r\n                    \"item\": \"SKILLS-PRACTICE\"\r\n                }\r\n            ],\r\n            \"problemSolving\": [\r\n                {\r\n                    \"item\": \"RESEARCH-INQUIRY\"\r\n                }\r\n            ],\r\n            \"reflection\": [\r\n                {\r\n                    \"item\": \"REFLECTION-ON-LEARNING\"\r\n                }\r\n            ],\r\n            \"sitingArrangement\": [\r\n                {\r\n                    \"item\": \"LECTURE/INDEPENDENT-WORK/TEST\"\r\n                }\r\n            ],\r\n            \"duration\": 10\r\n        }\r\n    },\r\n    \"time\": {\r\n        \"day\": \"2021-06-31T17:58:09.010+00:00\",\r\n        \"slotOnTimetable\": \"603159c6191af33cdc989ff0\"\r\n    }\r\n}",
+									"raw": "{\r\n    \"unit\": \"602c38ced3f6860698532d2f\",\r\n    \"unitPlanId\": \"60473131fe2fc60c449b5f5b\",\r\n    \"assignedClass\": \"602c20e5eeb9ae2820b62123\",\r\n    \"subject\": \"602c349dfd1613203834880d\",\r\n    \"keyUnitCompetency\": \"Use trigonometric circle and identities to determine trigonometric ratios and apply them to solve related problems\",\r\n    \"lessonNumber\": 1,\r\n    \"lessonName\": \"First lesson \",\r\n    \"knowledge\": {\r\n        \"topics\": [\r\n            {\r\n                \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\",\r\n                \"bloomTaxonomy\": \"REMEMBERING\",\r\n                \"standardCriteriaPerfomance\": 80\r\n            },\r\n            {\r\n                \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\",\r\n                \"bloomTaxonomy\": \"REMEMBERING\",\r\n                \"standardCriteriaPerfomance\": 50,\r\n                \"selfCreated\": true\r\n            }\r\n        ],\r\n        \"instructionalMaterial\": [\r\n            {\r\n                \"materialType\":\"\",\r\n                \"items\": [\r\n                    {\r\n                        \"item\" :\"TextBooks\"\r\n                    },\r\n                    {\r\n                        \"item\" :\"Handouts\"\r\n                    }\r\n                ],\r\n                \"uploads\": [\r\n                    {\"file1\": \"....\"}\r\n                ]\r\n            }\r\n        ],\r\n        \"otherMaterialsAndReferences\": \"N/A\"\r\n    },\r\n    \"skills\": {\r\n        \"topics\": [\r\n            {\r\n                \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\",\r\n                \"bloomTaxonomy\": \"REMEMBERING\",\r\n                \"standardCriteriaPerfomance\": 80\r\n            },\r\n            {\r\n                \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\",\r\n                \"bloomTaxonomy\": \"REMEMBERING\",\r\n                \"standardCriteriaPerfomance\": 50\r\n            }\r\n        ],\r\n        \"instructionalMaterial\": [\r\n            {\r\n                \"materialType\":\"\",\r\n                \"items\": [\r\n                    {\r\n                        \"item\" :\"TextBooks\"\r\n                    },\r\n                    {\r\n                        \"item\" :\"Handouts\"\r\n                    }\r\n                ],\r\n                \"uploads\": [\r\n                    {\"file1\": \"....\"}\r\n                ]\r\n            }\r\n        ],\r\n        \"otherMaterialsAndReferences\": \"N/A\"\r\n    },\r\n    \"attitudesAndValues\": {\r\n        \"topics\": [\r\n            {\r\n                \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\",\r\n                \"bloomTaxonomy\": \"REMEMBERING\",\r\n                \"standardCriteriaPerfomance\": 80\r\n            },\r\n            {\r\n                \"topic\": \"Define sine, cosine, and tangent  (cosecant, secant and cotangent) of any angle\",\r\n                \"bloomTaxonomy\": \"REMEMBERING\",\r\n                \"standardCriteriaPerfomance\": 50\r\n            }\r\n        ],\r\n        \"instructionalMaterial\": [\r\n            {\r\n                \"materialType\":\"\",\r\n                \"items\": [\r\n                    {\r\n                        \"item\" :\"TextBooks\"\r\n                    },\r\n                    {\r\n                        \"item\" :\"Handouts\"\r\n                    }\r\n                ],\r\n                \"uploads\": [\r\n                    {\"file1\": \"....\"}\r\n                ]\r\n            }\r\n        ],\r\n        \"otherMaterialsAndReferences\": \"N/A\"\r\n    },\r\n    \"activities\": {\r\n        \"introduction\": {\r\n            \"content\": {\r\n                \"activities\": [\r\n                    {\r\n                        \"activity\": \"Mental task – imagine a point on the edge of a wheel – as the wheel turns how high is the point above the centre? – sketch the graph \"\r\n                    }\r\n                ],\r\n                \"otherActivity\": \"\"\r\n            },\r\n            \"crossCuttingIssues\": {\r\n                \"issues\": [\r\n                    {\r\n                        \"issue\": \"ENVIRONMENT-AND-SUSTAINABILITY\"\r\n                    }\r\n                ],\r\n                \"omment\": \"No comment\"\r\n            },\r\n            \"competency\": {\r\n                \"competencies\": [\r\n                    {\r\n                        \"competency\": \"RESEARCH-AND-PROBLEM-SOLVING\"\r\n                    }\r\n                ],\r\n                \"comment\": \"No comment\"\r\n            },\r\n            \"exercises\": {\r\n                \"questions\": [\r\n                    {\r\n                    \"difficultLevel\": \"MEDIUM\",\r\n                    \"questionsObjective\": \"REMEMBERING\",\r\n                    \"question\": \"What is the answer\",\r\n                    \"questionType\": \"MULTI-CHOICE\",\r\n                    \"possibleAnswer\": [\r\n                        {\r\n                            \"answer\": \"answer\"\r\n                        },\r\n                        {\r\n                            \"answer\": \"answer2\"\r\n                        },\r\n                        {\r\n                            \"answer\": \"answer3\"\r\n                        }\r\n                    ],\r\n                    \"answers\": [\r\n                        {\r\n                            \"answer\": \"answer2\"\r\n                        },\r\n                        {\r\n                            \"answer\": \"answer3\"\r\n                        }\r\n                    ],\r\n                    \"points\": 10\r\n                        \r\n                    }\r\n                ]\r\n            }\r\n        },\r\n        \"development\": {\r\n            \"content\": {\r\n                \"activities\": [\r\n                    {\r\n                        \"activity\": \"Mental task – imagine a point on the edge of a wheel – as the wheel turns how high is the point above the centre? – sketch the graph \"\r\n                    }\r\n                ],\r\n                \"otherActivity\": \"\"\r\n            },\r\n            \"crossCuttingIssues\": {\r\n                \"issues\": [\r\n                    {\r\n                        \"issue\": \"ENVIRONMENT-AND-SUSTAINABILITY\"\r\n                    }\r\n                ],\r\n                \"omment\": \"No comment\"\r\n            },\r\n            \"competency\": {\r\n                \"competencies\": [\r\n                    {\r\n                        \"competency\": \"RESEARCH-AND-PROBLEM-SOLVING\"\r\n                    }\r\n                ],\r\n                \"comment\": \"No comment\"\r\n            },\r\n            \"exercises\": {\r\n                \"questions\": [\r\n                    {\r\n                    \"difficultLevel\": \"MEDIUM\",\r\n                    \"questionsObjective\": \"REMEMBERING\",\r\n                    \"question\": \"What is the answer\",\r\n                    \"questionType\": \"MULTI-CHOICE\",\r\n                    \"possibleAnswer\": [\r\n                        {\r\n                            \"answer\": \"answer\"\r\n                        },\r\n                        {\r\n                            \"answer\": \"answer2\"\r\n                        },\r\n                        {\r\n                            \"answer\": \"answer3\"\r\n                        }\r\n                    ],\r\n                    \"answers\": [\r\n                        {\r\n                            \"answer\": \"answer2\"\r\n                        },\r\n                        {\r\n                            \"answer\": \"answer3\"\r\n                        }\r\n                    ],\r\n                    \"points\": 10\r\n                        \r\n                    }\r\n                ]\r\n            }\r\n        },\r\n        \"conclusion\": {\r\n            \"content\": {\r\n                \"activities\": [\r\n                    {\r\n                        \"activity\": \"Mental task – imagine a point on the edge of a wheel – as the wheel turns how high is the point above the centre? – sketch the graph \"\r\n                    }\r\n                ],\r\n                \"otherActivity\": \"\"\r\n            },\r\n            \"crossCuttingIssues\": {\r\n                \"issues\": [\r\n                    {\r\n                        \"issue\": \"ENVIRONMENT-AND-SUSTAINABILITY\"\r\n                    }\r\n                ],\r\n                \"omment\": \"No comment\"\r\n            },\r\n            \"competency\": {\r\n                \"competencies\": [\r\n                    {\r\n                        \"competency\": \"RESEARCH-AND-PROBLEM-SOLVING\"\r\n                    }\r\n                ],\r\n                \"comment\": \"No comment\"\r\n            },\r\n            \"exercises\": {\r\n                \"questions\": [\r\n                    {\r\n                    \"difficultLevel\": \"MEDIUM\",\r\n                    \"questionsObjective\": \"REMEMBERING\",\r\n                    \"question\": \"What is the answer\",\r\n                    \"questionType\": \"MULTI-CHOICE\",\r\n                    \"possibleAnswer\": [\r\n                        {\r\n                            \"answer\": \"answer\"\r\n                        },\r\n                        {\r\n                            \"answer\": \"answer2\"\r\n                        },\r\n                        {\r\n                            \"answer\": \"answer3\"\r\n                        }\r\n                    ],\r\n                    \"answers\": [\r\n                        {\r\n                            \"answer\": \"answer2\"\r\n                        },\r\n                        {\r\n                            \"answer\": \"answer3\"\r\n                        }\r\n                    ],\r\n                    \"points\": 10\r\n                        \r\n                    }\r\n                ]\r\n            }\r\n        }\r\n    },\r\n    \"teachingTechniques\": {\r\n        \"introduction\": {\r\n            \"contentFocus\": [\r\n                {\r\n                    \"item\": \"LIVE-LECTURING\"\r\n                }\r\n            ],\r\n            \"interactiveFocus\": [\r\n                {\r\n                    \"item\": \"GROUP-WORK\"\r\n                }\r\n            ],\r\n            \"criticalThinking\": [\r\n                {\r\n                    \"item\": \"CLASS-DISCUSSIONS-DEBATES\"\r\n                }\r\n            ],\r\n            \"production\": [\r\n                {\r\n                    \"item\": \"SKILLS-PRACTICE\"\r\n                }\r\n            ],\r\n            \"problemSolving\": [\r\n                {\r\n                    \"item\": \"RESEARCH-INQUIRY\"\r\n                }\r\n            ],\r\n            \"reflection\": [\r\n                {\r\n                    \"item\": \"REFLECTION-ON-LEARNING\"\r\n                }\r\n            ],\r\n            \"sitingArrangement\": [\r\n                {\r\n                    \"item\": \"LECTURE/INDEPENDENT-WORK/TEST\"\r\n                }\r\n            ],\r\n            \"duration\": 10\r\n        },\r\n        \"development\": {\r\n            \"contentFocus\": [\r\n                {\r\n                    \"item\": \"LIVE-LECTURING\"\r\n                }\r\n            ],\r\n            \"interactiveFocus\": [\r\n                {\r\n                    \"item\": \"GROUP-WORK\"\r\n                }\r\n            ],\r\n            \"criticalThinking\": [\r\n                {\r\n                    \"item\": \"CLASS-DISCUSSIONS-DEBATES\"\r\n                }\r\n            ],\r\n            \"production\": [\r\n                {\r\n                    \"item\": \"SKILLS-PRACTICE\"\r\n                }\r\n            ],\r\n            \"problemSolving\": [\r\n                {\r\n                    \"item\": \"RESEARCH-INQUIRY\"\r\n                }\r\n            ],\r\n            \"reflection\": [\r\n                {\r\n                    \"item\": \"REFLECTION-ON-LEARNING\"\r\n                }\r\n            ],\r\n            \"sitingArrangement\": [\r\n                {\r\n                    \"item\": \"LECTURE/INDEPENDENT-WORK/TEST\"\r\n                }\r\n            ],\r\n            \"duration\": 10\r\n        },\r\n        \"conclusion\": {\r\n            \"contentFocus\": [\r\n                {\r\n                    \"item\": \"LIVE-LECTURING\"\r\n                }\r\n            ],\r\n            \"interactiveFocus\": [\r\n                {\r\n                    \"item\": \"GROUP-WORK\"\r\n                }\r\n            ],\r\n            \"criticalThinking\": [\r\n                {\r\n                    \"item\": \"CLASS-DISCUSSIONS-DEBATES\"\r\n                }\r\n            ],\r\n            \"production\": [\r\n                {\r\n                    \"item\": \"SKILLS-PRACTICE\"\r\n                }\r\n            ],\r\n            \"problemSolving\": [\r\n                {\r\n                    \"item\": \"RESEARCH-INQUIRY\"\r\n                }\r\n            ],\r\n            \"reflection\": [\r\n                {\r\n                    \"item\": \"REFLECTION-ON-LEARNING\"\r\n                }\r\n            ],\r\n            \"sitingArrangement\": [\r\n                {\r\n                    \"item\": \"LECTURE/INDEPENDENT-WORK/TEST\"\r\n                }\r\n            ],\r\n            \"duration\": 10\r\n        }\r\n    },\r\n    \"time\": {\r\n        \"day\": \"2021-06-31T17:58:09.010+00:00\",\r\n        \"slotOnTimetable\": \"603159c6191af33cdc989ff0\"\r\n    }\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -3830,7 +4029,7 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:9000/api/lessons/plans/60311a2b701e7a2790f9ce6a",
+									"raw": "localhost:9000/api/lessons/plans/605e3582c1cabc275845ff16",
 									"host": [
 										"localhost"
 									],
@@ -3839,7 +4038,7 @@
 										"api",
 										"lessons",
 										"plans",
-										"60311a2b701e7a2790f9ce6a"
+										"605e3582c1cabc275845ff16"
 									]
 								}
 							},
@@ -3991,7 +4190,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"students\": [\r\n        {\r\n            \"_id\": \"602c2368bd2ce42e800e0f36\"\r\n        },\r\n        {\r\n            \"_id\": \"602c23ddbd2ce42e800e0f37\"\r\n        }\r\n    ],\r\n    \"positive\": true,\r\n    \"firstLevel\": \"Cooperation and social harmony\",\r\n    \"record\": [\r\n        {\r\n            \"secondLevel\": \"Emotional response\",\r\n            \"thirdLevel\": \"Admiration\"\r\n        },\r\n        {\r\n            \"secondLevel\": \"Attention span\",\r\n            \"thirdLevel\": \"Anticipation\"\r\n        }\r\n    ]\r\n}",
+							"raw": "{\r\n    \"students\": [\r\n        {\r\n            \"_id\": \"602c2368bd2ce42e800e0f36\"\r\n        },\r\n        {\r\n            \"_id\": \"602c23ddbd2ce42e800e0f37\"\r\n        },\r\n        {\r\n            \"_id\": \"602c29b1fbd19a388cb523f2\"\r\n        },\r\n        {\r\n            \"_id\": \"60478b277576322c809a6841\"\r\n        }\r\n    ],\r\n    \"positive\": true,\r\n    \"firstLevel\": \"Cooperation and social harmony\",\r\n    \"record\": [\r\n        {\r\n            \"secondLevel\": \"Emotional response\",\r\n            \"thirdLevel\": \"Admiration\"\r\n        },\r\n        {\r\n            \"secondLevel\": \"Attention span\",\r\n            \"thirdLevel\": \"Anticipation\"\r\n        }\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3999,7 +4198,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:9000/api/participations/60574a0e54f7cb07b80cfa5b",
+							"raw": "localhost:9000/api/participations/6068151c40998d0640dea6d4",
 							"host": [
 								"localhost"
 							],
@@ -4007,7 +4206,7 @@
 							"path": [
 								"api",
 								"participations",
-								"60574a0e54f7cb07b80cfa5b"
+								"6068151c40998d0640dea6d4"
 							]
 						}
 					},
@@ -4020,7 +4219,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"student\": \"602c23ddbd2ce42e800e0f37\",\r\n    \"comment\": \"Comment test\"\r\n} ",
+							"raw": "{\r\n    \"comment\": \"Comment test\"\r\n} ",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -4028,7 +4227,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:9000/api/participations/60558d01eda8203cfc877dd9/comment",
+							"raw": "localhost:9000/api/participations/602c23ddbd2ce42e800e0f37/comment",
 							"host": [
 								"localhost"
 							],
@@ -4036,7 +4235,7 @@
 							"path": [
 								"api",
 								"participations",
-								"60558d01eda8203cfc877dd9",
+								"602c23ddbd2ce42e800e0f37",
 								"comment"
 							]
 						}
@@ -4061,7 +4260,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:9000/api/participations/602c20e5eeb9ae2820b62123",
+							"raw": "localhost:9000/api/participations/602c20e5eeb9ae2820b62123/602c349dfd1613203834880d",
 							"host": [
 								"localhost"
 							],
@@ -4069,7 +4268,8 @@
 							"path": [
 								"api",
 								"participations",
-								"602c20e5eeb9ae2820b62123"
+								"602c20e5eeb9ae2820b62123",
+								"602c349dfd1613203834880d"
 							]
 						}
 					},
@@ -4119,7 +4319,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"slotOnTimetable\": \"603159c6191af33cdc989ff0\",\r\n    \"subject\": \"602c349dfd1613203834880d\",\r\n    \"assignedClass\": \"602c20e5eeb9ae2820b62123\",\r\n    \"students\": [\r\n        {\r\n            \"student\": \"602c2368bd2ce42e800e0f37\",\r\n            \"present\": true\r\n        },\r\n        {\r\n            \"student\": \"602c2368bd2ce42e800e0f36\",\r\n            \"present\": false\r\n        }\r\n    ]\r\n}",
+									"raw": "{\r\n    \"slotOnTimetable\": \"605b8c332e31ea23b4c387b3\",\r\n    \"subject\": \"602c349dfd1613203834880d\",\r\n    \"assignedClass\": \"602c20e5eeb9ae2820b62123\",\r\n    \"students\": [\r\n        {\r\n            \"student\": \"602c23ddbd2ce42e800e0f37\",\r\n            \"present\": true\r\n        },\r\n        {\r\n            \"student\": \"602c2368bd2ce42e800e0f36\",\r\n            \"present\": false\r\n        }\r\n    ]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -4295,7 +4495,7 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:9000/api/attendances/class-attendances/602c2368bd2ce42e800e0f36/student",
+									"raw": "localhost:9000/api/attendances/class-attendances/602c23ddbd2ce42e800e0f37/student",
 									"host": [
 										"localhost"
 									],
@@ -4304,7 +4504,7 @@
 										"api",
 										"attendances",
 										"class-attendances",
-										"602c2368bd2ce42e800e0f36",
+										"602c23ddbd2ce42e800e0f37",
 										"student"
 									]
 								}
@@ -4390,7 +4590,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"subject\": \"602c349dfd1613203834880d\",\r\n    \"unit\": \"602c38ced3f6860698532d2f\",\r\n    \"difficultLevel\": \"EASY\",\r\n    \"questionsObjective\": \"REMEMBERING\",\r\n    \"question\": \"What is your answer\",\r\n    \"questionType\": \"MULTI-CHOICE\",\r\n    \"possibleAnswer\": [\r\n        {\r\n            \"answer\": \"answer 1\"\r\n        },\r\n        {\r\n            \"answer\": \"answer 2\"\r\n        },\r\n        {\r\n            \"answer\": \"answer 3\"\r\n        }\r\n    ],\r\n    \"answer\": [\r\n        {\r\n            \"answer\": \"answer 1\"\r\n        },\r\n        {\r\n            \"answer\": \"answer 2\"\r\n        }\r\n    ]\r\n}",
+							"raw": "{\r\n    \"subject\": \"602c349dfd1613203834880d\",\r\n    \"unit\": \"60509e4db4cebe27688acd3b\",\r\n    \"difficultLevel\": \"EASY\",\r\n    \"questionsObjective\": \"REMEMBERING\",\r\n    \"question\": \"What is your answer\",\r\n    \"questionType\": \"MULTI-CHOICE\",\r\n    \"possibleAnswer\": [\r\n        {\r\n            \"answer\": \"answer 1\"\r\n        },\r\n        {\r\n            \"answer\": \"answer 2\"\r\n        },\r\n        {\r\n            \"answer\": \"answer 3\"\r\n        }\r\n    ],\r\n    \"answer\": [\r\n        {\r\n            \"answer\": \"answer 1\"\r\n        },\r\n        {\r\n            \"answer\": \"answer 2\"\r\n        }\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -4491,7 +4691,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:9000/api/question-banks/602c38ced3f6860698532d2f/unit-question-bank",
+							"raw": "localhost:9000/api/question-banks/60509e4db4cebe27688acd3b/unit-question-bank",
 							"host": [
 								"localhost"
 							],
@@ -4499,8 +4699,40 @@
 							"path": [
 								"api",
 								"question-banks",
-								"602c38ced3f6860698532d2f",
+								"60509e4db4cebe27688acd3b",
 								"unit-question-bank"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get units list question bank",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"unitsList\": [\"60509e4db4cebe27688acd3b\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/question-banks/units-list-question-bank",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"question-banks",
+								"units-list-question-bank"
 							]
 						}
 					},
