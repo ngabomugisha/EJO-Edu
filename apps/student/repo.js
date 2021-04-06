@@ -92,7 +92,8 @@ exports.update = async (
 exports.getAllClassStudents = async (classId) => {
     try {
         return await Student.find({
-                class: classId
+                class: classId,
+                expelled: false
             })
             .then(res => {
                 return res;
@@ -141,6 +142,36 @@ exports.getOneStudent = async (studentId) => {
 exports.delete = async (studentId) => {
     try {
         return await Student.findByIdAndDelete(studentId);
+    } catch (error) {
+        throw error;
+    }
+}
+
+exports.expel = async (
+    studentId,
+    expelled,
+    school
+) => {
+    try {
+        console.log(studentId,
+            expelled,
+            school)
+        return await Student.findOneAndUpdate({
+                _id: studentId,
+                school: school
+            }, {
+                expelled: expelled
+            }, {
+                new: true
+            },
+            (err, success) => {
+                if (err) {
+                    console.log(err);
+                    return false;
+                }
+                return success;
+            }
+        );
     } catch (error) {
         throw error;
     }

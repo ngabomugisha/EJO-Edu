@@ -218,3 +218,31 @@ exports.delete = async (req, res) => {
     }
 
 }
+
+
+exports.expel = async (req, res) => {
+    try {
+        const studentId = req.params.studentId;
+        const {
+            expelled
+        } = req.body;
+        const school = req.user.school
+        Student.expel(
+            studentId,
+            expelled,
+            school
+            )
+            .then(results => {
+                Response.Success(res, 200, "updated successfully", results);
+            })
+            .catch(err => {
+                console.log(err);
+                Response.InternalServerError(res, "We are having issues! please try again soon");
+            });
+
+    } catch (error) {
+        console.log(error);
+        Response.InternalServerError(res, "We are having issues! please try again soon");
+    }
+
+}

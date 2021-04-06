@@ -10,5 +10,6 @@ router.get('/:classId/class-students', Student.getAllClassStudents);
 router.get('/:schoolId/school-students', Student.getAllSchoolStudents);
 router.get('/:studentId', Student.getOneStudent);
 router.delete('/:studentId', Student.delete);
+router.put('/:studentId/expel', Student.expel);
 
 module.exports = router;

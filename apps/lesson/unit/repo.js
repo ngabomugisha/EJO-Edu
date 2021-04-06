@@ -1,10 +1,11 @@
 import Unit from './model'
 
-exports.create = async (name, subTopic, numberOfPeriods, keyCompetency, content, activities) => {
+exports.create = async (name, subTopic, topic, numberOfPeriods, keyCompetency, content, activities) => {
     try {
         const newUnit = new Unit({
             name,
             subTopic,
+            topic, 
             numberOfPeriods,
             keyCompetency,
             content,
@@ -102,10 +103,28 @@ exports.addFile = async (unitId,topic, location, file, fileType) => {
         throw error;
     }
 }
+
 exports.getAllSubTopicUnits = async (subTopicId) => {
     try {
         return await Unit.find({
                 subTopic: subTopicId
+            })
+            .then(res => {
+                return res;
+            })
+            .catch(err => {
+                console.log(err);
+                return false;
+            })
+    } catch (error) {
+        throw error;
+    }
+}
+
+exports.getAllTopicUnits = async (topicId) => {
+    try {
+        return await Unit.find({
+                topic: topicId
             })
             .then(res => {
                 return res;

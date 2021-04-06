@@ -6,13 +6,14 @@ exports.create = async (req, res) => {
         const {
             name,
             subTopic,
+            topic,
             numberOfPeriods,
             keyCompetency,
             content,
             activities
         } = req.body;
 
-        Unit.create(name, subTopic, numberOfPeriods, keyCompetency, content, activities)
+        Unit.create(name, subTopic, topic, numberOfPeriods, keyCompetency, content, activities)
         .then(results => {
             Response.Success(res, 200, "created successfully", results);
         })
@@ -81,6 +82,26 @@ exports.getAllSubTopicUnits = async (req, res) => {
 
         const subTopicId = req.params.subTopicId;
         Unit.getAllSubTopicUnits(subTopicId)
+            .then(results => {
+                Response.Success(res, 200, "queried successfully", results);
+            })
+            .catch(err => {
+                console.log(err);
+                Response.InternalServerError(res, "We are having issues! please try again soon");
+            });
+
+    } catch (error) {
+        console.log(error);
+        Response.InternalServerError(res, "We are having issues! please try again soon");
+    }
+    
+}
+
+exports.getAllTopicUnits = async (req, res) => {
+    try {
+
+        const topicId = req.params.topicId;
+        Unit.getAllTopicUnits(topicId)
             .then(results => {
                 Response.Success(res, 200, "queried successfully", results);
             })

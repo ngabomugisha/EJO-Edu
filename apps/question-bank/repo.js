@@ -84,6 +84,23 @@ exports.getUnitQuestionBank = async (unitId) => {
     }
 }
 
+exports.getUnitsListQuestionBank = async (units) => {
+    try {
+        return await QuestionBank.find({
+                unit: {$in: units}
+            })
+            .then(res => {
+                return res;
+            })
+            .catch(err => {
+                console.log(err);
+                return false;
+            })
+    } catch (error) {
+        throw error;
+    }
+}
+
 exports.getSubjectQuestionBank = async (subjectId) => {
     try {
         return await QuestionBank.find({

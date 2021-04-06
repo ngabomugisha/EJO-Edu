@@ -95,6 +95,24 @@ exports.getUnitQuestionBank = async (req, res) => {
     }
 
 }
+exports.getUnitsListQuestionBank = async (req, res) => {
+    try {
+        const unitsList = req.body.unitsList
+        QuestionBank.getUnitsListQuestionBank(unitsList)
+            .then(results => {
+                Response.Success(res, 200, "queried successfully", results);
+            })
+            .catch(err => {
+                console.log(err);
+                Response.InternalServerError(res, "We are having issues! please try again soon");
+            });
+
+    } catch (error) {
+        console.log(error);
+        Response.InternalServerError(res, "We are having issues! please try again soon");
+    }
+
+}
 
 exports.getSubjectQuestionBank = async (req, res) => {
     try {

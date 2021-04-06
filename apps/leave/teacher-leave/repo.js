@@ -1,10 +1,12 @@
 import TeacherLeave from './model'
 
-exports.create = async (teacher, reason, starts, ends, school) =>{
+exports.create = async (teacher, applyTo, reason, otherReason,  starts, ends, school) =>{
 try {
     const newTeacherLeave = new TeacherLeave({
         teacher,
+        applyTo,
         reason,
+        otherReason,
         starts,
         ends,
         school

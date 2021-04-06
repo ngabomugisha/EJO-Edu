@@ -96,7 +96,7 @@ exports.createFromCSV = async (req, res) => {
                                 SubTopic.create(subtopic.name, createdTopic._id)
                                     .then(createdSubtopic => {
                                         subtopic.units.map(unit => {
-                                            Unit.create(unit.name, createdSubtopic._id, unit.numberOfPeriods, unit.keyCompetency, unit.content, unit.activities)
+                                            Unit.create(unit.name, createdSubtopic._id,  createdTopic._id, unit.numberOfPeriods, unit.keyCompetency, unit.content, unit.activities)
                                                 .then(createdUnit => {
                                                     console.log("unit created")
                                                 })

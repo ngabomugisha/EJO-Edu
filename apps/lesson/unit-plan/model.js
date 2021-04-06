@@ -23,6 +23,10 @@ const unitPlanSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'subTopic'
     },
+    topic: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'topic'
+    },
     numberOfPeriods: Number,
     keyCompetency: String,
     content: {

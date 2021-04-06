@@ -9,9 +9,14 @@ const teacherLeaveSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'school'
     },
+    applyTo: {
+        type: String
+    },
     reason: {
-        type: String,
-        enum: ['STUDY','HOLIDAY','SICK','FAMILY']
+        type: String
+    },
+    otherReason: {
+        type: String
     },
     starts: Date,
     ends: Date,

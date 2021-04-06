@@ -62,7 +62,19 @@ const studentSchema = new mongoose.Schema({
     class: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'class'
-    }
+    },
+    expelled: {
+        type: Boolean,
+        default: false
+    },
+    participationComments: [{
+        author: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'user'
+        },
+        comment: String,
+        time: Date
+    }]
 }, {timestamps: true});
 
 export default mongoose.model("student", studentSchema);
