@@ -137,7 +137,7 @@ export const Index = (props) => {
     const handleUpdate = async () => {
         if (classData.level !== null && classData.combination !== null && classData.label !== null){
             props.handleUpdateClass({id: id, data: classData})
-                        handleOpenMsg('success', 'Class Updated')
+                        handleOpenMsg('success', 'Class Updated Successfully')
                         setTimeout(() => {
                             props.handleFetchClasses(school)
                             setCLASSES(props.state.classes)
@@ -157,13 +157,19 @@ export const Index = (props) => {
     };
     const handleCreate = () => {
         props.handleAddClass(classData)   
-        handleOpenMsg('success', 'Class Updated')
+        handleOpenMsg('success', 'Class Created Successfully')
         setTimeout(() => {
             props.handleFetchClasses(school)
             setCLASSES(props.state.classes)
             setData(formatData(CLASSES.list))
             update()
             setData(formatData(CLASSES.list))
+            setClassData({
+                school: school,
+                level: null,
+                combination: null,
+                label: null
+            })
         }, 0);
     };
 
@@ -176,6 +182,12 @@ export const Index = (props) => {
             setData(formatData(CLASSES.list))
             update()
             setData(formatData(CLASSES.list))
+            setClassData({
+                school: school,
+                level: null,
+                combination: null,
+                label: null
+            })
         }, 0);
     };
 
@@ -214,7 +226,7 @@ export const Index = (props) => {
         p2 = Object.assign({}, parms['data']);
         edit = {
             school: school,
-            level: (LEVELS.find(item => item.name === p2.level))._id,
+            level: (props.levels.find(item => item.name === p2.level))._id,
             combination: (COMBINATIONS.find(item => item.name === p2.combination))._id,
             label: p2.label,
         }
@@ -257,7 +269,9 @@ export const Index = (props) => {
             setCLASSES(props.state.classes)
         }
     },[CLASSES])
-
+    useEffect(() => {
+        update()
+    }, [])
     return (
         <div>
             <PanelLayout selected={4} role={role}>
@@ -475,8 +489,9 @@ export const Index = (props) => {
 const mapStateToProps = (state) => {
     const {classes} = state
     const {list} = classes
+    const levels = state.levels.list
     return {
-        state,list 
+        state,list,levels 
     }
 }
 
