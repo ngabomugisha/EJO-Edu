@@ -60,10 +60,8 @@ export const Index = (props) => {
     }, []);
     console.log('data from ALL_QUESTION',ALL_QUESTION)
 
-    setTimeout(() => {
         console.log('after timed out ',ALL_QUESTION)
         setIsLoading(false)
-    }, 1000);
 
 console.log('data from localstorage',JSON.parse(localStorage.getItem("students")))
     return (

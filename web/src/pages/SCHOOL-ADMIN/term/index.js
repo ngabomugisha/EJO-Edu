@@ -57,9 +57,7 @@ console.log('this is data to pass',data,typeof(data))
                 try{
                     setIsLoading(true)
                     await dispatch(handleUpdateTerm(id,data));
-                    setTimeout(() => {
                         fetchTermsData()
-                    }, 2000);
                 } catch (error)
                 {
                     console.log(error)

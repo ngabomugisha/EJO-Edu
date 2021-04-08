@@ -57,9 +57,7 @@ export const Index = (props) => {
         try {
             setIsLoading(true)
             await dispatch(handleUpdateTerm(id, data));
-            setTimeout(() => {
                 fetchTermsData()
-            }, 2000);
         } catch (error) {
             console.log(error)
         }

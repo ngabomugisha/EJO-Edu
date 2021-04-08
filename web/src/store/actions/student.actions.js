@@ -20,7 +20,7 @@ export const handleFetchStudent = (school) => (dispatch) => {
 }
 
 
-export const handleAddStudent = data => async dispatch => {
+export const handleAddStudent = data => dispatch => {
   console.log("Student TO REGISTER :", data)
   dispatch({
     type: actions.HANDLE_ADD_STUDENTS,

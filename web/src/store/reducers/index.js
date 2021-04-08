@@ -16,6 +16,11 @@ import topics from './topic.reducers'
 import units from './units.reducers'
 import announcementRec from './announcementRec.reducers'
 import announcementSent from './announcementSent.reducers'
+import provinces from './address/provinces.reducers'
+import districts from './address/districts.reducers'
+import sectors from './address/sectors.reducers'
+import cells from './address/cells.reducers'
+import villages from './address/villages.reducers'
 
 const reducers = combineReducers({
   auth,
@@ -35,6 +40,11 @@ const reducers = combineReducers({
   units,
   announcementRec,
   announcementSent,
+  provinces,
+  districts,
+  sectors,
+  cells,
+  villages,
 });
 
 export default reducers;
