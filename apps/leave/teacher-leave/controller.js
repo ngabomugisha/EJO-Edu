@@ -72,6 +72,25 @@ exports.getSchoolTeacherLeaves = async (req, res) => {
     
 }
 
+exports.getOneTeacherLeaves = async (req, res) => {
+    try {
+        const teacherId = req.params.teacherId;
+        TeacherLeave.getOneTeacherLeaves(teacherId)
+            .then(results => {
+                Response.Success(res, 200, "queried successfully", results);
+            })
+            .catch(err => {
+                console.log(err);
+                Response.InternalServerError(res, "We are having issues! please try again soon");
+            });
+
+    } catch (error) {
+        console.log(error);
+        Response.InternalServerError(res, "We are having issues! please try again soon");
+    }
+    
+}
+
 exports.getOneTeacherLeave = async (req, res) => {
     try {
         const teacherLeaveId = req.params.teacherLeaveId;

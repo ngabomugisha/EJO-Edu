@@ -61,6 +61,26 @@ exports.getSchoolTeacherLeaves = async (schoolId) => {
     }
 }
 
+exports.getOneTeacherLeaves = async (teacherId) => {
+    try {
+        return await TeacherLeave.find({teacher: teacherId})
+                .populate({
+                    path: "teacher",
+                    select: "firstName lastName role"
+                })
+                .exec()
+                .then(res => {
+                    return res;
+                })
+                .catch(err => {
+                    console.log(err);
+                    return false;
+                })
+    } catch (error) {
+        throw error;
+    }
+}
+
 exports.getOneTeacherLeave = async (teacherLeaveId) => {
     try {
         return await TeacherLeave.findById(teacherLeaveId)
