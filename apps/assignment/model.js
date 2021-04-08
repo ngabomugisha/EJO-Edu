@@ -26,16 +26,16 @@ const assignmentSchema = new mongoose.Schema({
         {
             difficultLevel: {
                 type: String,
-                // enum: ['EASY', 'MEDIUM', 'DIFFICULT']
+                enum: ['EASY', 'MEDIUM', 'DIFFICULT']
             },
             questionObjective: {
                 type: String,
-                // enum: ['REMEMBERING', 'UNDERSTANDING', 'APPLYING', 'ANALYSING', 'CREATING', 'EVALUATING']
+                enum: ['REMEMBERING', 'UNDERSTANDING', 'APPLYING', 'ANALYSING', 'CREATING', 'EVALUATING']
             },
             question: String,
             questionType: {
                 type: String,
-                // enum: ['MULTI-CHOICE', 'TRUE/FALSE', 'MATCHING', 'FILL-IN-THE-BLANK', 'SHORT-ANSWER', 'LONG-ANSWER']
+                enum: ['MULTI-CHOICE', 'TRUE/FALSE', 'MATCHING', 'FILL-IN-THE-BLANK', 'SHORT-ANSWER', 'LONG-ANSWER']
             },
             possibleAnswer: [{
                 answer: String
@@ -51,15 +51,15 @@ const assignmentSchema = new mongoose.Schema({
     ends: Date,
     assignmentSetting: {
         type: String,
-        // enum: ['ONLINE','IN-CLASS']
+        enum: ['ONLINE','IN-CLASS']
     },
     assignmentType: {
         type: String,
-        // enum: ['INDIVIDUAL','GROUP']
+        enum: ['INDIVIDUAL','GROUP']
     },
     testMethod: {
         type: String,
-        // enum: ['ORAL','WRITTEN']
+        enum: ['ORAL','WRITTEN']
     }
 }, {
     timestamps: true
