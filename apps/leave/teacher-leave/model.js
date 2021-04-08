@@ -22,7 +22,8 @@ const teacherLeaveSchema = new mongoose.Schema({
     ends: Date,
     status: {
         type: String,
-        enum: ['PENDING','APPROVED','DECLINED']
+        enum: ['PENDING','APPROVED','DECLINED'],
+        default: "PENDING"
     },
     changedBy: {
         type: mongoose.Schema.Types.ObjectId,
