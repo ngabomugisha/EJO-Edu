@@ -33,10 +33,10 @@ exports.update = async (req, res) => {
     try {
         const teacherLeaveId = req.params.teacherLeaveId;
         const {
-            approved
+            status
         } = req.body;
-        const approvedBy = req.user._id
-        TeacherLeave.update(teacherLeaveId, approved, approvedBy)
+        const changedBy = req.user._id
+        TeacherLeave.update(teacherLeaveId, status, changedBy)
             .then(results => {
                 Response.Success(res, 200, "updated successfully", results);
             })

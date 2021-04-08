@@ -18,11 +18,11 @@ try {
 }
 };
 
-exports.update = async (teacherLeaveId, approved, approvedBy) => {
+exports.update = async (teacherLeaveId, status, changedBy) => {
     try {
         return await TeacherLeave.findByIdAndUpdate(
             {_id: teacherLeaveId},
-            {approved: approved, approvedBy},{new: true},
+            {status: status, changedBy},{new: true},
             (err, success) => {
                 if(err){
                     console.log(err);
