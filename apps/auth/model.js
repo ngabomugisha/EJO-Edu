@@ -16,14 +16,13 @@ const userSchema = new mongoose.Schema({
     phoneNumber: String,
     level: {
         type: String,
-        enum: ['BACHELOR'], // to be provided
+        enum: ['BACHELOR', 'DIPLOMA', 'MASTERS'], // to be provided
     },
     yearsOfExperience: Number,
     workingStatus: {
         type: String,
         enum: ['PART-TIME', 'FULL-TIME']
     },
-
     verificationDigits: {
         type: Number,
         default: null
