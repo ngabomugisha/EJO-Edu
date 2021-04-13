@@ -19,7 +19,7 @@ exports.create = async (
     try {
         const newStudent = new Student({
             school,
-            studentClass,
+            class: studentClass,
             firstName,
             lastName,
             registrationNumber,
