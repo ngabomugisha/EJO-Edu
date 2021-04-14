@@ -2,11 +2,18 @@ import ClassAttendance from './model'
 
 exports.create = async (slotOnTimetable, students, subject, assignedClass, teacher, school) =>{
 try {
+    const today = new Date().toISOString().slice(0, 10)
+    const tomorrow = new Date(today)
+    tomorrow.setDate(tomorrow.getDate() + 1)
+
     return await ClassAttendance.findOneAndUpdate(
         {
             slotOnTimetable: slotOnTimetable,
             class: assignedClass,
-            // date
+            $and: [
+                {createdAt: {$gte: today}},
+                {createdAt: {$lte: tomorrow}}
+            ]
         },
         {
             slotOnTimetable, students, class: assignedClass, subject, teacher, school

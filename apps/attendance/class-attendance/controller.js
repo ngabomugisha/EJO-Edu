@@ -22,14 +22,6 @@ exports.create = async (req, res) => {
             return Response.validationError(res, "No slot on time table now! request to be added by admin");
         }
 
-
-        // console.log("Day: ", day, "Hour: ", hour, "Minutes: ", minutes, slotOnTimetable)
-        // const attendance = await attendance.getClassAttendanceBySlotOnTimetable(slotOnTimetable)
-        // if(!attendance){
-        // }
-        // return Response.Success(res, 200, "created successfully", {"Day": day, "Hour": hour, "Minutes": minutes, slotOnTimetable});
-        // ClassAttendance.create(slotOnTimetable, students, subject, assignedClass, teacher, school)
-  
         const teacher = req.user._id;
         const school = req.user.school
 
