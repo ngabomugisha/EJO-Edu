@@ -1,15 +1,35 @@
 import ClassAttendance from './repo'
+import Timetable from '../../timetable/repo'
 import Response from '../../../utils/Responses';
 
 exports.create = async (req, res) => {
     try {
         const {
-            slotOnTimetable,
             students,
             subject,
             assignedClass
         } = req.body;
         
+        const today = new Date()
+        
+        const day = today.getDay()
+        const hour = today.getHours()
+        const minutes = today.getMinutes()
+        
+        const slotOnTimetable = await Timetable.getTimetableSlotBasedOnTime(assignedClass, subject, day, hour, minutes)
+
+        if(!slotOnTimetable){
+            return Response.validationError(res, "No slot on time table now! request to be added by admin");
+        }
+
+
+        // console.log("Day: ", day, "Hour: ", hour, "Minutes: ", minutes, slotOnTimetable)
+        // const attendance = await attendance.getClassAttendanceBySlotOnTimetable(slotOnTimetable)
+        // if(!attendance){
+        // }
+        // return Response.Success(res, 200, "created successfully", {"Day": day, "Hour": hour, "Minutes": minutes, slotOnTimetable});
+        // ClassAttendance.create(slotOnTimetable, students, subject, assignedClass, teacher, school)
+  
         const teacher = req.user._id;
         const school = req.user.school
 
@@ -107,6 +127,7 @@ exports.getAllSubjectClassAttendances = async (req, res) => {
     }
     
 }
+
 exports.getOneStudentAttendanceBySubject = async (req, res) => {
     try {
         const studentId = req.params.studentId;

@@ -116,6 +116,7 @@ exports.getAllClassTeacherSubjectTimetable = async (classId, teacherId, subjectI
         throw error;
     }
 }
+
 exports.getAllTeacherTimetable = async (teacherId) => {
     try {
         return await Timetable.find({
@@ -150,6 +151,35 @@ exports.getAllTodaysTeacherTimetable = async (teacherId) => {
                 }
             })
             .sort({"time.dayOfWeek": 1, "time.starts": 1})
+            .exec()
+            .then(res => {
+                return res;
+            })
+            .catch(err => {
+                console.log(err);
+                return false;
+            })
+    } catch (error) {
+        throw error;
+    }
+}
+
+exports.getTimetableSlotBasedOnTime = async (assignedClass, subject, day, hour, minutes) => {
+    try {
+        const hoursTime = hour > 9 ? hour : "0"+hour
+        const minutesTime = minutes > 9 ? minutes : "0" + minutes
+
+        const time = hoursTime +""+minutesTime
+
+        return await Timetable.findOne({
+            class: assignedClass,
+            subject: subject,
+            "time.dayOfWeek": day,
+            $and: [
+                {"time.starts": {$lte: time} },
+                {"time.ends": {$gte: time} },
+            ]
+        })
             .exec()
             .then(res => {
                 return res;

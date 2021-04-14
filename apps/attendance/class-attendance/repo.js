@@ -2,12 +2,24 @@ import ClassAttendance from './model'
 
 exports.create = async (slotOnTimetable, students, subject, assignedClass, teacher, school) =>{
 try {
-    console.log(slotOnTimetable, students, subject, assignedClass, teacher, school)
-    const newClassAttendance = new ClassAttendance({
-        slotOnTimetable, students, class: assignedClass, subject, teacher, school
-    })
-    await newClassAttendance.save()
-    return newClassAttendance;
+    return await ClassAttendance.findOneAndUpdate(
+        {
+            slotOnTimetable: slotOnTimetable,
+            class: assignedClass,
+            // date
+        },
+        {
+            slotOnTimetable, students, class: assignedClass, subject, teacher, school
+        },
+        { upsert : true, new: true },
+        (err, success) => {
+            if (err) {
+                console.log(err);
+                return false;
+            }
+            return success;
+        }
+        )
 } catch (error) {
     throw error; 
 }
@@ -127,6 +139,7 @@ exports.getOneStudentAttendance = async (studentId) => {
         throw error;
     }
 }
+
 exports.delete = async (classAttendanceId) => {
     try {
         return await ClassAttendance.findByIdAndDelete(classAttendanceId);
