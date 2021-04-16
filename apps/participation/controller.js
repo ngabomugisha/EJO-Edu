@@ -48,8 +48,11 @@ exports.addStudentParticipation = async (req, res) => {
             record
         } = req.body
 
+        const teacher = req.user._id
+
         Participation.addStudentParticipation(
             participationId,
+            teacher,
             students,
             positive,
             firstLevel,
@@ -69,23 +72,69 @@ exports.addStudentParticipation = async (req, res) => {
     }
     
 }
+
 exports.addComment = async (req, res) => {
     try {
-        const participationId = req.params.participationId;
+        const student = req.params.studentId;
         const {
-            student,
-            comment
-        } = req.body
-
-        const author = req.user._id
-        Participation.addComment(
-            participationId,
-            student,
             comment,
-            author
+            studentClass,
+            subject,
+        } = req.body
+        const teacher = req.user._id
+        Participation.addComment(
+                studentClass,
+                subject,
+                student,
+                comment,
+                teacher
             )
             .then(results => {
                 Response.Success(res, 200, "created successfully", results);
+            })
+            .catch(err => {
+                console.log(err);
+                Response.InternalServerError(res, "We are having issues! please try again soon");
+            });
+
+    } catch (error) {
+        console.log(error);
+        Response.InternalServerError(res, "We are having issues! please try again soon");
+    }
+    
+}
+
+exports.getStudentComments = async (req, res) => {
+    try {
+
+        const studentId = req.params.studentId
+        const subject = req.params.subjectId
+        const classId = req.params.classId
+        Participation.getStudentComments( classId, subject, studentId )
+            .then(results => {
+                Response.Success(res, 200, "queried successfully", results);
+            })
+            .catch(err => {
+                console.log(err);
+                Response.InternalServerError(res, "We are having issues! please try again soon");
+            });
+
+    } catch (error) {
+        console.log(error);
+        Response.InternalServerError(res, "We are having issues! please try again soon");
+    }
+    
+}
+
+exports.getStudentParticipation = async (req, res) => {
+    try {
+
+        const studentId = req.params.studentId
+        const subjectId = req.params.subjectId
+        const classId = req.params.classId
+        Participation.getStudentParticipation( studentId, classId, subjectId )
+            .then(results => {
+                Response.Success(res, 200, "queried successfully", results);
             })
             .catch(err => {
                 console.log(err);
@@ -103,9 +152,9 @@ exports.getClassParticipation = async (req, res) => {
     try {
 
         const classId = req.params.classId
+        const subject = req.params.subject
         const teacher = req.user._id
-        console.log("class: ", classId)
-        Participation.getClassParticipation(classId, teacher)
+        Participation.getClassParticipation(classId, subject, teacher)
             .then(results => {
                 Response.Success(res, 200, "queried successfully", results);
             })

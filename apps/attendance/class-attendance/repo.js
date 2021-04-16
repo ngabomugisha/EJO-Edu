@@ -83,6 +83,61 @@ exports.getAllSubjectClassAttendances = async (classId, subjectId) => {
     }
 }
 
+// exports.getAllSubjectClassAttendances = async (c, subjectId) => {
+//     try {
+//         // console.log(classId, subjectId)
+
+//         // await ClassAttendance.find({class: classId, subject: subjectId})
+//         return await ClassAttendance.aggregate([
+//             {
+//                 $group: {
+//                     _id: {
+//                         week: {$week: '$createdAt'},
+//                         classId: "$class",
+//                         subject: "$subject",
+//                         gender: "$students.student.gender",
+//                         day: {$dayOfWeek: '$createdAt'},
+//                         month: {$month: '$createdAt'}
+//                     },
+//                     numberOfTimes: {
+//                         $sum: 1
+//                     }
+//                 }
+//             },
+//             {
+//                 $match: {
+//                     classId: c,
+//                     // subject: subjectId
+//                 }
+//             }
+//         ]
+//             )
+//             // .then(async data => {
+//             //     return await Student.populate(data, {
+//             //         path: "_id.student"
+    
+//             //     })
+//             // })
+
+
+//         return await ClassAttendance.find({class: classId, subject: subjectId})
+//                 .populate({
+//                     path: "students.student",
+//                     select: "firstName lastName gender"
+//                 })
+//                 .exec()
+//                 .then(res => {
+//                     return res;
+//                 })
+//                 .catch(err => {
+//                     console.log(err);
+//                     return false;
+//                 })
+//     } catch (error) {
+//         throw error;
+//     }
+// }
+
 exports.getOneStudentAttendanceBySubject = async (studentId, subjectId) => {
     try {
         return await ClassAttendance.find(

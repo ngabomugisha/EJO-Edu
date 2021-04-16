@@ -55,7 +55,7 @@ const assignmentSchema = new mongoose.Schema({
     },
     assignmentType: {
         type: String,
-        enum: ['INDIVIDUAL','GROUP']
+        enum: ['INDIVIDUAL','GROUP', 'HOME-WORK', 'SUMMATIVE', 'EXAM']
     },
     testMethod: {
         type: String,

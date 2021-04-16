@@ -51,7 +51,10 @@ const planSchema = new mongoose.Schema({
                     }
                 ],
                 uploads: [
-                    { file: String }
+                    { 
+                        file: String,
+                        fileType: String
+                    }
                 ]
             }
         ],
@@ -79,7 +82,10 @@ const planSchema = new mongoose.Schema({
                     }
                 ],
                 uploads: [
-                    { file: String }
+                    { 
+                        file: String,
+                        fileType: String
+                    }
                 ]
             }
         ],
@@ -107,7 +113,10 @@ const planSchema = new mongoose.Schema({
                     }
                 ],
                 uploads: [
-                    { file: String }
+                    { 
+                        file: String,
+                        fileType: String
+                    }
                 ]
             }
         ],

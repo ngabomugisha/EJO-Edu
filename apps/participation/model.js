@@ -14,10 +14,6 @@ const participationSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'subject'
     },
-    cycleNumber: {
-        type: Number,
-        default: 1
-    },
     students: [{
         student: {
             type: mongoose.Schema.Types.ObjectId,
@@ -38,17 +34,37 @@ const participationSchema = new mongoose.Schema({
             }],
             time: Date
         }],
-        comments: [{
-            author: {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: 'user'
-            },
-            comment: String,
-            time: Date
-        }]
     }]
 }, {
     timestamps: true
 });
 
-export default mongoose.model("participation", participationSchema);
+
+
+const participationCommentSchema = new mongoose.Schema({
+    class: {
+        type: mongoose.Schema.Types.ObjectId,
+            ref: 'class'
+    },
+    teacher: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user'
+    },
+    subject: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'subject'
+    },
+    student: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'student'
+    },
+    comment: String,
+
+}, {
+    timestamps: true
+});
+
+const participationModel = mongoose.model("participation", participationSchema);
+const participationCommentModel = mongoose.model("participationComment", participationCommentSchema);
+
+module.exports = {Participation: participationModel, ParticipationComment: participationCommentModel} ;

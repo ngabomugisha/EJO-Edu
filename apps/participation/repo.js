@@ -1,4 +1,4 @@
-import Participation from './model'
+import {Participation, ParticipationComment} from './model'
 import Student from '../student/repo'
 exports.create = async (
     assignedClass,
@@ -23,6 +23,7 @@ exports.create = async (
 
 exports.addStudentParticipation = async (
     participationId,
+    teacher,
     students,
     positive,
     firstLevel,
@@ -35,7 +36,9 @@ exports.addStudentParticipation = async (
             record,
             time: Date.now()
         }
-        let participationList = []
+
+
+        let participationList = {}
         await Promise.all(students.map( async student => {
             participationList = await Participation.findOneAndUpdate({
                 _id: participationId,
@@ -53,75 +56,135 @@ exports.addStudentParticipation = async (
                 new: true
             })
             .populate({
-                path: 'students.student students.comments.author'
+                path: 'students.student students.comments.author',
+                select: 'firstName lastName gender'
             })
             .exec();
         }))
-        
-        let smallest = participationList.students[0].participation.length
+
+        let allStudentsConsidered = true
         await Promise.all(participationList.students.map(async student => {
-            if(smallest > student.participation.length){
-                smallest = student.participation.length
+            if(student.participation.length == 0){
+                allStudentsConsidered = false
             }
         }))
         
-        if(smallest >= participationList.cycleNumber){
-            participationList.cycleNumber = smallest + 1
-            await Participation.findByIdAndUpdate(participationList._id, {cycleNumber: smallest + 1})
+        const classId = participationList.class;
+        const subjectId = participationList.subject;
+        if(allStudentsConsidered){//create a new cycle
+            Participation.findByIdAndUpdate(participationId, {
+                ended: Date.now()
+            }, () => {
+                console.log("updated")
+            })
+            const rawStudents = await Student.getAllClassStudents(classId);
+            const students = [];
+
+            rawStudents.map(student => {
+                students.push({
+                    student: student._id
+                })
+            })
+
+            const newParticipation = new Participation({
+                class: classId,
+                teacher: teacher,
+                subject: subjectId,
+                students
+            })
+
+            await newParticipation.save()
+
+            const participationList = await Participation.findById(newParticipation._id)
+            .populate({
+                path: 'students.student students.comments.author',
+                select: 'firstName lastName gender'
+            })
+            .exec();
+
             return {participationList, cycleFinished: true}
         }
+
         return {participationList}
     } catch (error) {
         throw error;
     }
 }
 
-exports.addComment = async (
-    participationId,
-            student,
-            comment,
-            author
+
+exports.getStudentParticipation = async (
+    student,
+    classId,
+    subjectId
 ) => {
     try {
-        const record = {
-            student,
-            comment,
-            author,
-            time: Date.now()
-        }
-        return await Participation.findOneAndUpdate({
-                _id: participationId,
-                students: {
-                    $elemMatch: {
-                        student: student
-                    }
-                }
 
-            }, {
-                $push: {
-                    "students.$.comments": record
+        return await Participation.find({
+            class: classId,
+            subject: subjectId,
+            students: {
+                $elemMatch: {
+                    student: student
                 }
-            }, {
-                new: true
-            })
-            .populate({
-                path: 'students.student students.comments.author'
-            })
-            .exec();
+            }
+            },
+            {'students.$': 1, createdAt: 1}
+            ).sort({"createdAt": -1})
+
     } catch (error) {
         throw error;
     }
 }
 
-exports.getClassParticipation = async (classId, teacher) => {
+
+exports.addComment = async (
+            studentClass,
+            subject,
+            student,
+            comment,
+            teacher
+    ) => {
+    try {
+        return await ParticipationComment.create({
+                subject,
+                class: studentClass,
+                comment,
+                student,
+                teacher,
+            })
+    } catch (error) {
+        throw error;
+    }
+}
+
+exports.getStudentComments = async (
+        studentClass,
+        subject,
+        student
+    ) => {
+    try {
+    return await ParticipationComment.find({
+            subject,
+            class: studentClass,
+            student,
+        })
+    } catch (error) {
+        throw error;
+    }
+}
+
+exports.getClassParticipation = async (classId, subject, teacher) => {
     try {
 
         const participation = await Participation.findOne({
                 class: classId,
-                teacher: teacher
-            })
+                teacher: teacher,
+                subject: subject
+            },
+            ).sort({"createdAt": -1}).limit(1)
             .populate({
-                path: 'students.student students.comments.author'
+                path: 'students.student students.comments.author',
+                select: 'firstName lastName gender'
             })
             .exec()
             .then(res => {
@@ -143,18 +206,21 @@ exports.getClassParticipation = async (classId, teacher) => {
             const newParticipation = new Participation({
                 class: classId,
                 teacher,
+                subject,
                 students
             })
             await newParticipation.save()
             const savedParticipation = await Participation.findById(newParticipation._id)
             .populate({
-                path: 'students.student'
+                path: 'students.student',
+                select: 'firstName lastName gender'
             })
             .exec()
             return savedParticipation;
 
+        }else{
+            return participation
         }
-        return participation
         
     } catch (error) {
         throw error;

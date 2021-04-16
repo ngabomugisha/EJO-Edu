@@ -1,8 +1,9 @@
 import Plan from './controller';
 import express from 'express';
+import publicFilesUploader from '../../../utils/publicFilesUploader'
 const router = express.Router();
-
-router.post('/', Plan.create);
+// ,{name: 'skillsUploads'},{name: 'valuesUploads'},
+router.post('/', publicFilesUploader.fields([{name: 'knowledgeUploads'},{name: 'skillsUploads'},{name: 'valuesUploads'}]), Plan.create);
 router.put('/:planId', Plan.update);
 router.put('/:planId/evaluate', Plan.evaluate);
 router.get('/:subjectId/subject-plan', Plan.getSubjectPlan);

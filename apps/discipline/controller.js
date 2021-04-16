@@ -13,12 +13,6 @@ exports.addStudentDiscipline = async (req, res) => {
             forthLevel
         } = req.body
         const schoolId = req.user.school
-        // console.log(
-        //     req.user.school,
-        //     firstLevel.trim().toLowerCase(),
-        //     secondLevel.trim().toLowerCase(),
-        //     thirdLevel.trim().toLowerCase(),
-        //     forthLevel.trim().toLowerCase())
         const disciplineAction = await SchoolDiscipline.getDisciplineAction(
             req.user.school,
             firstLevel.trim().toLowerCase(),

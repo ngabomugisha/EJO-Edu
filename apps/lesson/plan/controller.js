@@ -2,8 +2,26 @@ import Plan from './repo'
 import Response from '../../../utils/Responses';
 import UnitPlan from '../unit-plan/repo'
 
+const appendUploads = (files, content) => {
+    content.instructionalMaterial.uploads = []
+    files.map((file) => {
+        content.instructionalMaterial.uploads.push({
+            file: file.filename,
+            fileType: file.mimetype
+        })
+    })
+    return content
+}
+
 exports.create = async (req, res) => {
     try {
+        // console.log("Lesson plan: ", req.files?.knowledgeUploads ? req.files?.knowledgeUploads: []);
+        // return Response.Success(res, 200, "Test response", {
+        //     "kowladge": appendUploads(req.files?.knowledgeUploads ? req.files.knowledgeUploads: [], req.body.knowledge),
+        //     "skills": appendUploads(req.files?.skillsUploads ? req.files.skillsUploads : [], req.body.skills),
+        //     "attitudesAndValues": appendUploads(req.files?.valuesUploads ? req.files.valuesUploads : [], req.body.attitudesAndValues),
+
+        // });
         const {
             unit,
             assignedClass,
