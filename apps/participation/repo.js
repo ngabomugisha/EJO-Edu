@@ -28,7 +28,7 @@ exports.addStudentParticipation = async (
     positive,
     firstLevel,
     record
-) => {
+    ) => {
     try {
         const participation = {
             positive,
@@ -167,6 +167,10 @@ exports.getStudentComments = async (
             subject,
             class: studentClass,
             student,
+        })
+        .populate({
+            path: 'teacher',
+            select: 'firstName lastName role'
         })
     } catch (error) {
         throw error;
