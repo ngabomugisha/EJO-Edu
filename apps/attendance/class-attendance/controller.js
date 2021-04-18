@@ -12,10 +12,10 @@ exports.create = async (req, res) => {
         
         const today = new Date()
         
-        const day = today.getDay()
+        let day = today.getDay()
         const hour = today.getHours()
         const minutes = today.getMinutes()
-        
+        day = (day == 0)? 7 : day + 1
         const slotOnTimetable = await Timetable.getTimetableSlotBasedOnTime(assignedClass, subject, day, hour, minutes)
 
         if(!slotOnTimetable){

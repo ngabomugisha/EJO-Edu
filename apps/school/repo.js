@@ -27,7 +27,7 @@ const setSchoolDisciplineSettings = (school) => {
                 school,
                 "responsibility and cleanliness",
                 positiveItem.item,
-                "infraction",
+                "motivation",
                 motivationItem.item,
                 0
             )
@@ -69,9 +69,9 @@ exports.create = async (
             disciplineMarks,
             howLongIsClassPeriod
         })
-
-        await newSchool.save()
+        
         setSchoolDisciplineSettings(newSchool._id)
+        await newSchool.save()
         return newSchool;
     } catch (error) {
         throw error;
