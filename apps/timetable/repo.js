@@ -123,6 +123,12 @@ exports.getAllTeacherTimetable = async (teacherId) => {
                 teacher: teacherId
             })
             .sort({"time.dayOfWeek": 1, "time.starts": 1})
+            .populate({
+                path: "class subject",
+                populate: {
+                    path: "combination level"
+                }
+            })
             .exec()
             .then(res => {
                 return res;
