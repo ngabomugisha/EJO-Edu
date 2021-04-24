@@ -101,17 +101,15 @@ exports.getOneStudentLeave = async (studentLeaveId) => {
 
 exports.getClassStudentsOnLeaveNow = async (classId) => {
     try {
-        const today = new Date()
-        // const tomorrow = new Date(today)
-        // tomorrow.setDate(tomorrow.getDate() + 1)
-        
-        console.log(classId)
-
-        console.log(today)
-        return today
+        const now = new Date(Date.now())
+        console.log("Now::", now)
         return await StudentLeave.find({
                     class: classId,
-                    checkin: null
+                    checkin: null,
+                    $and: [
+                        {checkout: {$lte: now}},
+                        {provisionalCheckin: {$gte: now}} 
+                    ]
                 })
                 .populate({
                     path: "checkedinBy checkedoutBy student",
