@@ -49,13 +49,10 @@ const planSchema = new mongoose.Schema({
                     {
                         item : String
                     }
-                ],
-                uploads: [
-                    { 
-                        file: String,
-                        fileType: String
-                    }
-                ]
+                ],   
+                files: [{
+                    file: String
+                }],
             }
         ],
         otherMaterialsAndReferences: String
@@ -80,13 +77,10 @@ const planSchema = new mongoose.Schema({
                     {
                         item : String
                     }
-                ],
-                uploads: [
-                    { 
-                        file: String,
-                        fileType: String
-                    }
-                ]
+                ],   
+                files: [{
+                    file: String
+                }],
             }
         ],
         otherMaterialsAndReferences: String
@@ -111,13 +105,10 @@ const planSchema = new mongoose.Schema({
                     {
                         item : String
                     }
-                ],
-                uploads: [
-                    { 
-                        file: String,
-                        fileType: String
-                    }
-                ]
+                ],   
+                files: [{
+                    file: String
+                }],
             }
         ],
         otherMaterialsAndReferences: String
@@ -182,7 +173,7 @@ const planSchema = new mongoose.Schema({
                         activity: String,
                         files: [{
                             fileType: String,
-                            file: String
+                            file: String,
                         }],
                     }
                 ],

@@ -8,6 +8,7 @@ router.post('/create-from-csv', uploader.fields([{name: 'students'}]), Student.c
 router.put('/:studentId', Student.update);
 router.get('/:classId/class-students', Student.getAllClassStudents);
 router.get('/:schoolId/school-students', Student.getAllSchoolStudents);
+router.get('/:schoolId/search-students', Student.searchSchoolStudents);
 router.get('/:studentId', Student.getOneStudent);
 router.delete('/:studentId', Student.delete);
 router.put('/:studentId/expel', Student.expel);

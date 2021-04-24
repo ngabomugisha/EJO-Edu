@@ -46,8 +46,8 @@ exports.createUser = async (req, res) => {
             user: data
         }, passportConfig.secret);
         // set up the mail server
-        // const newMail = new Mailer({to: email, subject: "EJO: Password", header: null, messageBody: "Hello " + firstName + " " + lastName + " your password for Ejo system is: " +password, messageHeader: "Password"})
-        // newMail.sendMail()
+        const newMail = new Mailer({to: email, subject: "EJO: Password", header: null, messageBody: "Hello " + firstName + " " + lastName + " your password for Ejo system is: " +password, messageHeader: "Password"})
+        newMail.sendMail()
         return Response.Success(res, 200, "user signed up successfully", {
             user: data,
             password,

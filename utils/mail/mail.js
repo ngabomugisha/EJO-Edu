@@ -80,13 +80,15 @@ class Mailer {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: process.env.SERVER_MAIL,
-        pass: process.env.PASS
+        // user: process.env.SERVER_MAIL,
+        user: "ejosystem@gmail.com",
+        // pass: process.env.PASS
+        pass: "EjoSy.]W34"
       },
     });
 
     const mail = {
-      from: `Admin ${process.env.SERVER_MAIL}`,
+      from: `Admin ejosystem@gmail.com`,
       to: this.to,
       subject: this.subject,
       html

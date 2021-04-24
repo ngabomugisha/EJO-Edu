@@ -179,6 +179,27 @@ exports.getAllSchoolStudents = async (req, res) => {
 
 }
 
+exports.searchSchoolStudents = async (req, res) => {
+    try {
+        const schoolId = req.params.schoolId;
+        const {searchKey} = req.body
+        Student.searchSchoolStudents(schoolId, searchKey)
+            .then(results => {
+                Response.Success(res, 200, "queried successfully", results);
+            })
+            .catch(err => {
+                console.log(err);
+                Response.InternalServerError(res, "We are having issues! please try again soon");
+            });
+
+    } catch (error) {
+        console.log(error);
+        Response.InternalServerError(res, "We are having issues! please try again soon");
+    }
+
+}
+
+
 exports.getOneStudent = async (req, res) => {
     try {
         const studentId = req.params.studentId;

@@ -1,4 +1,5 @@
 import Student from './model'
+import mongoose from 'mongoose'
 
 exports.create = async (
     school,
@@ -123,6 +124,42 @@ exports.getAllSchoolStudents = async (schoolId) => {
         throw error;
     }
 }
+
+exports.searchSchoolStudents = async (schoolId, searchKey) => {
+    try {
+        var regex = new RegExp([".*", searchKey, ".*"].join(""), "i");
+        console.log(schoolId)
+        return await Student.aggregate(
+            [
+                {
+                    $project: {
+                        "name": {
+                            $concat: ["$firstName", " ", "$lastName"]
+                        },
+                        "school": "$school",
+                    }
+                }, {
+                    $match: {
+                        "school": mongoose.Types.ObjectId("602c1e8feeb9ae2820b62120"),
+                        "name": {
+                            $regex: regex
+                        }
+                    }
+                }
+            ]
+            )
+            .then(res => {
+                return res;
+            })
+            .catch(err => {
+                console.log(err);
+                return false;
+            })
+    } catch (error) {
+        throw error;
+    }
+}
+
 
 exports.getOneStudent = async (studentId) => {
     try {
