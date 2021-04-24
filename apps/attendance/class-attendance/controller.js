@@ -9,13 +9,12 @@ exports.create = async (req, res) => {
             subject,
             assignedClass
         } = req.body;
-        
-        const today = new Date()
-        
+       const today = new Date(Date.now())
         let day = today.getDay()
         const hour = today.getHours()
         const minutes = today.getMinutes()
-        day = (day == 0)? 7 : day + 1
+        // day = (day == 0)? 7 : day + 1
+        console.log(assignedClass, subject, day, hour, minutes, today.getDay())
         const slotOnTimetable = await Timetable.getTimetableSlotBasedOnTime(assignedClass, subject, day, hour, minutes)
 
         if(!slotOnTimetable){

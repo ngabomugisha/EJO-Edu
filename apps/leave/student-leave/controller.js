@@ -72,11 +72,33 @@ exports.getSchoolStudentLeaves = async (req, res) => {
     }
     
 }
+
 exports.getClassStudentsOnLeave = async (req, res) => {
     try {
 
         const classId = req.params.classId;
         StudentLeave.getClassStudentsOnLeave(classId)
+            .then(results => {
+                Response.Success(res, 200, "queried successfully", results);
+            })
+            .catch(err => {
+                console.log(err);
+                Response.InternalServerError(res, "We are having issues! please try again soon");
+            });
+
+    } catch (error) {
+        console.log(error);
+        Response.InternalServerError(res, "We are having issues! please try again soon");
+    }
+    
+}
+
+
+exports.getClassStudentsOnLeaveNow = async (req, res) => {
+    try {
+
+        const classId = req.params.classId;
+        StudentLeave.getClassStudentsOnLeaveNow(classId)
             .then(results => {
                 Response.Success(res, 200, "queried successfully", results);
             })

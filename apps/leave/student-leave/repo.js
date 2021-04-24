@@ -78,9 +78,41 @@ exports.getClassStudentsOnLeave = async (classId) => {
         throw error;
     }
 }
+
 exports.getOneStudentLeave = async (studentLeaveId) => {
     try {
         return await StudentLeave.findById(studentLeaveId)
+                .populate({
+                    path: "checkedinBy checkedoutBy student",
+                    select: "firstName lastName role gender"
+                })
+                .exec()
+                .then(res => {
+                    return res;
+                })
+                .catch(err => {
+                    console.log(err);
+                    return false;
+                })
+    } catch (error) {
+        throw error;
+    }
+}
+
+exports.getClassStudentsOnLeaveNow = async (classId) => {
+    try {
+        const today = new Date()
+        // const tomorrow = new Date(today)
+        // tomorrow.setDate(tomorrow.getDate() + 1)
+        
+        console.log(classId)
+
+        console.log(today)
+        return today
+        return await StudentLeave.find({
+                    class: classId,
+                    checkin: null
+                })
                 .populate({
                     path: "checkedinBy checkedoutBy student",
                     select: "firstName lastName role gender"
