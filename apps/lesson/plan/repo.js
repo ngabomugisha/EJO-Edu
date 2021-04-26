@@ -178,10 +178,11 @@ exports.getOnePlan = async (planId) => {
     try {
         return await Plan.findById(planId)
             .populate({
-                path: 'term class subject',
-                select: 'name starts ends level combination label ',
+                path: 'term class subject unit',
+                select: 'name starts ends level combination label subTopic topic',
                 populate: {
-                    path: 'level combination'
+                    path: 'level combination label subTopic topic',
+                    select: 'name subjects'
                 }
             })
             .populate({

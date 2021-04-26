@@ -2,26 +2,8 @@ import Plan from './repo'
 import Response from '../../../utils/Responses';
 import UnitPlan from '../unit-plan/repo'
 
-// const appendUploads = (files, content) => {
-//     content.instructionalMaterial.uploads = []
-//     files.map((file) => {
-//         content.instructionalMaterial.uploads.push({
-//             file: file.filename,
-//             fileType: file.mimetype
-//         })
-//     })
-//     return content
-// }
-
 exports.create = async (req, res) => {
     try {
-        // console.log("Lesson plan: ", req.files?.knowledgeUploads ? req.files?.knowledgeUploads: []);
-        // return Response.Success(res, 200, "Test response", {
-        //     "kowladge": appendUploads(req.files?.knowledgeUploads ? req.files.knowledgeUploads: [], req.body.knowledge),
-        //     "skills": appendUploads(req.files?.skillsUploads ? req.files.skillsUploads : [], req.body.skills),
-        //     "attitudesAndValues": appendUploads(req.files?.valuesUploads ? req.files.valuesUploads : [], req.body.attitudesAndValues),
-
-        // });
         const {
             unit,
             assignedClass,
@@ -30,17 +12,15 @@ exports.create = async (req, res) => {
             keyUnitCompetency,
             lessonNumber,
             lessonName,
-            knowledge,
-            skills,
-            attitudesAndValues,
-            activities,
-            teachingTechniques,
             time
-
-        } = req.body;
+        } = JSON.parse(req.body.lesson)
+        const {knowledge} = JSON.parse(req.body.knowledge)
+        const {skills} = JSON.parse(req.body.skills)
+        const {attitudesAndValues} = JSON.parse(req.body.attitudesAndValues)
+        const activities = JSON.parse(req.body.activities)
+        const teachingTechniques = JSON.parse(req.body.teachingTechniques)
         const teacher = req.user._id
         const school = req.user.school
-        // console.log(JSON.stringify(req.body))
         Plan.create(
                 teacher,
                 school,

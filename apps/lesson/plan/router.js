@@ -2,7 +2,6 @@ import Plan from './controller';
 import express from 'express';
 import publicFilesUploader from '../../../utils/publicFilesUploader'
 const router = express.Router();
-// ,{name: 'skillsUploads'},{name: 'valuesUploads'},
 router.post('/', publicFilesUploader.any(), Plan.create);
 router.put('/:planId', Plan.update);
 router.put('/:planId/evaluate', Plan.evaluate);
