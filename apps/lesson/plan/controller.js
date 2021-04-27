@@ -144,7 +144,8 @@ exports.getSubjectPlan = async (req, res) => {
     try {
 
         const subjectId = req.params.subjectId;
-        Plan.getAllSubjectPlan(subjectId)
+        const classId = req.params.classId;
+        Plan.getAllSubjectPlan(subjectId, classId)
             .then(results => {
                 Response.Success(res, 200, "queried successfully", results);
             })
@@ -164,7 +165,8 @@ exports.getUnitPlan = async (req, res) => {
     try {
 
         const unitId = req.params.unitId;
-        Plan.getAllUnitPlan(unitId)
+        const classId = req.params.classId;
+        Plan.getAllUnitPlan(unitId, classId)
             .then(results => {
                 Response.Success(res, 200, "queried successfully", results);
             })
@@ -204,12 +206,13 @@ exports.getTopicDetails = async (req, res) => {
     try {
 
         const unitId = req.params.unitId;
+        const classId = req.params.classId;
         const {
             topic,
             type
         } = req.body
         const teacher = req.user._id
-        Plan.getTopicDetails(unitId, topic, type, teacher)
+        Plan.getTopicDetails(unitId, classId, topic, type, teacher)
             .then(results => {
                 if (results.length > 0) {
 

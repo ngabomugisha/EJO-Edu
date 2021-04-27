@@ -9,7 +9,7 @@ exports.create = async (req, res) => {
             subject,
             assignedClass
         } = req.body;
-       const today = new Date(Date.now())
+        const today = new Date(Date.now())
         let day = today.getDay()
         const hour = today.getHours()
         const minutes = today.getMinutes()
@@ -118,6 +118,27 @@ exports.getAllSubjectClassAttendances = async (req, res) => {
     }
     
 }
+
+exports.getAllSubjectClassAttendanceStatistics = async (req, res) => {
+    try {
+        const classId = req.params.classId;
+        const subjectId = req.params.subjectId;
+        ClassAttendance.getAllSubjectClassAttendanceStatistics(classId, subjectId)
+            .then(results => {
+                Response.Success(res, 200, "queried successfully", results);
+            })
+            .catch(err => {
+                console.log(err);
+                Response.InternalServerError(res, "We are having issues! please try again soon");
+            });
+
+    } catch (error) {
+        console.log(error);
+        Response.InternalServerError(res, "We are having issues! please try again soon");
+    }
+    
+}
+
 
 exports.getOneStudentAttendanceBySubject = async (req, res) => {
     try {

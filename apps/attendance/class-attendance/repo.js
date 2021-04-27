@@ -1,5 +1,5 @@
 import ClassAttendance from './model'
-
+import mongoose from 'mongoose'
 exports.create = async (slotOnTimetable, students, subject, assignedClass, teacher, school) =>{
 try {
     const today = new Date().toISOString().slice(0, 10)
@@ -83,60 +83,44 @@ exports.getAllSubjectClassAttendances = async (classId, subjectId) => {
     }
 }
 
-// exports.getAllSubjectClassAttendances = async (c, subjectId) => {
-//     try {
-//         // console.log(classId, subjectId)
-
-//         // await ClassAttendance.find({class: classId, subject: subjectId})
-//         return await ClassAttendance.aggregate([
-//             {
-//                 $group: {
-//                     _id: {
-//                         week: {$week: '$createdAt'},
-//                         classId: "$class",
-//                         subject: "$subject",
-//                         gender: "$students.student.gender",
-//                         day: {$dayOfWeek: '$createdAt'},
-//                         month: {$month: '$createdAt'}
-//                     },
-//                     numberOfTimes: {
-//                         $sum: 1
-//                     }
-//                 }
-//             },
-//             {
-//                 $match: {
-//                     classId: c,
-//                     // subject: subjectId
-//                 }
-//             }
-//         ]
-//             )
-//             // .then(async data => {
-//             //     return await Student.populate(data, {
-//             //         path: "_id.student"
-    
-//             //     })
-//             // })
+exports.getAllSubjectClassAttendanceStatistics = async (classId, subjectId) => {
+    try {
+        const pipeline = [
+            {
+                "$match": {
+                    "class":  mongoose.Types.ObjectId(classId),
+                    "subject":  mongoose.Types.ObjectId(subjectId)
+                }
+            },
+            {
+                "$project": {
+                    "presentStudents": {
+                        "$size": {                  
+                            "$filter": {
+                                "input": "$students",
+                                "as": "el",
+                                "cond": { "$eq": [ "$$el.present", true ] }
+                            }                   
+                        }
+                    },
+                    "classId": "$class",
+                    "subjectId": "$subject",
+                    "classId": "$class",
+                    "createdAt": "$createdAt",
+                    "week": {$week: '$createdAt'},
+                    "day": {$dayOfWeek: '$createdAt'},
+                    "month": {$month: '$createdAt'},
 
 
-//         return await ClassAttendance.find({class: classId, subject: subjectId})
-//                 .populate({
-//                     path: "students.student",
-//                     select: "firstName lastName gender"
-//                 })
-//                 .exec()
-//                 .then(res => {
-//                     return res;
-//                 })
-//                 .catch(err => {
-//                     console.log(err);
-//                     return false;
-//                 })
-//     } catch (error) {
-//         throw error;
-//     }
-// }
+
+                }
+            }
+        ];
+        return await ClassAttendance.aggregate(pipeline)
+    } catch (error) {
+        throw error;
+    }
+}
 
 exports.getOneStudentAttendanceBySubject = async (studentId, subjectId) => {
     try {

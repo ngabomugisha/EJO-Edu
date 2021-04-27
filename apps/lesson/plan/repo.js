@@ -140,48 +140,17 @@ exports.evaluate = async (
     }
 }
 
-exports.getAllSubjectPlan = async (subjectId) => {
+exports.getAllSubjectPlan = async (subjectId, classId) => {
     try {
         return await Plan.find({
-                subject: subjectId
+                subject: subjectId,
+                class: classId
             })
-            .then(res => {
-                return res;
-            })
-            .catch(err => {
-                console.log(err);
-                return false;
-            })
-    } catch (error) {
-        throw error;
-    }
-}
-
-exports.getAllUnitPlan = async (unitId) => {
-    try {
-        return await Plan.find({
-                unit: unitId
-            })
-            .then(res => {
-                return res;
-            })
-            .catch(err => {
-                console.log(err);
-                return false;
-            })
-    } catch (error) {
-        throw error;
-    }
-}
-
-exports.getOnePlan = async (planId) => {
-    try {
-        return await Plan.findById(planId)
             .populate({
                 path: 'term class subject unit',
                 select: 'name starts ends level combination label subTopic topic',
                 populate: {
-                    path: 'level combination label subTopic topic',
+                    path: 'level combination subTopic topic',
                     select: 'name subjects'
                 }
             })
@@ -202,10 +171,70 @@ exports.getOnePlan = async (planId) => {
     }
 }
 
-exports.getTopicDetails = async (unitId, topic, type, teacher) => {
+exports.getAllUnitPlan = async (unitId, classId) => {
     try {
         return await Plan.find({
                 unit: unitId,
+                class: classId,
+            })
+            .populate({
+                path: 'term class subject unit',
+                select: 'name starts ends level combination label subTopic topic',
+                populate: {
+                    path: 'level combination subTopic topic',
+                    select: 'name subjects'
+                }
+            })
+            .populate({
+                path: 'teacher',
+                select: 'firstName lastName'
+            })
+            .exec()
+            .then(res => {
+                return res;
+            })
+            .catch(err => {
+                console.log(err);
+                return false;
+            })
+    } catch (error) {
+        throw error;
+    }
+}
+
+exports.getOnePlan = async (planId) => {
+    try {
+        return await Plan.findById(planId)
+            .populate({
+                path: 'term class subject unit',
+                select: 'name starts ends level combination label subTopic topic',
+                populate: {
+                    path: 'level combination subTopic topic',
+                    select: 'name subjects'
+                }
+            })
+            .populate({
+                path: 'teacher',
+                select: 'firstName lastName'
+            })
+            .exec()
+            .then(res => {
+                return res;
+            })
+            .catch(err => {
+                console.log(err);
+                return false;
+            })
+    } catch (error) {
+        throw error;
+    }
+}
+
+exports.getTopicDetails = async (unitId, classId, topic, type, teacher) => {
+    try {
+        return await Plan.find({
+                unit: unitId,
+                class: classId,
                 teacher: teacher,
                 [type]: {
                     $elemMatch: {
@@ -216,6 +245,19 @@ exports.getTopicDetails = async (unitId, topic, type, teacher) => {
             }).sort({
                 createdAt: -1
             })
+            .populate({
+                path: 'term class subject unit',
+                select: 'name starts ends level combination label subTopic topic',
+                populate: {
+                    path: 'level combination subTopic topic',
+                    select: 'name subjects'
+                }
+            })
+            .populate({
+                path: 'teacher',
+                select: 'firstName lastName'
+            })
+            .exec()
             .then(res => {
                 return res;
             })
