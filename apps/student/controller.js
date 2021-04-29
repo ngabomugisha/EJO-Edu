@@ -182,7 +182,7 @@ exports.getAllSchoolStudents = async (req, res) => {
 exports.searchSchoolStudents = async (req, res) => {
     try {
         const schoolId = req.params.schoolId;
-        const {searchKey} = req.body
+        const searchKey = req.params.searchKey;
         Student.searchSchoolStudents(schoolId, searchKey)
             .then(results => {
                 Response.Success(res, 200, "queried successfully", results);

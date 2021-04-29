@@ -128,7 +128,6 @@ exports.getAllSchoolStudents = async (schoolId) => {
 exports.searchSchoolStudents = async (schoolId, searchKey) => {
     try {
         var regex = new RegExp([".*", searchKey, ".*"].join(""), "i");
-        console.log(schoolId)
         return await Student.aggregate(
             [
                 {
