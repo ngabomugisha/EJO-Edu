@@ -128,7 +128,7 @@ exports.getAllSchoolStudents = async (schoolId) => {
 exports.searchSchoolStudents = async (schoolId, searchKey) => {
     try {
         var regex = new RegExp([".*", searchKey, ".*"].join(""), "i");
-        return await Student.aggregate(
+        const students = await Student.aggregate(
             [
                 {
                     $project: {
@@ -136,10 +136,11 @@ exports.searchSchoolStudents = async (schoolId, searchKey) => {
                             $concat: ["$firstName", " ", "$lastName"]
                         },
                         "school": "$school",
+                        "class": "$class"
                     }
                 }, {
                     $match: {
-                        "school": mongoose.Types.ObjectId("602c1e8feeb9ae2820b62120"),
+                        "school": mongoose.Types.ObjectId(schoolId),
                         "name": {
                             $regex: regex
                         }
@@ -147,6 +148,12 @@ exports.searchSchoolStudents = async (schoolId, searchKey) => {
                 }
             ]
             )
+        return await Student.populate(students, {
+                path: 'class',
+                populate: {
+                    path: 'level combination'
+                }
+            })
             .then(res => {
                 return res;
             })

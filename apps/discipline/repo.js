@@ -30,7 +30,7 @@ exports.addStudentDiscipline = async (
                 student: student._id
             }, {
                 $inc: {
-                    total: marks
+                    total:(-1 * marks)
                 },
                 $push: {
                     "disciplineEntries": entry

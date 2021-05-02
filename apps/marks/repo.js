@@ -85,6 +85,50 @@ exports.getStudentSubjectMarks = async (studentId, subjectId) => {
     }
 }
 
+
+exports.getStudentMarksStats = async (studentId) => {
+    try {
+
+
+        const pipeline = [
+            // {
+            //     "$match": {
+            //         // "class":  mongoose.Types.ObjectId(classId),
+            //     }
+            // },
+            // {
+            //     "$project": {
+            //         "subjectId": "$subject",
+            //         "classId": "$class",
+            //         "studentId": "$student",
+            //         "assignmentId": "$assignment",
+            //         "totalMarks": "$totalMarks",
+            //     }
+            // },
+            {
+                "$lookup": {
+                    from: "assignment",
+                    localField: "assignment",
+                    foreignField: "_id",
+                    as: "assignments"
+                }
+            },
+            // {
+            //     "$group": {
+            //         "_id": "$assignmentId"
+            //     }
+            // }
+        ];
+        return await Marks.aggregate(pipeline)
+
+
+
+    } catch (error) {
+        throw error;
+    }
+}
+
+
 exports.getAssignmentMarks = async (assignmentId, subjectId) => {
     try {
         return await Marks.find({
