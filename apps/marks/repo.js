@@ -129,10 +129,14 @@ exports.getStudentMarksStats = async (studentId) => {
 }
 
 
-exports.getAssignmentMarks = async (assignmentId, subjectId) => {
+exports.getAssignmentMarks = async (assignmentId) => {
     try {
         return await Marks.find({
                 assignment: assignmentId
+            })
+            .populate({
+                path: 'student',
+                select: 'firstName lastName gender'
             })
             .exec()
             .then(res => {
