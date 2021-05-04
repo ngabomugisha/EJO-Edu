@@ -76,7 +76,7 @@ exports.createFromCSV = async (req, res) => {
                     }
                     if (row.field10 !== "") {
                         subject.topics[topic].subtopics[subtopic].units[unit].activities.push({
-                            topic: row.field10
+                            activity: row.field10
                         })
                     }
 

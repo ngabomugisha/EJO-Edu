@@ -166,7 +166,6 @@ exports.searchSchoolStudents = async (schoolId, searchKey) => {
     }
 }
 
-
 exports.getOneStudent = async (studentId) => {
     try {
         return await Student.findById(studentId)
