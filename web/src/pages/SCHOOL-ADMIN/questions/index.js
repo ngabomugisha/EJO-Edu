@@ -61,12 +61,12 @@ export const Index = (props) => {
     console.log('data from ALL_QUESTION',ALL_QUESTION)
 
         console.log('after timed out ',ALL_QUESTION)
-        setIsLoading(false)
+        // setIsLoading(false)
 
 console.log('data from localstorage',JSON.parse(localStorage.getItem("students")))
     return (
         <>
-            <PanelLayout selected={7} role={props.state.auth.user.role}>
+            <PanelLayout selected={8} role={props.state.auth.user.role}>
 
         {ALL_QUESTION.length > 0 ?
             <QuestionTable data={ALL_QUESTION} head={headCells}/>:

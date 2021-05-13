@@ -14,6 +14,8 @@ import LessonPlanPage from './pages/Teacher/LessonPlan'
 import NewAssignmentPage from './components/newAssignment/NewAssignment'
 import NewLessonPlanPage from './components/newLessonplan/NewLessonPlan'
 import LessonPlanDetailsPage from './pages/Teacher/LessonPlanDetails'
+import TeacherPrintsPage from './pages/Teacher/Prints'
+import workschemePage from './pages/Teacher/Scheme_of_work'
 
 //headStudy
 import headStudyDashboard from './pages/headStudy/Index';
@@ -26,6 +28,7 @@ import schoolAdminDaschbord from './pages/SCHOOL-ADMIN/index'
 import studentsPage from './pages/SCHOOL-ADMIN/student/index'
 import studentAddPage from './pages/SCHOOL-ADMIN/student/AddStudent'
 import TeachersPage from './pages/SCHOOL-ADMIN/teacher/index'
+import TeachersClassPage from './pages/SCHOOL-ADMIN/teacher/Classes'
 import timeTablePage from './pages/SCHOOL-ADMIN/timeTable/index'
 import disciplinePage from './pages/SCHOOL-ADMIN/discipline/index'
 import termPage from './pages/SCHOOL-ADMIN/term/index'
@@ -63,6 +66,8 @@ export default () => {
           <Route exact path="/teacher/assignment" component={AssignmentPage} />
           <Route exact path="/teacher/newAssignment" component={NewAssignmentPage} />
           <Route exact path="/teacher" component={TeacherDashboard} />
+          <Route exact path="/teacher/prints" component={TeacherPrintsPage} />
+          <Route exact path="/teacher/workscheme" component={workschemePage} />
 
 
           {/* headStudy routes */}
@@ -82,7 +87,7 @@ export default () => {
           <Route exact path="/schoolAdmin/questions" component={questionsPage} />
           <Route exact path="/schoolAdmin/report" component={reportPage} />
           <Route exact path="/schoolAdmin/classes" component={classesPage} />
-          
+          <Route exact path="/schoolAdmin/teachers/classes" component={TeachersClassPage} />
           <Route exact path="/schoolAdmin/teachers">
             <TeachersPage  />
           </Route>
