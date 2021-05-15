@@ -1,6 +1,7 @@
 import ClassAttendance from './repo'
 import Timetable from '../../timetable/repo'
 import Response from '../../../utils/Responses';
+import moment from 'moment';
 
 exports.create = async (req, res) => {
     try {
@@ -10,7 +11,7 @@ exports.create = async (req, res) => {
             assignedClass,
             time
         } = req.body;
-        const today = new Date(time)
+        const today = moment(time).format();
         console.log("TODAY:", today, time)
         let day = today.getDay()
         const hour = today.getHours()
