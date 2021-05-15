@@ -11,7 +11,7 @@ exports.create = async (req, res) => {
             assignedClass,
             time
         } = req.body;
-        const today = moment(time).format();
+        const today = moment(time).toDate();
         console.log("TODAY:", today, time)
         let day = today.getDay()
         const hour = today.getHours()
