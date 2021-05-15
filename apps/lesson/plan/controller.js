@@ -18,6 +18,8 @@ exports.create = async (req, res) => {
         const {skills} = JSON.parse(req.body.skills)
         const {attitudesAndValues} = JSON.parse(req.body.attitudesAndValues)
         const activities = JSON.parse(req.body.activities)
+
+        console.log(activities)
         const teachingTechniques = JSON.parse(req.body.teachingTechniques)
         const teacher = req.user._id
         const school = req.user.school
