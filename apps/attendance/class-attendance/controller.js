@@ -11,7 +11,7 @@ exports.create = async (req, res) => {
             time
         } = req.body;
         const today = new Date(time)
-        console.log("TODAY:", today)
+        console.log("TODAY:", today, time)
         let day = today.getDay()
         const hour = today.getHours()
         const minutes = today.getMinutes()
