@@ -1,6 +1,6 @@
 import ClassAttendance from './model'
 import mongoose from 'mongoose'
-exports.create = async (slotOnTimetable, students, subject, assignedClass, teacher, school) =>{
+exports.create = async (slotOnTimetable, students, subject, assignedClass, teacher, school, time) =>{
 try {
     const today = new Date().toISOString().slice(0, 10)
     const tomorrow = new Date(today)
