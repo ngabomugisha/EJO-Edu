@@ -10,7 +10,7 @@ exports.create = async (req, res) => {
             assignedClass,
             time
         } = req.body;
-        const today = new Date(time)
+        const today = time
         console.log("TODAY:", today)
         let day = today.getDay()
         const hour = today.getHours()
