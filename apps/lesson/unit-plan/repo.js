@@ -93,12 +93,13 @@ exports.updateOneTopic = async (
                         }
                 }
                 , {
-                    $set: {
-                        
+                    $inc: {
                         [numberOftimesTaught]: 1,
+                    },
+                    $set: {
                         [lastTaught]: date,
-                        [bloomTaxonomyPath]: bloomTaxonomy,
-                        [standardCriteriaPerfomancePath]: standardCriteriaPerfomance
+                        [bloomTaxonomyPath]: item.bloomTaxonomy,
+                        [standardCriteriaPerfomancePath]: item.standardCriteriaPerfomance
 
                     }
                 }
@@ -113,6 +114,7 @@ exports.updateOneTopic = async (
                 //     return true;
                 // }
             );
+            console.log(item, JSON.stringify(data.content))
         })
     } catch (error) {
         throw error;
@@ -129,9 +131,9 @@ exports.updateActivities = async (
     try {
         
         const activitiesArr = []
-        activitiesArr.push(...activities.introduction.activities)
-        activitiesArr.push(...activities.development.activities)
-        activitiesArr.push(...activities.conclusion.activities)
+        activitiesArr.push(...activities?.introduction?.content?.activities)
+        activitiesArr.push(...activities?.development?.content?.activities)
+        activitiesArr.push(...activities?.conclusion?.content?.activities)
 
         activitiesArr.map(async (item) => {
             console.log(unitPlanId, item)
@@ -144,11 +146,12 @@ exports.updateActivities = async (
                         }
                 }
                 , {
+                    $inc: {
+                        'activities.$.numberOftimesTaught': 1,
+                    },
                     $set: {
-                        "activities.$.numberOftimesTaught": 1,
+                        
                         "activities.$.lastTaught": date,
-                        "activities.$.bloomTaxonomy": bloomTaxonomy,
-                        "activities.$.standardCriteriaPerfomance": standardCriteriaPerfomance
                     }
                 }
                 //  {
@@ -162,6 +165,7 @@ exports.updateActivities = async (
                 //     return true;
                 // }
             );
+            
             // console.log(data)
         })
     } catch (error) {

@@ -97,6 +97,26 @@ exports.getStudentSubjectMarks = async (req, res) => {
     
 }
 
+exports.getStudentMarks = async (req, res) => {
+    try {
+
+        const studentId = req.params.studentId;
+        Marks.getStudentMarks(studentId)
+            .then(results => {
+                Response.Success(res, 200, "queried successfully", results);
+            })
+            .catch(err => {
+                console.log(err);
+                Response.InternalServerError(res, "We are having issues! please try again soon");
+            });
+
+    } catch (error) {
+        console.log(error);
+        Response.InternalServerError(res, "We are having issues! please try again soon");
+    }
+    
+}
+
 exports.getStudentMarksStats = async (req, res) => {
     try {
 

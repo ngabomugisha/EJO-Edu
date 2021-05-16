@@ -129,6 +129,27 @@ exports.getStudentMarksStats = async (studentId) => {
 }
 
 
+exports.getStudentMarks = async (studentId) => {
+    try {
+        return await Marks.find({
+                student: studentId
+            })
+            .populate({
+                path: 'subject assignment'
+            })
+            .exec()
+            .then(res => {
+                return res;
+            })
+            .catch(err => {
+                console.log(err);
+                return false;
+            })
+    } catch (error) {
+        throw error;
+    }
+}
+
 exports.getAssignmentMarks = async (assignmentId) => {
     try {
         return await Marks.find({

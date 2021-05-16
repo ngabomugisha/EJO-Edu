@@ -14,10 +14,16 @@ exports.create = async (req, res) => {
             lessonName,
             time
         } = JSON.parse(req.body.lesson)
+        // console.log(req.body.knowledge)
+        // console.log(req.body.skills)
+        // console.log(req.body.attitudesAndValues)
         const {knowledge} = JSON.parse(req.body.knowledge)
         const {skills} = JSON.parse(req.body.skills)
         const {attitudesAndValues} = JSON.parse(req.body.attitudesAndValues)
         const activities = JSON.parse(req.body.activities)
+        
+        console.log(activities)
+
         const teachingTechniques = JSON.parse(req.body.teachingTechniques)
         const teacher = req.user._id
         const school = req.user.school
@@ -36,15 +42,16 @@ exports.create = async (req, res) => {
                 attitudesAndValues,
                 activities,
                 teachingTechniques,
-                time
-            )
+                time 
+            ) 
             .then(async (results) => {
-                // await UnitPlan.updateOneTopic(unitPlanId, "content.knowledgeAndUnderstanding", knowledge, time.day );
-                // await UnitPlan.updateOneTopic(unitPlanId, "content.skills", skills, time.day );
-                // await UnitPlan.updateOneTopic(unitPlanId, "content.attitudesAndValues", attitudesAndValues, time.day );
+                // console.log(activities)
+                await UnitPlan.updateOneTopic(unitPlanId, "content.knowledgeAndUnderstanding", knowledge?.topics || [], time.day );
+                await UnitPlan.updateOneTopic(unitPlanId, "content.skills", skills?.topics || [], time.day );
+                await UnitPlan.updateOneTopic(unitPlanId, "content.attitudesAndValues", attitudesAndValues?.topics || [], time.day );
 
                 //activities
-                // await UnitPlan.updateActivities(unitPlanId, activities, time.day);
+                await UnitPlan.updateActivities(unitPlanId, activities, time.day);
 
                 Response.Success(res, 200, "created successfully", results);
             })

@@ -1,15 +1,18 @@
 import ClassAttendance from './repo'
 import Timetable from '../../timetable/repo'
 import Response from '../../../utils/Responses';
+import moment from 'moment';
 
 exports.create = async (req, res) => {
     try {
         const {
             students,
             subject,
-            assignedClass
+            assignedClass,
+            time
         } = req.body;
-        const today = new Date(Date.now())
+        const today = moment(time).format();
+        console.log("TODAY:", today, time)
         let day = today.getDay()
         const hour = today.getHours()
         const minutes = today.getMinutes()
@@ -24,7 +27,7 @@ exports.create = async (req, res) => {
         const teacher = req.user._id;
         const school = req.user.school
 
-        ClassAttendance.create(slotOnTimetable, students, subject, assignedClass, teacher, school)
+        ClassAttendance.create(slotOnTimetable, students, subject, assignedClass, teacher, school, time)
         .then(results => {
             Response.Success(res, 200, "created successfully", results);
         })
