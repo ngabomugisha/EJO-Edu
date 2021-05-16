@@ -1,6 +1,6 @@
 import ClassAttendance from './model'
 import mongoose from 'mongoose'
-exports.create = async (slotOnTimetable, students, subject, assignedClass, teacher, school) =>{
+exports.create = async (slotOnTimetable, students, subject, assignedClass, teacher, school, time) =>{
 try {
     const today = new Date().toISOString().slice(0, 10)
     const tomorrow = new Date(today)
@@ -134,6 +134,10 @@ exports.getOneStudentAttendanceBySubject = async (studentId, subjectId) => {
                     }
                 }, { "students.$": 1, 'createdAt': 1, 'slotOnTimetable': 1 }
                 )
+        .populate({
+            path: 'students.student'
+        
+        }).exec()
                 .then(res => {
                     return res;
                 })
