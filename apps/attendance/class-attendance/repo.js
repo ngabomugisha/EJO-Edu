@@ -135,7 +135,7 @@ exports.getOneStudentAttendanceBySubject = async (studentId, subjectId) => {
                 }, { "students.$": 1, 'createdAt': 1, 'slotOnTimetable': 1 }
                 )
         .populate({
-            path: 'students.student'
+            path: 'slotOnTimetable'
         
         }).exec()
                 .then(res => {
