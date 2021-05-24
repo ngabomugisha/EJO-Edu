@@ -94,12 +94,12 @@ exports.getAllSubjectClassAttendanceStatistics = async (classId, subjectId) => {
             },
             {
                 "$project": {
-                    "presentStudents": {
+                    "absentStudents": {
                         "$size": {                  
                             "$filter": {
                                 "input": "$students",
                                 "as": "el",
-                                "cond": { "$eq": [ "$$el.present", true ] }
+                                "cond": { "$eq": [ "$$el.present", false ] }
                             }                   
                         }
                     },
