@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItem from '@material-ui/core/ListItem';
+import https  from '../../helpers/https'
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import AppBar from '@material-ui/core/AppBar';
@@ -16,6 +17,15 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
+import ModalFooter from 'react-bootstrap/ModalFooter'
+import ModalBody from 'react-bootstrap/ModalBody'
+import ModalTitle from 'react-bootstrap/ModalTitle'
+import ModalHeader from 'react-bootstrap/ModalHeader'
+import ModalDialog from 'react-bootstrap/ModalDialog'
+import Modal from 'react-bootstrap/Modal'
+
+
+
 import { handleFetchSubject} from '../../store/actions/subjects.actions'
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -35,7 +45,10 @@ function LessonCard(props) {
   
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
+    const [ show, setShow] = useState(false)
     const [subjects, setSubjects] = useState([])
+    const [covered, setCovered] = useState(null)
+    const [expected, setExpected] = useState(null)
     const handleClickOpen = () => {
       if(props.data)
       setOpen(true);
@@ -43,7 +56,50 @@ function LessonCard(props) {
     const handleClose = () => {
       setOpen(false);
     };
+
+    const handleClose2 = () => setShow(false);
+    const handleShow = () => setShow(true);
+  
+
+    const countExpected  = (value)=>{
+      let knowledge = value.content.knowledgeAndUnderstanding.length
+      let skills = value.content.skills.length
+      let attitude = value.content.attitudesAndValues.length
+      return knowledge + skills + attitude
+  }
+  
+  const countCovered = (value)=>{
+      let knowledge = value.content.knowledgeAndUnderstanding.filter(val=>{
+          return val.numberOftimesTaught !== 0
+      })
+  
+      let skills = value.content.skills.filter(val=>{
+          return val.numberOftimesTaught !== 0
+      })
+  
+      let attitude = value.content.attitudesAndValues.filter(val=>{
+          return val.numberOftimesTaught !== 0
+      })
+      // setCover(knowledge.length+skills.length+attitude.length)
+      return 12
+  }
+   
+    const fetchUintPlan = unitPlanId => {
+      https.get(`/lessons/unit-plans/${unitPlanId}`, { headers: { 'Authorization': `Basic ${localStorage.token}` } })
+      .then((res) => {
+        console.log("---------", res.data, "-----------")
+        setCovered(countCovered(res.data))
+        setExpected(countExpected(res.data))
+      }).catch(function (err) {
+        console.log(err, '***********ERRRORR***********');
+      });
+    }
+    
+
+
+
   useEffect(() => {
+    fetchUintPlan(props.covered)
   }, [])
     return (<>
         <div className='card-container'>
@@ -61,10 +117,10 @@ function LessonCard(props) {
                     {props.time}
                 </p>
                 <p className='card2-size'>
-                    Expected: {props.size}
+                    Expected: {expected}
                 </p>
-                <p className='card2-covered'>
-                    Covered: {props.covered}
+                <p onClick={() => setShow(true)} className='card2-covered' style = {{cursor: "pointer"}}>
+                    Covered: {covered}
                 </p>
                 {/* <Link to={{
                     pathname: '/teacher/lessonPlan/details',
@@ -94,6 +150,28 @@ function LessonCard(props) {
         </AppBar>
        <PrintDetail lessonPlan = {props.data} subjects={subjects}/>
       </Dialog>
+
+
+      <Modal show={show} onHide={handleClose2}>
+        <Modal.Header closeButton>
+          <Modal.Title>Covered</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          
+            <p>details of covered</p>
+
+
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose2}>
+            Close
+          </Button>
+          {/* <Button variant="primary" onClick={handleClose2}>
+            Save Changes
+          </Button> */}
+        </Modal.Footer>
+      </Modal>
+
 
         </>
     )
