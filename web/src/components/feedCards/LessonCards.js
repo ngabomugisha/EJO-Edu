@@ -94,13 +94,14 @@ function LessonCards(props) {
     // props.handleSetTeacherData(DATA)
     // setOpen(false);
     setOpen(false)
-    props.handleFetchLessonPlanSubject(sub,clas)
+    props.handleFetchLessonPlanSubject(sub,"607fe43872bcd50036b72ea5")
   };
 
   const fetchClasses = async () => {
     const req = await https.get(`/class-teachers/${teacher}/teacher-classes`, { headers: { 'Authorization': `Basic ${localStorage.token}` } })
       .then((res) => {
         setClasss(res.data)
+        console.log("CLASS :", res.data)
       }).catch(function (err) {
         console.log(err, '***********ERRRORR***********');
       });
@@ -116,7 +117,7 @@ function LessonCards(props) {
 
     if (e.target.name === "class") {
       setClas(e.target.value)
-      setSublist(classs.filter(el => el.class._id === clas));
+      setSublist(classs.filter(el => el.class._id === e.target.value));
     }
 
     if (e.target.name === "subject"){
@@ -191,11 +192,11 @@ function LessonCards(props) {
       // props.handleFetchTeacherData()
       setOpen(true)
     }
-    setClas((JSON.parse(localStorage.getItem('DATA'))) ? (JSON.parse(localStorage.getItem('DATA'))).class : null)
-    setSub((JSON.parse(localStorage.getItem('DATA'))) ? (JSON.parse(localStorage.getItem('DATA'))).subject : null)
-    setTop((JSON.parse(localStorage.getItem('DATA'))) ? (JSON.parse(localStorage.getItem('DATA'))).topic : null)
-    setSubTop((JSON.parse(localStorage.getItem('DATA'))) ? (JSON.parse(localStorage.getItem('DATA'))).subtopic : null)
-    setUni((JSON.parse(localStorage.getItem('DATA'))) ? (JSON.parse(localStorage.getItem('DATA'))).unit : null)
+    // setClas((JSON.parse(localStorage.getItem('DATA'))) ? (JSON.parse(localStorage.getItem('DATA'))).class : null)
+    // setSub((JSON.parse(localStorage.getItem('DATA'))) ? (JSON.parse(localStorage.getItem('DATA'))).subject : null)
+    // setTop((JSON.parse(localStorage.getItem('DATA'))) ? (JSON.parse(localStorage.getItem('DATA'))).topic : null)
+    // setSubTop((JSON.parse(localStorage.getItem('DATA'))) ? (JSON.parse(localStorage.getItem('DATA'))).subtopic : null)
+    // setUni((JSON.parse(localStorage.getItem('DATA'))) ? (JSON.parse(localStorage.getItem('DATA'))).unit : null)
 
     props.handleFetchTeacherData()
     if ((JSON.parse(localStorage.getItem('DATA')))) {
@@ -209,7 +210,7 @@ function LessonCards(props) {
       }
     }
     setFetchedPlans(props.lesss)
-
+    console.log("FETCHED LESSON PLAN :", fetchedPlans.list )
   }, [])
 
   return (
@@ -243,7 +244,7 @@ function LessonCards(props) {
                   </MenuItem>
                   {classs &&
                     classs.map(item => (
-                      <MenuItem key={item.class._id} value={item.class._id}>{!item ? '' : !item.class != null && !item.class != undefined ? '' : !item.class.level ? '' : item.class.level.name}&nbsp;{!item ? '' : !item.class ? '' : !item.class.combination ? '' : !item.class.combination ? '' : item.class.combination.name}&nbsp;{!item ? "" : !item.class ? "" : item.class.label ? item.class.label : ''}</MenuItem>
+                      <MenuItem key={item.class._id} value={item.class._id}>{!item.class.level ? '' : item.class.level.name}&nbsp;{!item ? '' : !item.class ? '' : !item.class.combination ? '' : !item.class.combination ? '' : item.class.combination.name}&nbsp;{!item ? "" : !item.class ? "" : item.class.label ? item.class.label : ''}</MenuItem>
                     ))
                   }
                 </TextField>
@@ -268,7 +269,7 @@ function LessonCards(props) {
                   { sublist
                      &&
                      sublist.map(item => (
-                      <MenuItem key={item.subject._id} value={item.subject._id}>{item.subject.name}</MenuItem>
+                      <MenuItem key={item.subject && item.subject._id} value={ item.subject && item.subject._id}>{item.subject && item.subject.name}</MenuItem>
                     ))
                   }
                 </TextField>
@@ -369,8 +370,8 @@ function LessonCards(props) {
         </Dialog>
       </div>
       {JSON.parse(localStorage.getItem('DATA')) && JSON.parse(localStorage.getItem('DATA')).subject !== null && JSON.parse(localStorage.getItem('DATA')) && sub &&
-        fetchedPlans.list &&
-        fetchedPlans.list.map(
+        props.lesss.list &&
+        props.lesss.list.map(
           item => (
             <div className='card'>
               <LessonCard

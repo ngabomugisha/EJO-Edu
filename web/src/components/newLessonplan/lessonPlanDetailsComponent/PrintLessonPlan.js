@@ -89,20 +89,8 @@ class ComponentToPrint extends React.Component {
             <tr>
               <td>1</td>
               <td>{!less ? "" : !less.time ? "" : (less.time.day).substring(0, (less.time.day).indexOf('T'))}</td>
-              <td>{!less ? "" : !less.subject ? "" : this.props.subjects.reduce(function (fit, condition) {
-                if (condition._id == less.subject) {
-                  let keyUnit = condition.name;
-                  fit = keyUnit;
-                }
-                return fit;
-              }, "")}</td>
-              <td>{this.props.classes && this.props.classes.reduce(function (fit, condition) {
-                if (condition._id == less.class) {
-                  let keyUnit = `${condition.level && condition.level.name} ${condition.combination && condition.combination.name} ${condition.label}`;
-                  fit = keyUnit;
-                }
-                return fit;
-              }, "")}</td>
+              <td>{!less ? "" : !less.subject ? "" : less.subject.name}</td>
+              <td>{less.class.level.name} {less.class.label}</td>
               <td>{`1`}</td>
               <td>{`1 of 4`}</td>
               <td>{less.teachingTechniques.introduction.duration + less.teachingTechniques.development.duration + less.teachingTechniques.conclusion.duration} Minutes</td>
@@ -122,14 +110,55 @@ class ComponentToPrint extends React.Component {
             <tr>
               <td colSpan="8">
                 <h4 style={{ fontWeight: "bold" }}>Learning Objectives</h4>
-                <h6>knowledge :</h6>
-                <p>{less.knowledge.topics.map(item => (<li>{item.topic}</li>))}</p>
+                <h6><b>- knowledge :</b></h6>
+                <p>{less.knowledge.topics.map(item => (
+                 <div>
+                 <li>
+                   {item.topic}
+                   <ul className="list">
+                     <li>
+                       <b>bloomTaxonomy:</b> {item.bloomTaxonomy}
+                     </li>
+                     <li>
+                       <b>Standard Creteria:</b> {item.standardCriteriaPerfomance}%
+                     </li>
+                   </ul>
+                 </li>
+                 </div>))}</p>
 
-                <h6>Skills :</h6>
-                <p>{less.skills.topics.map(item => (<li>{item.topic}</li>))}</p>
+                <h6><b>- Skills :</b></h6>
+                <p>{less.skills.topics.map(item => (<div>
+                  
+                  <li>
+                    {item.topic}
+                    <ul className="list">
+                      <li>
+                        <b>bloomTaxonomy:</b> {item.bloomTaxonomy}
+                      </li>
+                      <li>
+                        <b>Standard Creteria:</b> {item.standardCriteriaPerfomance}%
+                      </li>
+                    </ul>
+                  </li>
+                  
+                </div>))}</p>
 
-                <h6>attitudes And Values :</h6>
-                <p>{less.attitudesAndValues.topics.map(item => (<li>{item.topic}</li>))}</p>
+                <h6><b>- Attitudes And Values :</b></h6>
+                <p>{less.attitudesAndValues.topics.map(item => (
+                <div>
+                  <li>
+                    {item.topic}
+                    <ul className="list">
+                      <li>
+                        <b>bloomTaxonomy:</b> {item.bloomTaxonomy}
+                      </li>
+                      <li>
+                        <b>Standard Creteria:</b> {item.standardCriteriaPerfomance}%
+                      </li>
+                    </ul>
+                  </li>
+                  </div>
+                  ))}</p>
 
               </td>
             </tr>
@@ -141,7 +170,13 @@ class ComponentToPrint extends React.Component {
 
             <tr>
               <td colSpan="2">Learning Materials</td>
-              <td colSpan="6">{less.knowledge.instructionalMaterial.map(i => i.items.map(item => (item.item + " ,")))}</td>
+              <td colSpan="6">
+                <div>
+                  <b>Knowledge : </b>{less.knowledge.instructionalMaterial.map(i => i.items.map(item => (item.item + " ,")))}<br/>
+                  <b>Skills : </b>{less.skills.instructionalMaterial.map(i => i.items.map(item => (item.item + " ,")))}<br/>
+                  <b>Attitudes And Values : </b> {less.attitudesAndValues.instructionalMaterial.map(i => i.items.map(item => (item.item + " ,")))}
+                </div>
+              </td>
             </tr>
 
             <tr>
@@ -189,7 +224,7 @@ class ComponentToPrint extends React.Component {
 
             </tr>
             <tr>
-              <td><h4>Conclusion:</h4><p>Summary and assessment {less.teachingTechniques.conclusion.duration} Min</p></td>
+              <td><h4>Conclusion:</h4><p>{less.teachingTechniques.conclusion.duration} Min</p></td>
               <td>{forRender(concKeys, concValues)}{teac && teac.map(i => (<p>{i}</p>))}</td>
               <td>{less.activities.conclusion.content.activities.map(i => i.activity)}</td>
               <td>
@@ -201,12 +236,12 @@ class ComponentToPrint extends React.Component {
             </tr>
             <tr>
               <td><h4>Teacher self-evaluation:</h4><p></p></td>
-              <td colSpan={3}></td>
+              <td colSpan={3}>{ !less.teacherSelfAssessment ? "" :less.teacherSelfAssessment.assessment ? less.teacherSelfAssessment.assessment : "" }</td>
 
             </tr>
             <tr>
               <td><h4>Students Feedback:</h4><p></p></td>
-              <td colSpan={3}></td>
+              <td colSpan={3}>{ !less.teacherSelfAssessment ? " Not done yet " :less.studentSelfAssessment ? less.studentSelfAssessment : "" }</td>
 
             </tr>
 
@@ -267,9 +302,10 @@ export function Index(props) {
         }
         return(res)
       },[])
-        const flatList = permanent && permanent.map(item => item.map(i => {
-                f.push(i)
-            }))
+    //     const flatList = permanent !== null ? permanent.map(item => item.map(i => {
+    //             f.push(i)
+    //         })): null
+    // }
     }
     // const finalList = f.filter((value,index)=> f.indexOf(value) === index)
   return (
