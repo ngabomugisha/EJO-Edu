@@ -9,6 +9,7 @@ router.get('/:subjectId/:classId/subject-plan', Plan.getSubjectPlan);
 router.get('/:unitId/:classId/unit-plan', Plan.getUnitPlan);
 router.get('/:unitId/:classId/topic-details', Plan.getTopicDetails);
 router.get('/:planId', Plan.getOnePlan);
+router.get('/:teacherId/teacher-latest', Plan.getTeacherLatest);
 router.delete('/:planId', Plan.delete);
 
 module.exports = router;

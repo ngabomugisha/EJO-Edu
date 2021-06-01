@@ -241,6 +241,27 @@ exports.getTopicDetails = async (req, res) => {
 
 }
 
+exports.getTeacherLatest = async (req, res) => {
+    try {
+
+        const teacherId = req.params.teacherId;
+        Plan.getTeacherLatest(teacherId)
+            .then(result => {
+                Response.Success(res, 200, "queried successfully", result);
+            })
+            .catch(err => {
+                console.log(err);
+                Response.InternalServerError(res, "We are having issues! please try again soon");
+            });
+
+    } catch (error) {
+        console.log(error);
+        Response.InternalServerError(res, "We are having issues! please try again soon");
+    }
+
+}
+
+
 exports.delete = async (req, res) => {
     try {
         const planId = req.params.planId;

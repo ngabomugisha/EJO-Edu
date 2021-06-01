@@ -269,6 +269,39 @@ exports.getTopicDetails = async (unitId, classId, topic, type, teacher) => {
         throw error;
     }
 }
+exports.getTeacherLatest = async (teacherId) => {
+    try {
+        return await Plan.find({
+                teacher: teacherId
+            })
+            .limit(1)
+            .sort({
+                createdAt: -1
+            })
+            .populate({
+                path: 'term class subject unit',
+                select: 'name starts ends level combination label subTopic topic',
+                populate: {
+                    path: 'level combination subTopic topic',
+                    select: 'name subjects'
+                }
+            })
+            .populate({
+                path: 'teacher',
+                select: 'firstName lastName'
+            })
+            .exec()
+            .then(res => {
+                return res;
+            })
+            .catch(err => {
+                console.log(err);
+                return false;
+            })
+    } catch (error) {
+        throw error;
+    }
+}
 
 exports.delete = async (planId) => {
     try {
