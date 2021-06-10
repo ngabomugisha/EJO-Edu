@@ -110,17 +110,17 @@ class ComponentToPrint extends React.Component {
             <tr>
               <td colSpan="8">
                 <h4 style={{ fontWeight: "bold" }}>Learning Objectives</h4>
-                <h6><b>- knowledge :</b></h6>
+                <h6><b>- Knowledge :</b></h6>
                 <p>{less.knowledge.topics.map(item => (
                  <div>
                  <li>
                    {item.topic}
                    <ul className="list">
                      <li>
-                       <b>bloomTaxonomy:</b> {item.bloomTaxonomy}
+                       <b>Bloom taxonomy:</b> {item.bloomTaxonomy}
                      </li>
                      <li>
-                       <b>Standard Creteria:</b> {item.standardCriteriaPerfomance}%
+                       <b>Standard Criteria:</b> {item.standardCriteriaPerfomance}%
                      </li>
                    </ul>
                  </li>
@@ -181,7 +181,7 @@ class ComponentToPrint extends React.Component {
 
             <tr>
               <td colSpan="2">References</td>
-              <td colSpan="6"></td>
+              <td colSpan="6">{less.knowledge.otherMaterialsAndReferences}</td>
             </tr>
 
 
@@ -191,7 +191,7 @@ class ComponentToPrint extends React.Component {
           <table border="1" className="ls-table">
             <tr>
               <th>Timing for each step</th>
-              <th colSpan="2">Description of taching and leaning activity</th>
+              <th colSpan="2">Description of teaching and learning activity</th>
               <th></th>
             </tr>
             <tr>
@@ -208,7 +208,8 @@ class ComponentToPrint extends React.Component {
               <td>
                 <li style={{ fontWeight: "700", fontSize: "large" }}>Competency :</li>{less.activities.introduction.competency.competencies.map(i => i.competency)}<br />
                 <li style={{ listStyleType: "circle", }}><i><u>Comments:</u></i> <p style={{ textDecoration: "none" }}>{less.activities.introduction.competency.comment}</p><br /><br /></li>
-                <li style={{ fontWeight: "700", fontSize: "large" }}>CrossCutting Issues :</li>{less.activities.introduction.crossCuttingIssues.issues.map(i => i.issue)}<br />
+                <li style={{ fontWeight: "700", fontSize: "large" }}>Cross cutting Issues :</li>{less.activities.introduction.crossCuttingIssues.issues.map(i => i.issue)}<br />
+                <li style={{ listStyleType: "circle", }}><i><u>Comments:</u></i> <p style={{ textDecoration: "none" }}>{less.activities.introduction.crossCuttingIssues.comment}</p><br /><br /></li>
               </td>
 
             </tr>
@@ -219,7 +220,8 @@ class ComponentToPrint extends React.Component {
               <td>
                 <li style={{ fontWeight: "700", fontSize: "large" }}>Competency :</li>{less.activities.development.competency.competencies.map(i => i.competency)}<br />
                 <li style={{ listStyleType: "circle", }}><i><u>Comments:</u></i> <p style={{ textDecoration: "none" }}>{less.activities.development.competency.comment}</p><br /><br /></li>
-                <li style={{ fontWeight: "700", fontSize: "large" }}>CrossCutting Issues :</li>{less.activities.development.crossCuttingIssues.issues.map(i => i.issue)}<br />
+                <li style={{ fontWeight: "700", fontSize: "large" }}>Cross cutting Issues :</li>{less.activities.development.crossCuttingIssues.issues.map(i => i.issue)}<br />
+                <li style={{ listStyleType: "circle", }}><i><u>Comments:</u></i> <p style={{ textDecoration: "none" }}>{less.activities.development.crossCuttingIssues.comment}</p><br /><br /></li>
               </td>
 
             </tr>
@@ -230,7 +232,8 @@ class ComponentToPrint extends React.Component {
               <td>
                 <li style={{ fontWeight: "700", fontSize: "large" }}>Competency :</li>{less.activities.conclusion.competency.competencies && less.activities.conclusion.competency.competencies.map(i => i.competency)}<br />
                 <li style={{ listStyleType: "circle", }}><i><u>Comments:</u></i> <p style={{ textDecoration: "none" }}>{less.activities.conclusion.competency.comment}</p><br /><br /></li>
-                <li style={{ fontWeight: "700", fontSize: "large" }}>CrossCutting Issues :</li>{less.activities.conclusion.crossCuttingIssues.issues && less.activities.conclusion.crossCuttingIssues.issues.map(i => i.issue)}<br />
+                <li style={{ fontWeight: "700", fontSize: "large" }}>Cross cutting Issues :</li>{less.activities.conclusion.crossCuttingIssues.issues && less.activities.conclusion.crossCuttingIssues.issues.map(i => i.issue)}<br />
+                <li style={{ listStyleType: "circle", }}><i><u>Comments:</u></i> <p style={{ textDecoration: "none" }}>{less.activities.conclusion.crossCuttingIssues.comment}</p><br /><br /></li>
               </td>
 
             </tr>

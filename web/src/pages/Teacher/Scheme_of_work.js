@@ -63,26 +63,25 @@ export const Scheme_of_work = (props) => {
 
   const teacher = props.state.auth && props.state.auth.user && props.state.auth.user._id;
   const [classs, setClasss] = React.useState(null);
-  const [unique, setUnique] = React.useState(null);
-  const [clas, setClas] = React.useState(null)
-  const [subject, setSubject] = React.useState(null);
-  const [sub, setSub] = React.useState(null);
-  const [unit, setUnit] = useState(null)
-  const [uni, setUni] = useState(null)
-  const [unitPlans, setUnitPlans] = useState([])
-  const [uniqueId, setUniqueId] = useState([])
+  const [unique, setUnique] = React.useState(null); //unique classes for logged in teacher
 
-
-  const [topic, setTopic] = React.useState(null);
-  const [top, setTop] = React.useState(null);
-  const [subTopic, setSubTopic] = React.useState(null);
-  const [subTop, setSubTop] = React.useState(null);
-
-  const [subjects, setSubjects] = React.useState('');
   const [sublist, setSublist] = useState(null)
+  const [subject, setSubject] = React.useState(null);
+  const [topic, setTopic] = React.useState(null);
+  const [subTopic, setSubTopic] = React.useState(null);
+  const [unit, setUnit] = useState(null)
+
+
+  const [clas, setClas] = React.useState(null); const [clas_dialog, setClas_dialog] = useState(null);
+  const [sub, setSub] = React.useState(null); const [sub_dialog, setSub_dialog] = React.useState(null);
+  const [top, setTop] = React.useState(null); const [top_dialog, setTop_dialog] = React.useState(null);
+  const [subTop, setSubTop] = React.useState(null); const [subTop_dialog, setSubTop_dialog] = React.useState(null);
+  const [uni, setUni] = useState(null); const [uni_dialog, setUni_dialog] = useState(null)
+
+  const [unitPlans, setUnitPlans] = useState([])
+
   const [timeStart, setTimeStart] = useState(null)
   const [timeEnd, setTimeEnd] = useState(null)
-
   const [create_start_time, setCreate_start_time] = useState(new Date().getFullYear() + "-" + (new Date().getMonth() + 1) + "-" + new Date().getDate())
   const [create_end_time, setCreate_end_time] = useState(new Date().getFullYear() + "-" + (new Date().getMonth() + 1) + "-" + new Date().getDate())
 
@@ -93,6 +92,16 @@ export const Scheme_of_work = (props) => {
   const [open, setOpen] = useState(false)
 
   const handleClose = () => { setOpen(false) }
+  const handleClear = () => {
+    setUni_dialog(null)
+    setSubTop_dialog(null)
+    setTop_dialog(null)
+    setSub_dialog(null)
+    setClas_dialog(null)
+    setCreate_end_time(null)
+    setCreate_start_time(null)
+    setOpen(false)
+  }
   const handleOpen = () => { setOpen(true) }
 
   const handleCloseMsg = () => {
@@ -110,25 +119,26 @@ export const Scheme_of_work = (props) => {
       setClas(e.target.value)
       setSublist(classs.filter(el => el.class._id === e.target.value));
     }
+    if (e.target.name === "class_dialog") {
+      setClas_dialog(e.target.value)
+      setSublist(classs.filter(el => el.class._id === e.target.value));
+    }
 
     if (e.target.name === "subject") {
       setSub(e.target.value)
-      console.log("{{{{{{{{{{{{", e.target.value, "&&&&&", clas, "}}}}}}}}}}}}}}}}}}}")
-      // if(sub)
       fetchUnitPlans(e.target.value)
     }
+    if (e.target.name === "subject_dialog") setSub_dialog(e.target.value)
 
-    if (e.target.name === "topic")
-      setTop(e.target.value)
+    if (e.target.name === "topic") setTop(e.target.value)
+    if (e.target.name === "topic_dialog") setTop_dialog(e.target.value)
 
-    if (e.target.name === "subTopic")
-      setSubTop(e.target.value)
+    if (e.target.name === "subTopic") setSubTop(e.target.value)
+    if (e.target.name === "subTopic_dialog") setSubTop_dialog(e.target.value)
 
+    if (e.target.name === "unit") setUni(e.target.value)
+    if (e.target.name === "unit_dialog") setUni_dialog(e.target.value)
 
-    if (e.target.name === "unit") {
-      setUni(e.target.value)
-
-    }
 
     if (e.target.name === 'create_end_time') setCreate_end_time(e.target.value)
     if (e.target.name === 'create_start_time') setCreate_start_time(e.target.value)
@@ -148,6 +158,9 @@ export const Scheme_of_work = (props) => {
       console.log('date of end', timeEnd)
     }
   }
+
+
+
 
   const fetchClasses = () => {
     const req = https.get(`/class-teachers/${teacher}/teacher-classes`, { headers: { 'Authorization': `Basic ${localStorage.token}` } })
@@ -222,21 +235,31 @@ export const Scheme_of_work = (props) => {
         });
     }
   }
+  const handleDelete = item => {
+    https.delete(`/lessons/unit-plans/${item}`, { headers: { 'Authorization': `Basic ${localStorage.token}` } })
+      .then((res) => {
+        handleOpenMsg('success', `unit plan deleted successfully`)
+        fetchUnitPlans(sub)
+        console.log(res, "************")
+      }).catch(function (err) {
+        console.log(err);
+      });
+  }
   const handleSubmit = () => {
-    console.log("subject", sub, "unit", uni, "end", create_end_time, "start", create_start_time)
+    console.log("subject", sub_dialog, "unit", uni_dialog, "end", create_end_time, "start", create_start_time)
     let data_to_submit = {
       time: {
         start: create_start_time,
         end: create_end_time
       },
-      subject: sub,
-      unit: uni
+      subject: sub_dialog,
+      unit: uni_dialog
     }
     https.post(`lessons/unit-plans`, data_to_submit, { headers: { 'Authorization': `Basic ${localStorage.token}` } })
       .then((res) => {
         handleOpenMsg('success', `unit plan created successfully`)
         handleClose()
-        console.log('DATA UPDATED BRO')
+        fetchUnitPlans(sub)
       }).catch(function (err) {
         console.log(err, '***********ERRRORR***********');
         handleOpenMsg('warning', err)
@@ -246,20 +269,20 @@ export const Scheme_of_work = (props) => {
   useEffect(() => {
     // setSublist(classs.filter(el => el.class._id === e.target.value));
   }, [clas])
-
   useEffect(() => {
 
-    async function fetchUnit() {
-      const req = await https.get(`/lessons/units/${subTop}/subTopic-units`, { headers: { 'Authorization': `Basic ${localStorage.token}` } })
+    async function fetchTopic() {
+      const req = await https.get(`/lessons/topics/${sub}/subject-topics`, { headers: { 'Authorization': `Basic ${localStorage.token}` } })
         .then((res) => {
-          setUnit(res.data)
+          setTopic(res.data)
         }).catch(function (err) {
           console.log(err);
         });
       return req
     }
-    fetchUnit()
-  }, [subTop])
+    fetchTopic()
+
+  }, [sub])
   useEffect(() => {
 
     async function fetchSupTop() {
@@ -275,8 +298,26 @@ export const Scheme_of_work = (props) => {
   }, [top])
   useEffect(() => {
 
+    async function fetchUnit() {
+      const req = await https.get(`/lessons/units/${subTop}/subTopic-units`, { headers: { 'Authorization': `Basic ${localStorage.token}` } })
+        .then((res) => {
+          setUnit(res.data)
+        }).catch(function (err) {
+          console.log(err);
+        });
+      return req
+    }
+    fetchUnit()
+  }, [subTop])
+
+
+  useEffect(() => {
+    // setSublist(classs.filter(el => el.class._id === e.target.value));
+  }, [clas_dialog])
+  useEffect(() => {
+
     async function fetchTopic() {
-      const req = await https.get(`/lessons/topics/${sub}/subject-topics`, { headers: { 'Authorization': `Basic ${localStorage.token}` } })
+      const req = await https.get(`/lessons/topics/${sub_dialog}/subject-topics`, { headers: { 'Authorization': `Basic ${localStorage.token}` } })
         .then((res) => {
           setTopic(res.data)
         }).catch(function (err) {
@@ -286,7 +327,34 @@ export const Scheme_of_work = (props) => {
     }
     fetchTopic()
 
-  }, [sub])
+  }, [sub_dialog])
+  useEffect(() => {
+
+    async function fetchSupTop() {
+      const req = await https.get(`/lessons/subtopics/${top_dialog}/topic-subTopics`, { headers: { 'Authorization': `Basic ${localStorage.token}` } })
+        .then((res) => {
+          setSubTopic(res.data)
+        }).catch(function (err) {
+          console.log(err);
+        });
+      return req
+    }
+    fetchSupTop()
+  }, [top_dialog])
+  useEffect(() => {
+
+    async function fetchUnit() {
+      const req = await https.get(`/lessons/units/${subTop_dialog}/subTopic-units`, { headers: { 'Authorization': `Basic ${localStorage.token}` } })
+        .then((res) => {
+          setUnit(res.data)
+        }).catch(function (err) {
+          console.log(err);
+        });
+      return req
+    }
+    fetchUnit()
+  }, [subTop_dialog])
+
 
   useEffect(() => {
     classs != null &&
@@ -379,6 +447,7 @@ export const Scheme_of_work = (props) => {
                   <th>Ends</th>
                   <th>Expected</th>
                   <th>covered</th>
+                  <th>Actions</th>
                   {/* </th> */}
                 </tr>
               </thead>
@@ -425,7 +494,7 @@ export const Scheme_of_work = (props) => {
                       </td>
                       <td>7</td>
                       <td>0</td>
-                      <td><Button variant="info" onClick={() => handleUpdate(i)}>change Time</Button></td>
+                      <td><div style={{ display: "flex" }}><Button variant="info" onClick={() => handleUpdate(i)} size="sm">change Time</Button><Button size="sm" variant="danger" onClick={() => handleDelete(i._id)}>Delete</Button></div></td>
                     </tr>
                   ))
                 }
@@ -446,8 +515,8 @@ export const Scheme_of_work = (props) => {
             <div className="form-field">
               <TextField
                 label="Class"
-                value={clas}
-                name="class"
+                value={clas_dialog}
+                name="class_dialog"
                 variant="outlined"
                 type="text"
                 fullWidth="true"
@@ -460,9 +529,10 @@ export const Scheme_of_work = (props) => {
                 <MenuItem value={null}>
                   <em>None</em>
                 </MenuItem>
-                {classs &&
-                  classs.map(item => (
-                    <MenuItem key={item.class._id} value={item.class._id}>{!item ? '' : !item.class != null && !item.class != undefined ? '' : !item.class.level ? '' : item.class.level.name}&nbsp;{!item ? '' : !item.class ? '' : !item.class.combination ? '' : !item.class.combination ? '' : item.class.combination.name}&nbsp;{!item ? "" : !item.class ? "" : item.class.label ? item.class.label : ''}</MenuItem>
+                {unique &&
+                  unique.map(item => (
+
+                    <MenuItem key={item.class._id} value={item.class._id}>{!item ? '' : !item.class != null && !item.class == undefined ? '' : !item.class.level ? '' : item.class.level.name}&nbsp;{!item ? '' : !item.class ? '' : !item.class.combination ? '' : !item.class.combination ? '' : item.class.combination.name}&nbsp;{!item ? "" : !item.class ? "" : item.class.label ? item.class.label : ''}</MenuItem>
                   ))
                 }
               </TextField>
@@ -470,8 +540,8 @@ export const Scheme_of_work = (props) => {
 
               <TextField
                 label="Subject"
-                value={sub}
-                name="subject"
+                value={sub_dialog}
+                name="subject_dialog"
                 variant="outlined"
                 type="text"
                 fullWidth="true"
@@ -499,11 +569,12 @@ export const Scheme_of_work = (props) => {
                 label="Topic"
                 variant="outlined"
                 type="text"
-                value={top}
-                name="topic"
+                value={top_dialog}
+                name="topic_dialog"
                 fullWidth="true"
                 onChange={handleChange}
                 select
+                multiline ={false}
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -514,7 +585,7 @@ export const Scheme_of_work = (props) => {
 
                 {topic &&
                   topic.map(item => (
-                    <MenuItem key={item._id} value={item._id}>{item.name}</MenuItem>
+                    <MenuItem key={item._id} value={item._id}><span className="multiLine">{item.name}</span></MenuItem>
                   ))
                 }
               </TextField>
@@ -526,11 +597,11 @@ export const Scheme_of_work = (props) => {
                 label="Sub-topic"
                 variant="outlined"
                 type="text"
-                name="subTopic"
+                name="subTopic_dialog"
                 fullWidth="true"
                 onChange={handleChange}
                 minWidth="xl"
-                value={subTop}
+                value={subTop_dialog}
                 select
                 InputLabelProps={{
                   shrink: true,
@@ -554,8 +625,8 @@ export const Scheme_of_work = (props) => {
                 variant="outlined"
                 type="text"
                 fullWidth="true"
-                name="unit"
-                value={uni}
+                name="unit_dialog"
+                value={uni_dialog}
                 minWidth="xl"
                 onChange={handleChange}
                 select
@@ -587,6 +658,9 @@ export const Scheme_of_work = (props) => {
                 color="primary"
                 value={create_start_time}
                 className={classes.textField}
+                InputLabelProps={{
+                  shrink: true,
+                }}
               />
               <TextField
                 id="date"
@@ -599,6 +673,9 @@ export const Scheme_of_work = (props) => {
                 type="date"
                 value={create_end_time}
                 className={classes.textField}
+                InputLabelProps={{
+                  shrink: true,
+                }}
               />
             </div>
           </form>
@@ -606,7 +683,7 @@ export const Scheme_of_work = (props) => {
                 </Formik> */}
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="default">
+          <Button onClick={handleClear} color="default">
             Cancel
                 </Button>
           <Button onClick={handleSubmit} color="primary">
