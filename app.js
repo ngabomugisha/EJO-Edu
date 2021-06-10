@@ -24,6 +24,6 @@ db();
 app.use('/public', express.static(path.join(parentDirectory, "/build/")));
 app.use('/static', express.static(path.join(parentDirectory, "/build/static")));
 app.use('/', require('./router'));
-const PORT = process.env.PORT || 9001
+const PORT = process.env.PORT || 9000
 
 app.listen(PORT, console.log(`Listening on ${PORT}`))
