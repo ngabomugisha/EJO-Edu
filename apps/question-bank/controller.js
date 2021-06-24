@@ -11,6 +11,7 @@ exports.create = async (req, res) => {
             question,
             questionType,
             possibleAnswer,
+            matchingAnswer,
             answer
         } = req.body;
         const author = req.user._id
@@ -25,6 +26,7 @@ exports.create = async (req, res) => {
                 question,
                 questionType,
                 possibleAnswer,
+                matchingAnswer,
                 answer
             )
             .then(results => {
@@ -51,6 +53,7 @@ exports.update = async (req, res) => {
             question,
             questionType,
             possibleAnswer,
+            matchingAnswer,
             answer
         } = req.body;
         QuestionBank.update(
@@ -60,6 +63,7 @@ exports.update = async (req, res) => {
                 question,
                 questionType,
                 possibleAnswer,
+                matchingAnswer,
                 answer
             )
             .then(results => {

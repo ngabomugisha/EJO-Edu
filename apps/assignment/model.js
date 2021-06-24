@@ -22,30 +22,10 @@ const assignmentSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user'
     },
-    questions: [
-        {
-            difficultLevel: {
-                type: String,
-                enum: ['EASY', 'MEDIUM', 'DIFFICULT']
-            },
-            questionObjective: {
-                type: String,
-                enum: ['REMEMBERING', 'UNDERSTANDING', 'APPLYING', 'ANALYSING', 'CREATING', 'EVALUATING']
-            },
-            question: String,
-            questionType: {
-                type: String,
-                enum: ['MULTI-CHOICE', 'TRUE/FALSE', 'MATCHING', 'FILL-IN-THE-BLANK', 'SHORT-ANSWER', 'LONG-ANSWER']
-            },
-            possibleAnswer: [{
-                answer: String
-            }],
-            answer: [{
-                answer: String
-            }],
-            points: Number
-        }
-    ],// deal with sub-questions later
+    questions: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'assignmentQuestion'
+    }],
     duration: Number,
     starts: Date,
     ends: Date,
@@ -65,4 +45,36 @@ const assignmentSchema = new mongoose.Schema({
     timestamps: true
 });
 
-export default mongoose.model("assignment", assignmentSchema);
+
+const assignmentQuestionSchema = new mongoose.Schema({
+    difficultLevel: {
+        type: String,
+        enum: ['EASY', 'MEDIUM', 'DIFFICULT']
+    },
+    questionObjective: {
+        type: String,
+        enum: ['REMEMBERING', 'UNDERSTANDING', 'APPLYING', 'ANALYSING', 'CREATING', 'EVALUATING']
+    },
+    question: String,
+    questionType: {
+        type: String,
+        enum: ['MULTI-CHOICE', 'TRUE/FALSE', 'MATCHING', 'FILL-IN-THE-BLANK', 'SHORT-ANSWER', 'LONG-ANSWER']
+    },
+    possibleAnswer: [{
+        answer: String
+    }],
+    matchingAnswer: [{
+        answer: String,
+        matchesWith: String
+    }],
+    answer: [{
+        answer: String
+    }],
+    points: Number
+})
+
+
+module.exports.Assignment = mongoose.model("assignment", assignmentSchema);
+module.exports.AssignmentQuestion = mongoose.model("assignmentQuestion", assignmentQuestionSchema);
+
+// export default {Assignment, AssignmentQuestion}

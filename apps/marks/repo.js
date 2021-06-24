@@ -86,48 +86,129 @@ exports.getStudentSubjectMarks = async (studentId, subjectId) => {
 }
 
 
-exports.getStudentMarksStats = async (studentId) => {
+exports.getStudentSubjectMarksStats = async (studentId, subjectId) => {
     try {
 
 
-        const pipeline = [
-            // {
-            //     "$match": {
-            //         // "class":  mongoose.Types.ObjectId(classId),
-            //     }
-            // },
-            // {
-            //     "$project": {
-            //         "subjectId": "$subject",
-            //         "classId": "$class",
-            //         "studentId": "$student",
-            //         "assignmentId": "$assignment",
-            //         "totalMarks": "$totalMarks",
-            //     }
-            // },
-            {
-                "$lookup": {
-                    from: "assignment",
-                    localField: "assignment",
-                    foreignField: "_id",
-                    as: "assignments"
-                }
-            },
-            // {
-            //     "$group": {
-            //         "_id": "$assignmentId"
-            //     }
-            // }
-        ];
-        return await Marks.aggregate(pipeline)
+        return await Marks.find({
+                student: studentId,
+                subject: subjectId
+            })
+            .exec()
+            .then(res => {
+                return res;
+            })
+            .catch(err => {
+                console.log(err);
+                return false;
+            })
+    } catch (error) {
+        throw error;
+    }
+}
+const groupBySubject = (xs) => {
+    return xs.reduce(function(rv, x) {
+      (rv[x.subject._id] = rv[x.subject._id] || []).push(x);
+      return rv;
+    }, {});
+  };
+
+exports.getStudentMarksLatest = async (studentId) => {
+    try {
 
 
+       const data = await Marks.find({
+           student: studentId
+       })
+       .populate({
+           path: 'answers.question subject assignment'
+       })
+       .exec()
+       const groupedData = Object.values(groupBySubject(data))
+
+       const latest = []
+       groupedData.map(subject => {
+        const subjectDetails = subject[0].subject._doc
+            const one = {}
+           subject.map(assignment => {
+                one[assignment.assignment.assignmentType] = assignment
+           })
+           latest.push({...subjectDetails, ...one})
+       })
+       return latest
 
     } catch (error) {
         throw error;
     }
 }
 
+const processAnswers = (subject, answers) => {
+    answers.map(answer => {
+        const newPoints = {
+            points: subject[answer.question.questionObjective].points + answer.awardedPoints,
+            outOf: subject[answer.question.questionObjective].outOf + answer.question.points
+        }
+        subject[answer.question.questionObjective] = newPoints
+    })
+}
+
+exports.getStudentMarksStats = async (studentId) => {
+    try {
+
+
+       const data = await Marks.find({
+           student: studentId
+       })
+       .populate({
+           path: 'answers.question subject'
+       })
+       .exec()
+       const groupedData = Object.values(groupBySubject(data))
+
+       const subjects = []
+       groupedData.map(subject => {
+            const subjectDetails = subject[0].subject._doc
+            const tempSubject = {
+                    ...subjectDetails,
+                    stats: {
+                        'REMEMBERING': {
+                            points: 0,
+                            outOf: 0
+                        }, 
+                        'UNDERSTANDING': {
+                            points: 0,
+                            outOf: 0
+                        },  
+                        'APPLYING': {
+                            points: 0,
+                            outOf: 0
+                        }, 
+                        'ANALYSING': {
+                            points: 0,
+                            outOf: 0
+                        },  
+                        'CREATING': {
+                            points: 0,
+                            outOf: 0
+                        }, 
+                        'EVALUATING':{
+                            points: 0,
+                            outOf: 0
+                        }
+                    }
+                } 
+            subject.map(assignment => {
+                
+                processAnswers(tempSubject.stats, assignment.answers)
+            })
+            subjects.push(tempSubject)
+       })
+
+       return subjects
+    } catch (error) {
+        throw error;
+    }
+}
 
 exports.getStudentMarks = async (studentId) => {
     try {

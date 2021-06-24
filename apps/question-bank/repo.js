@@ -10,6 +10,7 @@ exports.create = async (
     question,
     questionType,
     possibleAnswer,
+    matchingAnswer,
     answer
 ) => {
     try {
@@ -23,6 +24,7 @@ exports.create = async (
             question,
             questionType,
             possibleAnswer,
+            matchingAnswer,
             answer
         })
         await newQuestionBank.save()
@@ -39,6 +41,7 @@ exports.update = async (
     question,
     questionType,
     possibleAnswer,
+    matchingAnswer,
     answer
 ) => {
     try {
@@ -50,6 +53,7 @@ exports.update = async (
                 question,
                 questionType,
                 possibleAnswer,
+                matchingAnswer,
                 answer
             }, {
                 new: true

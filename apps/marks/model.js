@@ -8,6 +8,7 @@ const markseschema = new mongoose.Schema({
     answers: [{
         question: {
             type: mongoose.Schema.Types.ObjectId,
+            ref: 'assignmentQuestion'
         },
         answer: [{
             answer: String

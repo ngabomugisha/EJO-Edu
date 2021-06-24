@@ -1,4 +1,4 @@
-import Assignment from './model'
+import {Assignment, AssignmentQuestion} from './model'
 
 exports.create = async (
     teacher,
@@ -15,7 +15,16 @@ exports.create = async (
     assignmentType,
     testMethod
 ) => {
+    const processedQuestions = []
     try {
+        await Promise.all(
+            questions.map(async value => {
+                const question = new AssignmentQuestion({...value})
+                await question.save()
+                processedQuestions.push(question._id)
+            })
+
+         )
         const newAssignment = new Assignment({
             teacher,
             school,
@@ -23,7 +32,7 @@ exports.create = async (
             subject,
             class: assignedClass,
             unit,
-            questions,
+            questions: processedQuestions,
             duration,
             starts,
             ends,
@@ -82,6 +91,10 @@ exports.getUnitAssignments = async (unitId, school) => {
         return await Assignment.find({
                 unit: unitId, school
             })
+            .populate({
+                path: 'questions'
+            })
+            .exec()
             .then(res => {
                 return res;
             })
@@ -99,6 +112,10 @@ exports.getSubjectAssignments = async (subjectId, school) => {
         return await Assignment.find({
                 subject: subjectId, school
             })
+            .populate({
+                path: 'questions'
+            })
+            .exec()
             .then(res => {
                 return res;
             })
@@ -114,6 +131,10 @@ exports.getSubjectAssignments = async (subjectId, school) => {
 exports.getOneAssignment = async (assignmentId) => {
     try {
         return await Assignment.findById(assignmentId)
+            .populate({
+                path: 'questions'
+            })
+            .exec()
             .then(res => {
                 return res;
             })

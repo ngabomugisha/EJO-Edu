@@ -97,6 +97,27 @@ exports.getStudentSubjectMarks = async (req, res) => {
     
 }
 
+exports.getStudentSubjectMarksStats = async (req, res) => {
+    try {
+
+        const studentId = req.params.studentId;
+        const subjectId = req.params.subjectId
+        Marks.getStudentSubjectMarksStats(studentId, subjectId)
+            .then(results => {
+                Response.Success(res, 200, "queried successfully", results);
+            })
+            .catch(err => {
+                console.log(err);
+                Response.InternalServerError(res, "We are having issues! please try again soon");
+            });
+
+    } catch (error) {
+        console.log(error);
+        Response.InternalServerError(res, "We are having issues! please try again soon");
+    }
+    
+}
+
 exports.getStudentMarks = async (req, res) => {
     try {
 
@@ -136,7 +157,25 @@ exports.getStudentMarksStats = async (req, res) => {
     }
     
 }
+exports.getStudentMarksLatest = async (req, res) => {
+    try {
 
+        const studentId = req.params.studentId;
+        Marks.getStudentMarksLatest(studentId)
+            .then(results => {
+                Response.Success(res, 200, "queried successfully", results);
+            })
+            .catch(err => {
+                console.log(err);
+                Response.InternalServerError(res, "We are having issues! please try again soon");
+            });
+
+    } catch (error) {
+        console.log(error);
+        Response.InternalServerError(res, "We are having issues! please try again soon");
+    }
+    
+}
 exports.getAssignmentMarks = async (req, res) => {
     try {
         const assignmentId = req.params.assignmentId
