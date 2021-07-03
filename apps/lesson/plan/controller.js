@@ -4,6 +4,8 @@ import UnitPlan from '../unit-plan/repo'
 
 exports.create = async (req, res) => {
     try {
+        
+        console.log("10=================>")
         const {
             unit,
             assignedClass,
@@ -14,13 +16,27 @@ exports.create = async (req, res) => {
             lessonName,
             time
         } = JSON.parse(req.body.lesson)
+        
+        console.log("20=================>")
         const {knowledge} = JSON.parse(req.body.knowledge)
+        
+        console.log("30=================>")
         const {skills} = JSON.parse(req.body.skills)
+        
+        console.log("40=================>")
         const {attitudesAndValues} = JSON.parse(req.body.attitudesAndValues)
+        
+        console.log("50=================>")
         const activities = JSON.parse(req.body.activities)
+        
+        console.log("60=================>")
         const teachingTechniques = JSON.parse(req.body.teachingTechniques)
+        
+        console.log("80=================>")
         const teacher = req.user._id
         const school = req.user.school
+
+        console.log("90=================>")
         Plan.create(
                 teacher,
                 school,
