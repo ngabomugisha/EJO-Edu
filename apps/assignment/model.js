@@ -6,10 +6,12 @@ const assignmentSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'subject'
     },
-    unit: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'unit'
-    },
+    units: [{
+        unit: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'unit'
+        }
+    }],
     school: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'school'

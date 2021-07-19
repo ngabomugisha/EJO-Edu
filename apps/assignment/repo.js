@@ -6,7 +6,7 @@ exports.create = async (
     title,
     subject,
     assignedClass,
-    unit,
+    units,
     questions,
     duration,
     starts,
@@ -31,7 +31,7 @@ exports.create = async (
             title,
             subject,
             class: assignedClass,
-            unit,
+            units,
             questions: processedQuestions,
             duration,
             starts,
@@ -89,7 +89,12 @@ exports.update = async (
 exports.getUnitAssignments = async (unitId, school) => {
     try {
         return await Assignment.find({
-                unit: unitId, school
+                school,
+                units: {
+                    $elemMatch: {
+                        unit: unitId
+                    }
+                }
             })
             .populate({
                 path: 'questions'
